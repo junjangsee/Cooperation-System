@@ -64,4 +64,5 @@ local.properties
 .tern-project
 .springBeans
 .recommenders/
+pom.properties
 Thumbs.db
