@@ -23,7 +23,7 @@
 	<!-- modal -->
 	<%@ include file="../includes/format_modal.jsp" %>
 	<%@ include file="../includes/detail_Post_modal.jsp" %>
-	<%@ include file="../includes/insert_post_modal.jsp" %>
+	<%@ include file="../includes/insert_Post_modal.jsp" %>
 	<!-- end modal -->
 	
 	<!-- nav -->
