@@ -1,4 +1,4 @@
-package org.bbong.controller;
+package kogile.view.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
