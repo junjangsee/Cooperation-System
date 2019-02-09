@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kogile.project.mapper.ProjectMapper">
+
+	<select id="list" resultType="kogile.project.domain.ProjectVO">
+		SELECT/*+ INDEX_ASC(project XPK프로젝트)*/ * FROM project
+		WHERE total_m_no = #{total_m_no}
+	</select>
+	
+	<insert id="insert" parameterType="kogile.project.domain.ProjectVO">
+		<selectKey keyProperty="pjt_no" order="BEFORE" resultType="long">
+			SELECT pjt_no.nextval FROM dual
+		</selectKey>
+		INSERT INTO project
+		VALUES(#{pjt_no}, sysdate, #{pjt_title}, #{total_m_no}, #{pjt_contents})
+	</insert>
+	
+	<insert id="insert_invite" parameterType="kogile.invite.domain.InviteVO">
+		<selectKey keyProperty="invite_no" order="BEFORE" resultType="long">
+			SELECT invite_seq.nextval FROM dual
+		</selectKey>
+		INSERT INTO invite
+		VALUES(#{invite_no}, #{grade}, #{pjt_no}, #{total_m_no} )
+	</insert>
+	
+	<insert id="insert_prjinfo" parameterType="kogile.project.domain.Prj_infoVO">
+		INSERT INTO prj_info
+		VALUES(info_no_seq, #{invite_no})
+	</insert>
+	
+</mapper>

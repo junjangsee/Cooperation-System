@@ -41,6 +41,6 @@
 	<context:component-scan base-package="kogile.*.service"/>
 
 	<!-- 트랜잭션 등록 -->
-	<tx:annotation-driven/>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
 
 </beans>
