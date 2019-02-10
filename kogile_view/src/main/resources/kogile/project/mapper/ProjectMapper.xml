@@ -10,7 +10,7 @@
 	</select>
 	
 	<insert id="insert" parameterType="kogile.project.domain.ProjectVO">
-		<selectKey keyProperty="pjt_no" order="BEFORE" resultType="long">
+		<selectKey keyProperty="pjt_no" order="BEFORE" resultType="Integer">
 			SELECT pjt_no.nextval FROM dual
 		</selectKey>
 		INSERT INTO project
@@ -18,7 +18,7 @@
 	</insert>
 	
 	<insert id="insert_invite" parameterType="kogile.invite.domain.InviteVO">
-		<selectKey keyProperty="invite_no" order="BEFORE" resultType="long">
+		<selectKey keyProperty="invite_no" order="BEFORE" resultType="Integer">
 			SELECT invite_seq.nextval FROM dual
 		</selectKey>
 		INSERT INTO invite
@@ -27,7 +27,21 @@
 	
 	<insert id="insert_prjinfo" parameterType="kogile.project.domain.Prj_infoVO">
 		INSERT INTO prj_info
-		VALUES(info_no_seq, #{invite_no})
+		VALUES(info_no_seq.nextval, #{invite_no})
 	</insert>
+	
+	<insert id="insert_card">
+		insert all
+		into card values(card_seq.nextval, 'To Do', 1, #{pjt_no})
+		into card values(card_seq.nextval+1, 'Doing', 2, #{pjt_no})
+		into card values(card_seq.nextval+2, 'Done', 3, #{pjt_no})
+		into card values(card_seq.nextval+3,'Close', 4, #{pjt_no})
+		select * from dual
+	</insert>
+	
+	<select id="card_no_info" resultType="kogile.project.domain.CardVO">
+		select /*+ INDEX_asc(card XPK카드) */ * from card
+		where pjt_no = #{pjt_no}
+	</select>
 	
 </mapper>

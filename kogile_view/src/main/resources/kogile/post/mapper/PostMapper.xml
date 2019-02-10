@@ -2,9 +2,14 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kogile.project.mapper.ProjectMapper">
+<mapper namespace="kogile.post.mapper.PostMapper">
 
-	<select id="list" resultType="kogile.project.domain.ProjectVO">
+	<select id="list_post" resultType="kogile.post.domain.PostVO">
+		select * from post
+		where c_no = #{c_no}
+	</select>
+
+	<!-- <select id="list" resultType="kogile.project.domain.ProjectVO">
 		SELECT/*+ INDEX_ASC(project XPK프로젝트)*/ * FROM project
 		WHERE total_m_no = #{total_m_no}
 	</select>
@@ -42,6 +47,6 @@
 	<select id="card_no_info" resultType="kogile.project.domain.CardVO">
 		select /*+ INDEX_asc(card XPK카드) */ * from card
 		where pjt_no = #{pjt_no}
-	</select>
+	</select> -->
 	
 </mapper>

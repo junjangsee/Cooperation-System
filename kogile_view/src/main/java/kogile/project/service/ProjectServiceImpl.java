@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import kogile.invite.domain.InviteVO;
+import kogile.project.domain.CardVO;
 import kogile.project.domain.Prj_infoVO;
 import kogile.project.domain.ProjectVO;
 import kogile.project.mapper.ProjectMapper;
@@ -29,6 +30,7 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public void insert(ProjectVO project) {
 		mapper.insert(project);
+		mapper.insert_card(project.getPjt_no());
 		InviteVO invite = new InviteVO();
 		invite.setGrade("master");
 		invite.setPjt_no(project.getPjt_no());
@@ -38,5 +40,13 @@ public class ProjectServiceImpl implements ProjectService {
 		prj_info.setInvite_no(invite.getInvite_no());
 		mapper.insert_prjinfo(prj_info);
 	}
+
+	@Override
+	public List<CardVO> list_card(int pjt_no) {
+		List<CardVO> list = mapper.card_no_info(pjt_no);
+		return list;
+	}
+	
+	
 
 }
