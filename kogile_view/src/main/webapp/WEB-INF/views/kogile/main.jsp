@@ -3,13 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%
-	if(request.getParameter("pjt_no") != null){
-		session.removeAttribute("pjt_no");
-	}else{
+	if(request.getParameter("pjt_no") == null){
 		response.sendRedirect("/kogile/startPage");
+	}else{
+		session.removeAttribute("pjt_no");
+		session.setAttribute("pjt_no", Integer.parseInt(request.getParameter("pjt_no")));
 	}
 	
-	session.setAttribute("pjt_no", Integer.parseInt(request.getParameter("pjt_no")));
 %>
 <!DOCTYPE html>
 <html>
@@ -129,7 +129,7 @@
 						at 11:59 PM</div>
 				</div>
 
-<%-- 			<div class="cts_board grid">
+				<%-- <div class="cts_board grid">
 
 
 				<c:forEach var="card" items="${card}">
@@ -169,7 +169,7 @@
 							생성</button>
 					</div>
 				</c:forEach>
-			</div> --%>
+			</div>  --%>
 
 			</div>
 			<!-- /.container-fluid -->

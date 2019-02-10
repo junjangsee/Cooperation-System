@@ -39,9 +39,11 @@
 		select * from dual
 	</insert>
 	
-	<select id="card_no_info" resultType="kogile.project.domain.CardVO">
-		select /*+ INDEX_asc(card XPK카드) */ * from card
-		where pjt_no = #{pjt_no}
-	</select>
+	<update id="drag_post" parameterType="kogile.project.domain.DragVO">
+		update post set c_no = #{new_c_no}
+		where p_no = #{p_no}
+	</update>
+	
+	
 	
 </mapper>

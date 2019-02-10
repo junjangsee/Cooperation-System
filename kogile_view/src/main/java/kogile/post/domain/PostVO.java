@@ -10,5 +10,7 @@ public class PostVO {
 	private int c_no;
 	private String p_description;
 	private String p_dday;
+	
+	private int c_position;
 
 }

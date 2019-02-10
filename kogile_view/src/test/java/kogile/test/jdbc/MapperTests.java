@@ -29,6 +29,7 @@ public class MapperTests {
 	@Test
 	public void test2() {
 		mapper2.list_post(1);
+		mapper2.card_no_info(1);
 	}
 	
 

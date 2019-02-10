@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kogile.invite.domain.InviteVO;
 import kogile.project.domain.CardVO;
+import kogile.project.domain.DragVO;
 import kogile.project.domain.Prj_infoVO;
 import kogile.project.domain.ProjectVO;
 import kogile.project.mapper.ProjectMapper;
@@ -42,10 +43,11 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public List<CardVO> list_card(int pjt_no) {
-		List<CardVO> list = mapper.card_no_info(pjt_no);
-		return list;
+	public void drag_post(DragVO drag) {
+		mapper.drag_post(drag);
+		
 	}
+
 	
 	
 
