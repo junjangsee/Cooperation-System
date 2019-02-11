@@ -1,0 +1,139 @@
+@charset "UTF-8";
+/* 디자인 */
+.cts_board{margin-top: 20px;/*overflow: hidden;*/padding: 0px;overflow-x:auto;overflow-y: auto;}
+.grid{position: relative;}
+.grid::after {content: '';  display: table;  clear: both}
+.item{background: #dfe3e6;border-radius: 5px;width: 24%;margin: 0 3.5px;float:left;display: block;z-index: 1;}
+.heading{position:relative;padding: 10px;box-sizing: border-box;overflow: hidden;}
+.board_title{color: #17394d;font-size: 14px;font-weight: 700;display: inline-block;}
+.more{float: right;font-size: 11px;line-height: 20px;}
+.item_content{position: relative;width: 92%;height: 100%;margin: 10px;box-sizing:border-box; min-height:30px;}
+.post{background: #fff;border-radius: 5px;margin-bottom: 10px;padding: 6px 8px 2px;position: relative;width:100%;box-sizing:border-box;display: block;z-index: 10;}
+.post{}
+.post_item{position:relative;background:#fff;display:block;z-index: 10000;}
+.post_item h4{font-size: 14px;color: #17394d;}
+.post_item .btn_box{margin: 5px 0 20px 0;}
+.post_item .btn_box span{font-size: 12px;display: inline-block;opacity: 0.5;height: 18px;padding-top: 2px;vertical-align: middle;margin-right: 15px;}
+.post_item .btn_box span:last-child{margin-right:0;}
+.post_item .btn_box .list{background: url(../images/note.png)left top no-repeat;width:18px;}
+.post_item .btn_box .check{background: url(../images/check.png)left top no-repeat;padding-left: 20px;}
+.post_item .btn_box .date{background: url(../images/time.png)left top no-repeat;padding-left: 20px;}
+.post_item .btn_box .clip{background: url(../images/clip.png)left top no-repeat;padding-left: 25px;}
+.peo_box{position: absolute;right:8px;bottom: 2px;}
+.peo_box img{width: 30px;}
+.add_txt{color: #6b808c;font-size: 13px;background: url(../images/add.png)left center no-repeat;padding-left: 20px;margin:0 0 20px 10px; border: none;}
+.ul-sortable-placeholder{position: relative;z-index: 15;}
+
+/* dragular */
+.column-button {
+   text-align: center;
+   padding: 0.1rem;
+}
+
+.button {
+   font-family: "Arimo", sans-serif;
+   font-weight: 700;
+   border: #000013 0.14rem solid;
+   border-radius: 0.2rem;
+   color: #000013;
+   padding: 0.6rem 1rem;
+   margin-bottom: 0.3rem;
+   cursor: pointer;
+}
+
+.delete-button {
+   background-color: #ff4444;
+   margin: 0.1rem auto 0.6rem auto;
+}
+
+.delete-button:hover {
+   background-color: #fa7070;
+}
+
+.add-button {
+   background-color: #ffcb1e;
+   padding: 0 1rem;
+   height: 2.8rem;
+   width: 10rem;
+   margin-top: 0.6rem;
+}
+
+.add-button:hover {
+   background-color: #ffdd6e;
+}
+
+/* Dragula CSS Release 3.2.0 from: https://github.com/bevacqua/dragula */
+.gu-mirror {
+   position: fixed !important;
+   margin: 0 !important;
+   z-index: 9999 !important;
+   opacity: 0.8;
+   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+   filter: alpha(opacity = 80);
+}
+
+.gu-hide {
+   display: none !important;
+}
+
+.gu-unselectable {
+   -webkit-user-select: none !important;
+   -moz-user-select: none !important;
+   -ms-user-select: none !important;
+   user-select: none !important;
+}
+
+.gu-transit {
+   opacity: 0.2;
+   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+   filter: alpha(opacity = 20);
+}
+
+/* modal 상세보기 */
+#reply_comment {
+	
+}
+
+.name {
+	float: left;
+	background: #d4d4d4;
+	width:40px;
+	height:40px;
+	border-radius: 50%;
+	line-height: 40px;
+	padding-left: 5px;
+	box-sizing: border-box;
+	font-weight: 600;
+}
+.add_input{
+	margin-left : 50px;
+	border:1px solid #dbdbdb;
+	width: 450px;
+	height: 100px;
+	border-radius: 5px;
+	display: block;
+	box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+	padding: 5px;
+	box-sizing: border-box;
+}
+
+.right_list{float: right;margin-left: 100px;}
+.right_list .holder{margin-bottom: 10px;}
+.title_c{color: #999;font-size: 15px;}
+.btn_list{margin-top: 10px;}
+.btn_list a{display: block;font-weight: 600;font-size:14px;color: #666;border-radius: 5px;display: block;box-shadow: 2px 2px 5px rgba(0,0,0,0.1);padding: 10px 5px 10px 30px;box-sizing: border-box;margin-bottom: 10px;width: 170px;}
+.addcard_holder .btn_list a:active{background: #17394d;}
+.addcard_holder .btn_list a.mem_btn{background:#f1f1f1 url(../images/members.png)left 10px center no-repeat;background-size:12px;}
+.addcard_holder .btn_list a.label_btn{background:#f1f1f1 url(../images/label.png)left 10px center no-repeat;background-size:12px;}
+.addcard_holder .btn_list a.check_btn{background:#f1f1f1 url(../images/check_list.png)left 10px center no-repeat;background-size:12px;}
+.addcard_holder .btn_list a.due_btn{background:#f1f1f1 url(../images/time.png)left 10px center no-repeat;background-size:12px;}
+.addcard_holder .btn_list a.atta_btn{background:#f1f1f1 url(../images/attach.png)left 10px center no-repeat;background-size:12px;}
+.ups_holder .holder_inner{margin: 10px 0 20px 10px;padding-left: 0;}
+.ups_holder .holder_inner a{text-decoration: underline;}
+.ups_holder .holder_inner a:hover{color: #6b808c;}
+.action_holder .btn_list a.move_btn{background:#f1f1f1 url(../images/move.png)left 10px center no-repeat;background-size:12px;}
+.action_holder .btn_list a.copy_btn{background:#f1f1f1 url(../images/copy.png)left 10px center no-repeat;background-size:12px;}
+.action_holder .btn_list a.watch_btn{background:#f1f1f1 url(../images/watch.png)left 10px center no-repeat;background-size:12px;}
+.action_holder .btn_list a.arc_btn{background:#f1f1f1 url(../images/arcive.png)left 10px center no-repeat;background-size:12px;}
+.action_holder .btn_list a.share_btn{background:#f1f1f1 url(../images/share.png)left 10px center no-repeat;background-size:12px;}
+

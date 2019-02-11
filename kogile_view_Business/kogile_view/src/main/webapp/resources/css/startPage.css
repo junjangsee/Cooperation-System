@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.MYcreate{overflow:hidden;margin-top:20px;}
+.MYcreate li{float:left;width:186px;height:96px;background-color: rgba(9,45,66,.08);margin:0 10px 10px 0; list-style: none;}
+.MYcreate li:last-child{margin-right:0;}
+.MYcreate li a{display:block;line-height:96px;font-size:15px;text-align:center;}
+.MYcreate li.add_create{display:block;}
+
+#insertProjectForm{
+	margin-left: 40px;
+}
