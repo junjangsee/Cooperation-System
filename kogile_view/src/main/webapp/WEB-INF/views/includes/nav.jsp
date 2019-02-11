@@ -20,7 +20,7 @@
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
         <div class="input-group-append">
-          <button class="btn btn-primary" type="button">
+          <button class="btn btn-primary" type="submit">
             <i class="fas fa-search"></i>
           </button>
         </div>
@@ -69,6 +69,16 @@
     </ul>
 
   </nav>
+
+	<table class="table-striped" width="500" border="0" cellpadding="0"
+		cellspacing="0">
+		<c:forEach var="searchList" items="${SearchList}">
+			<tr>
+				<td>${searchList.name }</td>
+				<td>${searchList.mail }</td>
+			</tr>
+		</c:forEach>
+	</table>
 
 </body>
 </html>
