@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kogile.chat.mapper.ChatMapper">
+
+	<select id="getChatList" resultType="kogile.chat.domain.ChatVO">
+	<![CDATA[
+	select
+	/* INDEX_DESC(tbl_chat pk_chat) */
+	*
+	from
+	tbl_chat
+	where pjt_no = #{pjt_no_input} AND
+	chat_no > #{chat_no_input}
+	]]>
+
+	</select>
+
+	<insert id="chatRegister">
+		insert into tbl_chat
+		values(chat_no_seq.nextval, #{pjt_no}, #{writer}, #{chatContents}, sysdate)
+	</insert>
+	
+	<update id="updateLastChatNo">
+		update TBL_CHAT_CNT set chat_cnt =
+		(select count(chat_no) from (select * from tbl_chat where pjt_no = #{pjt_pno}))
+		where pjt_no = #{pjt_no}
+	</update>
+	
+	<select id="selectLastChatNo">
+	select chatcnt from pjt_chat_count;
+	</select>
+</mapper>
