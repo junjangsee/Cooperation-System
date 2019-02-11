@@ -33,12 +33,11 @@
 							<h3 class="title_c">ADD TO CARD</h3>
 							<div class="btn_list">
 								<a href="#" class="mem_btn">Members</a> 
-								<a href="#" class="label_btn">Labels</a>
-
+								<a href="#" class="label_btn">Labels</a> 
 								
 								
 								
-								 <a href="#" class="check_btn">Checklist</a>
+								<a href="#" class="check_btn">Checklist</a>
 								
 								
 								

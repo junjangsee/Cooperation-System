@@ -78,7 +78,8 @@
 								
 											<h4>post_title</h4>
 											<div class="btn_box">
-												<span class="list"></span> <span class="check">0/4</span> 
+												<span class="list"></span> 
+												<span class="check">0/4</span> 
 												<span class="date">Jul 20</span>
 											</div>
 											<div class="peo_box"></div>
