@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,9 +9,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	    <ul class="sidebar navbar-nav">
+	<c:set var="pjt_no"><%=(int)session.getAttribute("pjt_no") %></c:set>
+
+	    <ul class="sidebar navbar-nav toggled">
       <li class="nav-item active">
-        <a class="nav-link" href="/kogile/main">
+        <a class="nav-link" href="/kogile/main?pjt_no=${pjt_no }">
           <i class="fas fa-fw fa-folder"></i>
           <span>Board</span>
         </a>
@@ -49,11 +53,18 @@
       </li>
       
       
-      <li class="nav-item ">
+      <li class="nav-item">
         <a class="nav-link" href="tables.html">
           <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
+          <span>공지사항</span></a>
       </li>
+      
+    	<li class="nav-item active">
+	        <a class="nav-link" href="/kogile/main_configure">
+	          <i class="fas fa-fw fa-tachometer-alt"></i>
+	          <span>설정</span>
+	        </a>
+     	</li>
     </ul>
 </body>
 </html>
