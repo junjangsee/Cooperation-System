@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kogile.invite.mapper.InviteMapper">
+
+	<!-- 데이터 출력 select문 -->
+	<select id="searchList" resultType="kogile.invite.domain.SearchListVO">
+
+		select distinct t.total_m_no as no, e.exter_mem_name as name,
+		e.exter_m_email as mail
+		from external_m_info e join total_member t
+		on
+		t.EXTER_M_NO = e.EXTER_M_NO
+
+		UNION
+
+		select distinct t.total_m_no as no, i.member_name as name, i.email as mail
+		from inter_m_info i join total_member t
+		on 
+		t.member_no = i.member_no
+	
+	</select>
+	
+</mapper>
