@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%
+	if(session.getAttribute("total_m_no") != null){
+		session.removeAttribute("total_m_no");
+	}
+	/* session.setAttribute("total_m_no", request.getParameter("total_m_no")); */
+	session.setAttribute("total_m_no", 1);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,9 +27,14 @@
 <title>startPage</title>
 </head>
 <body id="page-top">
-
+	<!-- hidden param -->
+	<input type="hidden" value="${total_m_no}" name="total_m_no">
+	
+	<!-- include -->
 	<%@ include file="../includes/nav.jsp"%>
-
+	<%@ include file="../includes/insert_Project_modal.jsp" %>
+	<!-- include end -->
+	
 	<div id="wrapper">
 
 		<!-- Sidebar -->
@@ -41,18 +54,19 @@
 					<div class="card-body">
 					
 					<!-- <div class="MYcontents"> -->
-						<a id="insertProjectForm" class="btn btn-primary" href="#">프로젝트
+						<a id="insertProjectForm" class="btn btn-primary" href="#"
+						data-toggle="modal" data-target="#insert_Porject_modal">프로젝트
 							생성</a>
 						<ul class="MYcreate" id="pjt">
-							<li><a href="#">sss</a></li>
-							<c:if test="${project_list != null }">
+							<!-- <li><a href="#">sss</a></li> -->
+							<%-- <c:if test="${project_list != null }">
 
 								<c:forEach var="Project" items="${project_list}">
 									<li><a href="detailProject.pjt?pjt_no=${Project.pjt_no}">${Project.pjt_title}</a>
 									</li>
 								</c:forEach>
 							
-							</c:if>
+							</c:if> --%>
 						</ul>
 					<!-- </div> -->
 					</div>
@@ -118,6 +132,6 @@
 
 
 	<%@ include file="../includes/footconfig.jsp"%>
-
+	<script src="/resources/js/startPage.js"></script>
 </body>
 </html>

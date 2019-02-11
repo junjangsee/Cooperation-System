@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%
+	if(request.getParameter("pjt_no") == null){
+		response.sendRedirect("/kogile/startPage");
+	}else{
+		session.removeAttribute("pjt_no");
+		session.setAttribute("pjt_no", Integer.parseInt(request.getParameter("pjt_no")));
+	}
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,22 +66,10 @@
 									<a href="#n" class="more">···</a>
 								</div>
 								
-								<div class="item_content" id="to-do" data-status="1">
-										<a href="#n" class="detailPostView post ui-state-default" data-status="1">
-										<div class="post_item">
-											<input type="hidden" class="select_pno" value="1">
-								
-											<h4>post_title</h4>
-											<div class="btn_box">
-												<span class="list"></span> <span class="check">0/4</span> 
-												<span class="date">Jul 20</span>
-											</div>
-											<div class="peo_box"></div>
-										</div>
-										</a>
-										
+								<div class="item_content" id="to-do" data-status="">
+												
 										<!-- example modal -->
-										<a href="#n" class="detailPostView post ui-state-default" data-status="1"
+										<!-- <a href="#n" class="detailPostView post ui-state-default" data-status=""
 										data-toggle="modal" data-target="#detail_post_modal">
 										<div class="post_item">
 											<input type="hidden" class="select_pno" value="2">
@@ -83,24 +81,13 @@
 											</div>
 											<div class="peo_box"></div>
 										</div>
-										</a>
+										</a> -->
 										
-										<a href="#n" class="detailPostView post ui-state-default" data-status="1">
-										<div class="post_item">
-											<input type="hidden" class="select_pno" value="3">
-								
-											<h4>post_title</h4>
-											<div class="btn_box">
-												<span class="list"></span> <span class="check">0/4</span> 
-												<span class="date">Jul 20</span>
-											</div>
-											<div class="peo_box"></div>
-										</div>
-										</a>
+										
 										
 								</div>
 								<button class="add_txt" data-toggle="modal" data-target="#insert_Post_modal">post 생성</button>
-							</div>
+								</div>
 							
 							<div class="item">
 								<div class="heading">
@@ -108,18 +95,7 @@
 									<a href="#n" class="more">···</a>
 								</div>
 								<div class="item_content" id="doing" data-status="2">
-										<a href="#n" class="detailPostView post ui-state-default" data-status="2">
-										<div class="post_item">
-											<input type="hidden" class="select_pno" value="1">
-								
-											<h4>post_title</h4>
-											<div class="btn_box">
-												<span class="list"></span> <span class="check">0/4</span> 
-												<span class="date">Jul 20</span>
-											</div>
-											<div class="peo_box"></div>
-										</div>
-										</a>
+										
 								</div>
 								
 								
@@ -131,31 +107,7 @@
 									<a href="#n" class="more">···</a>
 								</div>
 								<div class="item_content" id="done" data-status="3">
-										<a href="#n" class="detailPostView post ui-state-default" data-status="3">
-										<div class="post_item">
-											<input type="hidden" class="select_pno" value="1">
-								
-											<h4>post_title</h4>
-											<div class="btn_box">
-												<span class="list"></span> <span class="check">0/4</span> 
-												<span class="date">Jul 20</span>
-											</div>
-											<div class="peo_box"></div>
-										</div>
-										</a>
-										
-										<a href="#n" class="detailPostView post ui-state-default" data-status="3">
-										<div class="post_item">
-											<input type="hidden" class="select_pno" value="1">
-								
-											<h4>post_title</h4>
-											<div class="btn_box">
-												<span class="list"></span> <span class="check">0/4</span> 
-												<span class="date">Jul 20</span>
-											</div>
-											<div class="peo_box"></div>
-										</div>
-										</a>
+									
 								</div>
 							</div>
 							
@@ -165,18 +117,7 @@
 									<a href="#n" class="more">···</a>
 								</div>
 								<div class="item_content" id="close" data-status="4">
-										<a href="#n" class="detailPostView post ui-state-default" data-status="4">
-										<div class="post_item">
-											<input type="hidden" class="select_pno" value="1">
-								
-											<h4>post_title</h4>
-											<div class="btn_box">
-												<span class="list"></span> <span class="check">0/4</span> 
-												<span class="date">Jul 20</span>
-											</div>
-											<div class="peo_box"></div>
-										</div>
-										</a>
+										
 								</div>
 							</div>
 							
@@ -188,7 +129,7 @@
 						at 11:59 PM</div>
 				</div>
 
-<%-- 			<div class="cts_board grid">
+				<%-- <div class="cts_board grid">
 
 
 				<c:forEach var="card" items="${card}">
@@ -228,7 +169,7 @@
 							생성</button>
 					</div>
 				</c:forEach>
-			</div> --%>
+			</div>  --%>
 
 			</div>
 			<!-- /.container-fluid -->

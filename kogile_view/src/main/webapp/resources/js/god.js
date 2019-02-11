@@ -32,6 +32,9 @@
 
       console.log("elementStatus", elementStatus);
       console.log("containerStatus", containerStatus);
+      
+      //드래그 대상 p_no검출
+      var p_no = $($currentElement[0]).find('.select_pno').val();
 
       // elementStatus 와 containerStatus 가 같지 않다는 것은 카테고리 이동이 있었다는 것이므로 update 를 한다.
       if (elementStatus !== containerStatus) {
@@ -43,10 +46,30 @@
         console.log("타켓 elementStatus", elementStatus);
 
         // 여기서 ajax call 로 update 처리를 한다.
-        console.log("update");
+        console.log("update" + p_no);
+        
+        DragPost(elementStatus, containerStatus, p_no);
+
       }
     })
     .on("out", function(_, container) {
       currentContainer = container;
     });
+  
+  function DragPost(elementStatus, containerStatus, p_no){
+	  const data = {
+			  p_no : p_no,
+			  new_c_no : containerStatus
+	  }
+	  
+	  $.ajax({
+		  url : "/kogile/project/drag_post",
+		  type : "POST",
+		  data : data 
+	  }).then(function(){
+		  console.log("성공");
+	  }).catch(function(){
+		  console.log("실패");
+	  })
+  }
 })(jQuery);
