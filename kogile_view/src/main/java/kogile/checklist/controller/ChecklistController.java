@@ -50,6 +50,27 @@ public class ChecklistController {
 		log.info("/get");
 		model.addAttribute("cvo", service.get(checklist_no));
 	}
+
+	@PostMapping("/modify")
+	public String modify(ChecklistVO cvo, RedirectAttributes rttr){
+		log.info("modify: " + cvo);
+		
+		if(service.modify(cvo)){
+			rttr.addFlashAttribute("result", "success");
+		}
+		
+		return "redirect:/checklist/list";
+	}
 	
+	
+	@PostMapping("/remove")
+	public String remove(@RequestParam("checklist_no") Long checklist_no, RedirectAttributes rttr){
+		log.info("remove..." + checklist_no);
+		if(service.remove(checklist_no)){
+			rttr.addFlashAttribute("result", "success");
+		}
+		return "redirect:/checklist/list";
+		
+	}
 	
 }

@@ -54,13 +54,15 @@ public class ChecklistControllerTests {
 		
 		String resultPage = 
 				mockMvc.perform(MockMvcRequestBuilders.post("/checklist/register")
-				.param("check_title", "새글 내용")
+				.param("check_title", "새글 내용3")
+//				.param("checklist_no", "24")
+				.param("p_no", "2")
 				).andReturn().getModelAndView().getViewName();
 		log.info(resultPage);
-				
 	}
 */
-	
+
+	/*
 	@Test
 	public void testGet() throws Exception{
 		log.info(mockMvc.perform(MockMvcRequestBuilders
@@ -70,4 +72,26 @@ public class ChecklistControllerTests {
 				.getModelAndView().getModelMap());
 	}
 	
+	
+	@Test
+	public void testModify() throws Exception {
+		
+		String resultPage = mockMvc
+				.perform(MockMvcRequestBuilders.post("/checklist/modify")
+						.param("checklist_no", "1")
+						.param("check_title", "수정된 제목1")
+						.param("p_no", "2"))
+				.andReturn().getModelAndView().getViewName();
+		
+		log.info(resultPage);
+	}*/
+	
+	@Test
+	public void testRemove() throws Exception{
+		
+		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/checklist/remove")
+				.param("checklist_no", "24")).andReturn().getModelAndView().getViewName();
+		
+		log.info(resultPage);
+	}
 }
