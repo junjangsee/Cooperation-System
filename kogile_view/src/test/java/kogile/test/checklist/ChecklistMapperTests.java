@@ -1,4 +1,4 @@
-package kogile.test.checklist_mapper;
+package kogile.test.checklist;
 
 
 import org.junit.Test;
@@ -30,7 +30,7 @@ public class ChecklistMapperTests {
 		
 		cvo.setP_no(1l);
 		cvo.setChecklist_no(4l);
-		cvo.setCheck_title("¼öÁ¤µÈ Á¦¸ñ");
+		cvo.setCheck_title("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		
 		int count = ckmapper.update(cvo);
 		
@@ -62,7 +62,7 @@ public class ChecklistMapperTests {
 		
 		ChecklistVO cvo = new ChecklistVO();
 		cvo.setChecklist_no(11L);
-		cvo.setCheck_title("Å×½ºÆ®");
+		cvo.setCheck_title("ï¿½×½ï¿½Æ®");
 		cvo.setP_no(2L);
 		
 		ckmapper.insertSelectKey(cvo);
@@ -73,7 +73,7 @@ public class ChecklistMapperTests {
 		
 		ChecklistVO cvo = new ChecklistVO();
 		cvo.setChecklist_no(10L);
-		cvo.setCheck_title("Å×½ºÆ®");
+		cvo.setCheck_title("ï¿½×½ï¿½Æ®");
 		cvo.setP_no(2L);
 		
 		ckmapper.insert(cvo);
