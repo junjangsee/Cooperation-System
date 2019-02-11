@@ -97,11 +97,11 @@
 .name {
 	float: left;
 	background: #d4d4d4;
-	width:40px;
-	height:40px;
+	width:42px;
+	height:42px;
 	border-radius: 50%;
 	line-height: 40px;
-	padding-left: 5px;
+	padding-left: 7px;
 	box-sizing: border-box;
 	font-weight: 600;
 }
@@ -137,3 +137,12 @@
 .action_holder .btn_list a.arc_btn{background:#f1f1f1 url(../images/arcive.png)left 10px center no-repeat;background-size:12px;}
 .action_holder .btn_list a.share_btn{background:#f1f1f1 url(../images/share.png)left 10px center no-repeat;background-size:12px;}
 
+/* card body hide, show*/
+.add_card-body{
+	display: none;
+}
+
+/* active 활성화 이상으로 인해 새로 만듬 */
+.navbar-nav .nav-item.MYactive .nav-link {
+  color: #fff;
+}

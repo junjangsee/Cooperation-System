@@ -12,7 +12,7 @@
 	<c:set var="pjt_no"><%=(int)session.getAttribute("pjt_no") %></c:set>
 
 	    <ul class="sidebar navbar-nav toggled">
-      <li class="nav-item active">
+      <li class="nav-item MYactive">
         <a class="nav-link" href="/kogile/main?pjt_no=${pjt_no }">
           <i class="fas fa-fw fa-folder"></i>
           <span>Board</span>
@@ -54,15 +54,15 @@
       
       
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="#" id="">
           <i class="fas fa-fw fa-table"></i>
           <span>공지사항</span></a>
       </li>
       
-    	<li class="nav-item active">
-	        <a class="nav-link" href="/kogile/main_configure">
+    	<li class="nav-item">
+	        <a class="nav-link" href="#" id="btn_body_configure">
 	          <i class="fas fa-fw fa-tachometer-alt"></i>
-	          <span>설정</span>
+	          <span>정보/설정</span>
 	        </a>
      	</li>
     </ul>

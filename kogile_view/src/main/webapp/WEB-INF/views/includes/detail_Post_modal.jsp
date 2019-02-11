@@ -46,6 +46,7 @@
 						<p>포스트 설명...</p>
 					</div>				
 				</div>
+				<!-- end 설명 -->
 				
 				<br>
 				<div id="reply_comment">

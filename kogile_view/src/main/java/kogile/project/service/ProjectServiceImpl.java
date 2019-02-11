@@ -11,6 +11,7 @@ import kogile.project.domain.CardVO;
 import kogile.project.domain.DragVO;
 import kogile.project.domain.Prj_infoVO;
 import kogile.project.domain.ProjectVO;
+import kogile.project.domain.UserVO;
 import kogile.project.mapper.ProjectMapper;
 import lombok.AllArgsConstructor;
 
@@ -48,6 +49,30 @@ public class ProjectServiceImpl implements ProjectService {
 		
 	}
 
+	@Override
+	public ProjectVO project_info(int pjt_no) {
+		ProjectVO project = mapper.project_info(pjt_no);
+		return project;
+	}
+
+	@Override
+	public void modify(ProjectVO project) {
+		mapper.modify(project);
+	}
+
+	@Override
+	public UserVO master_info(int total_m_no) {
+		UserVO master = mapper.master_info(total_m_no);
+				
+		return master;
+	}
+
+	@Override
+	public void delete(int pjt_no) {
+		mapper.delete(pjt_no);
+	}
+
+	
 	
 	
 

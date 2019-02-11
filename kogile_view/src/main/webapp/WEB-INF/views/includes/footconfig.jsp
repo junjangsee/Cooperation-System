@@ -32,6 +32,6 @@
   <!-- Demo scripts for this page-->
   <script src="/resources/js/demo/datatables-demo.js"></script>
   <script src="/resources/js/demo/moment.js"></script>
-  <script src="/resources/js/main.js"></script>
+  
 </body>
 </html>
