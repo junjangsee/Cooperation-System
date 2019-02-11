@@ -20,32 +20,43 @@ public class ChecklistServiceImpl implements ChecklistService {
 	
 	@Override
 	public void register(ChecklistVO cvo) {
-		// TODO Auto-generated method stub
+		
+		log.info("register..." + cvo);
+		mapper.insertSelectKey(cvo);
 
 	}
 
 	@Override
 	public ChecklistVO get(Long checklist_no) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		log.info("get..." + checklist_no);
+		
+		return mapper.read(checklist_no);
 	}
 
 	@Override
 	public boolean modify(ChecklistVO cvo) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		log.info("modify..." + cvo);
+		
+		return mapper.update(cvo) == 1;
 	}
 
 	@Override
 	public boolean remove(Long checklist_no) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		log.info("remove..." + checklist_no);
+		
+		return mapper.delete(checklist_no) == 1;
 	}
 
 	@Override
 	public List<ChecklistVO> getList() {
+		
+		log.info("getList....");
 		// TODO Auto-generated method stub
-		return null;
+		return mapper.getList();
 	}
 
 }

@@ -24,7 +24,8 @@
 		</selectKey>
 		
 		insert into checklist(checklist_no, check_title, p_no)
-		values (#{checklist_no}, #{check_title}, #{p_no})
+		values (#{checklist_no}, #{check_title}, 1)
+		<!-- values (#{checklist_no}, #{check_title}, #{p_no}) -->
 	</insert>
 	
 	<select id="read" resultType="kogile.checklist.domain.ChecklistVO">
