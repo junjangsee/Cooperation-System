@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kogile.checklist.domain.ChecklistVO;
@@ -41,6 +42,13 @@ public class ChecklistController {
 		
 		return "redirect:/checklist/list";
 		
+	}
+	
+	@GetMapping("/get")
+	public void get(@RequestParam("checklist_no") Long checklist_no, Model model){
+		
+		log.info("/get");
+		model.addAttribute("cvo", service.get(checklist_no));
 	}
 	
 	

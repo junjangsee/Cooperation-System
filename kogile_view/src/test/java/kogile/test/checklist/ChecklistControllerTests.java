@@ -39,7 +39,7 @@ public class ChecklistControllerTests {
 		
 	}
 	
-	@Test
+/*	@Test
 	public void testList() throws Exception {
 		log.info(
 				mockMvc.perform(MockMvcRequestBuilders.get("/checklist/list"))
@@ -47,19 +47,27 @@ public class ChecklistControllerTests {
 				.getModelAndView()
 				.getModelMap()
 				);
-	}
+	}*/
 	
-	@Test
+/*	@Test
 	public void testRegister() throws Exception{
 		
 		String resultPage = 
 				mockMvc.perform(MockMvcRequestBuilders.post("/checklist/register")
 				.param("check_title", "새글 내용")
 				).andReturn().getModelAndView().getViewName();
-		
 		log.info(resultPage);
 				
-				
 	}
-
+*/
+	
+	@Test
+	public void testGet() throws Exception{
+		log.info(mockMvc.perform(MockMvcRequestBuilders
+				.get("/checklist/get")
+				.param("checklist_no", "2"))
+				.andReturn()
+				.getModelAndView().getModelMap());
+	}
+	
 }
