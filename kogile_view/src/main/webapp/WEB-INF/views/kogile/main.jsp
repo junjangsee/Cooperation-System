@@ -197,6 +197,7 @@
 
 	<%@ include file="../includes/footconfig.jsp"%>
 	<script src="/resources/js/main.js"></script>
+	<script src="/resources/js/post.js"></script>
 	
 </body>
 </html>
