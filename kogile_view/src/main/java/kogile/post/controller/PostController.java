@@ -4,8 +4,14 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import kogile.post.domain.PostVO;
@@ -40,6 +46,23 @@ public class PostController {
 		
 		return list;
 	}
-
+	//설명이 보여진다
+	@GetMapping(value="description/{p_no}",produces= {MediaType.APPLICATION_JSON_UTF8_VALUE,
+			MediaType.APPLICATION_XML_VALUE})
+	public ResponseEntity<PostVO> showDescription(@PathVariable("p_no") int p_no){
+		log.info("설명이 보여진다@@@@@@@@@@@@@@@@@");
+		log.info("피엔오는몇이니"+p_no);
+		return new ResponseEntity<>(service.showDescription(p_no), HttpStatus.OK);
+	}
+	//설명이 수정된다
+	@RequestMapping(method= {RequestMethod.PUT,RequestMethod.PATCH},value="description/{p_no}",
+			consumes="application/json", produces= {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> modifyDescription(@PathVariable("p_no") int p_no,
+			@RequestBody PostVO vo){
+		vo.setP_no(p_no);
+		
+		return service.modifyDescription(vo)==1? new ResponseEntity<>("성공", HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 	
 }

@@ -59,6 +59,7 @@
 				
 				</div>
 				<!-- end modal-body -->
+				
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancel</button>
