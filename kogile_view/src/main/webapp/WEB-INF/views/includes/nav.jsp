@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 <body>
 	<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
@@ -33,8 +35,11 @@
 				</div>
 			</div>
 		</form>
-
+		
+		<!-- 채팅창 띄우기. -->
+		<script src="/resources/js/chat.js"></script>
 		<!-- Navbar -->
+		
 		<ul class="navbar-nav ml-auto ml-md-0">
 			<li class="nav-item dropdown no-arrow mx-1"><a
 				class="nav-link dropdown-toggle" href="#" id="alertsDropdown"

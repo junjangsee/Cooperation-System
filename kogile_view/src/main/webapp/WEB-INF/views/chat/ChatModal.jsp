@@ -247,6 +247,7 @@ var chatService = (function() {
 		this.writer = writer;
 		}
 
+	//향후 파라미터로 건네받습니다.
 	var MyChatInfo = {
 		"pjt_no" : 1,
 		"name" : "황소현",
@@ -254,9 +255,13 @@ var chatService = (function() {
 		"chat_no" : 1
 		};	
 	
-	//최초에는 모든 채팅리스트를 다 가져온다.
+	//최초1회 모든 채팅리스트를 다 가져온다.
 	printChat();
-	
+	chatService.initChatCtn(MyChatInfo.pjt_no);
+	//지속적으로 채팅리스트를 업데이트 한다.
+	setInterval(function() {
+		printChat();
+	}, 1000);
 	//Ajax요청을 날린후, 화면에 뿌려준다.
 	function printChat() {
 		chatService.recievechat(window.MyChatInfo, function(chatList){
@@ -279,9 +284,6 @@ var chatService = (function() {
 
 		});
 	}
-	setInterval(function() {
-		printChat();
-	}, 1000);
 	
 	$(function() {
 

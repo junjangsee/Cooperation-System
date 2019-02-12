@@ -25,25 +25,24 @@ public class ChatRestController {
 	@Setter(onMethod_={@Autowired})
 	private ChatService service;
 	
-	// 1)Ã¤ÆÃ¹æÀ¸·Î ÀÌµ¿ÇÏ±â.(jsp) => CommonController
-	// 2)Ã¤ÆÃ º¸³»±â sendChat - ChatVo°´Ã¼¸¦ ¹Þ´Â´Ù.
+	// 1)Ã¤ï¿½Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï±ï¿½.(jsp) => CommonController
+	// 2)Ã¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ sendChat - ChatVoï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Þ´Â´ï¿½.
 	@PostMapping(value = "/sendchat", produces = "application/json; charset=utf-8")
 	public void sendChat(@RequestBody ChatVO chat) {
-		//1)Àß ¹Þ´Ï
+		//1)ï¿½ï¿½ ï¿½Þ´ï¿½
 		System.out.println(chat);
 		
-		//2)ÀÌÁ¦ service ÇØº¸ÀÚ.
+		//2)ï¿½ï¿½ï¿½ï¿½ service ï¿½Øºï¿½ï¿½ï¿½.
 		service.chatSendService(chat);
 	}
-	// 3)Ã¤ÆÃ ¹Þ±â recevieChat
-	//»ç¿ëÀÚ numÀÌ¶û pjt_no¶û À¯Àú Ã¤ÆÃ¹øÈ£¸¦ º¸³»ÁØ´Ù.
+	// 3)Ã¤ï¿½ï¿½ ï¿½Þ±ï¿½ recevieChat
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ numï¿½Ì¶ï¿½ pjt_noï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¤ï¿½Ã¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 	@PostMapping(value = "/recievechat", produces = "application/json; charset=utf-8")
 	public List<ChatVO> recieveChat(@RequestBody Map<String, String> userInfo) {
-		System.out.println(userInfo);
 		return service.getChatListService(userInfo);
 	}
 	
-	// 4)ÃÖÃÊ Ã¤ÆÃ¹æ »ý¼º½Ã ÃÊ±âÈ­
+	// 4)ï¿½ï¿½ï¿½ï¿½ Ã¤ï¿½Ã¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
 	@GetMapping("/initChatCtn/{pjt_no}")
 	public void initChatCtn(@PathVariable("pjt_no") Integer pjt_no) {
 		service.initChatCtn(pjt_no);
