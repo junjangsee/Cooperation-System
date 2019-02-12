@@ -1,5 +1,11 @@
 package kogile.user.mapper;
 
-public interface UserMapper {
+import java.util.HashMap;
+import java.util.Map;
 
+public interface UserMapper {
+	public Map<String, String> interMemLogin(Map<String, String> loginInfo);
+	public String isMemberEmail(String email);
+	
+	public int register(Map<String, String> registerInfo);
 }

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kogile.chat.mapper.ChatMapper">
+
+	<select id="getChatList" resultType="kogile.chat.domain.ChatVO">
+	<![CDATA[
+	select
+	/* INDEX_DESC(tbl_chat pk_chat) */
+	*
+	from
+	tbl_chat
+	where pjt_no = #{pjt_no} AND
+	chat_no > #{chat_no}
+	]]>
+
+	</select>
+
+	<insert id="chatRegister">
+		insert into tbl_chat
+		values(
+		chat_no_seq.nextval, #{pjt_no}, #{total_m_no}, #{writer}, #{chatContents}, sysdate)
+	</insert>
+
+	<update id="updateLastChatNo">
+		update tbl_chat_cnt set chat_cnt =
+		(select
+		count(chat_no) from (select * from
+		tbl_chat where pjt_no =
+		#{pjt_no}))
+		where pjt_no = #{pjt_no}
+	</update>
+
+	<select id="selectLastChatNo" resultType="int">
+		select chat_cnt from
+		tbl_chat_cnt
+		where pjt_no = #{pjt_no}
+	</select>
+
+	<!-- 채팅방 생성시 최초1회실행되는 쿼리임. 채팅방 있는지 확인하고 -->
+	<select id="IsThereAnyChat" resultType="String">
+		select
+		nvl2((select pjt_no
+		from tbl_chat_cnt where pjt_no = #{pjt_no}),'T','F') res
+		from dual
+	</select>
+
+	<insert id="initChatCtn">
+		insert into tbl_chat_cnt(pjt_no) values(#{pjt_no})
+	</insert>
+</mapper>
