@@ -4,18 +4,56 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kogile.post.mapper.PostMapper">
 
-	<select id="list_post" resultType="kogile.post.domain.PostVO">
-		select /*+ INDEX_ASC(p XPK포스트) INDEX_ASC(c XPK카드) */ * from post p
-		join card c
-		on c.c_no = p.c_no
-		where c.pjt_no = #{pjt_no}
-		
+	<!-- Post insert문 -->
+	<insert id="insertPost">
+		INSERT INTO POST (p_no, p_title, p_position, c_no)
+		VALUES (post_seq.nextval, #{p_title},
+		#{p_position}, #{c_no})
+	</insert>
+
+	<!-- Post select문 -->
+	<select id="detailPost" resultType="kogile.post.domain.PostDetailVO">
+		SELECT DISTINCT p.p_title,
+		p.p_description, p.p_dday,
+		c.check_title,
+		r.r_contents, r.r_date
+		FROM
+		post p
+		JOIN checklist c
+		ON
+		p.p_no = c.p_no
+		JOIN reply r
+		ON r.p_no = p.p_no
+		WHERE p.p_no = #{p_no}
 	</select>
 
+	<select id="list_post" resultType="kogile.post.domain.PostVO">
+		select /*+ INDEX_ASC(p XPK포스트)
+		INDEX_ASC(c XPK카드) */ * from post p
+		join card c
+		on c.c_no = p.c_no
+		where
+		c.pjt_no = #{pjt_no}
+	</select>
+
+	<!-- Post update문 -->
+	<update id="updatePost">
+		UPDATE post SET
+		p_title = #{p_title}, p_position =
+		#{p_position}, c_no = #{c_no},
+		p_description = #{p_description}, p_dday
+		= #{p_dday}
+		WHERE p_no = #{p_no}
+	</update>
+
+	<!-- Post delete문 -->
+	<delete id="deletePost">
+		DELETE post WHERE p_no = #{p_no}
+	</delete>
+
 	<select id="card_no_info" resultType="kogile.project.domain.CardVO">
-		select /*+ INDEX_asc(card XPK카드) */ * from card
+		select /*+ INDEX_asc(card
+		XPK카드) */ * from card
 		where pjt_no = #{pjt_no}
 	</select>
-	
-	
 </mapper>

@@ -22,18 +22,22 @@
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
-				<div class="modal-body">
-					<h4><b>제목</b></h4>
-					<input type="text" class="form-control"/>
 				
-				</div>
+				<form class="modal-body" name="insertPost_form">
+					<input type="hidden" name="c_no" value="">
+					<h4><b>제목</b></h4>
+					<input type="text" class="form-control" name="p_title"/>
+				</form>
+				
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="*">생성</a>
+					<a id="insertPost" class="btn btn-primary" href="#"
+					data-dismiss="modal">생성</a>
 				</div>
 			</div>
 		</div>
 	</div>
+	
 </body>
 </html>
