@@ -2,7 +2,7 @@
  * 채팅 관련 Ajax 모듈.
  */
 var chatService = (function() {
-
+	console.log('chatModuletest..');
 	var url = {
 		"initChatCtn" : "/chat/initChatCtn/",
 		"recievechat" : "/chat/recievechat",

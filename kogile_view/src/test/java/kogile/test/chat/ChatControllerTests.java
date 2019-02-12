@@ -58,7 +58,7 @@ public class ChatControllerTests {
 				.content(jsonStr)).andExpect(status().is(200));
 	}
 	
-	@Ignore
+	//@Ignore
 	@Test
 	public void recieveChatTest() throws Exception {
 		Map<String, String> userInfo = new HashMap<>();

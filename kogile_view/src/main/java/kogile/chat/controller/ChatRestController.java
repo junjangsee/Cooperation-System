@@ -40,8 +40,7 @@ public class ChatRestController {
 	@PostMapping(value = "/recievechat", produces = "application/json; charset=utf-8")
 	public List<ChatVO> recieveChat(@RequestBody Map<String, String> userInfo) {
 		System.out.println(userInfo);
-		return null;
-		//return service.getChatListService(userInfo);
+		return service.getChatListService(userInfo);
 	}
 	
 	// 4)최초 채팅방 생성시 초기화

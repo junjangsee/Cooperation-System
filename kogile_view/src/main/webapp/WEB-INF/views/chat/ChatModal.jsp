@@ -11,6 +11,7 @@
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
+
 <title>Insert title here</title>
 <style type="text/css">
 @CHARSET "EUC-KR";
@@ -163,6 +164,147 @@ input:focus {
 }
 </style>
 <script type="text/javascript">
+/**
+ * 채팅 관련 Ajax 모듈.
+ */
+var chatService = (function() {
+	console.log('chatModuletest..');
+	var url = {
+		"initChatCtn" : "/chat/initChatCtn/",
+		"recievechat" : "/chat/recievechat",
+		"sendchat" : "/chat/sendchat"
+	};
+	
+	//pjt_no 어떻게 가져옴? 일단 임의로 넣어야함.
+
+	function initChatCtn(pjt_no, callback, error) {
+		$.ajax({
+			type : 'get',
+			url : url.initChatCtn + pjt_no,
+			success : function(result, status, xhr) {
+				if(callback){
+					callback(result);
+				}
+			},
+			error : function() {
+				if(error) {
+					error(er);
+				}
+			}
+		})
+	}
+	
+	//일정 시간마다 요청을 날려야함. 그리고 콜백에서 최근 채팅번호 업데이트 해야함.
+	//데이터는 pjt_no랑 최신 채팅번호.
+	function recievechat(userInfo, callback, error) {
+		$.ajax({
+			type : 'post',
+			url : url.recievechat,
+			data : JSON.stringify(userInfo),
+			contentType : "application/json; charset=utf-8",
+			success : function(result, status, xhr){
+				if(callback){
+					console.log(result);
+					callback(result);
+				}
+			},
+			error : function(error) {
+				error(er);
+			}
+		})
+	}
+	
+	//버튼 클릭할때 이벤트 날리기.
+	function sendchat(chat, callback, error) {
+		$.ajax({
+			type : 'post',
+			url : url.sendchat,
+			data : JSON.stringify(chat),
+			contentType : "application/json; charset=utf-8",
+			success : function(result, status, xhr){
+				if(callback){
+					callback(result);
+				}
+			},
+			error : function(error) {
+				error(er);
+			}
+		})
+	}
+
+	return {
+		"initChatCtn" : initChatCtn,
+		"recievechat" : recievechat,
+		"sendchat" : sendchat
+	};
+})();
+</script>
+
+<script type="text/javascript">
+//ChatVo 생성자
+function ChatVO(chatContents, pjt_no, total_m_no, writer) {
+	this.chatContents = chatContents;
+	this.pjt_no = pjt_no;
+	this.total_m_no = total_m_no;
+	this.writer = writer;
+	}
+//전역변수
+var chatInfo = {
+		"pjt_no" : 1,
+		"name" : "soheemon",
+		"total_m_no" : 1,
+		"chat_no" : 1
+	};
+//이벤트 핸들러 등독
+	$(function() {
+		//이거 init시 초기화 하는 함수 만들기.
+		//엔터를 입력하면 내용을 insertChat에 Data로 보낸다.
+		$(".mytext").on("keydown", function(e) {
+			if (e.which == 13) {
+				var text = $(this).val();
+				if (text !== "") {
+					//var member_info = "<%=(String) session.getAttribute("memberInfo")%>";
+
+					var chat = new ChatVO(text, pjt_no, total_m_no, name);
+					chatService.sendchat(chat);
+					//callback에는 list요청이 들어가있습니다
+					//그리고 insertChat을 뿌려줍니다.
+					//그게머냐면 total_m_no가 나랑일치하면 you
+					//나랑 일치하지않으면 me를 넣습니다!
+					//insertChat("you", text);
+					$(this).val('');
+				}
+			}
+		});
+
+		//버튼을 입력하면 위와 동일한 이벤트가 발생한다.
+		$('body > div > div > div:nth-child(2) > span').click(function() {
+			$(".mytext").trigger({
+				type : 'keydown',
+				which : 13,
+				keyCode : 13
+			});
+		})
+		printChat();
+		
+		//Ajax요청을 날린다릿. 결과를 list로 받아온다.
+		function printChat() {
+			//console.log(chatInfo.name);
+			chatService.recievechat(this.chatInfo, function(chatList){
+				//var chatList = JSON.parse(chatListJson);
+				//console.log(chatListJson);
+				chatList.forEach(function (chat, index, array) {
+					//var chat = JSON.parse(chatjson);
+					insertChat("me", chat.chatContents);
+				});
+
+			});
+		}
+
+	})
+
+</script>
+<script type="text/javascript">
 	var me = {};
 	me.avatar = "https://lh6.googleusercontent.com/-lr2nyjhhjXw/AAAAAAAAAAI/AAAAAAAARmE/MdtfUmC0M4s/photo.jpg?sz=48";
 
@@ -187,12 +329,12 @@ input:focus {
 		}
 		var control = "";
 		var date = formatAMPM(new Date());
-
+		
+		//실질적으로 채팅 뿌려주는 코드.
 		if (who == "me") {
 			control = '<li style="width:100%">'
 					+ '<div class="msj macro">'
-					+ '<div class="avatar"><img class="img-circle" style="width:100%;" src="'
-					+ me.avatar + '" /></div>' + '<div class="text text-l">'
+					+  '<div class="text text-l">'
 					+ '<p>' + text + '</p>' + '<p><small>' + date
 					+ '</small></p>' + '</div>' + '</div>' + '</li>';
 		} else {
@@ -219,50 +361,32 @@ input:focus {
 		$("ul").empty();
 	}
 
-	$(".mytext").on("keydown", function(e) {
-		if (e.which == 13) {
-			var text = $(this).val();
-			if (text !== "") {
-				insertChat("me", text);
-				$(this).val('');
-			}
-		}
-	});
-
-	$('body > div > div > div:nth-child(2) > span').click(function() {
-		$(".mytext").trigger({
-			type : 'keydown',
-			which : 13,
-			keyCode : 13
-		});
-	})
-
 	//-- Clear Chat
 	resetChat();
 
 	//-- Print Messages
-	insertChat("me", "Hello Tom...", 0);
-	insertChat("you", "Hi, Pablo", 1500);
-	insertChat("me", "What would you like to talk about today?", 3500);
-	insertChat("you", "Tell me a joke", 7000);
-	insertChat("me", "Spaceman: Computer! Computer! Do we bring battery?!",
-			9500);
-	insertChat("you", "LOL", 12000);
+	//insertChat("me", "Hello Tom...", 0);
+	//insertChat("you", "Hi, Pablo", 1500);
+	//insertChat("me", "What would you like to talk about today?", 3500);
+	//insertChat("you", "Tell me a joke", 7000);
+	//insertChat("me", "Spaceman: Computer! Computer! Do we bring battery?!",
+	//		9500);
+	//insertChat("you", "LOL", 12000);
 
-	//-- NOTE: No use time on insertChat.
+	//일정시간마다 Ajax요청을 날려서 새로운 메시지가 있는지 확인한다.
 </script>
 </head>
 <body>
 	<div class="col-sm-3 col-sm-offset-4 frame">
-		<ul></ul>
+		<ul id="chatScreen"></ul>
 		<div>
 			<div class="msj-rta macro">
 				<div class="text text-r" style="background: whitesmoke !important">
-					<input class="mytext" placeholder="Type a message" />
+					<input class="mytext" id="chatInput" placeholder="Type a message" />
 				</div>
 
 			</div>
-			<div style="padding: 10px;">
+			<div id="sendDiv" style="padding: 10px;">
 				<span class="glyphicon glyphicon-share-alt"></span>
 			</div>
 		</div>
