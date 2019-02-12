@@ -78,17 +78,7 @@
 
 	</nav>
 
-	<!-- 김근열 searchList -->
-	<table class="table-striped" width="500" border="0" cellpadding="0"
-		cellspacing="0">
 
-		<c:forEach var="searchList" items="${searchList}">
-			<tr>
-				<td><c:out value="${searchList.name }" /></td>
-				<td><c:out value="${searchList.mail }" /></td>
-			</tr>
-		</c:forEach>
-	</table>
 
 </body>
 </html>

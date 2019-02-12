@@ -7,15 +7,14 @@
 	<!-- 데이터 출력 select문 -->
 	<select id="searchList" parameterType="kogile.invite.domain.SearchVO" resultType="kogile.invite.domain.SearchListVO">
 
-		select distinct t.total_m_no as no, e.exter_mem_name as name,
-		e.exter_m_email as mail
+		select distinct t.total_m_no as no, e.exter_mem_name as name, e.exter_m_email as mail
 		from external_m_info e join total_member t
 		on
 		t.EXTER_M_NO = e.EXTER_M_NO
 		<where>
-			e.exter_m_email LIKE #{search}
+		e.exter_m_email LIKE #{search}
 		</where>
-
+		
 		UNION
 
 		select distinct t.total_m_no as no, i.member_name as name, i.email as mail
@@ -23,8 +22,9 @@
 		on
 		t.member_no = i.member_no
 		<where>
-			i.email LIKE #{search}
+		i.email LIKE #{search}
 		</where>
+		
 	</select>
 	
 </mapper>
