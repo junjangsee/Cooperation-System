@@ -323,7 +323,7 @@ var chatInfo = {
 	}
 
 	//-- No use time. It is a javaScript effect.
-	function insertChat(who, text, time) {
+	function insertChat(who, ChatVo) {
 		if (time === undefined) {
 			time = 0;
 		}
@@ -335,7 +335,8 @@ var chatInfo = {
 			control = '<li style="width:100%">'
 					+ '<div class="msj macro">'
 					+  '<div class="text text-l">'
-					+ '<p>' + text + '</p>' + '<p><small>' + date
+					+ '<p>' + ChatVo.writer + '</p>'
+					+ '<p>' + ChatVo.chatcontents + '</p>' + '<p><small>' + date
 					+ '</small></p>' + '</div>' + '</div>' + '</li>';
 		} else {
 			control = '<li style="width:100%;">'
@@ -348,8 +349,7 @@ var chatInfo = {
 					+ date
 					+ '</small></p>'
 					+ '</div>'
-					+ '<div class="avatar" style="padding:0px 0px 0px 10px !important"><img class="img-circle" style="width:100%;" src="'
-					+ you.avatar + '" /></div>' + '</li>';
+					+ '</li>';
 		}
 		setTimeout(function() {
 			$("ul").append(control).scrollTop($("ul").prop('scrollHeight'));
