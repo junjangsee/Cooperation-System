@@ -29,7 +29,7 @@
 					<input type="text" class="form-control" name="pjt_title"/>
 					
 					<h4><b>내용</b></h4>
-					<textarea class="" rows="4" cols="55" name="pjt_contents"></textarea>
+					<textarea class="add_input" name="pjt_contents"></textarea>
 
 					</form>
 					
