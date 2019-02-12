@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -61,26 +60,6 @@
 
 					<br>
 
-					<!-- 체크리스트 출력하기 1개 ?   -->
-					<!-- 				<div id="checklist">
-				 <b><textarea class="add_inputck" placeholder="test Checklist..."></textarea></b>
-				</div> -->
-					<table class="table table-striped table-bordered table-hover">
-						<thead>
-							<tr>
-								<th>#checklist_no</th>
-								<th>check_title</th>
-								<th>p_no</th>
-							</tr>
-						</thead>
-
-						<c:forEach items="list" var="ck">
-							<tr>
-<%-- 								<td><c:out value="${ck.checklist_no }"/></td>
-								<td><c:out value="${ck.check_title }"/></td>
-								<td><c:out value="${ck.p_no }"/></td> --%>
-							</tr>
-						</c:forEach>
 					</table>
 
 
