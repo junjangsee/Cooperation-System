@@ -2,7 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%
+<%	
+	if(session.getAttribute("pjt_no")==null){
+		response.sendRedirect("/kogile/startPage");
+	}
 	if(request.getParameter("pjt_no") == null){
 		response.sendRedirect("/kogile/startPage");
 	}else{
