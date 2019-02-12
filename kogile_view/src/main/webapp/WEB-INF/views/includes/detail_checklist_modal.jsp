@@ -32,8 +32,19 @@
 						<div class="addcard_holder holder">
 							<h3 class="title_c">ADD TO CARD</h3>
 							<div class="btn_list">
-								<a href="#" class="mem_btn">Members</a> <a href="#" class="label_btn">Labels</a> <a href="#" class="check_btn">Checklist</a>
-								<a href="#" class="due_btn">Due Date</a> <a href="#" class="atta_btn">Attachment</a>
+								<a href="#" class="mem_btn">Members</a> 
+								<a href="#" class="label_btn">Labels</a> 
+								
+								
+								
+								<a href="#" class="check_btn">Checklist</a>
+								
+								
+								
+								
+								
+								<a href="#" class="due_btn">Due Date</a> 
+								<a href="#" class="atta_btn">Attachment</a>
 							</div>
 						</div>
 				</div>
@@ -46,7 +57,6 @@
 						<p>포스트 설명...</p>
 					</div>				
 				</div>
-				<!-- end 설명 -->
 				
 				<br>
 				<div id="reply_comment">
@@ -69,5 +79,4 @@
 		</div>
 	</div>
 </body>
-
 </html>
