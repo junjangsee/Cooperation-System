@@ -36,7 +36,7 @@ public class InviteServiceTests {
 		
 		SearchVO search = new SearchVO();
 		
-		search.setSearch('%' + "sohee" + '%');
+		search.setSearch("sohee");
 		
 		
 		service.searchList(search).forEach(searchList -> log.info(searchList));

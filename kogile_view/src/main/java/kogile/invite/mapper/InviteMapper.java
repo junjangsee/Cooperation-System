@@ -8,5 +8,4 @@ import kogile.invite.domain.SearchVO;
 public interface InviteMapper {
 
 	public List<SearchListVO> searchList(SearchVO search);
-
 }

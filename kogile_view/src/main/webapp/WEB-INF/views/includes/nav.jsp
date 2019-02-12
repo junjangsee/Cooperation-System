@@ -7,6 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- 김근열 js소스  -->
+<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="/resources/vendor/jquery/jquery.min.js"></script>
+<script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/resources/js/main.js"></script>
+
 </head>
 <body>
 	<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
@@ -20,14 +26,14 @@
 		</button>
 
 		<!-- Navbar Search -->
-		<form
+		<form method='get' action="/invite/searchList"
 			class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
 			<div class="input-group">
-				<input type="text" class="form-control" name="search" placeholder="Search for..."
-					aria-label="Search" aria-describedby="basic-addon2">
+				<input type="text" class="form-control" name="search" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus
+sagittis lacus vel augue laoreet rutrum faucibus." autocomplete=off 
+					aria-label="Search" aria-describedby="basic-addon2"></input>
 				<div class="input-group-append">
-					<button type="button" class="btn btn-primary"
-						onclick="location.href='../invite/searchList'">
+					<button type="submit" class="btn btn-primary">
 						<i class="fas fa-search"></i>
 					</button>
 				</div>
@@ -78,8 +84,6 @@
 		</ul>
 
 	</nav>
-
-
 
 </body>
 </html>
