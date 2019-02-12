@@ -5,21 +5,26 @@
 <mapper namespace="kogile.invite.mapper.InviteMapper">
 
 	<!-- 데이터 출력 select문 -->
-	<select id="searchList" resultType="kogile.invite.domain.SearchListVO">
+	<select id="searchList" parameterType="kogile.invite.domain.SearchVO" resultType="kogile.invite.domain.SearchListVO">
 
-		select distinct t.total_m_no as no, e.exter_mem_name as name,
-		e.exter_m_email as mail
+		select distinct t.total_m_no as no, e.exter_mem_name as name, e.exter_m_email as mail
 		from external_m_info e join total_member t
 		on
 		t.EXTER_M_NO = e.EXTER_M_NO
-
+		<where>
+		e.exter_m_email LIKE #{search}
+		</where>
+		
 		UNION
 
 		select distinct t.total_m_no as no, i.member_name as name, i.email as mail
 		from inter_m_info i join total_member t
-		on 
+		on
 		t.member_no = i.member_no
-	
+		<where>
+		i.email LIKE #{search}
+		</where>
+		
 	</select>
 	
 </mapper>

@@ -1,11 +1,15 @@
 package kogile.test.invite;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import kogile.invite.domain.SearchListVO;
+import kogile.invite.domain.SearchVO;
 import kogile.invite.mapper.InviteMapper;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -18,10 +22,21 @@ public class InviteMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private InviteMapper mapper;
 	
-	@Test
-	public void testSearchList(){
+/*	@Test
+	public void testSearchList(SearchVO search){
 		
-		mapper.searchList().forEach(searchList -> log.info(searchList));
+		mapper.searchList(search).forEach(searchList -> log.info(searchList));
 		
+	}*/
+	
+	@Test //검색 데이터 입력 테스트
+	public void testSearch(){
+		
+		SearchVO search = new SearchVO();
+		search.setSearch('%' + "sohee" + '%');
+		
+		List<SearchListVO> list = mapper.searchList(search);
+		
+		list.forEach(searchList->log.info(searchList));
 	}
-}
+}	
