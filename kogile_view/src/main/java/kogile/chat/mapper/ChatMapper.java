@@ -10,5 +10,8 @@ public interface ChatMapper {
 	public int chatRegister(ChatVO chat);
 	
 	public int updateLastChatNo(int pjt_no);
-	public int selectLastChatNo(int pno);
+	public int selectLastChatNo(int pjt_no);
+	
+	public void initChatCtn(int pjt_no);
+	public String IsThereAnyChat(int pjt_no);
 }

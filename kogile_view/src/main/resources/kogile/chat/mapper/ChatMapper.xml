@@ -12,24 +12,42 @@
 	*
 	from
 	tbl_chat
-	where pjt_no = #{pjt_no_input} AND
-	chat_no > #{chat_no_input}
+	where pjt_no = #{pjt_no} AND
+	chat_no > #{chat_no}
 	]]>
 
 	</select>
 
 	<insert id="chatRegister">
 		insert into tbl_chat
-		values(chat_no_seq.nextval, #{pjt_no}, #{writer}, #{chatContents}, sysdate)
+		values(
+		chat_no_seq.nextval, #{pjt_no}, #{total_m_no}, #{writer}, #{chatContents}, sysdate)
 	</insert>
-	
+
 	<update id="updateLastChatNo">
-		update TBL_CHAT_CNT set chat_cnt =
-		(select count(chat_no) from (select * from tbl_chat where pjt_no = #{pjt_pno}))
+		update tbl_chat_cnt set chat_cnt =
+		(select
+		count(chat_no) from (select * from
+		tbl_chat where pjt_no =
+		#{pjt_no}))
 		where pjt_no = #{pjt_no}
 	</update>
-	
-	<select id="selectLastChatNo">
-	select chatcnt from pjt_chat_count;
+
+	<select id="selectLastChatNo" resultType="int">
+		select chat_cnt from
+		tbl_chat_cnt
+		where pjt_no = #{pjt_no}
 	</select>
+
+	<!-- 채팅방 생성시 최초1회실행되는 쿼리임. 채팅방 있는지 확인하고 -->
+	<select id="IsThereAnyChat" resultType="String">
+		select
+		nvl2((select pjt_no
+		from tbl_chat_cnt where pjt_no = #{pjt_no}),'T','F') res
+		from dual
+	</select>
+
+	<insert id="initChatCtn">
+		insert into tbl_chat_cnt(pjt_no) values(#{pjt_no})
+	</insert>
 </mapper>

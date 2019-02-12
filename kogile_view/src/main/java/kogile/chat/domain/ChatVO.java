@@ -7,10 +7,13 @@ import lombok.ToString;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @ToString
 public class ChatVO {
-	private int pjt_no;
+	
+	public ChatVO() {}
+	private int pjt_no,
+			total_m_no;
+	
 	private String writer, 
 					chatContents;
 }
