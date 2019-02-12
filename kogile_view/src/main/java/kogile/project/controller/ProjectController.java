@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import kogile.project.domain.CardVO;
 import kogile.project.domain.DragVO;
 import kogile.project.domain.ProjectVO;
+import kogile.project.domain.UserVO;
 import kogile.project.service.ProjectService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -30,11 +31,9 @@ public class ProjectController {
 	
 	@GetMapping("/list_project")
 	public List<ProjectVO> list() {
-		int total_m_no = (int)session.getAttribute("total_m_no");
-		
-		System.out.println("list project");
-		System.out.println("total_m_no : "+ total_m_no);
+		int total_m_no = (int)session.getAttribute("total_m_no");		
 		List<ProjectVO> list = service.list(total_m_no); 
+//		log.info(list);
 		return list;
 	}
 	
@@ -46,7 +45,7 @@ public class ProjectController {
 		project.setPjt_contents(pjt_contents);
 		
 		project.setTotal_m_no((int)session.getAttribute("total_m_no"));
-		log.info(project);
+//		log.info(project);
 		
 		service.insert(project);
 		return project;
@@ -58,6 +57,20 @@ public class ProjectController {
 		drag.setNew_c_no(new_c_no);
 		drag.setP_no(p_no);
 		service.drag_post(drag);
+	}
+	
+	@GetMapping("/project_info")
+	public ProjectVO project_info() {
+		int pjt_no = (int)session.getAttribute("pjt_no");
+		ProjectVO project = service.project_info(pjt_no);
+		log.info(project);
+		return project;
+	}
+	
+	@PostMapping("/master_info")
+	public UserVO master_info(int total_m_no) {
+		UserVO master = service.master_info(total_m_no);
+		return master;
 	}
 	
 }

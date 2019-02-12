@@ -5,7 +5,7 @@
 <mapper namespace="kogile.post.mapper.PostMapper">
 
 	<select id="list_post" resultType="kogile.post.domain.PostVO">
-		select /*+ INDEX_ASC(post, XPK포스트) */ * from post p
+		select /*+ INDEX_ASC(p XPK포스트) INDEX_ASC(c XPK카드) */ * from post p
 		join card c
 		on c.c_no = p.c_no
 		where c.pjt_no = #{pjt_no}

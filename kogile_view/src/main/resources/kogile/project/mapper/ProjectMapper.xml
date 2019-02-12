@@ -44,6 +44,34 @@
 		where p_no = #{p_no}
 	</update>
 	
+	<select id="project_info" resultType="kogile.project.domain.ProjectVO">
+		select * from project
+		where pjt_no = #{pjt_no}
 	
+	</select>
 	
+	<update id="modify" parameterType="kogile.project.domain.ProjectVO">
+		update project set
+		pjt_title = #{pjt_title},
+		PJT_CONTENTS = #{pjt_contents}
+		where pjt_no = #{pjt_no}
+	</update>
+	
+	<select id="master_info" resultType="kogile.project.domain.UserVO">
+		select distinct t.total_m_no, e.exter_mem_name as name, e.exter_m_email as mail
+    	from external_m_info e join total_member t
+    	on t.EXTER_M_NO = e.EXTER_M_NO
+    	where t.total_m_no = #{total_m_no}
+    	UNION
+    	select distinct t.total_m_no, i.member_name as name, i.email as mail 
+    	from inter_m_info i join total_member t
+        on t.member_no = i.member_no
+        where t.total_m_no = #{total_m_no}
+	</select>
+	
+	<delete id="delete">
+		delete from project
+		where pjt_no = #{pjt_no}
+	</delete>
+
 </mapper>

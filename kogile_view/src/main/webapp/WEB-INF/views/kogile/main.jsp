@@ -11,6 +11,8 @@
 	}
 	
 %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,8 +28,9 @@
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
 <link href="/resources/css/main.css" rel="stylesheet">
-
-<title>project_name</title>
+<script type="text/javascript">
+</script>
+<title>Kogile</title>
 </head>
 <body id="page-top" >
 	<!-- modal -->
@@ -54,10 +57,7 @@
 						<i class="fas fa-table">   pjt_name</i>
 						
 					</div>
-					<div class="card-body">
-					
-				
-						
+					<div class="card-body" id="body_main">
 						<div class="cts_board grid">
 						
 							<div class="item">
@@ -125,6 +125,11 @@
 						<!-- cts board grid -->
 					</div>
 					<!-- end cardbody -->
+					
+					<!-- card body hide -->
+					<%@ include file="../includes/body_configure.jsp" %>
+					<!-- end cardbody hide -->
+					
 					<div class="card-footer small text-muted">Updated yesterday
 						at 11:59 PM</div>
 				</div>
@@ -187,6 +192,7 @@
 
 
 	<%@ include file="../includes/footconfig.jsp"%>
-
+	<script src="/resources/js/main.js"></script>
+	
 </body>
 </html>
