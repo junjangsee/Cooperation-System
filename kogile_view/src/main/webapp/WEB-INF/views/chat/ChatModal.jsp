@@ -168,7 +168,6 @@ input:focus {
  * 채팅 관련 Ajax 모듈.
  */
 var chatService = (function() {
-	console.log('chatModuletest..');
 	var url = {
 		"initChatCtn" : "/chat/initChatCtn/",
 		"recievechat" : "/chat/recievechat",
@@ -204,7 +203,6 @@ var chatService = (function() {
 			contentType : "application/json; charset=utf-8",
 			success : function(result, status, xhr){
 				if(callback){
-					console.log(result);
 					callback(result);
 				}
 			},
@@ -241,41 +239,67 @@ var chatService = (function() {
 </script>
 
 <script type="text/javascript">
-//ChatVo 생성자
-function ChatVO(chatContents, pjt_no, total_m_no, writer) {
-	this.chatContents = chatContents;
-	this.pjt_no = pjt_no;
-	this.total_m_no = total_m_no;
-	this.writer = writer;
-	}
-//전역변수
-var chatInfo = {
+
+	function ChatVO(chatContents, pjt_no, total_m_no, writer) {
+		this.chatContents = chatContents;
+		this.pjt_no = pjt_no;
+		this.total_m_no = total_m_no;
+		this.writer = writer;
+		}
+
+	var MyChatInfo = {
 		"pjt_no" : 1,
-		"name" : "soheemon",
-		"total_m_no" : 1,
+		"name" : "황소현",
+		"total_m_no" : 2,
 		"chat_no" : 1
-	};
-//이벤트 핸들러 등독
+		};	
+	
+	//최초에는 모든 채팅리스트를 다 가져온다.
+	printChat();
+	
+	//Ajax요청을 날린후, 화면에 뿌려준다.
+	function printChat() {
+		chatService.recievechat(window.MyChatInfo, function(chatList){
+			
+			//새로운 채팅내용만 불러오기 위해서 지속적으로 마지막 채팅넘버를 업데이트 한다.
+			if(chatList.length > 0) {
+				window.MyChatInfo.chat_no = chatList[chatList.length - 1].chat_no;
+				chatList.forEach(function (chat, index, array) {
+					
+					var who;
+					// total_m_no로 내채팅인지 확인한다.
+					if(chat.total_m_no == window.MyChatInfo.total_m_no){
+						who = "me"; 
+					}else{
+						who = "other";
+					}
+					insertChat(who, chat);
+				});
+			}
+
+		});
+	}
+	setInterval(function() {
+		printChat();
+	}, 1000);
+	
 	$(function() {
-		//이거 init시 초기화 하는 함수 만들기.
-		//엔터를 입력하면 내용을 insertChat에 Data로 보낸다.
+
 		$(".mytext").on("keydown", function(e) {
 			if (e.which == 13) {
 				var text = $(this).val();
 				if (text !== "") {
 					//var member_info = "<%=(String) session.getAttribute("memberInfo")%>";
 
-					var chat = new ChatVO(text, pjt_no, total_m_no, name);
-					chatService.sendchat(chat);
-					//callback에는 list요청이 들어가있습니다
-					//그리고 insertChat을 뿌려줍니다.
-					//그게머냐면 total_m_no가 나랑일치하면 you
-					//나랑 일치하지않으면 me를 넣습니다!
-					//insertChat("you", text);
-					$(this).val('');
-				}
-			}
-		});
+							var chat = new ChatVO(text,
+									window.MyChatInfo.pjt_no,
+									window.MyChatInfo.total_m_no,
+									window.MyChatInfo.name);
+							chatService.sendchat(chat);
+							$(this).val('');
+						}
+					}
+				});
 
 		//버튼을 입력하면 위와 동일한 이벤트가 발생한다.
 		$('body > div > div > div:nth-child(2) > span').click(function() {
@@ -285,93 +309,38 @@ var chatInfo = {
 				keyCode : 13
 			});
 		})
-		printChat();
-		
-		//Ajax요청을 날린다릿. 결과를 list로 받아온다.
-		function printChat() {
-			//console.log(chatInfo.name);
-			chatService.recievechat(this.chatInfo, function(chatList){
-				//var chatList = JSON.parse(chatListJson);
-				//console.log(chatListJson);
-				chatList.forEach(function (chat, index, array) {
-					//var chat = JSON.parse(chatjson);
-					insertChat("me", chat.chatContents);
-				});
-
-			});
-		}
-
 	})
-
 </script>
 <script type="text/javascript">
-	var me = {};
-	me.avatar = "https://lh6.googleusercontent.com/-lr2nyjhhjXw/AAAAAAAAAAI/AAAAAAAARmE/MdtfUmC0M4s/photo.jpg?sz=48";
-
-	var you = {};
-	you.avatar = "https://a11.t26.net/taringa/avatares/9/1/2/F/7/8/Demon_King1/48x48_5C5.jpg";
-
-	function formatAMPM(date) {
-		var hours = date.getHours();
-		var minutes = date.getMinutes();
-		var ampm = hours >= 12 ? 'PM' : 'AM';
-		hours = hours % 12;
-		hours = hours ? hours : 12; // the hour '0' should be '12'
-		minutes = minutes < 10 ? '0' + minutes : minutes;
-		var strTime = hours + ':' + minutes + ' ' + ampm;
-		return strTime;
-	}
-
-	//-- No use time. It is a javaScript effect.
 	function insertChat(who, ChatVo) {
-		if (time === undefined) {
-			time = 0;
-		}
+
 		var control = "";
-		var date = formatAMPM(new Date());
-		
 		//실질적으로 채팅 뿌려주는 코드.
-		if (who == "me") {
-			control = '<li style="width:100%">'
-					+ '<div class="msj macro">'
-					+  '<div class="text text-l">'
-					+ '<p>' + ChatVo.writer + '</p>'
-					+ '<p>' + ChatVo.chatcontents + '</p>' + '<p><small>' + date
-					+ '</small></p>' + '</div>' + '</div>' + '</li>';
+		if (who == "other") {
+			control = '<li style="width:100%">' + '<div class="msj macro">'
+					+ '<div class="text text-l">' + '<p><b>' + ChatVo.writer
+					+ '</b></p>' + '<p>' + ChatVo.chatContents + '</p>'
+					+ '<p><small>' + ChatVo.regdate + '</small></p>' + '</div>'
+					+ '</div>' + '</li>';
 		} else {
-			control = '<li style="width:100%;">'
-					+ '<div class="msj-rta macro">'
-					+ '<div class="text text-r">'
-					+ '<p>'
-					+ text
-					+ '</p>'
-					+ '<p><small>'
-					+ date
-					+ '</small></p>'
-					+ '</div>'
-					+ '</li>';
+			control = '<li style="width:100%;">' + '<div class="msj-rta macro">'
+					+ '<div class="text text-r">' + '<p><b>' + ChatVo.writer
+					+ '</b></p>' + '<p>' + ChatVo.chatContents + '</p>' +
+					'<p><small>' + ChatVo.regdate + '</small></p>' + '</div>'
+					+ '</div>' + '</li>';
 		}
-		setTimeout(function() {
-			$("ul").append(control).scrollTop($("ul").prop('scrollHeight'));
-		}, time);
+
+		//목록에 append
+		$("ul").append(control).scrollTop($("ul").prop('scrollHeight'));
 
 	}
 
+	//화면 비우기
 	function resetChat() {
 		$("ul").empty();
 	}
-
-	//-- Clear Chat
 	resetChat();
-
-	//-- Print Messages
-	//insertChat("me", "Hello Tom...", 0);
-	//insertChat("you", "Hi, Pablo", 1500);
-	//insertChat("me", "What would you like to talk about today?", 3500);
-	//insertChat("you", "Tell me a joke", 7000);
-	//insertChat("me", "Spaceman: Computer! Computer! Do we bring battery?!",
-	//		9500);
-	//insertChat("you", "LOL", 12000);
+	//-- Clear Chat
 
 	//일정시간마다 Ajax요청을 날려서 새로운 메시지가 있는지 확인한다.
 </script>
