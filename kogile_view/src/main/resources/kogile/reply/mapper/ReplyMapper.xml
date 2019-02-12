@@ -8,18 +8,19 @@
 		insert into reply values(reply_seq.nextval,#{r_contents},sysdate,#{p_no},#{info_no})
 	</insert>
 	
-	<delete id="deleteReply" parameterType="kogile.reply.domain.ReplyVO">
-		delete from reply where r_no=#{r_no} and info_no=#{info_no}
+	<delete id="deleteReply">
+		delete from reply where r_no=#{r_no}
 	</delete>
 	
 	<update id="updateReply" parameterType="kogile.reply.domain.ReplyVO">
 		update reply set r_contents = #{r_contents} 
-				where r_no = #{r_no} and info_no = #{info_no}
+				where r_no = #{r_no}
 	</update>
 	
 	<!-- 작성자때문에 멤버이름 가져오기 -->
 	<select id="replyList" parameterType="long" resultType="kogile.reply.domain.ReplyVO">
-		select r.r_no, r.r_contents, r.r_date, r.p_no, r.info_no, e.exter_mem_name as name
+		select /*+ INDEX_asc(reply XPK댓글) */
+		r.r_no, r.r_contents, r.r_date, r.p_no, r.info_no, e.exter_mem_name as name
     From reply r
     join prj_info p
     on r.info_no = p.info_no
@@ -29,10 +30,11 @@
     on i.total_m_no = t.total_m_no
     join external_m_info e
     on t.exter_m_no = e.exter_m_no
-    WHERE r.p_no =#{p_no} order by r.r_date
+    WHERE r.p_no =#{p_no}
 	</select>
 	<select id="replyList2" parameterType="long" resultType="kogile.reply.domain.ReplyVO">
-	select r.r_no, r.r_contents, r.r_date, r.p_no, r.info_no, im.member_name as name
+	select /*+ INDEX_asc(reply XPK댓글) */
+	r.r_no, r.r_contents, r.r_date, r.p_no, r.info_no, im.member_name as name
     From reply r
     join prj_info p
     on r.info_no = p.info_no
@@ -42,7 +44,7 @@
     on i.total_m_no = t.total_m_no
     join inter_m_info im
     on t.member_no = im.member_no
-    where r.p_no =#{p_no} order by r.r_date
+    where r.p_no =#{p_no}
 	</select>
 
 </mapper>

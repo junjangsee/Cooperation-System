@@ -1,4 +1,4 @@
-package kogile.test.reply;
+package kogile.reply.mapper;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -10,7 +10,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import kogile.reply.domain.ReplyVO;
-import kogile.reply.mapper.ReplyMapper;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -32,14 +31,14 @@ public class ReplyMapperTest {
 //		ReplyVO vo = new ReplyVO();
 //		
 //		vo.setP_no(1);
-//		vo.setInfo_no(1);
+//		vo.setInfo_no(2);
 //		vo.setR_contents("메퍼연결작성테스트");
 //		
 //		mapper.insertReply(vo);
 //	}
 //	@Test
 //	public void testList() {
-//		long p_no=1;
+//		long p_no=6;
 //		List<ReplyVO> replies= mapper.replyList(p_no);
 //		List<ReplyVO> replies2= mapper.replyList2(p_no);
 //		
@@ -50,22 +49,19 @@ public class ReplyMapperTest {
 //	@Test
 //	public void testUpdate() {
 //		ReplyVO vo = new ReplyVO();
-//		vo.setInfo_no(1);
-//		vo.setR_no(21);
+//		vo.setR_no(61);
 //		vo.setR_contents("수정합니다.");
 //		int count = mapper.updateReply(vo);
 //		
 //		log.info("수정된글갯수="+count);
 //	}
-	@Test
-	public void testDelete() {
-		ReplyVO vo = new ReplyVO();
-		vo.setInfo_no(1);
-		vo.setR_no(21);
-		
-		int count = mapper.deleteReply(vo);
-		
-		log.info("삭제된글갯수="+count);
-	}
+//	@Test
+//	public void testDelete() {
+//		long r_no = 41;
+//		
+//		int count = mapper.deleteReply(r_no);
+//		
+//		log.info("삭제된글갯수="+count);
+//	}
 	
 }

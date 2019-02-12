@@ -6,12 +6,12 @@ import kogile.reply.domain.ReplyVO;
 
 public interface ReplyService {
 	
-	public int register (ReplyVO vo);
+	public int registerReply (ReplyVO vo);
 	
-	public int remove (ReplyVO vo);
+	public int removeReply (long r_no);
 	
-	public int modify (ReplyVO vo);
+	public int modifyReply (ReplyVO vo);
 	
-	public List<ReplyVO> list (long p_no);
+	public List<ReplyVO> replyList (long p_no);
 
 }

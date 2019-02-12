@@ -17,5 +17,14 @@
 		where pjt_no = #{pjt_no}
 	</select>
 	
+ 	<!-- 설명 보여지기 -->
+ 	<select id="showDescription" parameterType="int" resultType="kogile.post.domain.PostVO">
+		select p_description from post where p_no = #{p_no}
+	</select>
+
+	<!-- 설명 수정 -->
+	<update id="updateDescription" parameterType="kogile.post.domain.PostVO">
+		update post set p_description = #{p_description} where p_no = #{p_no}
+	</update>
 	
 </mapper>

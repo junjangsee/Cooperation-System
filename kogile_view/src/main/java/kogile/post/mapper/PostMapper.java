@@ -8,4 +8,8 @@ import kogile.project.domain.CardVO;
 public interface PostMapper {
 	public List<CardVO> card_no_info(int pjt_no);
 	public List<PostVO> list_post(int pjt_no);
+	
+	public PostVO showDescription (int p_no);
+	
+	public int updateDescription(PostVO vo);
 }

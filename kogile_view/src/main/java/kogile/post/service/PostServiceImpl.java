@@ -26,5 +26,17 @@ public class PostServiceImpl implements PostService {
 		List<CardVO> list = mapper.card_no_info(pjt_no);
 		return list;
 	}
+//	설명수정
+	@Override
+	public int modifyDescription(PostVO vo) {
+		int modifyCount = mapper.updateDescription(vo);
+		return modifyCount;
+	}
+//	설명보기
+	@Override
+	public PostVO showDescription(int p_no) {
+		PostVO vo = mapper.showDescription(p_no);
+		return vo;
+	}
 
 }

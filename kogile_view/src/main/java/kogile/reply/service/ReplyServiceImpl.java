@@ -17,25 +17,25 @@ public class ReplyServiceImpl implements ReplyService {
 	private ReplyMapper mapper;
 	
 	@Override
-	public int register(ReplyVO vo) {
+	public int registerReply(ReplyVO vo) {
 		
 		return mapper.insertReply(vo);
 	}
 
 	@Override
-	public int remove(ReplyVO vo) {
+	public int removeReply(long r_no) {
 		
-		return mapper.deleteReply(vo);
+		return mapper.deleteReply(r_no);
 	}
 
 	@Override
-	public int modify(ReplyVO vo) {
+	public int modifyReply(ReplyVO vo) {
 		
 		return mapper.updateReply(vo);
 	}
 
 	@Override
-	public List<ReplyVO> list(long p_no) {
+	public List<ReplyVO> replyList(long p_no) {
 		List<ReplyVO> list = mapper.replyList(p_no);
 		List<ReplyVO> list2 = mapper.replyList2(p_no);
 		list.addAll(list2);

@@ -7,7 +7,7 @@ import kogile.reply.domain.ReplyVO;
 public interface ReplyMapper {
 	public int insertReply (ReplyVO vo);
 	
-	public int deleteReply (ReplyVO vo);
+	public int deleteReply (long r_no);
 	
 	public int updateReply (ReplyVO vo);
 	
