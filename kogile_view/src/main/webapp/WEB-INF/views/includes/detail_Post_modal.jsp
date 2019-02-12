@@ -76,9 +76,9 @@
 
 						<c:forEach items="list" var="ck">
 							<tr>
-								<td><c:out value="${ck.checklist_no }"/></td>
+<%-- 								<td><c:out value="${ck.checklist_no }"/></td>
 								<td><c:out value="${ck.check_title }"/></td>
-								<td><c:out value="${ck.p_no }"/></td>
+								<td><c:out value="${ck.p_no }"/></td> --%>
 							</tr>
 						</c:forEach>
 					</table>
