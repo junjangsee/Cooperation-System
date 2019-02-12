@@ -2,17 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%	
-	if(session.getAttribute("pjt_no")==null){
+<%
+	if (session.getAttribute("pjt_no") == null) {
 		response.sendRedirect("/kogile/startPage");
 	}
-	if(request.getParameter("pjt_no") == null){
+	if (request.getParameter("pjt_no") == null) {
 		response.sendRedirect("/kogile/startPage");
-	}else{
+	} else {
 		session.removeAttribute("pjt_no");
 		session.setAttribute("pjt_no", Integer.parseInt(request.getParameter("pjt_no")));
 	}
-	
 %>
 
 <!DOCTYPE html>
@@ -31,16 +30,17 @@
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
 <link href="/resources/css/main.css" rel="stylesheet">
 <script type="text/javascript">
+	
 </script>
 <title>Kogile</title>
 </head>
-<body id="page-top" >
+<body id="page-top">
 	<!-- modal -->
-	<%@ include file="../includes/format_modal.jsp" %>
-	<%@ include file="../includes/detail_Post_modal.jsp" %>
-	<%@ include file="../includes/insert_Post_modal.jsp" %>
+	<%@ include file="../includes/format_modal.jsp"%>
+	<%@ include file="../includes/detail_Post_modal.jsp"%>
+	<%@ include file="../includes/insert_Post_modal.jsp"%>
 	<!-- end modal -->
-	
+
 	<!-- nav -->
 	<%@ include file="../includes/nav.jsp"%>
 
@@ -56,22 +56,22 @@
 				<!-- DataTables Example -->
 				<div class="card mb-3">
 					<div class="card-header">
-						<i class="fas fa-table">   pjt_name</i>
-						
+						<i class="fas fa-table"> pjt_name</i>
+
 					</div>
 					<div class="card-body" id="body_main">
 						<div class="cts_board grid">
-						
+
 							<div class="item">
 								<div class="heading">
 									<h3 class="board_title">todo</h3>
 									<a href="#n" class="more">···</a>
 								</div>
-								
+
 								<div class="item_content" id="to-do" data-status="">
-												
-										<!-- example modal -->
-										<!-- <a href="#n" class="detailPostView post ui-state-default" data-status=""
+
+									<!-- example modal -->
+									<!-- <a href="#n" class="detailPostView post ui-state-default" data-status=""
 										data-toggle="modal" data-target="#detail_post_modal">
 										<div class="post_item">
 											<input type="hidden" class="select_pno" value="2">
@@ -85,54 +85,49 @@
 											<div class="peo_box"></div>
 										</div>
 										</a> -->
-										
-										
-										
+
+
+
 								</div>
-								<button class="add_txt" data-toggle="modal" data-target="#insert_Post_modal">post 생성</button>
-								</div>
-							
+								<button class="add_txt" data-toggle="modal"
+									data-target="#insert_Post_modal">post 생성</button>
+							</div>
+
 							<div class="item">
 								<div class="heading">
 									<h3 class="board_title">doing</h3>
 									<a href="#n" class="more">···</a>
 								</div>
-								<div class="item_content" id="doing" data-status="2">
-										
-								</div>
-								
-								
+								<div class="item_content" id="doing" data-status="2"></div>
+
+
 							</div>
-							
+
 							<div class="item">
 								<div class="heading">
 									<h3 class="board_title">done</h3>
 									<a href="#n" class="more">···</a>
 								</div>
-								<div class="item_content" id="done" data-status="3">
-									
-								</div>
+								<div class="item_content" id="done" data-status="3"></div>
 							</div>
-							
+
 							<div class="item">
 								<div class="heading">
 									<h3 class="board_title">close</h3>
 									<a href="#n" class="more">···</a>
 								</div>
-								<div class="item_content" id="close" data-status="4">
-										
-								</div>
+								<div class="item_content" id="close" data-status="4"></div>
 							</div>
-							
+
 						</div>
 						<!-- cts board grid -->
 					</div>
 					<!-- end cardbody -->
-					
+
 					<!-- card body hide -->
-					<%@ include file="../includes/body_configure.jsp" %>
+					<%@ include file="../includes/body_configure.jsp"%>
 					<!-- end cardbody hide -->
-					
+
 					<div class="card-footer small text-muted">Updated yesterday
 						at 11:59 PM</div>
 				</div>
@@ -158,7 +153,7 @@
 											<input type="hidden" class="select_pno" value="11">
 								
 											<h4>post_title</h4>
-											<div class="btn_box">
+											<div class="btn_box" id="detail_post">
 												<span class="list"></span> 
 												<span class="check">0/4</span> 
 												<span class="date">Jul 20</span>
@@ -197,6 +192,6 @@
 	<%@ include file="../includes/footconfig.jsp"%>
 	<script src="/resources/js/main.js"></script>
 	<script src="/resources/js/post.js"></script>
-	
+
 </body>
 </html>

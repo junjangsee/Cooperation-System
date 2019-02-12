@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import kogile.post.domain.PostDetailVO;
 import kogile.post.domain.PostVO;
 import kogile.post.mapper.PostMapper;
 import kogile.project.domain.CardVO;
@@ -37,6 +38,33 @@ public class PostServiceImpl implements PostService {
 	public PostVO showDescription(int p_no) {
 		PostVO vo = mapper.showDescription(p_no);
 		return vo;
+	}	
+	// post 삽입
+	@Override
+	public void insertPost(PostVO post) {
+
+		mapper.insertPost(post);
+	}
+
+	// post 수정
+	@Override
+	public void updatePost(PostVO post) {
+
+		mapper.updatePost(post);
+	}
+
+	// post 삭제
+	@Override
+	public void deletePost(PostVO post) {
+
+		mapper.deletePost(post);
+	}
+
+	// post 읽기
+	@Override
+	public List<PostDetailVO> detailPost(int p_no) {
+		
+		return mapper.detailPost(p_no);
 	}
 
 }
