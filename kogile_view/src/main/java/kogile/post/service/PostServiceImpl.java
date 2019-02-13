@@ -1,5 +1,7 @@
 package kogile.post.service;
 
+
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -27,18 +29,21 @@ public class PostServiceImpl implements PostService {
 		List<CardVO> list = mapper.card_no_info(pjt_no);
 		return list;
 	}
+	
 //	설명수정
 	@Override
 	public int modifyDescription(PostVO vo) {
 		int modifyCount = mapper.updateDescription(vo);
 		return modifyCount;
 	}
+	
 //	설명보기
 	@Override
 	public PostVO showDescription(int p_no) {
 		PostVO vo = mapper.showDescription(p_no);
 		return vo;
-	}	
+	}
+	
 	// post 삽입
 	@Override
 	public void insertPost(PostVO post) {
@@ -48,23 +53,45 @@ public class PostServiceImpl implements PostService {
 
 	// post 수정
 	@Override
-	public void updatePost(PostVO post) {
+	public int updateDate(PostVO post1) {
+		PostVO post = mapper.detailPost(post1.getP_no());
+//		post.setDate(post1.getDate());
+		post.setDate(post1.getDate());
+		
+		System.out.println(post);
 
-		mapper.updatePost(post);
+		return mapper.updatePost(post);
 	}
 
 	// post 삭제
 	@Override
-	public void deletePost(PostVO post) {
-
-		mapper.deletePost(post);
+	public int deletePost(int p_no) {
+		return mapper.deletePost(p_no);
 	}
 
 	// post 읽기
 	@Override
-	public List<PostDetailVO> detailPost(int p_no) {
+	public PostVO detailPost(int p_no) {
 		
-		return mapper.detailPost(p_no);
+		PostVO post = mapper.detailPost(p_no);
+				
+		return post;
+	}
+
+	// Date 삽입, 수정, 삭제
+//	@Override
+//	public int updateDate(PostVO post) {
+//
+//		return mapper.updateDate(post);
+//	}
+
+	// Date 출력
+	@Override
+	public PostVO detailDate(int p_no) {
+
+		PostVO post = mapper.detailDate(p_no);
+		
+		return post;
 	}
 
 }

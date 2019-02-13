@@ -4,6 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kogile.post.mapper.PostMapper">
 
+	<!-- Post 관련 쿼리 -->
+
 	<!-- Post insert문 -->
 	<insert id="insertPost">
 		INSERT INTO POST (p_no, p_title, p_position, c_no)
@@ -12,21 +14,14 @@
 	</insert>
 
 	<!-- Post select문 -->
-	<select id="detailPost" resultType="kogile.post.domain.PostDetailVO">
-		SELECT DISTINCT p.p_title,
-		p.p_description, p.p_dday,
-		c.check_title,
-		r.r_contents, r.r_date
-		FROM
-		post p
-		JOIN checklist c
-		ON
-		p.p_no = c.p_no
-		JOIN reply r
-		ON r.p_no = p.p_no
-		WHERE p.p_no = #{p_no}
+	<select id="detailPost" resultType="kogile.post.domain.PostVO">
+		SELECT * FROM post
+		WHERE
+		p_no =
+		#{p_no}
 	</select>
-
+	
+	<!-- Post Project 내 select문 -->
 	<select id="list_post" resultType="kogile.post.domain.PostVO">
 		select /*+ INDEX_ASC(p XPK포스트)
 		INDEX_ASC(c XPK카드) */ * from post p
@@ -41,8 +36,8 @@
 		UPDATE post SET
 		p_title = #{p_title}, p_position =
 		#{p_position}, c_no = #{c_no},
-		p_description = #{p_description}, p_dday
-		= #{p_dday}
+		p_description = #{p_description}, 
+		p_dday = #{date}
 		WHERE p_no = #{p_no}
 	</update>
 
@@ -50,21 +45,40 @@
 	<delete id="deletePost">
 		DELETE post WHERE p_no = #{p_no}
 	</delete>
+	
+
+	<!-- Due date 관련 쿼리 -->
+
+	<!-- date 입력, 수정, 삭제 -->
+	<!-- <update id="insertDate">
+		UPDATE post SET p_dday = #{p_dday}
+		WHERE p_no = #{p_no}
+	</update> -->
+	
+	<!-- date 읽기 -->
+	<select id="detailDate" resultType="kogile.post.domain.PostVO">
+		SELECT p_title, p_dday FROM post WHERE p_no = #{p_no}
+	</select>
+	
 
 	<select id="card_no_info" resultType="kogile.project.domain.CardVO">
 		select /*+ INDEX_asc(card
 		XPK카드) */ * from card
 		where pjt_no = #{pjt_no}
 	</select>
-	
- 	<!-- 설명 보여지기 -->
- 	<select id="showDescription" parameterType="int" resultType="kogile.post.domain.PostVO">
+
+	<!-- 설명 보여지기 -->
+	<select id="showDescription" parameterType="int"
+		resultType="kogile.post.domain.PostVO">
 		select p_description from post where p_no = #{p_no}
 	</select>
 
 	<!-- 설명 수정 -->
 	<update id="updateDescription" parameterType="kogile.post.domain.PostVO">
-		update post set p_description = #{p_description} where p_no = #{p_no}
+		update post set
+		p_description = #{p_description} where p_no = #{p_no}
 	</update>
 	
+
+
 </mapper>

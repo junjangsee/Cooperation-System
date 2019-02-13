@@ -71,12 +71,37 @@ public class PostMapperTests {
 //	@Test
 //	public void detailTest() {
 //		
-//		PostDetailVO postDetail = new PostDetailVO();
+//		PostVO post = new PostVO();
 //		
 //		mapper.detailPost(2);
 //		
-//		log.info(postDetail);
+//		log.info(post);
 //		
 //	}
+	
+//	@Test
+//	public void insertDate() {
+//		
+//		PostVO post = new PostVO();
+//		
+//		post.setP_no(224);
+//		post.setP_dday("19/03/01");
+//		
+//		mapper.insertDate(post);
+//	}
+	
+//	@Test
+//	public void detailDate() {
+//		
+//		mapper.detailDate(224);
+//	}
+	
+//	@Test
+//	public void deleteDate() {
+//		
+//		mapper.deleteDate(224);
+//	}
+	
+	
 	
 }

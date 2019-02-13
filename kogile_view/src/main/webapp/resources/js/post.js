@@ -1,20 +1,42 @@
 (function($) {
 	$(function() {
-		
+
 		$('#insertPost').on('click', function(){
 			var c_no = $('#to-do').attr("data-status");
 			$("form[name=insertPost_form]").find('input[name=c_no]').val(c_no);
 			insert_post();
-
+			$("input[name=p_title]").val("");
 			alert("생성되었습니다.");
 		});
-		
-		$('#detail_post').on('click', function(){
-			detail_post();
+
+		$('.item_content').on('click', function(e){
+			var id = $(e.target).closest('a').data('no');
+			post_title(id);
 		});
+		
+		$('#deletePost').on('click', function(){
+			var id = $('#detail_post_modal').attr('data-id')
+			delete_post(id);
+		});
+
 	});
 
-	
+	// 포스트 삭제
+	function delete_post(id) {		
+		$.ajax({
+			type : "POST",
+			url : "/kogile/post/deletePost",
+			data : {
+				p_no : parseInt(id, 10)
+			},
+			dataType : "JSON"
+		}).then(function(res){
+			alert("삭제되었습니다.");
+			list_post();
+		})
+	}
+
+	// 포스트 삽입
 	function insert_post() {
 		const data = $("form[name=insertPost_form]").serialize();
 		console.log(data);
@@ -28,17 +50,28 @@
 		}).then(function(res){
 			console.log(res);
 			list_post();
-			console.log("end");
 		});
 	}
-	
-	
-	function detail_post() {
+
+	// 포스트 제목 상세보기
+	function post_title(id) {
 		
 		$.ajax({
 			type : "GET",
 			dataType : "JSON",
-			url : "/kogile/post/#{p_title}"
+			url : `/kogile/post/detail/${id}`
+		}).then(function(res){	
+			$('#detail_post_modal').attr('data-id', id)
+			$('#detail_post_modal').find('.modal-title').text(res.p_title)
+		});
+	}
+	
+	function post_description() {
+		
+		$.ajax({
+			type : "GET",
+			dataType : "POST",
+			url : "/kogile/post/detail/#{p_no}"
 		}).then(function(res){
 			console.log(res);
 			

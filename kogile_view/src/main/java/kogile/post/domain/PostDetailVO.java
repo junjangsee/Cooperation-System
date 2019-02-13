@@ -12,8 +12,4 @@ public class PostDetailVO {
 	private String p_description;
 	private String p_dday;
 
-	private String check_title;
-	private String r_date;
-	private String r_contents;
-
 }
