@@ -37,7 +37,7 @@ public class ChatServiceTests {
 
 	@Test
 	public void chatSendServiceTest() {
-		ChatVO chat = new ChatVO(2,1,"황소희", "아겁나짜증날라그래222222");
+		ChatVO chat = new ChatVO(2,1,1,"황소희", "아겁나짜증날라그래222222");
 		if(!service.chatSendService(chat)){
 			System.out.println("update Fail!");
 			fail();

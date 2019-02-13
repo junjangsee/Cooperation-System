@@ -26,8 +26,6 @@
 		})
 		
 		
-		
-		
 	});
 //	end window.onload
 	
@@ -175,14 +173,8 @@
 		});
 	}
 	
-	
-	
 })(jQuery)
 
-	// 김근열 js 소스
-	// 검색 기능의 popover창
 
-//popover창
-$(function () {
-    $('[data-toggle="popover"]').popover()
-})
+
+

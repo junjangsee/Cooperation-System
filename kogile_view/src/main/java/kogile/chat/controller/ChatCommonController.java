@@ -10,7 +10,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 
 public class ChatCommonController {
-	@GetMapping("/chattest")
+	@GetMapping("/Chatting")
 	public String Redirect(){
 		return "chat/ChatModal";
 	}

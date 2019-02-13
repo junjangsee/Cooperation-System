@@ -9,9 +9,9 @@
 <title>Insert title here</title>
 <!-- 김근열 js소스  -->
 <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<script src="/resources/vendor/jquery/jquery.min.js"></script>
-<script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="/resources/js/main.js"></script>
+<!-- <script src="/resources/vendor/jquery/jquery.min.js"></script> -->
+<!-- <script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script> -->
+<!-- <script src="/resources/js/main.js"></script> -->
 
 </head>
 <body>
@@ -29,8 +29,8 @@
 		<form method='get' action="/invite/searchList"
 			class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
 			<div class="input-group">
-				<input type="text" class="form-control" name="search" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus
-sagittis lacus vel augue laoreet rutrum faucibus." autocomplete=off 
+				<input type="text" class="form-control" name="search" data-container="body" data-toggle="popover" data-placement="bottom" 
+				data-content='어렵다' autocomplete=off 
 					aria-label="Search" aria-describedby="basic-addon2"></input>
 				<div class="input-group-append">
 					<button type="submit" class="btn btn-primary">
@@ -39,8 +39,11 @@ sagittis lacus vel augue laoreet rutrum faucibus." autocomplete=off
 				</div>
 			</div>
 		</form>
-
+		
+		<!-- 채팅창 띄우기. -->
+		<!-- <script src="/resources/js/chat.js"></script> -->
 		<!-- Navbar -->
+		
 		<ul class="navbar-nav ml-auto ml-md-0">
 			<li class="nav-item dropdown no-arrow mx-1"><a
 				class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
