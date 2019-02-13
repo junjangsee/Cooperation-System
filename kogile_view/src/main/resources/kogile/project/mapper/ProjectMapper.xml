@@ -5,8 +5,10 @@
 <mapper namespace="kogile.project.mapper.ProjectMapper">
 
 	<select id="list" resultType="kogile.project.domain.ProjectVO">
-		SELECT/*+ INDEX_ASC(project XPK프로젝트)*/ * FROM project
-		WHERE total_m_no = #{total_m_no}
+		SELECT /*+ INDEX_ASC(i XPK초대) INDEX_ASC(p XPK프로젝트) */ p.pjt_no, p.pjt_title from invite i
+		JOIN project p
+		on p.pjt_no = i.pjt_no
+		where i.total_m_no = #{total_m_no}
 	</select>
 	
 	<insert id="insert" parameterType="kogile.project.domain.ProjectVO">

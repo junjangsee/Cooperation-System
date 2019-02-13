@@ -30,7 +30,8 @@
 	}
 	
 	function insert_project(){
-		var data = $("form[name=insert_project_form]").serialize();
+		const data = $("form[name=insert_project_form]").serialize();
+		console.log(data);
 		var txt = "";
 		
 		$.ajax({

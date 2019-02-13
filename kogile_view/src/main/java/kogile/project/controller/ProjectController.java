@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,12 +39,8 @@ public class ProjectController {
 	}
 	
 	@PostMapping("/insert")
-	public ProjectVO insert(String pjt_title, String pjt_contents) {
-		ProjectVO project = new ProjectVO();
+	public ProjectVO insert(ProjectVO project) {
 
-		project.setPjt_title(pjt_title);
-		project.setPjt_contents(pjt_contents);
-		
 		project.setTotal_m_no((int)session.getAttribute("total_m_no"));
 //		log.info(project);
 		
