@@ -19,11 +19,18 @@ public interface PostMapper {
 	public void insertPost(PostVO post);
 
 	// Post 읽기
-	public List<PostDetailVO> detailPost(int p_no);
+	public PostVO detailPost(int p_no);
 
 	// Post 수정
-	public void updatePost(PostVO post);
+	public int updatePost(PostVO post);
 
 	// Post 삭제
-	public void deletePost(PostVO post);
+	public int deletePost(int p_no);
+	
+	// Date 삽입
+	public int updateDate(PostVO post);
+	
+	// Date 읽기
+	public PostVO detailDate(int p_no);
+
 }

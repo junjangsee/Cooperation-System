@@ -57,7 +57,6 @@
 				<div class="card mb-3">
 					<div class="card-header">
 						<i class="fas fa-table"> pjt_name</i>
-
 					</div>
 					<div class="card-body" id="body_main">
 						<div class="cts_board grid">

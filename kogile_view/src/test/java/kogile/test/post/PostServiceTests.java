@@ -43,7 +43,7 @@ public class PostServiceTests {
 //		
 //		PostVO post = new PostVO();
 //		
-//		post.setP_no(61);
+//		post.setP_no(223);
 //		post.setP_title("포스트5-1");
 //		post.setC_no(1);
 //		post.setP_position(1);
@@ -75,6 +75,37 @@ public class PostServiceTests {
 //		service.detailPost(1);
 //		
 //		log.info(postDetailVO);
+//	}
+	
+//	@Test
+//	public void insertDate() {
+//		
+//		PostVO post = new PostVO();
+//		
+//		post.setP_no(224);
+//		post.setP_dday("19/03/01");
+//		
+//		service.insertDate(post);
+//	}
+	
+//	@Test
+//	public void detailDate() {
+//		
+//		PostVO post = new PostVO();
+//		
+//		service.detailDate(224);
+//		
+//		log.info(post);
+//	}
+	
+//	@Test
+//	public void deleteDate() {
+//		
+//		PostVO post = new PostVO();
+//		
+//		service.deleteDate(224);
+//		
+//		log.info(post);
 //	}
 
 }

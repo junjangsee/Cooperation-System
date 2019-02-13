@@ -34,7 +34,7 @@
       console.log("containerStatus", containerStatus);
       
       //드래그 대상 p_no검출
-      var p_no = $($currentElement[0]).find('.select_pno').val();
+      var p_no = $($currentElement[0]).attr('data-no');
 
       // elementStatus 와 containerStatus 가 같지 않다는 것은 카테고리 이동이 있었다는 것이므로 update 를 한다.
       if (elementStatus !== containerStatus) {

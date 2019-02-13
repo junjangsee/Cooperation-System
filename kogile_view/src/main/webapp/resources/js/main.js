@@ -25,7 +25,6 @@
 			$("form[name=project_info]").submit();
 		})
 		
-		
 	});
 //	end window.onload
 	
@@ -89,9 +88,8 @@
 //				todo post list 작성
 				if(res[i].c_position == 1){
 					todo += '<a href="#n" class="detailPostView post ui-state-default" data-status="' + res[i].c_no 
-							+ '" data-toggle="modal" data-target="#detail_post_modal">';
+							+ '" data-toggle="modal" data-target="#detail_post_modal" data-no="'+ res[i].p_no +'">';
 					todo += '<div class="post_item">';
-					todo += '<input type="hidden" class="select_pno" value="' + res[i].p_no + '">';
 					todo += '<h4>' + res[i].p_title + '</h4>';
 					todo += '<div class="btn_box">';
 					todo += '<span class="list"></span> <span class="check">' + "0/4" + '</span> <span class="date">'+ "Jul 20" +'</span>';
@@ -101,9 +99,8 @@
 //				doing
 				if(res[i].c_position == 2){
 					doing += '<a href="#n" class="detailPostView post ui-state-default" data-status="' + res[i].c_no 
-							+ '" data-toggle="modal" data-target="#detail_post_modal">';
+							+ '" data-toggle="modal" data-target="#detail_post_modal" data-no="'+ res[i].p_no +'">';
 					doing += '<div class="post_item">';
-					doing += '<input type="hidden" class="select_pno" value="' + res[i].p_no + '">';
 					doing += '<h4>' + res[i].p_title + '</h4>';
 					doing += '<div class="btn_box">';
 					doing += '<span class="list"></span> <span class="check">' + "0/4" + '</span> <span class="date">'+ "Jul 20" +'</span>';
@@ -113,9 +110,8 @@
 //				done
 				if(res[i].c_position == 3){
 					done += '<a href="#n" class="detailPostView post ui-state-default" data-status="' + res[i].c_no 
-							+ '" data-toggle="modal" data-target="#detail_post_modal">';
+							+ '" data-toggle="modal" data-target="#detail_post_modal" data-no="'+ res[i].p_no +'">';
 					done += '<div class="post_item">';
-					done += '<input type="hidden" class="select_pno" value="' + res[i].p_no + '">';
 					done += '<h4>' + res[i].p_title + '</h4>';
 					done += '<div class="btn_box">';
 					done += '<span class="list"></span> <span class="check">' + "0/4" + '</span> <span class="date">'+ "Jul 20" +'</span>';
@@ -125,9 +121,8 @@
 //				close
 				if(res[i].c_position == 4){
 					close += '<a href="#n" class="detailPostView post ui-state-default" data-status="' + res[i].c_no 
-							+ '" data-toggle="modal" data-target="#detail_post_modal">';
+							+ '" data-toggle="modal" data-target="#detail_post_modal" data-no="'+ res[i].p_no +'">';
 					close += '<div class="post_item">';
-					close += '<input type="hidden" class="select_pno" value="' + res[i].p_no + '">';
 					close += '<h4>' + res[i].p_title + '</h4>';
 					close += '<div class="btn_box">';
 					close += '<span class="list"></span> <span class="check">' + "0/4" + '</span> <span class="date">'+ "Jul 20" +'</span>';
