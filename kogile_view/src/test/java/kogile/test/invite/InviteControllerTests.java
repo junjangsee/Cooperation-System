@@ -35,7 +35,7 @@ public class InviteControllerTests {
 	@Test
 	public void testList() throws Exception{
 		log.info(
-				mockMvc.perform(MockMvcRequestBuilders.get("/board/list"))
+				mockMvc.perform(MockMvcRequestBuilders.get("/invite/searchList"))
 				.andReturn()
 				.getModelAndView()
 				.getModelMap()

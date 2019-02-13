@@ -12,7 +12,7 @@
 		on
 		t.EXTER_M_NO = e.EXTER_M_NO
 		<where>
-		e.exter_m_email LIKE #{search}
+		t.total_m_no LIKE '%' || #{search} || '%' or e.EXTER_MEM_NAME LIKE '%' || #{search} || '%' or e.exter_m_email LIKE '%' || #{search} || '%'
 		</where>
 		
 		UNION
@@ -22,7 +22,7 @@
 		on
 		t.member_no = i.member_no
 		<where>
-		i.email LIKE #{search}
+		t.total_m_no LIKE '%' || #{search} || '%' or i.email LIKE '%' || #{search} || '%' or i.member_name LIKE '%' || #{search} || '%'
 		</where>
 		
 	</select>

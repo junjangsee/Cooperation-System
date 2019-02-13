@@ -33,7 +33,7 @@ public class InviteMapperTests {
 	public void testSearch(){
 		
 		SearchVO search = new SearchVO();
-		search.setSearch('%' + "sohee" + '%');
+		search.setSearch("sohee");
 		
 		List<SearchListVO> list = mapper.searchList(search);
 		
