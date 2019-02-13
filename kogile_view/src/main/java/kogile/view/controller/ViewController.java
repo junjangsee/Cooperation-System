@@ -22,6 +22,10 @@ public class ViewController {
 	public void login() {
 		
 	};
+	@GetMapping("/register")
+	public void register() {
+		
+	};
 	
 	@RequestMapping("/startPage")
 	public void start() {

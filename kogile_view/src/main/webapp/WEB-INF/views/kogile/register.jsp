@@ -14,11 +14,11 @@
 
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
-<title>Login</title>
+<title>Register</title>
 </head>
 <body class="bg-dark">
 	<div class="card card-login mx-auto mt-5">
-		<div class="card-header">Login</div>
+		<div class="card-header">Register</div>
 		<div class="card-body">
 			<form>
 				<div class="form-group">
@@ -31,26 +31,26 @@
 				</div>
 				<div class="form-group">
 					<div class="form-label-group">
+						<input type="text" id="inputName" class="form-control"
+							placeholder="Name" required="required" autofocus="autofocus">
+						<label for="inputName">Name</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="form-label-group">
 						<input type="password" id="inputPassword" class="form-control"
 							placeholder="Password" required="required"> <label
 							for="inputPassword">Password</label>
 					</div>
 				</div>
-				<div class="form-group">
-					<div class="checkbox">
-						<label> <input type="checkbox" value="remember-me">
-							Remember Password
-						</label>
-					</div>
-				</div>
-				<a class="btn btn-primary btn-block" href="https://kauth.kakao.com/oauth/authorize?
-				client_id=e16764ac8ecc77d571c58088d37b119b&
-				redirect_uri=http://localhost:8082/login/external/kakaoOauth&
-				response_type=code">Login</a>
+				<a class="btn btn-primary btn-block" href="index.html">Submit</a> <br>
+				<a class="btn btn-primary btn-block"  href="index.html">카카오톡으로 가입하기</a> 
+				<a class="btn btn-primary btn-block"  href="index.html">Submit</a> 
+				<a class="btn btn-primary btn-block" href="index.html">Submit</a>
 			</form>
 			<div class="text-center">
-				<a class="d-block small mt-3" href="register.html">Register an
-					Account</a> <a class="d-block small" href="forgot-password.html">Forgot
+				<a class="d-block small mt-3" href="/kogile/login">Login</a> <a
+					class="d-block small" href="forgot-password.html">Forgot
 					Password?</a>
 			</div>
 		</div>
