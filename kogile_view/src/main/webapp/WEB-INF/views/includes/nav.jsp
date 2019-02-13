@@ -26,14 +26,13 @@
 		</button>
 
 		<!-- Navbar Search -->
-		<form method='get' action="/invite/searchList"
+		<form method='get' action="/invite/searchList" id="search_form"
 			class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
 			<div class="input-group">
-				<input type="text" class="form-control" name="search" data-container="body" data-toggle="popover" data-placement="bottom" 
-				data-content='어렵다' autocomplete=off 
-					aria-label="Search" aria-describedby="basic-addon2"></input>
+				<input type="text" class="form-control" name="search" value=""/>
 				<div class="input-group-append">
-					<button type="submit" class="btn btn-primary">
+					<button type="submit" class="btn btn-primary" id="btn-search"
+					data-toggle="popover" data-trigger="focus" data-content="ss">
 						<i class="fas fa-search"></i>
 					</button>
 				</div>
