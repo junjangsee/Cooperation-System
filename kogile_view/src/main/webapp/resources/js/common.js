@@ -15,7 +15,7 @@
 		})
 	});
 
-	function search_toggle() {
+	function search_toggle(){
 		var searchKey = $('input[name=search]').val();
 		$('#btn-search').attr("data-content", searchKey)
 		console.log(searchKey);

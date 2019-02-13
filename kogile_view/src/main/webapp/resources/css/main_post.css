@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+.add_input{
+	margin-left : 0px;
+	border:1px solid #dbdbdb;
+	width: 70%;
+	height: 100px;
+	border-radius: 5px;
+	display: block;
+	/* box-shadow: 2px 2px 5px rgba(0,0,0,0.1); */
+	padding: 5px;
+	box-sizing: border-box;
+}
+
+.right_list{float: right;margin-left: 100px;}
+.right_list .holder{margin-bottom: 10px;}
+.title_c{color: #999;font-size: 15px;}
+.btn_list{margin-top: 10px;}
+.btn_list a{display: block;font-weight: 600;font-size:14px;color: #666;border-radius: 5px;display: block;box-shadow: 2px 2px 5px rgba(0,0,0,0.1);padding: 10px 5px 10px 30px;box-sizing: border-box;margin-bottom: 10px;width: 170px;}
+.addcard_holder .btn_list a:active{background: #17394d;}
+.addcard_holder .btn_list a.mem_btn{background:#f1f1f1 url(../images/members.png)left 10px center no-repeat;background-size:12px;}
+.addcard_holder .btn_list a.label_btn{background:#f1f1f1 url(../images/label.png)left 10px center no-repeat;background-size:12px;}
+.addcard_holder .btn_list a.check_btn{background:#f1f1f1 url(../images/check_list.png)left 10px center no-repeat;background-size:12px;}
+.addcard_holder .btn_list a.due_btn{background:#f1f1f1 url(../images/time.png)left 10px center no-repeat;background-size:12px;}
+.addcard_holder .btn_list a.atta_btn{background:#f1f1f1 url(../images/attach.png)left 10px center no-repeat;background-size:12px;}
+.ups_holder .holder_inner{margin: 10px 0 20px 10px;padding-left: 0;}
+.ups_holder .holder_inner a{text-decoration: underline;}
+.ups_holder .holder_inner a:hover{color: #6b808c;}
+.action_holder .btn_list a.move_btn{background:#f1f1f1 url(../images/move.png)left 10px center no-repeat;background-size:12px;}
+.action_holder .btn_list a.copy_btn{background:#f1f1f1 url(../images/copy.png)left 10px center no-repeat;background-size:12px;}
+.action_holder .btn_list a.watch_btn{background:#f1f1f1 url(../images/watch.png)left 10px center no-repeat;background-size:12px;}
+.action_holder .btn_list a.arc_btn{background:#f1f1f1 url(../images/arcive.png)left 10px center no-repeat;background-size:12px;}
+.action_holder .btn_list a.share_btn{background:#f1f1f1 url(../images/share.png)left 10px center no-repeat;background-size:12px;}
