@@ -143,6 +143,13 @@
 			$('#done').html(done);
 			$('#close').html(close);
 			
+////			철희한테 필요합니다.. 이것은 pno를 찾아줘요
+//			$(document).on("click", ".detailPostView.post.ui-state-default", function(){
+//				var a = $(this).find(".select_pno").val();
+//				$('#detail_post_modal').find('input[name=p_no]').val(a);
+//				console.log(a);
+//			});
+			
 		}).catch(function(err){
 			console.log(err);
 		});
@@ -167,6 +174,8 @@
 			name = resn.substring(resn.length -2);
 //			설정 페이지에 마스터 정보 넣기 
 			$('#master_info').find('.name').html(name);
+			$('#reply_comment').find('.name').html(name);
+			$('#reply_list').find('.name').html(name);
 			$('#master_info').find('p').html(resn);
 			$('#master_info').find('a').html(res.mail);
 		}).catch(function(err){

@@ -7,7 +7,7 @@
 		session.removeAttribute("total_m_no");
 	}
 	/* session.setAttribute("total_m_no", request.getParameter("total_m_no")); */
-	session.setAttribute("total_m_no", 2);
+	session.setAttribute("total_m_no", 1);
 %>
 <!DOCTYPE html>
 <html>
@@ -28,7 +28,7 @@
 </head>
 <body id="page-top">
 	<!-- hidden param -->
-	<input type="hidden" value="${total_m_no}" name="total_m_no">
+	<input id="rw" type="hidden" value="${total_m_no}" name="total_m_no">
 	
 	<!-- include -->
 	<%@ include file="../includes/nav.jsp"%>

@@ -1,6 +1,5 @@
 (function($) {
 	$(function() {
-		
 		$('#insertPost').on('click', function(){
 			var c_no = $('#to-do').attr("data-status");
 			$("form[name=insertPost_form]").find('input[name=c_no]').val(c_no);
@@ -112,6 +111,8 @@
 			$('#doing').html(doing);
 			$('#done').html(done);
 			$('#close').html(close);
+			
+			
 			
 		}).catch(function(err){
 			console.log(err);

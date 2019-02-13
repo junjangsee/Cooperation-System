@@ -6,11 +6,11 @@ import lombok.Data;
 
 @Data
 public class ReplyVO {
-	private long r_no;
+	private int r_no;
 	private String r_contents;
 	private Date r_date;
-	private long p_no;
-	private long info_no;
+	private int p_no;
+	private int info_no;
 	
 	private String name;
 	

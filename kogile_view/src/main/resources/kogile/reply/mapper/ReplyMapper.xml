@@ -18,9 +18,10 @@
 	</update>
 	
 	<!-- 작성자때문에 멤버이름 가져오기 -->
-	<select id="replyList" parameterType="long" resultType="kogile.reply.domain.ReplyVO">
-		select /*+ INDEX_asc(reply XPK댓글) */
-		r.r_no, r.r_contents, r.r_date, r.p_no, r.info_no, e.exter_mem_name as name
+	<select id="replyList" parameterType="int" resultType="kogile.reply.domain.ReplyVO">
+	select /*+ INDEX_desc(r XPK댓글) INDEX_desc(p pk_prj_info) INDEX_desc(i XPK초대)
+	INDEX_desc(t pk_total_mem) INDEX_desc(e XPK외부회원정보)*/
+	r.r_no, r.r_contents, r.r_date, r.p_no, r.info_no, e.exter_mem_name as name
     From reply r
     join prj_info p
     on r.info_no = p.info_no
@@ -32,8 +33,10 @@
     on t.exter_m_no = e.exter_m_no
     WHERE r.p_no =#{p_no}
 	</select>
-	<select id="replyList2" parameterType="long" resultType="kogile.reply.domain.ReplyVO">
-	select /*+ INDEX_asc(reply XPK댓글) */
+	
+	<select id="replyList2" parameterType="int" resultType="kogile.reply.domain.ReplyVO">
+	select /*+ INDEX_desc(r XPK댓글) INDEX_desc(p pk_prj_info) INDEX_desc(i XPK초대)
+	INDEX_desc(t pk_total_mem) INDEX_desc(e XPK외부회원정보)*/
 	r.r_no, r.r_contents, r.r_date, r.p_no, r.info_no, im.member_name as name
     From reply r
     join prj_info p
@@ -45,6 +48,18 @@
     join inter_m_info im
     on t.member_no = im.member_no
     where r.p_no =#{p_no}
+	</select>
+	
+		<select id="writer_info" resultType="kogile.project.domain.UserVO">
+		select distinct t.total_m_no, e.exter_mem_name as name, e.exter_m_email as mail
+    	from external_m_info e join total_member t
+    	on t.EXTER_M_NO = e.EXTER_M_NO
+    	where t.total_m_no = #{total_m_no}
+    	UNION
+    	select distinct t.total_m_no, i.member_name as name, i.email as mail 
+    	from inter_m_info i join total_member t
+        on t.member_no = i.member_no
+        where t.total_m_no = #{total_m_no}
 	</select>
 
 </mapper>

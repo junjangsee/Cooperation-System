@@ -2,6 +2,8 @@ package kogile.reply.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import kogile.project.domain.UserVO;
 import kogile.reply.domain.ReplyVO;
 import kogile.reply.service.ReplyService;
 import lombok.AllArgsConstructor;
@@ -25,30 +28,30 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class ReplyController {
 	private ReplyService service;
+	private HttpSession session;
 	
 	@PostMapping(value = "/reply/new",consumes="application/json", 
 			produces= {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> createReply(@RequestBody ReplyVO vo){
 		log.info("@@@@@ReplyVO@@@@@"+vo);
-		
 		int insertCount = service.registerReply(vo);
 		
 		log.info("글 들어간 갯수 = "+insertCount);
 		
-		return insertCount==1? new ResponseEntity<>("성공", HttpStatus.OK)
+		return insertCount==1? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	@GetMapping(value="/reply/{p_no}",
 			produces= {MediaType.APPLICATION_JSON_UTF8_VALUE,MediaType.APPLICATION_XML_VALUE})
-	public ResponseEntity<List<ReplyVO>> showListReply(@PathVariable("p_no") long p_no){
+	public ResponseEntity<List<ReplyVO>> showListReply(@PathVariable("p_no") int p_no){
 		log.info("showList@@@@@@@@@@@@@@@@@@@@@@@");
 		
 		return new ResponseEntity<>(service.replyList(p_no),HttpStatus.OK);
 	}
 	
 	@DeleteMapping(value="/reply/{r_no}", produces= {MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> removeReply(@PathVariable("r_no") long r_no){
+	public ResponseEntity<String> removeReply(@PathVariable("r_no") int r_no){
 		log.info("removeReply@@@@@@@@@@@@@@");
 		int deleteCount = service.removeReply(r_no);
 		
@@ -57,7 +60,7 @@ public class ReplyController {
 	}
 	@RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH}, value="/reply/{r_no}",
 			consumes="application/json",produces= {MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> modifyReply(@RequestBody ReplyVO vo, @PathVariable("r_no") long r_no){
+	public ResponseEntity<String> modifyReply(@RequestBody ReplyVO vo, @PathVariable("r_no") int r_no){
 		vo.setR_no(r_no);
 		log.info("댓글번호"+ r_no);
 		int modifyCount = service.modifyReply(vo);
