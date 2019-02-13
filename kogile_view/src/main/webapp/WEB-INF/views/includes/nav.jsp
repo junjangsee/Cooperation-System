@@ -24,15 +24,15 @@
 			id="sidebarToggle" href="#">
 			<i class="fas fa-bars"></i>
 		</button>
-
+		
 		<!-- Navbar Search -->
 		<form method='get' action="/invite/searchList" id="search_form"
 			class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
 			<div class="input-group">
 				<input type="text" class="form-control" name="search" value=""/>
 				<div class="input-group-append">
-					<button type="submit" class="btn btn-primary" id="btn-search"
-					data-toggle="popover" data-trigger="focus" data-content="ss">
+					<button type="submit" class="btn btn-primary" ><!-- id="btn-search"
+					data-toggle="popover" data-trigger="focus" data-content="ss"-->
 						<i class="fas fa-search"></i>
 					</button>
 				</div>

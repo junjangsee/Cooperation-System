@@ -25,21 +25,21 @@
 			placement : 'bottom'
 		});
 
-		// $.ajax({
-		// data : searchKey,
-		// type : "POST",
-		// dataType : "JSON",
-		// url : "/kogile/invite/search"
-		// }).then(function(res){
-		// console.log(res);
-		// var txt = ``;
-		// txt += `<a href="#">res.mail</a>`;
-		// $('input[name=search]').attr("data-content", txt);
-		//		
-		// $('[data-toggle="popover"]').popover({
-		// html : true,
-		// });
-		// })
+/*		 $.ajax({
+		 data : searchKey,
+		 type : "POST",
+		 dataType : "JSON",
+		 url : "/kogile/invite/search"
+		 }).then(function(res){
+		 console.log(res);
+		 var txt = ``;
+		 txt += `<a href="#">res.mail</a>`;
+		 $('input[name=search]').attr("data-content", txt);
+				
+		 $('[data-toggle="popover"]').popover({
+		 html : true,
+		 });
+		 })*/
 
 	}
 
