@@ -4,15 +4,15 @@
 		list_project();
 		list_post();
 		
-//		설정버튼 클릭 시, 페이지로드없이 설정페이지
+//		설정버튼 클릭 시, 페이지로드없이 설정페이지 --> 서버사이드 
 		$('#btn_body_configure').on('click', function(e){
-			$('.card-body').hide();
-			$('#body_configure').show();
+//			$('.card-body').hide();
+//			$('#body_configure').show();
 			$('.MYactive').removeClass('MYactive');
 			$(this).closest('.nav-item').addClass('MYactive');
 			
-			console.log($(this).closest('.nav-item'));
-			e.preventDefault();
+//			console.log($(this).closest('.nav-item'));
+//			e.preventDefault();
 		});
 		
 		$('#modify_pjt').on('click', function(){
@@ -42,13 +42,13 @@
 			$('.card-header').find('i').html(" "+ res.pjt_title);
 			
 //			설정페이지에 프로젝트 정보 삽입
-			$("input[name=pjt_no]").val(res.pjt_no);
-			$('#pjt_title').find('.form-control').val(res.pjt_title);
-			$('#pjt_contents').find('.form-control').val(res.pjt_contents);
-			$('#pjt_date').find('p').html(date);
+//			$("input[name=pjt_no]").val(res.pjt_no);
+//			$('#pjt_title').find('.form-control').val(res.pjt_title);
+//			$('#pjt_contents').find('.form-control').val(res.pjt_contents);
+//			$('#pjt_date').find('p').html(date);
 			
 //			마스터 구하기
-			master_info(res.total_m_no);
+//			master_info(res.total_m_no);
 			
 		}).catch(function(err){
 			console.log(err);
@@ -141,32 +141,32 @@
 		});
 	}
 	
-	function master_info(total_m_no){
-		const data = {
-				total_m_no : total_m_no
-		}
-		var name = "";
-		var resn = "";
-		
-		$.ajax({
-			data : data,
-			dataType : "JSON",
-			type : "POST",
-			url : "/kogile/project/master_info"
-		}).then(function(res){
-			console.log(res);
-//			글자 자르기
-			resn = res.name;
-			name = resn.substring(resn.length -2);
-//			설정 페이지에 마스터 정보 넣기 
-			$('#master_info').find('.name').html(name);
-			$('#master_info').find('p').html(resn);
-			$('#master_info').find('a').html(res.mail);
-		}).catch(function(err){
-			console.log(err);
-			
-		});
-	}
+//	function master_info(total_m_no){
+//		const data = {
+//				total_m_no : total_m_no
+//		}
+//		var name = "";
+//		var resn = "";
+//		
+//		$.ajax({
+//			data : data,
+//			dataType : "JSON",
+//			type : "POST",
+//			url : "/kogile/project/master_info"
+//		}).then(function(res){
+//			console.log(res);
+////			글자 자르기
+//			resn = res.name;
+//			name = resn.substring(resn.length -2);
+////			설정 페이지에 마스터 정보 넣기 
+////			$('#master_info').find('.name').html(name);
+////			$('#master_info').find('p').html(resn);
+////			$('#master_info').find('a').html(res.mail);
+//		}).catch(function(err){
+//			console.log(err);
+//			
+//		});
+//	}
 	
 })(jQuery)
 

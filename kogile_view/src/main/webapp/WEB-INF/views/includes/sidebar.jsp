@@ -9,7 +9,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:set var="pjt_no"><%=(int)session.getAttribute("pjt_no") %></c:set>
+	 <%
+	 	int pjt_no = -1;
+	 	if(session.getAttribute("pjt_no") != null){
+	 		pjt_no = (int)session.getAttribute("pjt_no");
+	 	}
+	 %>
+
+	<c:set var="pjt_no"><%=pjt_no %></c:set>
 
 	    <ul class="sidebar navbar-nav toggled">
       <li class="nav-item MYactive">
@@ -60,7 +67,7 @@
       </li>
       
     	<li class="nav-item">
-	        <a class="nav-link" href="#" id="btn_body_configure">
+	        <a class="nav-link" href="/kogile/project/config?pjt_no=${pjt_no }" id="btn_body_configure">
 	          <i class="fas fa-fw fa-tachometer-alt"></i>
 	          <span>정보/설정</span>
 	        </a>

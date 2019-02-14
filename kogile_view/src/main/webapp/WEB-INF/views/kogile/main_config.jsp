@@ -1,14 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<%
-	if(session.getAttribute("total_m_no") != null){
-		session.removeAttribute("total_m_no");
-	}
-	/* session.setAttribute("total_m_no", request.getParameter("total_m_no")); */
-	session.setAttribute("total_m_no", 1);
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,22 +14,17 @@
 
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
-<link href="/resources/css/startPage.css" rel="stylesheet">
-<title>startPage</title>
+<link href="/resources/css/main_post.css" rel="stylesheet">
+<title>Login</title>
 </head>
 <body id="page-top">
-	<!-- hidden param -->
-	<input type="hidden" value="${total_m_no}" name="total_m_no">
 	
-	<!-- include -->
 	<%@ include file="../includes/nav.jsp"%>
-	<%@ include file="../includes/insert_Project_modal.jsp" %>
-	<!-- include end -->
-	
+
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<%-- <%@ include file="../includes/sidebar.jsp"%> --%>
+		<%@ include file="../includes/sidebar.jsp"%>
 
 		<div id="content-wrapper">
 
@@ -47,33 +33,46 @@
 				<!-- DataTables Example -->
 				<div class="card mb-3">
 					<div class="card-header">
-						<!-- <i class="fas fa-table"></i> Data Table Example -->
-						<i class="fas fa-fw fa-folder"></i> Project List
+						<i class="fas fa-table"></i>  post_name
 					</div>
-					<!-- star card body -->
+					
 					<div class="card-body">
 					
-					<!-- <div class="MYcontents"> -->
-						<a id="insertProjectForm" class="btn btn-primary" href="#"
-						data-toggle="modal" data-target="#insert_Porject_modal">프로젝트
-							생성</a>
-						<ul class="MYcreate" id="pjt">
-							<!-- <li><a href="#">sss</a></li> -->
-							<%-- <c:if test="${project_list != null }">
-
-								<c:forEach var="Project" items="${project_list}">
-									<li><a href="detailProject.pjt?pjt_no=${Project.pjt_no}">${Project.pjt_title}</a>
-									</li>
-								</c:forEach>
-							
-							</c:if> --%>
-						</ul>
-					<!-- </div> -->
-					</div>
-					<!-- end card body -->
+						<div class="right_list">
+							<div class="addcard_holder holder">
+								<h3 class="title_c">ADD TO CARD</h3>
+								<div class="btn_list">
+									<a href="#" class="mem_btn">Members</a> <a href="#" class="label_btn">Labels</a> <a href="#" class="check_btn">Checklist</a>
+									<a href="#" class="due_btn">Due Date</a> <a href="#" class="atta_btn">Attachment</a>
+								</div>
+							</div>
+						</div>
 					
-					<div class="card-footer small text-muted">Updated yesterday
-						at 11:59 PM</div>
+						<form name="post_info">
+							<h4><b>포스트 명</b></h4>
+							<input class="form-control" style="width: 40%;"><br>
+							
+							<h4><b>설명</b></h4>
+							<textarea name="description" class="add_input"></textarea><br>
+							
+							<h4><b>담당자</b></h4>
+							<br>
+							<br>
+							
+							<h4><b>라벨</b></h4>
+							<br>
+							<br>
+							
+							<h4><b>체크리스트</b></h4>
+							<br>
+							<br>
+							
+							
+						</form>
+						
+					</div>
+					<!-- end card-body -->
+					<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
 				</div>
 
 				<!-- <div class="card card-login mx-auto mt-5">
@@ -132,6 +131,6 @@
 
 
 	<%@ include file="../includes/footconfig.jsp"%>
-	<script src="/resources/js/startPage.js"></script>
+
 </body>
 </html>

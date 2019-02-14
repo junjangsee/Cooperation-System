@@ -3,9 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%
-	if (session.getAttribute("pjt_no") == null) {
-		response.sendRedirect("/kogile/startPage");
-	}
 	if (request.getParameter("pjt_no") == null) {
 		response.sendRedirect("/kogile/startPage");
 	} else {
@@ -124,7 +121,7 @@
 					<!-- end cardbody -->
 
 					<!-- card body hide -->
-					<%@ include file="../includes/body_configure.jsp"%>
+					<%-- <%@ include file="../includes/body_configure.jsp"%> --%>
 					<!-- end cardbody hide -->
 
 					<div class="card-footer small text-muted">Updated yesterday
