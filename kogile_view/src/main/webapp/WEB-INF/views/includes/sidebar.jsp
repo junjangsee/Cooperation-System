@@ -19,7 +19,7 @@
 	<c:set var="pjt_no"><%=pjt_no %></c:set>
 
 	    <ul class="sidebar navbar-nav toggled">
-      <li class="nav-item MYactive">
+      <li class="nav-item">
         <a class="nav-link" href="/kogile/main?pjt_no=${pjt_no }">
           <i class="fas fa-fw fa-folder"></i>
           <span>Board</span>

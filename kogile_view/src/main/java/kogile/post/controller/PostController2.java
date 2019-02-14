@@ -11,12 +11,12 @@ import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Controller
-@RequestMapping("/kogile/*")
+@RequestMapping("/kogile/post*")
 public class PostController2 {
 	PostService service;
 	HttpSession session;
 	
-	@GetMapping("/main_post")
+	@GetMapping("/detailPost")
 	public void main_post() {
 		
 	}

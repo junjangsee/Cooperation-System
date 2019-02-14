@@ -19,12 +19,12 @@
 </head>
 <body id="page-top">
 	
-	<%@ include file="../includes/nav.jsp"%>
+	<%@ include file="../../includes/nav.jsp"%>
 
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<%@ include file="../includes/sidebar.jsp"%>
+		<%@ include file="../../includes/sidebar.jsp"%>
 
 		<div id="content-wrapper">
 
@@ -119,7 +119,7 @@
 			<!-- /.container-fluid -->
 
 			<!-- Sticky Footer -->
-			<%@ include file="../includes/content_footer.jsp"%>
+			<%@ include file="../../includes/content_footer.jsp"%>
 
 
 		</div>
@@ -130,7 +130,7 @@
 
 
 
-	<%@ include file="../includes/footconfig.jsp"%>
+	<%@ include file="../../includes/footconfig.jsp"%>
 
 </body>
 </html>

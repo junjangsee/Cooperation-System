@@ -1,29 +1,31 @@
 (function ($){
 	$(function(){
+		$('.fa-folder').closest('.nav-item').addClass('MYactive');
+		
 		project_info();
 		list_project();
 		list_post();
 		
-//		설정버튼 클릭 시, 페이지로드없이 설정페이지 --> 서버사이드 
-		$('#btn_body_configure').on('click', function(e){
-//			$('.card-body').hide();
-//			$('#body_configure').show();
-			$('.MYactive').removeClass('MYactive');
-			$(this).closest('.nav-item').addClass('MYactive');
-			
-//			console.log($(this).closest('.nav-item'));
-//			e.preventDefault();
-		});
+////		설정버튼 클릭 시, 페이지로드로 바꾸면서 주석으로 변경
+//		$('#btn_body_configure').on('click', function(e){
+////			$('.card-body').hide();
+////			$('#body_configure').show();
+//			$('.MYactive').removeClass('MYactive');
+//			$(this).closest('.nav-item').addClass('MYactive');
+//			
+////			console.log($(this).closest('.nav-item'));
+////			e.preventDefault();
+//		});
 		
-		$('#modify_pjt').on('click', function(){
-			$("form[name=project_info]").attr("action", "/kogile/project/modify");
-			$("form[name=project_info]").submit();
-		})
-		
-		$('#delete_pjt').on('click', function(){
-			$("form[name=project_info]").attr("action", "/kogile/project/delete");
-			$("form[name=project_info]").submit();
-		})
+//		$('#modify_pjt').on('click', function(){
+//			$("form[name=project_info]").attr("action", "/kogile/project/modify");
+//			$("form[name=project_info]").submit();
+//		})
+//		
+//		$('#delete_pjt').on('click', function(){
+//			$("form[name=project_info]").attr("action", "/kogile/project/delete");
+//			$("form[name=project_info]").submit();
+//		})
 		
 	});
 //	end window.onload
