@@ -87,7 +87,7 @@
 					<a class="btn btn-primary" href="#" data-dismiss="modal">등록</a> -->
 
 				<div class="modal-footer">
-					<button id="deletePost" class="btn btn-secondary" type="button"
+					<button id="deletePost" class="btn btn-danger" type="button"
 						data-dismiss="modal">삭제</button>
 					<a class="btn btn-warning">상세 보기</a> 
 					
