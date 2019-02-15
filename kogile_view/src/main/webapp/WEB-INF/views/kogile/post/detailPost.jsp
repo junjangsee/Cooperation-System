@@ -28,7 +28,8 @@
 	<%@ include file="../../includes/nav.jsp"%>
 
 	<div id="wrapper">
-
+	
+	<c:set var="pjt_no"><%= (int)session.getAttribute("pjt_no") %></c:set>
 		<!-- Sidebar -->
 		<%@ include file="../../includes/sidebar.jsp"%>
 
@@ -90,7 +91,8 @@
 							
 							
 						</form>
-						
+						<a class="btn btn-primary" href="#">수정</a>
+						<a class="btn btn-secondary" href="/kogile/main?pjt_no=${pjt_no }">나가기</a>
 					</div>
 					<!-- end card-body -->
 					<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
