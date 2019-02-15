@@ -62,7 +62,8 @@
 		console.log(data);
 		
 		$.ajax({
-			data : data,
+			contentType : "application/json; charset=utf-8", 
+			data : JSON.stringify(data),
 			type : 'POST',
 			dataType : 'JSON',
 			url : "/kogile/checklist/new"

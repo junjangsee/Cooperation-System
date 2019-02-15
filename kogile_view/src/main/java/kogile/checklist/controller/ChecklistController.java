@@ -29,7 +29,7 @@ public class ChecklistController {
 	private ChecklistService service;
 	
 	@PostMapping("/new")
-	public int create(ChecklistVO cvo){
+	public int create(@RequestBody ChecklistVO cvo){
 		
 		log.info("ChecklistVO insert:" + cvo);
 		
