@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import kogile.invite.domain.InviteVO;
-import kogile.project.domain.CardVO;
 import kogile.project.domain.DragVO;
 import kogile.project.domain.Prj_infoVO;
 import kogile.project.domain.ProjectVO;
