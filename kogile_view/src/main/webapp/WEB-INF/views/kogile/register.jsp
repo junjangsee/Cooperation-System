@@ -44,8 +44,9 @@
 					</div>
 				</div>
 				<a class="btn btn-primary btn-block" href="index.html">Submit</a> <br>
-				<a class="btn btn-primary btn-block"  href="index.html">카카오톡으로 가입하기</a> 
-				<a class="btn btn-primary btn-block"  href="index.html">Submit</a> 
+				<a class="btn btn-primary btn-block"
+					href="/login/external/registerKogileWithKakao">카카오톡으로 가입하기</a>
+				<a class="btn btn-primary btn-block" href="index.html">Submit</a>
 				<a class="btn btn-primary btn-block" href="index.html">Submit</a>
 			</form>
 			<div class="text-center">

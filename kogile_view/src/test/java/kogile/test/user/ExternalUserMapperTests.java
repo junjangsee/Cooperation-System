@@ -12,7 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import kogile.user.domain.UserVO;
+import kogile.user.mapper.ExternalUserMapper;
 import kogile.user.mapper.UserMapper;
+import kogile.user.service.KakaoUserService;
 import kogile.user.service.Sha256Hash;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -24,15 +27,47 @@ import lombok.extern.log4j.Log4j;
 /*
  * Mapper테스트. Mapper를 조합한 테스트는 Service테스트에서 진행한다.
  */
-public class UserMapperTests {
+public class ExternalUserMapperTests {
 
 	@Setter(onMethod_ = { @Autowired })
-	private UserMapper mapper;
+	private ExternalUserMapper mapper;
 
 	/*
 	 * 로그인 Mapper 테스트 -ID/PW 일치시 로그인 성공 -일치하는 ID가 없음 -pw가 맞지 않음
 	 */
-
+	@Ignore
+	@Test
+	public void test1() {
+		Map<String, Object> test = new HashMap<>();
+		test.put("interlinked_info", 1007060752);
+		test.put("interlinked_info_type", "KAKAO");
+		
+		UserVO user =  mapper.getExterMemInfo(test);
+		System.out.println(user);
+	}
+	@Ignore
+	@Test
+	public void testTest() {
+		Map<String, Object> test = new HashMap<>();
+		test.put("interlinked_info", 1007060752);
+		test.put("interlinked_info_type", "KAKAO");
+		
+		mapper.getTotalMNoFromExterMem(test);
+	}
+	
+	@Test
+	public void isKogileMemtest() {
+		Map<String, Object> test = new HashMap<>();
+		test.put("interlinked_info", 1007060752);
+		test.put("interlinked_info_type", "KAKAO");
+		
+		String res = mapper.isKogileMember(test);
+		if(res.equals("T")){
+			System.out.println("가입이 되어있는데요?");
+		}else{
+			System.out.println("가입이 안되어 있어요.");
+		}
+	}
 	// 1) ID/PW일치시 로그인 성공
 	@Ignore
 	@Test
@@ -105,7 +140,7 @@ public class UserMapperTests {
 	 * 회원가입 Mapper 테스트
 	 */
 	// 1)DB에 ID랑 비밀번호 넣음.
-
+	@Ignore
 	@Test
 	public void registerTest() {
 

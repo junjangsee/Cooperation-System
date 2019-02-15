@@ -43,10 +43,8 @@
 						</label>
 					</div>
 				</div>
-				<a class="btn btn-primary btn-block" href="https://kauth.kakao.com/oauth/authorize?
-				client_id=e16764ac8ecc77d571c58088d37b119b&
-				redirect_uri=http://localhost:8082/login/external/kakaoOauth&
-				response_type=code">Login</a>
+				<a class="btn btn-primary btn-block" href="#">Login</a><br>
+				<a class="btn btn-primary btn-block" href="/login/external/loginKogileWithKakao">카카오톡으로 로그인</a>
 			</form>
 			<div class="text-center">
 				<a class="d-block small mt-3" href="register.html">Register an

@@ -12,11 +12,9 @@
 <!-- <script src="/resources/vendor/jquery/jquery.min.js"></script> -->
 <!-- <script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script> -->
 <!-- <script src="/resources/js/main.js"></script> -->
-
 </head>
 <body>
 	<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-
 
 		<a class="navbar-brand mr-1" href="/kogile/startPage">Kogile</a>
 
@@ -77,11 +75,8 @@
 			</a>
 				<div class="dropdown-menu dropdown-menu-right"
 					aria-labelledby="userDropdown">
-					<a class="dropdown-item" href="#">Settings</a> <a
-						class="dropdown-item" href="#">Activity Log</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#" data-toggle="modal"
-						data-target="#logoutModal">Logout</a>
+					<a class="dropdown-item" href="/kogile/register">Register</a>
+					<a class="dropdown-item" id="loginAndLogOut" href="/kogile/login">Login</a>
 				</div></li>
 		</ul>
 
