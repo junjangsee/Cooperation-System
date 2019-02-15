@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kogile.invite.mapper.InviteMapper">
 
-	<!-- 데이터 출력 select문 -->
+	<!-- 검색 쿼리문 -->
 	<select id="searchList" parameterType="kogile.invite.domain.SearchVO" resultType="kogile.invite.domain.SearchListVO">
 
 		select distinct t.total_m_no as no, e.exter_mem_name as name, e.exter_m_email as mail
@@ -25,6 +25,34 @@
 		t.total_m_no LIKE '%' || #{search} || '%' or i.email LIKE '%' || #{search} || '%' or i.member_name LIKE '%' || #{search} || '%'
 		</where>
 		
+	</select>
+	
+			
+	<!-- 초대쿼리문 -->	
+	<select id="inviteList" resultType="kogile.invite.domain.InviteVO">
+	select distinct t.total_m_no as totNo, n.MEMBER_NAME as name, n.EMAIL as mail, i.grade as grade, i.INVITE_NO as invNo
+	from invite i 
+	join total_member t
+	on i.total_m_no =
+	t.total_m_no
+	join inter_m_info n
+	on n.MEMBER_NO = t.MEMBER_NO
+	<where>
+	i.TOTAL_M_NO = t.TOTAL_M_NO and i.PJT_NO=#{pjt_no}
+	</where>
+	
+	UNION
+	
+	select distinct t.total_m_no as total_m_no, e.EXTER_MEM_NAME as name, e.EXTER_M_EMAIL as mail, i.grade as grade, i.INVITE_NO as invite_no
+	from invite i
+	join total_member t
+	on i.total_m_no = t.total_m_no
+	join external_m_info e
+	on e.exter_m_no = t.exter_m_no
+	<where>
+	i.TOTAL_M_NO = t.TOTAL_M_NO and i.PJT_NO=#{pjt_no}
+	</where>
+	
 	</select>
 	
 </mapper>

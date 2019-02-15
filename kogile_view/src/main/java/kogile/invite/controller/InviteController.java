@@ -29,7 +29,7 @@ import lombok.extern.log4j.Log4j;
 public class InviteController {
 	
 	private InviteService service;
-
+	
 /*	@GetMapping("/searchList")
 	public void searchList(Model model, @RequestParam(value="search", required=false, defaultValue="0")String search2){
 		
