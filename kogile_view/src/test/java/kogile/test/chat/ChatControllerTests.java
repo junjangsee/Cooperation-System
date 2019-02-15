@@ -84,3 +84,4 @@ public class ChatControllerTests {
 		mockMvc.perform(get("/chat/initChatCtn/3")).andExpect(status().is(200));
 	}
 }
+

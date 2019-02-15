@@ -70,4 +70,5 @@ var chatService = (function() {
 		"recievechat" : recievechat,
 		"sendchat" : sendchat
 	};
+
 })();

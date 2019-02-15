@@ -29,7 +29,7 @@ public class InviteMapperTests {
 		
 	}*/
 	
-	@Test //╟к╩Ж ╣╔юлем ют╥б ев╫╨ф╝
+	@Test //О©╫к╩О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫т╥О©╫ О©╫в╫О©╫ф╝
 	public void testSearch(){
 		
 		SearchVO search = new SearchVO();

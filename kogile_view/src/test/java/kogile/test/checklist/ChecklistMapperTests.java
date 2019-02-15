@@ -28,8 +28,8 @@ public class ChecklistMapperTests {
 		
 		ChecklistVO cvo = new ChecklistVO();
 		
-		cvo.setP_no(1l);
-		cvo.setChecklist_no(4l);
+		cvo.setP_no(1);
+		cvo.setChecklist_no(4);
 		cvo.setCheck_title("������ ����");
 		
 		int count = ckmapper.update(cvo);

@@ -24,3 +24,4 @@ public class Sha256Hash {
 		return builder.toString();
 	}
 }
+

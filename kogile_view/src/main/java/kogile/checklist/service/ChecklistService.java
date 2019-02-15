@@ -3,17 +3,20 @@ package kogile.checklist.service;
 import java.util.List;
 
 import kogile.checklist.domain.ChecklistVO;
+import kogile.checklist.domain.Criteria;
 
 public interface ChecklistService {
 	
-	public void register(ChecklistVO cvo);
+	public int register(ChecklistVO cvo);
 	
-	public ChecklistVO get(Long checklist_no);
+	public ChecklistVO get(int checklist_no);
 	
-	public boolean modify(ChecklistVO cvo);
+	public int modify(ChecklistVO cvo);
 	
-	public boolean remove(Long checklist_no);
+	public int remove(int checklist_no);
 	
-	public List<ChecklistVO> getList();
+	public List<ChecklistVO> getList(Criteria cri, int p_no);
+//	public List<ChecklistVO> getList();
 
+	
 }

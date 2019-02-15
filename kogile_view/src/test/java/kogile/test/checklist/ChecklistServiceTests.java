@@ -36,7 +36,7 @@ public class ChecklistServiceTests {
 	@Test
 	public void testUpdate() {
 		
-		ChecklistVO cvo = service.get(3l);
+		ChecklistVO cvo = service.get(3);
 		
 		if(cvo == null){
 			return;

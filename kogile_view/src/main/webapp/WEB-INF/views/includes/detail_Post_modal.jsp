@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -90,11 +91,18 @@
 					<button id="deletePost" class="btn btn-danger" type="button"
 						data-dismiss="modal">삭제</button>
 					<a href="#" class="btn btn-warning" id="modifyPost">상세 보기</a> 
+
 					
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	<!-- 해당내용 P_no 조회를 한후 가능할 예정 P404 , 우선 임의의 P-no 값 입력으로 테스트-->
+	<%-- <c:out value="${p_no }"></c:out> --%>
+	
+
+	
 </body>
 
 </html>

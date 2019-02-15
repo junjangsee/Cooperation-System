@@ -37,7 +37,7 @@ public class ChatServiceTests {
 
 	@Test
 	public void chatSendServiceTest() {
-		ChatVO chat = new ChatVO(2,1,1,"È²¼ÒÈñ", "¾Æ°Ì³ªÂ¥Áõ³¯¶ó±×·¡222222");
+		ChatVO chat = new ChatVO(2,1,1,"È²ï¿½ï¿½ï¿½ï¿½", "ï¿½Æ°Ì³ï¿½Â¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×·ï¿½222222");
 		if(!service.chatSendService(chat)){
 			System.out.println("update Fail!");
 			fail();
@@ -48,7 +48,7 @@ public class ChatServiceTests {
 	public void getChatListServiceTest() {
 		Map<String, String> Userarg = new HashMap<>();
 		
-		//À¯Àú°¡ Á¶È¸ÇÒ Ã¤ÆÃÀº, 1¹ø ÇÁ·ÎÁ§Æ®¿¡¼­ 1¹ø ÀÌÈÄÀÇ Ã¤ÆÃ³»¿ªÀ» Á¶È¸ÇÑ´Ù.
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ Ã¤ï¿½ï¿½ï¿½ï¿½, 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¤ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½Ñ´ï¿½.
 		Userarg.put("pjt_no", "2");
 		Userarg.put("chat_no", "1");
 		
@@ -59,3 +59,4 @@ public class ChatServiceTests {
 	}
 
 }
+

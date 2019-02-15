@@ -92,6 +92,7 @@ public class PostController {
 
 		System.out.println("detailPost");
 		System.out.println("p_no : " + post);
+
 		
 		return post;
 	}

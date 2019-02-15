@@ -20,6 +20,10 @@
 <title>Login</title>
 </head>
 <body id="page-top">
+	<!-- include zone -->
+	<%@ include file="../../includes/detail_checklist_modal.jsp" %> 
+	<!-- end indclude zone -->
+
 	
 	<%@ include file="../../includes/nav.jsp"%>
 
@@ -46,7 +50,7 @@
 								<div class="btn_list">
 									<a href="#" class="mem_btn">Members</a> 
 									<a id="MY_btn_label" href="#" class="label_btn"  role="button" data-toggle="popover" data-trigger="focus" title="Label" data-content="">Labels</a> 
-									<a href="#" class="check_btn">Checklist</a>
+									<a id="MY_btn_check" href="#" class="check_btn" data-toggle="modal" data-target="#detail_checklist_modal">Checklist</a>
 									<a href="#" class="due_btn">Due Date</a> 
 									<a href="#" class="atta_btn">Attachment</a>
 								</div>
@@ -54,6 +58,7 @@
 						</div>
 					
 						<form name="post_info">
+							<input type="hidden" value="${post.p_no }" id="p_no">
 							
 							<div style="width: 30%; float:left; margin-right: 10px;">
 							<h4><b>포스트 명</b></h4>
@@ -91,46 +96,6 @@
 					<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
 				</div>
 
-				<!-- <div class="card card-login mx-auto mt-5">
-					<div class="card-header">Login</div>
-					<div class="card-body">
-						<form>
-							<div class="form-group">
-								<div class="form-label-group">
-									<input type="email" id="inputEmail" class="form-control"
-										placeholder="Email address" required="required"
-										autofocus="autofocus"> <label for="inputEmail">Email
-										address</label>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="form-label-group">
-									<input type="password" id="inputPassword" class="form-control"
-										placeholder="Password" required="required"> <label
-										for="inputPassword">Password</label>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="checkbox">
-									<label> <input type="checkbox" value="remember-me">
-										Remember Password
-									</label>
-								</div>
-							</div>
-							<a class="btn btn-primary btn-block" href="index.html">Login</a>
-						</form>
-						<div class="text-center">
-							<a class="d-block small mt-3" href="register.html">Register
-								an Account</a> <a class="d-block small" href="forgot-password.html">Forgot
-								Password?</a>
-						</div>
-					</div>
-				</div> -->
-
-				<!--         <p class="small text-center text-muted my-5">
-          <em>More table examples coming soon...</em>
-        </p> -->
-
 			</div>
 			<!-- /.container-fluid -->
 
@@ -148,6 +113,8 @@
 
 	<%@ include file="../../includes/footconfig.jsp"%>
 	<script src="/resources/js/detailPost.js"></script>
+	<script src="/resources/js/checklist.js"></script>
+
 
 </body>
 </html>

@@ -26,7 +26,7 @@
 //			$("form[name=project_info]").attr("action", "/kogile/project/delete");
 //			$("form[name=project_info]").submit();
 //		})
-		
+
 		
 	});
 //	end window.onload
