@@ -16,9 +16,7 @@
 	<!-- Post select문 -->
 	<select id="detailPost" resultType="kogile.post.domain.PostVO">
 		SELECT * FROM post
-		WHERE
-		p_no =
-		#{p_no}
+		WHERE p_no = #{p_no}
 	</select>
 	
 	<!-- Post Project 내 select문 -->

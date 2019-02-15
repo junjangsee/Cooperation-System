@@ -18,6 +18,12 @@
 			var id = $('#detail_post_modal').attr('data-id')
 			delete_post(id);
 		});
+		
+		$('#modifyPost').on('click', function(){
+			var id = $('#detail_post_modal').attr('data-id')
+			$(this).attr("href", `post/detailPost/${id}`);
+			return true;
+		});
 
 	});
 

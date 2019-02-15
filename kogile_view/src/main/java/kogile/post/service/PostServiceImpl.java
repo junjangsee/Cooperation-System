@@ -1,12 +1,10 @@
 package kogile.post.service;
 
 
-import java.sql.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import kogile.post.domain.PostDetailVO;
 import kogile.post.domain.PostVO;
 import kogile.post.mapper.PostMapper;
 import kogile.project.domain.CardVO;

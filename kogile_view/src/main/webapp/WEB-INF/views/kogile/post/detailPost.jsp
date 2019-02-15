@@ -1,5 +1,7 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +35,7 @@
 				<!-- DataTables Example -->
 				<div class="card mb-3">
 					<div class="card-header">
-						<i class="fas fa-table"></i>  post_name
+						<i class="fas fa-table"></i>  ${post.p_title}
 					</div>
 					
 					<div class="card-body">
@@ -42,18 +44,32 @@
 							<div class="addcard_holder holder">
 								<h3 class="title_c">ADD TO CARD</h3>
 								<div class="btn_list">
-									<a href="#" class="mem_btn">Members</a> <a href="#" class="label_btn">Labels</a> <a href="#" class="check_btn">Checklist</a>
-									<a href="#" class="due_btn">Due Date</a> <a href="#" class="atta_btn">Attachment</a>
+									<a href="#" class="mem_btn">Members</a> 
+									<a id="MY_btn_label" href="#" class="label_btn"  role="button" data-toggle="popover" data-trigger="focus" title="Label" data-content="">Labels</a> 
+									<a href="#" class="check_btn">Checklist</a>
+									<a href="#" class="due_btn">Due Date</a> 
+									<a href="#" class="atta_btn">Attachment</a>
 								</div>
 							</div>
 						</div>
 					
 						<form name="post_info">
-							<h4><b>포스트 명</b></h4>
-							<input class="form-control" style="width: 40%;"><br>
 							
+							<div style="width: 30%; float:left; margin-right: 10px;">
+							<h4><b>포스트 명</b></h4>
+							<input class="form-control" value="${post.p_title}"><br>
+							</div>
+							
+							<c:set var="d_day"><fmt:formatDate value="${post.p_dday }" pattern="yyyy-MM-dd"/></c:set>
+							
+							<h4><b>마감일</b></h4>
+							<input class="form-control" style="width: 30%"
+							value="${d_day}" ><br>
+							
+							<div>
 							<h4><b>설명</b></h4>
-							<textarea name="description" class="add_input"></textarea><br>
+							<textarea name="description" class="add_input">${post.p_description}</textarea><br>
+							</div>
 							
 							<h4><b>담당자</b></h4>
 							<br>
@@ -131,6 +147,7 @@
 
 
 	<%@ include file="../../includes/footconfig.jsp"%>
+	<script src="/resources/js/detailPost.js"></script>
 
 </body>
 </html>

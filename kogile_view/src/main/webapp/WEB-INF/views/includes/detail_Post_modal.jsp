@@ -89,7 +89,7 @@
 				<div class="modal-footer">
 					<button id="deletePost" class="btn btn-danger" type="button"
 						data-dismiss="modal">삭제</button>
-					<a class="btn btn-warning">상세 보기</a> 
+					<a href="#" class="btn btn-warning" id="modifyPost">상세 보기</a> 
 					
 				</div>
 			</div>

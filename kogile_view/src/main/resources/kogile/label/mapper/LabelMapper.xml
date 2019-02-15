@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="kogile.label.mapper.LabelMapper">
+  	<select id="listLabel" resultType="kogile.label.domain.LabelVO">
+  		select /*+ INDEX_ASC(label XPK라벨) */ * from label
+  		where pjt_no = #{pjt_no}
+  	</select>
+  </mapper>
