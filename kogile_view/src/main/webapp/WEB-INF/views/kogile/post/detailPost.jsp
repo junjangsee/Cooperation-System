@@ -21,6 +21,7 @@
 </head>
 <body id="page-top">
 	<!-- include zone -->
+	<%@ include file="../../includes/label_modal.jsp" %>
 	<%@ include file="../../includes/detail_checklist_modal.jsp" %> 
 	<!-- end indclude zone -->
 
@@ -74,7 +75,7 @@
 							
 							<div>
 							<h4><b>설명</b></h4>
-							<textarea name="description" class="add_input">${post.p_description}</textarea><br>
+							<textarea name="description" style="width: 65%;" class="add_input">${post.p_description}</textarea><br>
 							</div>
 							
 							<h4><b>담당자</b></h4>

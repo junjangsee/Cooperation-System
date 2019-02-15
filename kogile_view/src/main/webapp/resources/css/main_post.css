@@ -30,7 +30,6 @@
 .action_holder .btn_list a.copy_btn{background:#f1f1f1 url(../images/copy.png)left 10px center no-repeat;background-size:12px;}
 .action_holder .btn_list a.watch_btn{background:#f1f1f1 url(../images/watch.png)left 10px center no-repeat;background-size:12px;}
 .action_holder .btn_list a.arc_btn{background:#f1f1f1 url(../images/arcive.png)left 10px center no-repeat;background-size:12px;}
-<<<<<<< HEAD
 .action_holder .btn_list a.share_btn{background:#f1f1f1 url(../images/share.png)left 10px center no-repeat;background-size:12px;}
 
 /* lable */
@@ -50,6 +49,38 @@
 /* .label_btm a{display: block;color: #6b808c;border-radius: 3px;padding: 10px 12px;margin: 5px 0;font-size: 14px;text-decoration: underline;}
 .label_btm a:hover{background-color: rgba(9,45,66,.13);color: #17394d;}
 .label_btm  hr{background-color: rgba(9,45,66,.13);border: 0;height: 1px;margin: 2px 0;padding: 0;width: 100%;} */
-=======
 .action_holder .btn_list a.share_btn{background:#f1f1f1 url(../images/share.png)left 10px center no-repeat;background-size:12px;}
->>>>>>> refs/remotes/origin/sucun
+
+.labelcolor_red{
+	background: #eb5a46;
+	border: 1px solid;
+}
+
+.labelcolor_green{
+	background: #61bd4f;
+	border: 1px solid;
+}
+
+.labelcolor_orange{
+	background: #ff9f1a;
+	border: 1px solid;
+}
+
+.labelcolor_yellow{
+	
+	background: #f2d600;
+	border: 1px solid;
+}
+.label_radio{
+	width: 100px;
+	height: 30px;
+}
+
+.label_select{
+	width: 400px;
+	height: 40px;
+}
+
+.radio-inline{
+	display: inline;
+}

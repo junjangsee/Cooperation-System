@@ -20,4 +20,15 @@ public class LabelServiceImpl implements LabelService {
 		return list;
 	}
 
+	@Override
+	public void insertLabel(LabelVO label) {
+		mapper.insertLabel(label);
+	}
+
+	@Override
+	public LabelVO detailLabel(int label_no) {
+		LabelVO label = mapper.detailLabel(label_no);
+		return label;
+	}
+
 }

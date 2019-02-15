@@ -32,7 +32,6 @@
 	function insert_project(){
 		const data = $("form[name=insert_project_form]").serialize();
 		console.log(data);
-		var txt = "";
 		
 		$.ajax({
 			type : "POST",
