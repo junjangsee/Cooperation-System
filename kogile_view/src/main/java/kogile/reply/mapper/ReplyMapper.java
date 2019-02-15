@@ -2,8 +2,10 @@ package kogile.reply.mapper;
 
 import java.util.List;
 
+import kogile.invite.domain.InviteVO;
 import kogile.project.domain.UserVO;
 import kogile.reply.domain.ReplyVO;
+import kogile.reply.domain.TagVO;
 
 public interface ReplyMapper {
 	public int insertReply (ReplyVO vo);
@@ -16,5 +18,13 @@ public interface ReplyMapper {
 	
 	public List<ReplyVO> replyList2 (int p_no);
 	
-	public UserVO writer_info (int total_m_no);
+	public InviteVO writer_info (int total_m_no);
+	
+	public int insertTag(TagVO vo);
+	
+	public int replyNum();
+	
+	public List<TagVO> tagMember(int pjt_no);
+	
+	public List<TagVO> tagMember2(int pjt_no);
 }

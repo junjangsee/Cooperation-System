@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import kogile.invite.domain.InviteVO;
 import kogile.project.domain.UserVO;
 import kogile.reply.domain.ReplyVO;
+import kogile.reply.domain.TagVO;
 import kogile.reply.service.ReplyService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -30,18 +32,19 @@ public class ReplyController {
 	private ReplyService service;
 	private HttpSession session;
 	
+	//댓글작성
 	@PostMapping(value = "/reply/new",consumes="application/json", 
 			produces= {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> createReply(@RequestBody ReplyVO vo){
 		log.info("@@@@@ReplyVO@@@@@"+vo);
 		int insertCount = service.registerReply(vo);
-		
 		log.info("글 들어간 갯수 = "+insertCount);
+		
 		
 		return insertCount==1? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-	
+	//댓글목록보기
 	@GetMapping(value="/reply/{p_no}",
 			produces= {MediaType.APPLICATION_JSON_UTF8_VALUE,MediaType.APPLICATION_XML_VALUE})
 	public ResponseEntity<List<ReplyVO>> showListReply(@PathVariable("p_no") int p_no){
@@ -49,7 +52,7 @@ public class ReplyController {
 		
 		return new ResponseEntity<>(service.replyList(p_no),HttpStatus.OK);
 	}
-	
+	//댓글삭제
 	@DeleteMapping(value="/reply/{r_no}", produces= {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> removeReply(@PathVariable("r_no") int r_no){
 		log.info("removeReply@@@@@@@@@@@@@@");
@@ -58,6 +61,7 @@ public class ReplyController {
 		return deleteCount==1? new ResponseEntity<>("성공", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	//댓글수정
 	@RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH}, value="/reply/{r_no}",
 			consumes="application/json",produces= {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> modifyReply(@RequestBody ReplyVO vo, @PathVariable("r_no") int r_no){
@@ -68,5 +72,27 @@ public class ReplyController {
 		return modifyCount==1? new ResponseEntity<>("성공", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	
+	
+	//태그하기
+	@PostMapping(value = "/tag/new",consumes="application/json", 
+			produces= {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> createTag(@RequestBody TagVO vo){
+		log.info("@@@@@TagVO@@@@@"+vo);
+		int insertCount = service.registerTag(vo);
+		log.info("글 들어간 갯수 = "+insertCount);
+		
+		
+		return insertCount==1? new ResponseEntity<>("success", HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	//태그대상보기
+		@GetMapping(value="/tag/{pjt_no}",
+				produces= {MediaType.APPLICATION_JSON_UTF8_VALUE,MediaType.APPLICATION_XML_VALUE})
+		public ResponseEntity<List<TagVO>> showTagMember(@PathVariable("pjt_no") int pjt_no){
+			log.info("showList@@@@@@@@@@@@@@@@@@@@@@@");
+			
+			return new ResponseEntity<>(service.tagList(pjt_no),HttpStatus.OK);
+		}
 	
 }

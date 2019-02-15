@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import kogile.invite.domain.InviteVO;
 import kogile.project.domain.UserVO;
 import kogile.reply.domain.ReplyVO;
+import kogile.reply.domain.TagVO;
 import kogile.reply.mapper.ReplyMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -44,9 +46,23 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public UserVO writer_info(int total_m_no) {
+	public InviteVO writer_info(int total_m_no) {
 		
 		return mapper.writer_info(total_m_no);
+	}
+
+	@Override
+	public int registerTag(TagVO vo) {
+		
+		return mapper.insertTag(vo);
+	}
+
+	@Override
+	public List<TagVO> tagList(int pjt_no) {
+		List<TagVO> list = mapper.tagMember(pjt_no);
+		List<TagVO> list2 = mapper.tagMember2(pjt_no);
+		list.addAll(list2);
+		return list;
 	}
 
 
