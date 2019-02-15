@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import kogile.reply.domain.ReplyVO;
+import kogile.reply.domain.TagVO;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -63,5 +64,25 @@ public class ReplyMapperTest {
 //		
 //		log.info("삭제된글갯수="+count);
 //	}
+//	@Test
+//	public void testReplyNum() {
+//		int replyNum=mapper.replyNum();
+//		log.info(replyNum);
+//	}
+//	@Test
+//	public void testCreatTag() {
+//		TagVO vo = new TagVO();
+//		vo.setR_no(2);
+//		vo.setInfo_no(1);
+//		mapper.insertTag(vo);
+//	}
+	@Test
+	public void testTagMemberList() {
+		int pjt_no=1;
+		List<TagVO>list= mapper.tagMember(pjt_no);
+		List<TagVO>list2=mapper.tagMember2(pjt_no);
+		list.addAll(list2);
+		list.forEach(mem ->log.info(mem));
+	}
 	
 }

@@ -28,7 +28,7 @@
 </head>
 <body id="page-top">
 	<!-- hidden param -->
-	<input type="hidden" value="${total_m_no}" name="total_m_no">
+	<input id="rw" type="hidden" value="${total_m_no}" name="total_m_no">
 	
 	<!-- include -->
 	<%@ include file="../includes/nav.jsp"%>

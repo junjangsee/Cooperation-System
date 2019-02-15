@@ -11,14 +11,9 @@
 <script type="text/javascript"src="/resources/js/post.js"></script>
 <script>
 $(document).ready(function(){
-	showList(1);
-	showDescription(1);
-	function showList(p_no){
-		replyService.showList(p_no);
-	}
-	function showDescription(p_no){
-		postService.showDescription(p_no);
-	}
+	
+	replyService.showList(1);
+	
 	$('#a').click(function(){
 		replyService.add({r_contents:"아작테스트",p_no:"1",info_no:"1"})
 	})
@@ -27,9 +22,6 @@ $(document).ready(function(){
 	})
 	$('#c').click(function(){
 		replyService.remove(101)
-	})
-	$('#d').click(function(){
-		postService.updateDescription({p_description:"아작테스트!!!",p_no:"1"})
 	})
 })
 

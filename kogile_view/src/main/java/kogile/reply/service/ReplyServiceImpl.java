@@ -4,7 +4,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import kogile.invite.domain.InviteVO;
+import kogile.project.domain.UserVO;
 import kogile.reply.domain.ReplyVO;
+import kogile.reply.domain.TagVO;
 import kogile.reply.mapper.ReplyMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -23,7 +26,7 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public int removeReply(long r_no) {
+	public int removeReply(int r_no) {
 		
 		return mapper.deleteReply(r_no);
 	}
@@ -35,9 +38,29 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public List<ReplyVO> replyList(long p_no) {
+	public List<ReplyVO> replyList(int p_no) {
 		List<ReplyVO> list = mapper.replyList(p_no);
 		List<ReplyVO> list2 = mapper.replyList2(p_no);
+		list.addAll(list2);
+		return list;
+	}
+
+	@Override
+	public InviteVO writer_info(int total_m_no) {
+		
+		return mapper.writer_info(total_m_no);
+	}
+
+	@Override
+	public int registerTag(TagVO vo) {
+		
+		return mapper.insertTag(vo);
+	}
+
+	@Override
+	public List<TagVO> tagList(int pjt_no) {
+		List<TagVO> list = mapper.tagMember(pjt_no);
+		List<TagVO> list2 = mapper.tagMember2(pjt_no);
 		list.addAll(list2);
 		return list;
 	}

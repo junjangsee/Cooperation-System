@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
 <body>
 	<!-- Butto 사용  -->
 	<!-- <button type="button" class="btn btn-primary btn-lg"
@@ -16,12 +17,14 @@
 
 	<div class="modal fade" id="detail_post_modal" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h3 class="modal-title" id="post_title">Post 제목</h3>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
+					
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
@@ -42,12 +45,16 @@
 				</div>
 				<!-- right_list end -->		
 				
+				<input type="hidden" value="" id="MYpno">
+				
 				<!-- 설명 -->
 				<div id="description">
 				<h4><b>설명</b></h4>
 					<div>
-						<p>포스트 설명...</p>
-					</div>				
+						<!-- P 태그들어간다. -->
+					</div>
+					<textarea id="description_modify" class="add_input" placeholder="포스트설명..."></textarea>
+					<a id="description_modify_btn" href="#n" class="btn btn-sm btn-secondary" style="float : right;">수정</a>				
 				</div>
 				<!-- end 설명 -->
 				
@@ -55,25 +62,28 @@
 				<div id="reply_comment">
 				<h4><b>댓글달기</b></h4>
 				<span class="name">user</span>
-				<textarea style="margin-bottom: 3px;" class="add_input" placeholder="Write a comment..."></textarea>
+				<textarea id="insert_reply" style="margin-bottom: 3px;" class="add_input" placeholder="Write a comment..."></textarea>
 				<input type="text" class="add_tag" placeholder="@태그">
-				<a href="#n" class="btn btn-sm btn-secondary" style="float : right;">Save</a>
+				<a id="reply_save" href="#n" class="btn btn-sm btn-secondary" style="float : right;">등록</a>
+				<a id="reply_modify" href="#n" class="btn btn-sm btn-secondary" style="float : right;">수정</a>
 				</div>
 				<!-- end reply_comment -->
 				
 				<!-- 댓글목록 -->
-				<ul style="list-style: none; padding-left: 0px;">
-					<li><span class="name">철희</span>
+				<ul id="reply_list" style="list-style: none; padding-left: 0px;">
+					<!-- <li id="reply_list"> -->
+					<!-- <span class="name">철희</span>
 						<div class="input_box">
 							<span class="fullname">정철희</span><br>
 							 <span class="date">Jan
 								16 at 10:00 AM</span> 
 								<span class="cts"> 
-								<!-- <span class="id">@junjang7</span> -->
+								<span class="id">@junjang7</span>
 								ㅎㅇㅎㅇ
-								</span> 
+								</span>  -->
 							<!-- <a href="#n" class="rep_btn">Reply</a> -->
-						</div></li>
+						<!-- </div> -->
+					<!-- </li> -->
 				</ul>
 				<!-- 댓글목록 종료 -->
 
@@ -103,6 +113,7 @@
 	
 
 	
+
 </body>
 
 </html>

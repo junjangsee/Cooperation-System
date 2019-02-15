@@ -1,17 +1,14 @@
 package kogile.reply.domain;
 
-import java.util.Date;
-
 import lombok.Data;
 
 @Data
-public class ReplyVO {
+public class TagVO {
+	private int tag_no;
 	private int r_no;
-	private String r_contents;
-	private Date r_date;
-	private int p_no;
 	private int info_no;
-	
 	private String name;
-	
+	private int invite_no;
+	private int pjt_no;
+	private int total_m_no;
 }

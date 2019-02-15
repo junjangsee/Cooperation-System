@@ -18,7 +18,8 @@
 <!-- Custom fonts for this template-->
 <link href="/resources/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet" type="text/css">
-
+<!-- 폰트어썸 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- Page level plugin CSS-->
 <link href="/resources/vendor/datatables/dataTables.bootstrap4.css"
 	rel="stylesheet">
@@ -55,6 +56,7 @@
 					<div class="card-header">
 						<i class="fas fa-table"> pjt_name</i>
 					</div>
+					
 					<div class="card-body" id="body_main">
 						<div class="cts_board grid">
 
@@ -188,6 +190,9 @@
 	<%@ include file="../includes/footconfig.jsp"%>
 	<script src="/resources/js/main.js"></script>
 	<script src="/resources/js/post.js"></script>
+	<!-- <script src="/resources/js/reply.js"></script> -->
+	<!-- <script src="/resources/js/description.js"></script> -->
+	
 
 </body>
 </html>

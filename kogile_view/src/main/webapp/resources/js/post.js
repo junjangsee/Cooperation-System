@@ -1,5 +1,8 @@
 (function($) {
 	$(function() {
+		$('#reply_modify').hide();
+		$('#description_modify').hide();
+		$('#description_modify_btn').hide();
 
 		$('#insertPost').on('click', function(){
 			var c_no = $('#to-do').attr("data-status");
@@ -24,9 +27,75 @@
 			$(this).attr("href", `post/detailPost/${id}`);
 			return true;
 		});
+		//insert reply
+		$('#reply_save').on('click', function(){
+			var id = $('#detail_post_modal').attr('data-id');
+			var reply= {
+					"r_contents":$("#insert_reply").val(),
+					"p_no": id,
+					"info_no":1
+			};
+			replyAdd(reply);
+//			replyList(id);
+			$('#insert_reply').val("");
+		});
+		// remove reply
+		$(document).on("click", ".fas.fa-trash-alt", function(){
+			console.log("삭제눌림");
+			var r_no = $(this).attr("data-rno");
+			console.log(r_no);
+			replyRemove(r_no);
+//			replyList(id);
+			
+		});
+//		수정 버튼 작동 --> 
+		$(document).on("click", ".fas.fa-edit", function(){
+			console.log("수정눌림");
+			var r_no = $(this).attr("data-rno");
+			console.log(r_no);
+			var txt = $(this).parents('div .input_box').find('.cts').html();
+			console.log(txt);
+			var reply= {
+					"r_contents":$("#insert_reply").val()
+			};
+			
+			$('#insert_reply').val(txt);
+			$('#reply_save').hide();
+			$('#reply_modify').show();
+		});
+		
+		// modify reply
+		$('#reply_modify').on('click', function(){
+			
+			var reply= {
+					"r_contents" : $("#insert_reply").val(),
+					"r_no" : $('div .input_box').find('input[name=r_no]').val()
+			};
+			replyUpdate(reply);
+			
+			$('#insert_reply').val("");
+			
+			$('#reply_modify').hide();
+			$('#reply_save').show();
+		});
+//		설명내용 클릭시, 텍스트
+		$('#description').on("click",function(){
+			var txt = $(this).find('p').html();
+			$('#description').find('p').hide();
+			$('#description_modify').show();
+			$('#description_modify').val(txt);
+			$('#description_modify_btn').show();
+		});
+		//설명수정
+		$('#description_modify_btn').on("click", function(){
+			var description={"p_description":$('#description_modify').val()}
+			updateDescription(description);
+		})
 
 
 	});
+//	end window.onload
+	//
 
 	// 포스트 삭제
 	function delete_post(id) {		
@@ -44,6 +113,7 @@
 	}
 
 	// 포스트 삽입
+	
 	function insert_post() {
 		const data = $("form[name=insertPost_form]").serialize();
 		console.log(data);
@@ -56,6 +126,7 @@
 				
 		}).then(function(res){
 			console.log(res);
+		}).then(function(){			
 			list_post();
 		});
 	}
@@ -70,6 +141,9 @@
 		}).then(function(res){	
 			$('#detail_post_modal').attr('data-id', id)
 			$('#detail_post_modal').find('.modal-title').text(res.p_title)
+		}).then(function(){
+			replyList(id);
+			showDescription();
 		});
 	}
 	
@@ -98,7 +172,7 @@
 		}).then(function(res){
 			console.log(res);
 			for(var i =0; i < res.length; i ++){
-//				todo post list 작성
+// todo post list 작성
 				if(res[i].c_position == 1){
 					todo += '<a href="#n" class="detailPostView post ui-state-default" data-status="' + res[i].c_no 
 							+ '" data-toggle="modal" data-target="#detail_post_modal">';
@@ -110,7 +184,7 @@
 					todo += '</div>';
 					todo += '</div></a>';		
 				}
-//				doing
+// doing
 				if(res[i].c_position == 2){
 					doing += '<a href="#n" class="detailPostView post ui-state-default" data-status="' + res[i].c_no 
 							+ '" data-toggle="modal" data-target="#detail_post_modal">';
@@ -122,7 +196,7 @@
 					doing += '</div>';
 					doing += '</div></a>';		
 				}
-//				done
+// done
 				if(res[i].c_position == 3){
 					done += '<a href="#n" class="detailPostView post ui-state-default" data-status="' + res[i].c_no 
 							+ '" data-toggle="modal" data-target="#detail_post_modal">';
@@ -134,7 +208,7 @@
 					done += '</div>';
 					done += '</div></a>';		
 				}
-//				close
+// close
 				if(res[i].c_position == 4){
 					close += '<a href="#n" class="detailPostView post ui-state-default" data-status="' + res[i].c_no 
 							+ '" data-toggle="modal" data-target="#detail_post_modal">';
@@ -153,44 +227,145 @@
 			$('#done').html(done);
 			$('#close').html(close);
 			
+			
+			
 		}).catch(function(err){
 			console.log(err);
 		});
 		
-		function updateDescription(description) {
-
-			$.ajax({
-				type : 'put',
-				url : '/kogile/post/description/' + description.p_no,
-				data : JSON.stringify(description),
-				contentType : "application/json; charset=utf-8",
-				success : function(res) {
-					console.log("성공");
-				},
-				error : function(xhr, status, er) {
-					if (error) {
-						error(er);
-					}
-				}
-			});
-		}
-
-		function showDescription(p_no) {
+		
+	}
+	//list reply
+	function replyList(id) {
+		
+		$.getJSON("/kogile/reply/"+id)
+		.then(function(res){
+			console.log(res);
+			var txt='';
 			
-			$.getJSON("/kogile/post/description/" + p_no + ".json")
-			.then(function(res){
-				console.log(res);
-				var txt='';
-					txt +='<li>';
-					txt +=res.p_description
-					txt +='</li>'
-				$('#ex2').html(txt);
-			}).catch(function(err){
-				console.log(err);
-			});
+			for(var i =0;i<res.length;i++){
+				txt +='<li>';
+				txt +='<span class="name">'+res[i].name.substring(res[i].name.length-2) +'</span>';
+				txt +='<div class="input_box">'
+				txt +='<span class="fullname">'+res[i].name+'</span><br>'
+				txt +='<span class="date">'+ moment(res[i].r_date).format("YYYY-MM-DD")+'</span>'
+				txt +='<a class="fas fa-edit" data-rno="'+res[i].r_no + '"href="#"/><a class="fas fa-trash-alt" data-rno="'+res[i].r_no + '" href="#"/>'
+				txt +='<input type="hidden" name="r_no" value="'+res[i].r_no+'"/>'
+				txt +='<span class="cts">'+res[i].r_contents+'</span>'
+				txt += '</div>';
+				txt += '</li>';
+			}
+			$('#reply_list').html(txt);
+
 			
-		}
+		}).catch(function(err){
+			console.log(err);
+		});
+		
 	}
 	
+	//reply insert
+	function replyAdd(reply) {
+		
+		
+		$.ajax({
+			type : 'post',
+			url : '/kogile/reply/new',
+			data : JSON.stringify(reply),
+			contentType : "application/json; charset=utf-8"
+			}).then(function(res){
+				console.log(res);
+				reply_list();
+				
+				
+			}).catch(function(e){
+				console.log(e);
+			})
+	}
+	
+	//remove reply
+	function replyRemove(r_no) {
+		
+		$.ajax({
+			type : 'delete',
+			url : '/kogile/reply/' + r_no,
+			success : function(res) {
+				console.log("성공 : ");
+				reply_list();
+			},
+			error : function(xhr, status, er) {
+				if (error) {
+					error(er);
+				}
+			}
+		});
+	}
+//	댓글수정
+	function replyUpdate(reply) {
+		reply.r_no= $('div .input_box').find('input[name=r_no]').val();
+		
+		$.ajax({
+			type : 'put',
+			url : '/kogile/reply/' + reply.r_no,
+			data : JSON.stringify(reply),
+			contentType : "application/json; charset=utf-8",
+		}).then(function(res){
+			console.log("성공");
+			reply_list();
+		}).catch(function(e){
+			console.log(e)
+		});
+	}
+//	replylist 파라미터 없이 쓰기위해서 만
+	function reply_list(){
+		var id = $('#detail_post_modal').attr('data-id');
+		replyList(id);
+	}
+//	설명 보기
+	function showDescription() {
+		var id = $('#detail_post_modal').attr('data-id');
+		$.getJSON("/kogile/post/description/" + id + ".json")
+		.then(function(res){
+			console.log(res);
+			var txt='';
+				txt +='<p>';
+				txt +=res.p_description;
+				txt +='</p>';
+				var txt2='';
+				txt2 +='<p>';
+				txt2 +='포스트설명...';
+				txt2 +='</p>';
+				
+				if(res.p_description==null){
+					$('#description').find('div').html(txt2);
+				}else{
+					$('#description').find('div').html(txt);
+				}
+			
+		}).catch(function(err){
+			console.log(err);
+		});
+		
+	}
+//	설명수정
+	function updateDescription(description) {
+		description.p_no = $('#detail_post_modal').attr('data-id');
+		console.log(description.p_no);
+		$.ajax({
+			type : 'put',
+			url : '/kogile/post/description/' + description.p_no,
+			data : JSON.stringify(description),
+			contentType : "application/json; charset=utf-8",
+		}).then(function(res) {
+				console.log("성공");
+				showDescription();
+				//버튼과 수정창을 숨겨준다
+				$('#description_modify').hide();
+				$('#description_modify_btn').hide();
+		}).catch(function(e){
+			console.log(e);
+		});
+			
+	}
 	
 })(jQuery);
