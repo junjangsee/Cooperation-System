@@ -2,13 +2,14 @@ package kogile.test.post;
 
 import static org.junit.Assert.*;
 
+import java.sql.Date;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import kogile.post.domain.PostDetailVO;
 import kogile.post.domain.PostVO;
 import kogile.post.service.PostService;
 import lombok.Setter;
@@ -107,5 +108,30 @@ public class PostServiceTests {
 //		
 //		log.info(post);
 //	}
+	
+//	@Test
+//	public void updateTitle() {
+//		
+//		PostVO post = new PostVO();
+//		
+//		post.setP_no(222);
+//		post.setP_title("서비스 수정");
+//		
+//		service.updatePostTitle(post);
+//		
+//		log.info(post);
+//	}
+	
+//	@Test
+//	public void updateDate() {
+//		
+//		PostVO post = new PostVO();
+//		
+//		post.setP_no(222);
+//		post.setP_dday(new Date(19/05/01));
+//		
+//		service.updatePostDate(post);
+//	}
+	
 
 }

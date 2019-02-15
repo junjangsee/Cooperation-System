@@ -3,99 +3,176 @@
 		$('#reply_modify').hide();
 		$('#description_modify').hide();
 		$('#description_modify_btn').hide();
+	});
+	
+	$('#insertPost').on('click', function(){
+		var c_no = $('#to-do').attr("data-status");
+		$("form[name=insertPost_form]").find('input[name=c_no]').val(c_no);
+		insert_post();
+		$("input[name=p_title]").val("");
+		alert("생성되었습니다.");
+	});
 
-		$('#insertPost').on('click', function(){
-			var c_no = $('#to-do').attr("data-status");
-			$("form[name=insertPost_form]").find('input[name=c_no]').val(c_no);
-			insert_post();
-			$("input[name=p_title]").val("");
-			alert("생성되었습니다.");
-		});
-
-		$('.item_content').on('click', function(e){
-			var id = $(e.target).closest('a').data('no');
-			post_title(id);
-		});
+	$('.item_content').on('click', function(e){
+		var id = $(e.target).closest('a').data('no');
+		post_title(id);
+	});
+	
+	$('#deletePost').on('click', function(){
+		var id = $('#detail_post_modal').attr('data-id')
+		delete_post(id);
+	});
+	
+	$('#modifyPost').on('click', function(){
+		var id = $('#detail_post_modal').attr('data-id')
+		$(this).attr("href", `post/detailPost/${id}`);
+		return true;
+	});
+	//insert reply
+	$('#reply_save').on('click', function(){
+		var id = $('#detail_post_modal').attr('data-id');
+		var reply= {
+				"r_contents":$("#insert_reply").val(),
+				"p_no": id,
+				"info_no":1
+		};
+		replyAdd(reply);
+//		replyList(id);
+		$('#insert_reply').val("");
+	});
+	// remove reply
+	$(document).on("click", ".fas.fa-trash-alt", function(){
+		console.log("삭제눌림");
+		var r_no = $(this).attr("data-rno");
+		console.log(r_no);
+		replyRemove(r_no);
+//		replyList(id);
 		
-		$('#deletePost').on('click', function(){
-			var id = $('#detail_post_modal').attr('data-id')
-			delete_post(id);
-		});
+	});
+//	수정 버튼 작동 --> 
+	
+	$(document).on("click", ".fas.fa-edit", function(){
+		console.log("수정눌림");
+		var r_no = $(this).attr("data-rno");
+		console.log(r_no);
+		var txt = $(this).parents('div .input_box').find('.cts').html();
+		console.log(txt);
+		var reply= {
+				"r_contents":$("#insert_reply").val()
+		};
 		
-		$('#modifyPost').on('click', function(){
-			var id = $('#detail_post_modal').attr('data-id')
-			$(this).attr("href", `post/detailPost/${id}`);
-			return true;
-		});
-		//insert reply
-		$('#reply_save').on('click', function(){
-			var id = $('#detail_post_modal').attr('data-id');
-			var reply= {
-					"r_contents":$("#insert_reply").val(),
-					"p_no": id,
-					"info_no":1
-			};
-			replyAdd(reply);
-//			replyList(id);
-			$('#insert_reply').val("");
-		});
-		// remove reply
-		$(document).on("click", ".fas.fa-trash-alt", function(){
-			console.log("삭제눌림");
-			var r_no = $(this).attr("data-rno");
-			console.log(r_no);
-			replyRemove(r_no);
-//			replyList(id);
-			
-		});
-//		수정 버튼 작동 --> 
-		$(document).on("click", ".fas.fa-edit", function(){
-			console.log("수정눌림");
-			var r_no = $(this).attr("data-rno");
-			console.log(r_no);
-			var txt = $(this).parents('div .input_box').find('.cts').html();
-			console.log(txt);
-			var reply= {
-					"r_contents":$("#insert_reply").val()
-			};
-			
-			$('#insert_reply').val(txt);
-			$('#reply_save').hide();
-			$('#reply_modify').show();
-		});
+		$('#insert_reply').val(txt);
+		$('#reply_save').hide();
+		$('#reply_modify').show();
+	});
+	
+	// modify reply
+	$('#reply_modify').on('click', function(){
 		
-		// modify reply
-		$('#reply_modify').on('click', function(){
-			
-			var reply= {
-					"r_contents" : $("#insert_reply").val(),
-					"r_no" : $('div .input_box').find('input[name=r_no]').val()
-			};
-			replyUpdate(reply);
-			
-			$('#insert_reply').val("");
-			
-			$('#reply_modify').hide();
-			$('#reply_save').show();
-		});
-//		설명내용 클릭시, 텍스트
-		$('#description').on("click",function(){
-			var txt = $(this).find('p').html();
-			$('#description').find('p').hide();
-			$('#description_modify').show();
-			$('#description_modify').val(txt);
-			$('#description_modify_btn').show();
-		});
-		//설명수정
-		$('#description_modify_btn').on("click", function(){
-			var description={"p_description":$('#description_modify').val()}
-			updateDescription(description);
-		})
+		var reply= {
+				"r_contents" : $("#insert_reply").val(),
+				"r_no" : $('div .input_box').find('input[name=r_no]').val()
+		};
+		replyUpdate(reply);
+		
+		$('#insert_reply').val("");
+		
+		$('#reply_modify').hide();
+		$('#reply_save').show();
+	});
+//	설명내용 클릭시, 텍스트
+	$('#description').on("click",function(){
+		var txt = $(this).find('p').html();
+		$('#description').find('p').hide();
+		$('#description_modify').show();
+		$('#description_modify').val(txt);
+		$('#description_modify_btn').show();
+	});
+	//설명수정
+	$('#description_modify_btn').on("click", function(){
+		var description={"p_description":$('#description_modify').val()}
+		updateDescription(description);
+	})
 
-
+	//title 수정
+	var isUpdate = false
+	
+	function showTitle() {
+		$('#updateTitle').hide();
+		$('#p_title').show();
+	}
+	
+	function showUpdateInput() {
+		$('#updateTitle').show();
+		$('#p_title').hide();
+	}
+	
+	// Post 삽입
+	$('#insertPost').on('click', function(){
+		var c_no = $('#to-do').attr("data-status");
+		$("form[name=insertPost_form]").find('input[name=c_no]').val(c_no);
+		insert_post();
+		$("input[name=p_title]").val("");
+		alert("생성되었습니다.");
 	});
 //	end window.onload
 	//
+
+	// Post 제목 상세보기
+	$('.item_content').on('click', function(e){
+		var id = $(e.target).closest('a').data('no');
+		post_title(id);
+	});
+	
+	// Post 삭제
+	$('#deletePost').on('click', function(){
+		var id = $('#detail_post_modal').attr('data-id');
+		delete_post(id);
+	});
+	
+	// Post 제목 수정 
+	// p_title : 현재 제목 updateTitle : 수정 제목
+	
+	$('#p_title').on('click', function(e){
+		showUpdateInput();
+		$('#updateTitle').val($('#p_title').text())
+		isUpdate = true;
+	})
+	
+	
+	$('#updateTitle').on('focusout', function(e) {	
+		update_p_title($(this).val())
+		isUpdate = false;
+	})
+	
+	$('#updateTitle').on('keyup', function(e) {
+		if (e.keyCode === 13) {
+			update_p_title($(this).val())
+			isUpdate = false;
+		}
+	})
+	
+	
+	// 포스트 제목 수정
+	function update_p_title(title) {
+		if(isUpdate){
+			$.ajax({
+				type : "PATCH",
+				url : "/kogile/post/updatePostTitle",
+				data : JSON.stringify({
+					p_title: title
+				}),
+				contentType : "application/json; charset=UTF-8"
+			}).then(function(res){
+				alert('저장되었습니다.');
+				$('#p_title').text(title);
+				showTitle();
+			}).catch(function(err){
+				showTitle();
+				console.error(err)
+			})
+		}
+	}
 
 	// 포스트 삭제
 	function delete_post(id) {		
@@ -144,6 +221,7 @@
 		}).then(function(){
 			replyList(id);
 			showDescription();
+
 		});
 	}
 	
@@ -367,5 +445,7 @@
 		});
 			
 	}
+	
+	
 	
 })(jQuery);

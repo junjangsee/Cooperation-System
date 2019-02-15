@@ -6,6 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+#updateTitle {
+	display: none;
+}
+</style>
 </head>
 
 <body>
@@ -21,14 +26,15 @@
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h3 class="modal-title" id="post_title">Post 제목</h3>
+					<h3 class="modal-title" id="p_title">Post 제목</h3>
+					<input class="form-control" id="updateTitle" placeholder="제목을 입력하세요" />
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
 					
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
-				<div class="modal-body">
+				<div id="modalBody" class="modal-body">
 					<div class="MYhide_menu"></div>
 					<!-- end myhide_menu -->
 
@@ -38,7 +44,7 @@
 							<div class="btn_list">
 								<a href="#" class="mem_btn">Members</a> <a href="#"
 									class="label_btn">Labels</a> <a href="#" class="check_btn">Checklist</a>
-								<a href="#" class="due_btn">Due Date</a> <a href="#"
+								<a href="#" class="due_btn" id="updateDate">Due Date</a> <a href="#"
 									class="atta_btn">Attachment</a>
 							</div>
 						</div>

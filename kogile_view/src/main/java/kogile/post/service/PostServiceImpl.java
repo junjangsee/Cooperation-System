@@ -49,18 +49,6 @@ public class PostServiceImpl implements PostService {
 		mapper.insertPost(post);
 	}
 
-	// post 수정
-	@Override
-	public int updateDate(PostVO post1) {
-		PostVO post = mapper.detailPost(post1.getP_no());
-//		post.setDate(post1.getDate());
-		post.setDate(post1.getDate());
-		
-		System.out.println(post);
-
-		return mapper.updatePost(post);
-	}
-
 	// post 삭제
 	@Override
 	public int deletePost(int p_no) {
@@ -76,13 +64,6 @@ public class PostServiceImpl implements PostService {
 		return post;
 	}
 
-	// Date 삽입, 수정, 삭제
-//	@Override
-//	public int updateDate(PostVO post) {
-//
-//		return mapper.updateDate(post);
-//	}
-
 	// Date 출력
 	@Override
 	public PostVO detailDate(int p_no) {
@@ -91,5 +72,20 @@ public class PostServiceImpl implements PostService {
 		
 		return post;
 	}
+
+	// Post Title 수정
+	@Override
+	public int updatePostTitle(PostVO post) {
+		
+		return mapper.updatePostTitle(post);
+	}
+
+	// Post Date 수정
+	@Override
+	public int updatePostDate(PostVO post) {
+		
+		return mapper.updatePostDate(post);
+	}
+	
 
 }

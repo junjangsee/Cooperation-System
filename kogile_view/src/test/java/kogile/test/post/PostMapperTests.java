@@ -1,5 +1,6 @@
 package kogile.test.post;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -8,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import kogile.post.domain.PostDetailVO;
 import kogile.post.domain.PostVO;
 import kogile.post.mapper.PostMapper;
 import kogile.project.mapper.ProjectMapper;
@@ -100,6 +100,28 @@ public class PostMapperTests {
 //	public void deleteDate() {
 //		
 //		mapper.deleteDate(224);
+//	}
+	
+//	@Test
+//	public void updateTitle() {
+//	
+//		PostVO post = new PostVO();
+//		
+//		post.setP_no(222);
+//		post.setP_title("수정한 제목이지롱");
+//		
+//		mapper.updatePostTitle(post);
+//	}
+	
+//	@Test
+//	public void updateDate() {
+//	
+//		PostVO post = new PostVO();
+//		
+//		post.setP_no(222);
+//		post.setP_dday(new Date(19-03-01));
+//		
+//		mapper.updatePostDate(post);
 //	}
 	
 	

@@ -29,6 +29,7 @@
 					<input type="text" class="form-control" name="p_title"/>
 				</form>
 				
+				
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancel</button>

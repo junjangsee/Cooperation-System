@@ -2,7 +2,6 @@ package kogile.post.mapper;
 
 import java.util.List;
 
-import kogile.post.domain.PostDetailVO;
 import kogile.post.domain.PostVO;
 import kogile.project.domain.CardVO;
 
@@ -26,11 +25,14 @@ public interface PostMapper {
 
 	// Post 삭제
 	public int deletePost(int p_no);
-	
-	// Date 삽입
-	public int updateDate(PostVO post);
-	
+		
 	// Date 읽기
 	public PostVO detailDate(int p_no);
+	
+	// Post 제목 수정
+	public int updatePostTitle(PostVO post);
+	
+	// Post 날짜 수정
+	public int updatePostDate(PostVO post);
 
 }
