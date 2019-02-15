@@ -20,7 +20,7 @@
 		p_no =
 		#{p_no}
 	</select>
-	
+
 	<!-- Post Project 내 select문 -->
 	<select id="list_post" resultType="kogile.post.domain.PostVO">
 		select /*+ INDEX_ASC(p XPK포스트)
@@ -31,35 +31,43 @@
 		c.pjt_no = #{pjt_no}
 	</select>
 
-	<!-- Post update문 -->
-	<update id="updatePost">
+	<!-- post title 수정문 -->
+	<update id="updatePostTitle">
 		UPDATE post SET
-		p_title = #{p_title}, p_position =
-		#{p_position}, c_no = #{c_no},
-		p_description = #{p_description}, 
-		p_dday = #{date}
-		WHERE p_no = #{p_no}
+		p_title = #{p_title} WHERE p_no =
+		#{p_no}
 	</update>
+
+	<!-- post date 입력, 삭제, 수정문 -->
+	<update id="updatePostDate">
+		UPDATE post SET
+		p_dday = #{p_dday} WHERE p_no =
+		#{p_no}
+	</update>
+
+	<!-- Post update문 -->
+	<!-- <update id="updatePost"> UPDATE post SET p_title = #{p_title}, p_position 
+		= #{p_position}, c_no = #{c_no}, p_description = #{p_description}, p_dday 
+		= #{p_dday} WHERE p_no = #{p_no} </update> -->
 
 	<!-- Post delete문 -->
 	<delete id="deletePost">
 		DELETE post WHERE p_no = #{p_no}
 	</delete>
-	
+
 
 	<!-- Due date 관련 쿼리 -->
 
 	<!-- date 입력, 수정, 삭제 -->
-	<!-- <update id="insertDate">
-		UPDATE post SET p_dday = #{p_dday}
-		WHERE p_no = #{p_no}
-	</update> -->
-	
+	<!-- <update id="insertDate"> UPDATE post SET p_dday = #{p_dday} WHERE p_no 
+		= #{p_no} </update> -->
+
 	<!-- date 읽기 -->
 	<select id="detailDate" resultType="kogile.post.domain.PostVO">
-		SELECT p_title, p_dday FROM post WHERE p_no = #{p_no}
+		SELECT p_title, p_dday FROM
+		post WHERE p_no = #{p_no}
 	</select>
-	
+
 
 	<select id="card_no_info" resultType="kogile.project.domain.CardVO">
 		select /*+ INDEX_asc(card
@@ -78,7 +86,7 @@
 		update post set
 		p_description = #{p_description} where p_no = #{p_no}
 	</update>
-	
+
 
 
 </mapper>

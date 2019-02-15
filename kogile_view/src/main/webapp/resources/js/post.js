@@ -1,25 +1,81 @@
 (function($) {
-	$(function() {
-
-		$('#insertPost').on('click', function(){
-			var c_no = $('#to-do').attr("data-status");
-			$("form[name=insertPost_form]").find('input[name=c_no]').val(c_no);
-			insert_post();
-			$("input[name=p_title]").val("");
-			alert("생성되었습니다.");
-		});
-
-		$('.item_content').on('click', function(e){
-			var id = $(e.target).closest('a').data('no');
-			post_title(id);
-		});
-		
-		$('#deletePost').on('click', function(){
-			var id = $('#detail_post_modal').attr('data-id')
-			delete_post(id);
-		});
-
+	
+	var isUpdate = false
+	
+	function showTitle() {
+		$('#updateTitle').hide();
+		$('#p_title').show();
+	}
+	
+	function showUpdateInput() {
+		$('#updateTitle').show();
+		$('#p_title').hide();
+	}
+	
+	// Post 삽입
+	$('#insertPost').on('click', function(){
+		var c_no = $('#to-do').attr("data-status");
+		$("form[name=insertPost_form]").find('input[name=c_no]').val(c_no);
+		insert_post();
+		$("input[name=p_title]").val("");
+		alert("생성되었습니다.");
 	});
+
+	// Post 제목 상세보기
+	$('.item_content').on('click', function(e){
+		var id = $(e.target).closest('a').data('no');
+		post_title(id);
+	});
+	
+	// Post 삭제
+	$('#deletePost').on('click', function(){
+		var id = $('#detail_post_modal').attr('data-id');
+		delete_post(id);
+	});
+	
+	// Post 제목 수정 
+	// p_title : 현재 제목 updateTitle : 수정 제목
+	
+	$('#p_title').on('click', function(e){
+		showUpdateInput();
+		$('#updateTitle').val($('#p_title').text())
+		isUpdate = true;
+	})
+	
+	
+	$('#updateTitle').on('focusout', function(e) {	
+		update_p_title($(this).val())
+		isUpdate = false;
+	})
+	
+	$('#updateTitle').on('keyup', function(e) {
+		if (e.keyCode === 13) {
+			update_p_title($(this).val())
+			isUpdate = false;
+		}
+	})
+	
+	
+	// 포스트 제목 수정
+	function update_p_title(title) {
+		if(isUpdate){
+			$.ajax({
+				type : "PATCH",
+				url : "/kogile/post/updatePostTitle",
+				data : JSON.stringify({
+					p_title: title
+				}),
+				contentType : "application/json; charset=UTF-8"
+			}).then(function(res){
+				alert('저장되었습니다.');
+				$('#p_title').text(title);
+				showTitle();
+			}).catch(function(err){
+				showTitle();
+				console.error(err)
+			})
+		}
+	}
 
 	// 포스트 삭제
 	function delete_post(id) {		
@@ -61,8 +117,8 @@
 			dataType : "JSON",
 			url : `/kogile/post/detail/${id}`
 		}).then(function(res){	
-			$('#detail_post_modal').attr('data-id', id)
-			$('#detail_post_modal').find('.modal-title').text(res.p_title)
+			$('#detail_post_modal').attr('data-id', id);
+			$('#detail_post_modal').find('.modal-title').text(res.p_title);
 		});
 	}
 	
@@ -91,7 +147,7 @@
 		}).then(function(res){
 			console.log(res);
 			for(var i =0; i < res.length; i ++){
-//				todo post list 작성
+// todo post list 작성
 				if(res[i].c_position == 1){
 					todo += '<a href="#n" class="detailPostView post ui-state-default" data-status="' + res[i].c_no 
 							+ '" data-toggle="modal" data-target="#detail_post_modal">';
@@ -103,7 +159,7 @@
 					todo += '</div>';
 					todo += '</div></a>';		
 				}
-//				doing
+// doing
 				if(res[i].c_position == 2){
 					doing += '<a href="#n" class="detailPostView post ui-state-default" data-status="' + res[i].c_no 
 							+ '" data-toggle="modal" data-target="#detail_post_modal">';
@@ -115,7 +171,7 @@
 					doing += '</div>';
 					doing += '</div></a>';		
 				}
-//				done
+// done
 				if(res[i].c_position == 3){
 					done += '<a href="#n" class="detailPostView post ui-state-default" data-status="' + res[i].c_no 
 							+ '" data-toggle="modal" data-target="#detail_post_modal">';
@@ -127,7 +183,7 @@
 					done += '</div>';
 					done += '</div></a>';		
 				}
-//				close
+// close
 				if(res[i].c_position == 4){
 					close += '<a href="#n" class="detailPostView post ui-state-default" data-status="' + res[i].c_no 
 							+ '" data-toggle="modal" data-target="#detail_post_modal">';
