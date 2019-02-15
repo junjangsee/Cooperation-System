@@ -7,11 +7,88 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- 김근열 js소스  -->
 <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- <script src="/resources/vendor/jquery/jquery.min.js"></script> -->
 <!-- <script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script> -->
 <!-- <script src="/resources/js/main.js"></script> -->
+
+<!-- 김근열 js소스  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- <script src="/resources/js/common.js"></script>	 -->
+	<script type="text/javascript">
+console.log("========");
+console.log("js test");
+function yesNo(){
+	var a = confirm("초대하시겠습니까?");
+	if(a==true){
+		alert("초대됐습니다.");
+		}
+	else{
+		alert("초대가 취소됐습니다.");	
+		return false;
+	}
+}
+
+var searchListService = (function() {
+
+	function searchList(param, callback, error) {
+
+		var search = param.search;
+		
+		$.getJSON("/invite/searchList/" + search + ".json", 
+	
+		function(data) {
+			if (callback) {
+				callback(data);
+			}
+		}).fail(function(xhr, status, err) {
+			if (error) {
+				error();
+			}
+		});
+	}
+	return {
+		searchList : searchList 
+	};
+})();
+$(function(){
+$("#btn-search").on('click', function(e) {
+	  e.preventDefault();
+	 
+	var searchValue = $('input[name=search]').val();
+	var searchUL = $(".chat");
+	
+	  console.log(searchValue);
+	
+	searchListService.searchList({search:searchValue}, function(list){
+			
+			var value = "";
+			
+			if(list == null || list.length == 0){
+				searchUL.html("");
+				
+				return;
+			}
+				for(var i = 0; i<list.length; i++){
+				
+					value += "<p><input class='btn btn-default' type='submit' value='" +  list[i].no + " " + list[i].name + " " + list[i].mail 
+					  + "'data-toggle='button' onclick='return yesNo()'/>";
+		
+				}
+				
+				$('[data-toggle="popover"]').popover({
+					html : true,
+					placement : 'bottom'
+				});
+				
+				$('#btn-search').attr("data-content", value);
+			
+		});
+});
+});
+
+
+</script>	
 
 </head>
 <body>
@@ -24,21 +101,19 @@
 			id="sidebarToggle" href="#">
 			<i class="fas fa-bars"></i>
 		</button>
-
+		
 		<!-- Navbar Search -->
 		<form method='get' action="/invite/searchList" id="search_form"
 			class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
 			<div class="input-group">
-				<input type="text" class="form-control" name="search" value=""/>
+				<input type="text" class="form-control" name="search" />
 				<div class="input-group-append">
-					<button type="submit" class="btn btn-primary" id="btn-search"
-					data-toggle="popover" data-trigger="focus" data-content="ss">
+					<button type="submit" class="btn btn-primary" id="btn-search"data-toggle="popover"  >
 						<i class="fas fa-search"></i>
 					</button>
 				</div>
 			</div>
 		</form>
-		
 		<!-- 채팅창 띄우기. -->
 		<!-- <script src="/resources/js/chat.js"></script> -->
 		<!-- Navbar -->

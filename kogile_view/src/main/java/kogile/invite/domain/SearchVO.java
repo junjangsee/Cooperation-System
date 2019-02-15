@@ -8,3 +8,4 @@ public class SearchVO {
 	private String search; //�˻�
 	
 }
+
