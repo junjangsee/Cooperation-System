@@ -46,9 +46,9 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public InviteVO writer_info(int total_m_no) {
+	public int writer_info(InviteVO invite) {
 		
-		return mapper.writer_info(total_m_no);
+		return mapper.writer_info(invite);
 	}
 
 	@Override

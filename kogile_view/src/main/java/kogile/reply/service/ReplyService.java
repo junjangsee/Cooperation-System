@@ -17,7 +17,7 @@ public interface ReplyService {
 	
 	public List<ReplyVO> replyList (int p_no);
 	
-	public InviteVO writer_info (int total_m_no);
+	public int writer_info (InviteVO invite);
 	
 	public int registerTag (TagVO vo);
 	

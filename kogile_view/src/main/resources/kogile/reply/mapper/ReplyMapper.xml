@@ -50,10 +50,10 @@
     where r.p_no =#{p_no}
 	</select>
 	
-		<select id="writer_info">
+	<select id="writer_info" parameterType="kogile.invite.domain.InviteVO" resultType="int">
 		select distinct p.info_no from prj_info p
 		join invite i on p.invite_no = i.invite_no
-		where i.pjt_no=#{pjt_no} and i.total_m_no=#{total_m_no};
+		where i.pjt_no=#{pjt_no} and i.total_m_no=#{total_m_no}
 	</select>
 	
 	<!-- 태그 -->

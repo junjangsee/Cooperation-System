@@ -64,8 +64,9 @@ public class ProjectController {
 		return project;
 	}
 	
-	@PostMapping("/master_info")
-	public UserVO master_info(int total_m_no) {
+	@GetMapping("/master_info")
+	public UserVO master_info() {
+		int total_m_no = (int)session.getAttribute("total_m_no");
 		UserVO master = service.master_info(total_m_no);
 		return master;
 	}

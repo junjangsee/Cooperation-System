@@ -12,17 +12,18 @@
 		$("input[name=p_title]").val("");
 		alert("생성되었습니다.");
 	});
-
-	$('.item_content').on('click', function(e){
-		var id = $(e.target).closest('a').data('no');
-		post_title(id);
-	});
-	
-	$('#deletePost').on('click', function(){
-		var id = $('#detail_post_modal').attr('data-id')
-		delete_post(id);
-	});
-	
+//	// Post 제목 상세보기
+//	$('.item_content').on('click', function(e){
+//		var id = $(e.target).closest('a').data('no');
+//		post_title(id);
+//	});
+//	
+//	
+//	$('#deletePost').on('click', function(){
+//		var id = $('#detail_post_modal').attr('data-id')
+//		delete_post(id);
+//	});
+//	
 	$('#modifyPost').on('click', function(){
 		var id = $('#detail_post_modal').attr('data-id')
 		$(this).attr("href", `post/detailPost/${id}`);
@@ -33,8 +34,7 @@
 		var id = $('#detail_post_modal').attr('data-id');
 		var reply= {
 				"r_contents":$("#insert_reply").val(),
-				"p_no": id,
-				"info_no":1
+				"p_no": id
 		};
 		replyAdd(reply);
 //		replyList(id);
@@ -118,7 +118,7 @@
 //	end window.onload
 	//
 
-	// Post 제목 상세보기
+//	 Post 제목 상세보기
 	$('.item_content').on('click', function(e){
 		var id = $(e.target).closest('a').data('no');
 		post_title(id);
@@ -132,7 +132,6 @@
 	
 	// Post 제목 수정 
 	// p_title : 현재 제목 updateTitle : 수정 제목
-	
 	$('#p_title').on('click', function(e){
 		showUpdateInput();
 		$('#updateTitle').val($('#p_title').text())
@@ -208,7 +207,7 @@
 		});
 	}
 
-	// 포스트 제목 상세보기
+	// 포스트 상세보기
 	function post_title(id) {
 		
 		$.ajax({
@@ -221,7 +220,7 @@
 		}).then(function(){
 			replyList(id);
 			showDescription();
-
+			writer_info();
 		});
 	}
 	
@@ -444,6 +443,32 @@
 			console.log(e);
 		});
 			
+	}
+	
+	function writer_info(){
+		
+		var name = "";
+		var resn = "";
+		
+		$.ajax({
+			dataType : "JSON",
+			type : "GET",
+			url : "/kogile/project/master_info"
+		}).then(function(res){
+			console.log(res);
+//			글자 자르기
+			resn = res.name;
+			name = resn.substring(resn.length -2);
+//			설정 페이지에 마스터 정보 넣기 
+//			$('#master_info').find('.name').html(name);
+			$('#reply_comment').find('.name').html(name);
+			$('#reply_list').find('.name').html(name);
+//			$('#master_info').find('p').html(resn);
+//			$('#master_info').find('a').html(res.mail);
+		}).catch(function(err){
+			console.log(err);
+			
+		});
 	}
 	
 	
