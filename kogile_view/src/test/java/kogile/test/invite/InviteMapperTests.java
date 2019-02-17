@@ -30,7 +30,7 @@ public class InviteMapperTests {
 		
 	}*/
 	
-	@Test //�˻� ������ �Է� �׽�Ʈ
+/*	@Test //�˻� ������ �Է� �׽�Ʈ
 	public void testSearch(){
 		
 		SearchVO search = new SearchVO();
@@ -39,13 +39,13 @@ public class InviteMapperTests {
 		List<SearchListVO> list = mapper.searchList(search);
 		
 		list.forEach(searchList->log.info(searchList));
-	}
+	}*/
 
 	@Test
 	public void testInvite(){
 		
-		List<InviteVO> list2 = mapper.invite(1);
+		mapper.invite(1);
 		
-		list2.forEach(inviteList->log.info(inviteList));
+		
 	}
 }	

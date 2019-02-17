@@ -29,8 +29,8 @@
 	
 			
 	<!-- 초대쿼리문 -->	
-	<select id="inviteList" resultType="kogile.invite.domain.InviteVO">
-	select distinct t.total_m_no as totNo, n.MEMBER_NAME as name, n.EMAIL as mail, i.grade as grade, i.INVITE_NO as invNo
+	<select id="invite" resultType="kogile.invite.domain.InviteVO">
+	select distinct t.total_m_no as total_m_no, n.MEMBER_NAME as name, n.EMAIL as mail, i.grade as grade, i.INVITE_NO as invite_no
 	from invite i 
 	join total_member t
 	on i.total_m_no =

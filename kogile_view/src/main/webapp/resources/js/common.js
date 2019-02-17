@@ -1,15 +1,25 @@
-(function($) {
-	// 김근열 js 책소스(나중에 밑에 js소스랑 취합)
+
 	console.log("========");
 	console.log("js test");
+	function yesNo(){
+		var a = confirm("초대하시겠습니까?");
+		if(a==true){
+			alert("초대됐습니다.");
+			}
+		else{
+			alert("초대가 취소됐습니다.");	
+			return false;
+		}
+	}
+
 	var searchListService = (function() {
 
 		function searchList(param, callback, error) {
 
 			var search = param.search;
-
-			$.getJSON("/invite/searchList/" + search + ".json",
-
+			
+			$.getJSON("/invite/searchList/" + search + ".json", 
+		
 			function(data) {
 				if (callback) {
 					callback(data);
@@ -21,47 +31,49 @@
 			});
 		}
 		return {
-			searchList : searchList
+			searchList : searchList 
 		};
 	})();
-	$(function() {
-		$("#btn-search").on(
-				'click',
-				function(e) {
-					e.preventDefault();
+	$(function(){
+	$("#btn-search").on('click', function(e) {
+		event.stopPropagation();
+		 
+		var searchValue = $('input[name=search]').val();
+		
+		if(searchValue == "" || searchValue==null){
+			alert("검색값을 입력해주세요.");
+			target.removeEventListenter('input[name=search]', this); //이벤트 제거하여 popover이벤트 막기. 
+																		//but 첫페이지로 이동하는 버그 발생..
+			return;
+		} 
+		
+		$(function(){searchListService.searchList({search:searchValue}, function(list){
+			
+			event.stopPropagation();
+			
+				var value = "";
+				
+				 for(var i = 0; i<list.length; i++){
+					
+					 	value += "<p><input class='btn btn-default' type='submit' value='" +  list[i].no + " " + list[i].name + " " + list[i].mail 
+						  + "'data-toggle='button' onclick='return yesNo()'/></p>"; 
+				
+					} 
 
-					var searchValue = $('input[name=search]').val();
-					var searchUL = $(".chat");
-
-					console.log(searchValue);
-
-					searchListService.searchList({
-						search : searchValue
-					}, function(list) {
-
-						var value = "";
-
-						if (list == null || list.length == 0) {
-							searchUL.html("");
-
-							return;
-						}
-						for (var i = 0; i < list.length; i++) {
-
-							value += list[i].no + " " + list[i].name + " "
-									+ list[i].mail + "<br>";
-
-						}
-
+					$(function(){
 						$('[data-toggle="popover"]').popover({
 							html : true,
 							placement : 'bottom'
 						});
-
+						
 						$('#btn-search').attr("data-content", value);
-
 					});
-				});
+					
+					
+				
+			});
+		});
+	});
 	});
 
 
@@ -70,5 +82,3 @@
 		window.open("/Chatting", "", "width=356, height=450");
 		return false;
 	})
-
-})(jQuery)
