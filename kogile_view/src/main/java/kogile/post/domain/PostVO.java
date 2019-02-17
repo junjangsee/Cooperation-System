@@ -15,9 +15,10 @@ public class PostVO {
 	private int c_no;
 	private String p_description;
 	
-	@JsonFormat(pattern="yy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date p_dday;
 	
-//	private String date;
+	// 디데이
+	private int p_date;
 
 }

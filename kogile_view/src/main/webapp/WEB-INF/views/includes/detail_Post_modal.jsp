@@ -1,18 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="/resources/css/post.css" rel="stylesheet">
 <title>Insert title here</title>
-<style>
-#updateTitle {
-	display: none;
-}
-</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
-
 <body>
 	<!-- Butto 사용  -->
 	<!-- <button type="button" class="btn btn-primary btn-lg"
@@ -44,7 +42,7 @@
 							<div class="btn_list">
 								<a href="#" class="mem_btn">Members</a> <a href="#"
 									class="label_btn">Labels</a> <a href="#" class="check_btn">Checklist</a>
-								<a href="#" class="due_btn" id="updateDate">Due Date</a> <a href="#"
+								<a href="#" class="due_btn">Due Date</a> <a href="#"
 									class="atta_btn">Attachment</a>
 							</div>
 						</div>

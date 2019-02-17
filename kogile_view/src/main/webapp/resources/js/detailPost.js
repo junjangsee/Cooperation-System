@@ -1,11 +1,15 @@
 (function($){
-	$(function(){
-		listLabel();
-//		$('#MY_btn_label').on('click', function(){
-//			return false;
-//		})
-		
-	});
+
+	listLabel();
+	// $('#MY_btn_label').on('click', function(){
+	// return false;
+	// })
+			
+			$('#MY_btn_label').popover({
+				html : true,
+				container : 'body',
+	// placement : 'bottom',
+			})
 	
 	$('#MY_btn_label').popover({
 		html : true,
@@ -134,6 +138,71 @@
 			console.log(e);
 		});
 	});
+			// ----------------------------------------- start Post Date
+
+			$("#MY_btn_due").flatpickr({
+			
+					minDate: "today",
+					onChange: function(date) {
+						
+						var id = $('#p_no').val();
+						
+						var endDay = flatpickr.formatDate(date[0], "Y-m-d");
+						update_Date(endDay, id);
+						dalcDday(date);
+					}
+					
+			});
+			
+			function update_Date(endDay, id) {
+				
+				$.ajax({
+					type : "POST",
+					url : "/kogile/post/updatePostDate",
+					data : JSON.stringify({
+						p_dday: endDay,
+						p_no : parseInt(id, 10)
+					}),
+					contentType : "application/json; charset=UTF-8"
+				}).then(function(res){
+					alert('저장되었습니다.');
+					$('#due_date').val(endDay);
+				}).catch(function(err){
+					console.error(err);
+					alert('날짜를 다시 선택해주세요');
+				})
+			}
+
+			
+			// 디데이 작업 중
+//			function calcDday(date) {
+//				var date = $('#due_date').val();
+//				console.log(date);
+//				
+//				$("#MY_btn_due").flatpickr({
+//					
+//					onChange: function(countDays) { 
+//						
+//						  var startDay = flatpickr.formatDate(new Date(),"m/d/Y");
+//						  var endDay = flatpickr.formatDate("", "m/d/Y");
+//
+//						  var newStartDate = new Date(startDay).getTime();
+//						  var newEndDate = new Date(endDay).getTime();
+//							
+//						  var newStartDate = eval( newStartDate / 1000 + 3600 ); // for GMT+1 I had to add 3600 (seconds) [1 hour]
+//						  var newEndDate = eval( newEndDate / 1000 + 3600 ); // for GMT+1 I had to add 3600 (seconds) [1 hour]
+//							
+//						  var countDays = eval( newEndDate - newStartDate );
+//						  var countDays = eval( countDays / 86400 + 1 );
+//							
+//						  console.log( '마감일 : ' + countDays + '일 남았습니다.');
+//
+//						  return countDays;
+//						}
+//				});
+//			}
+			
+			// ----------------------------------------- End Post Date
 	
 	
 })(jQuery)

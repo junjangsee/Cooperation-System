@@ -4,7 +4,6 @@
 		
 		project_info();
 		list_project();
-		list_post();
 		
 ////		설정버튼 클릭 시, 페이지로드로 바꾸면서 주석으로 변경
 //		$('#btn_body_configure').on('click', function(e){
@@ -74,82 +73,7 @@
 			console.log(err);
 		});
 	}
-//	해당 프로젝트 포스트 조회 후, c_no에 맞게 삽입
-	function list_post(){
-		var todo = "";
-		var doing ="";
-		var done = "";
-		var close = "";
-		
-		$.ajax({
-			dataType : "JSON",
-			type : "GET",
-			url : "/kogile/post/list_post"
-		}).then(function(res){
-			console.log(res);
-			for(var i =0; i < res.length; i ++){
-//				todo post list 작성
-				if(res[i].c_position == 1){
-					todo += '<a href="#n" class="detailPostView post ui-state-default" data-status="' + res[i].c_no 
-							+ '" data-toggle="modal" data-target="#detail_post_modal" data-no="'+ res[i].p_no +'">';
-					todo += '<div class="post_item">';
-					todo += '<h4>' + res[i].p_title + '</h4>';
-					todo += '<div class="btn_box">';
-					todo += '<span class="list"></span> <span class="check">' + "0/4" + '</span> <span class="date">'+ "Jul 20" +'</span>';
-					todo += '</div>';
-					todo += '</div></a>';		
-				}
-//				doing
-				if(res[i].c_position == 2){
-					doing += '<a href="#n" class="detailPostView post ui-state-default" data-status="' + res[i].c_no 
-							+ '" data-toggle="modal" data-target="#detail_post_modal" data-no="'+ res[i].p_no +'">';
-					doing += '<div class="post_item">';
-					doing += '<h4>' + res[i].p_title + '</h4>';
-					doing += '<div class="btn_box">';
-					doing += '<span class="list"></span> <span class="check">' + "0/4" + '</span> <span class="date">'+ "Jul 20" +'</span>';
-					doing += '</div>';
-					doing += '</div></a>';		
-				}
-//				done
-				if(res[i].c_position == 3){
-					done += '<a href="#n" class="detailPostView post ui-state-default" data-status="' + res[i].c_no 
-							+ '" data-toggle="modal" data-target="#detail_post_modal" data-no="'+ res[i].p_no +'">';
-					done += '<div class="post_item">';
-					done += '<h4>' + res[i].p_title + '</h4>';
-					done += '<div class="btn_box">';
-					done += '<span class="list"></span> <span class="check">' + "0/4" + '</span> <span class="date">'+ "Jul 20" +'</span>';
-					done += '</div>';
-					done += '</div></a>';		
-				}
-//				close
-				if(res[i].c_position == 4){
-					close += '<a href="#n" class="detailPostView post ui-state-default" data-status="' + res[i].c_no 
-							+ '" data-toggle="modal" data-target="#detail_post_modal" data-no="'+ res[i].p_no +'">';
-					close += '<div class="post_item">';
-					close += '<h4>' + res[i].p_title + '</h4>';
-					close += '<div class="btn_box">';
-					close += '<span class="list"></span> <span class="check">' + "0/4" + '</span> <span class="date">'+ "Jul 20" +'</span>';
-					close += '</div>';
-					close += '</div></a>';		
-				}
-			}
-			
-			$('#to-do').html(todo);
-			$('#doing').html(doing);
-			$('#done').html(done);
-			$('#close').html(close);
-			
-////			철희한테 필요합니다.. 이것은 pno를 찾아줘요
-//			$(document).on("click", ".detailPostView.post.ui-state-default", function(){
-//				var a = $(this).find(".select_pno").val();
-//				$('#detail_post_modal').find('input[name=p_no]').val(a);
-//				console.log(a);
-//			});
-			
-		}).catch(function(err){
-			console.log(err);
-		});
-	}
+
 	
 
 //	function master_info(total_m_no){
