@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kogile.post.domain.PostVO;
@@ -91,10 +93,6 @@ public class PostController {
 
 		PostVO post = service.detailPost(p_no);
 
-		System.out.println("detailPost");
-		System.out.println("p_no : " + post);
-
-
 		return post;
 	}
 
@@ -108,21 +106,15 @@ public class PostController {
 	// 포스트 제목 수정
 	@RequestMapping(value = "/updatePostTitle", method = { RequestMethod.PATCH })
 	public int updatePostTitle(@RequestBody PostVO post) {
-
-		System.out.println(post.getP_title() + "@@@@@@@@@@@@@@@@");
-		System.out.println(post);
-
+				
 		return service.updatePostTitle(post);
 	}
 
-
-//	// 포스트 날짜 수정
-//	@RequestMapping(value = "/updateDate", method = { RequestMethod.PATCH })
-//	public int updateDate(@RequestBody PostVO post) {
-//
-//		System.out.println(post.getP_dday() + "--------------------------");
-//
-//		return service.updatePostDate(post);
-//	}
+	// 포스트 날짜 수정
+	@PostMapping(value = "/updatePostDate")
+	public int updateDate(@RequestBody PostVO post) {
+		
+		return service.updatePostDate(post);
+	}
 
 }

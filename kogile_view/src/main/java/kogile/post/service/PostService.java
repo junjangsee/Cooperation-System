@@ -33,9 +33,4 @@ public interface PostService {
 	// Date 읽기
 	public PostVO detailDate(int p_no);
 
-//	// Title 수정
-//	public int updatePostTitle(PostVO post);
-	
-//	// Date 수정
-//	public int updateDate(PostVO post);
 }

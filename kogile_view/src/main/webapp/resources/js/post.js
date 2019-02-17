@@ -5,29 +5,13 @@
 		$('#description_modify_btn').hide();
 	});
 	
-	$('#insertPost').on('click', function(){
-		var c_no = $('#to-do').attr("data-status");
-		$("form[name=insertPost_form]").find('input[name=c_no]').val(c_no);
-		insert_post();
-		$("input[name=p_title]").val("");
-		alert("생성되었습니다.");
-	});
-
-	$('.item_content').on('click', function(e){
-		var id = $(e.target).closest('a').data('no');
-		post_title(id);
-	});
-	
-	$('#deletePost').on('click', function(){
-		var id = $('#detail_post_modal').attr('data-id')
-		delete_post(id);
-	});
 	
 	$('#modifyPost').on('click', function(){
-		var id = $('#detail_post_modal').attr('data-id')
+		var id = $('#detail_post_modal').attr('data-id');
 		$(this).attr("href", `post/detailPost/${id}`);
 		return true;
 	});
+	
 	//insert reply
 	$('#reply_save').on('click', function(){
 		var id = $('#detail_post_modal').attr('data-id');
@@ -40,6 +24,7 @@
 //		replyList(id);
 		$('#insert_reply').val("");
 	});
+	
 	// remove reply
 	$(document).on("click", ".fas.fa-trash-alt", function(){
 		console.log("삭제눌림");
@@ -80,6 +65,7 @@
 		$('#reply_modify').hide();
 		$('#reply_save').show();
 	});
+	
 //	설명내용 클릭시, 텍스트
 	$('#description').on("click",function(){
 		var txt = $(this).find('p').html();
@@ -88,24 +74,15 @@
 		$('#description_modify').val(txt);
 		$('#description_modify_btn').show();
 	});
+	
 	//설명수정
 	$('#description_modify_btn').on("click", function(){
 		var description={"p_description":$('#description_modify').val()}
 		updateDescription(description);
 	})
 
-	//title 수정
-	var isUpdate = false
 	
-	function showTitle() {
-		$('#updateTitle').hide();
-		$('#p_title').show();
-	}
-	
-	function showUpdateInput() {
-		$('#updateTitle').show();
-		$('#p_title').hide();
-	}
+	// ------------------------------------------------ Start Post 삽입
 	
 	// Post 삽입
 	$('#insertPost').on('click', function(){
@@ -115,82 +92,8 @@
 		$("input[name=p_title]").val("");
 		alert("생성되었습니다.");
 	});
-//	end window.onload
-	//
-
-	// Post 제목 상세보기
-	$('.item_content').on('click', function(e){
-		var id = $(e.target).closest('a').data('no');
-		post_title(id);
-	});
 	
-	// Post 삭제
-	$('#deletePost').on('click', function(){
-		var id = $('#detail_post_modal').attr('data-id');
-		delete_post(id);
-	});
-	
-	// Post 제목 수정 
-	// p_title : 현재 제목 updateTitle : 수정 제목
-	
-	$('#p_title').on('click', function(e){
-		showUpdateInput();
-		$('#updateTitle').val($('#p_title').text())
-		isUpdate = true;
-	})
-	
-	
-	$('#updateTitle').on('focusout', function(e) {	
-		update_p_title($(this).val())
-		isUpdate = false;
-	})
-	
-	$('#updateTitle').on('keyup', function(e) {
-		if (e.keyCode === 13) {
-			update_p_title($(this).val())
-			isUpdate = false;
-		}
-	})
-	
-	
-	// 포스트 제목 수정
-	function update_p_title(title) {
-		if(isUpdate){
-			$.ajax({
-				type : "PATCH",
-				url : "/kogile/post/updatePostTitle",
-				data : JSON.stringify({
-					p_title: title
-				}),
-				contentType : "application/json; charset=UTF-8"
-			}).then(function(res){
-				alert('저장되었습니다.');
-				$('#p_title').text(title);
-				showTitle();
-			}).catch(function(err){
-				showTitle();
-				console.error(err)
-			})
-		}
-	}
-
-	// 포스트 삭제
-	function delete_post(id) {		
-		$.ajax({
-			type : "POST",
-			url : "/kogile/post/deletePost",
-			data : {
-				p_no : parseInt(id, 10)
-			},
-			dataType : "JSON"
-		}).then(function(res){
-			alert("삭제되었습니다.");
-			list_post();
-		})
-	}
-
 	// 포스트 삽입
-	
 	function insert_post() {
 		const data = $("form[name=insertPost_form]").serialize();
 		console.log(data);
@@ -207,7 +110,18 @@
 			list_post();
 		});
 	}
+	
+	// ------------------------------------------------ End Post 삽입
+	
 
+	// ------------------------------------------------ Start Post 제목 상세보기
+	
+	// Post 제목 상세보기
+	$('.item_content').on('click', function(e){
+		var id = $(e.target).closest('a').data('no');
+		post_title(id);
+	});
+	
 	// 포스트 제목 상세보기
 	function post_title(id) {
 		
@@ -221,10 +135,98 @@
 		}).then(function(){
 			replyList(id);
 			showDescription();
-
 		});
 	}
 	
+	// ------------------------------------------------ End Post 제목 상세보기
+	
+	// ------------------------------------------------------------- start Post 제목 삭제
+	
+	$('#deletePost').on('click', function(){
+		var id = $('#detail_post_modal').attr('data-id');
+		delete_post(id);
+	});
+	
+	// 포스트 삭제
+	function delete_post(id) {		
+		$.ajax({
+			type : "POST",
+			url : "/kogile/post/deletePost",
+			data : {
+				p_no : parseInt(id, 10)
+			},
+			dataType : "JSON"
+		}).then(function(res){
+			alert("삭제되었습니다.");
+			list_post();
+		})
+	}
+	
+	// ------------------------------------------------------------- End Post 제목 삭제
+	
+	// ------------------------------------------------------------- start Post 제목 수정 
+	// p_title : 현재 제목 updateTitle : 수정 제목
+	
+	//title 수정
+	var isUpdate = false
+	
+	function showTitle() {
+		$('#updateTitle').hide();
+		$('#p_title').show();
+	}
+	
+	function showUpdateInput() {
+		$('#updateTitle').show();
+		$('#p_title').hide();
+	}
+	
+	$('#p_title').on('click', function(){
+		showUpdateInput();
+		$('#updateTitle').val($('#p_title').text())
+		isUpdate = true;
+	})
+	
+	
+	$('#updateTitle').on('focusout', function() {	
+		var id = $('#detail_post_modal').attr('data-id');
+		update_p_title($(this).val(), id)
+		isUpdate = false;
+	})
+	
+	$('#updateTitle').on('keyup', function(e) {
+		var id = $('#detail_post_modal').attr('data-id');
+		if (e.keyCode === 13) {
+			update_p_title($(this).val(), id)
+			isUpdate = false;
+		}
+	})
+	
+	// 포스트 제목 수정
+	function update_p_title(title, id) {
+		
+		if(isUpdate){
+			$.ajax({
+				type : "PATCH",
+				url : "/kogile/post/updatePostTitle",
+				data : JSON.stringify({
+					p_title : title,
+					p_no : parseInt(id, 10)
+				}),
+				contentType : "application/json; charset=UTF-8"
+			}).then(function(res){
+				alert('저장되었습니다.');
+				$('#p_title').text(title);
+				showTitle();
+			}).catch(function(err){
+				showTitle();
+				console.error(err)
+			})
+		}
+	}
+	
+	// ------------------------------------------------------------- end post 제목 수정
+
+
 	function post_description() {
 		
 		$.ajax({
@@ -258,7 +260,7 @@
 					todo += '<input type="hidden" class="select_pno" value="' + res[i].p_no + '">';
 					todo += '<h4>' + res[i].p_title + '</h4>';
 					todo += '<div class="btn_box">';
-					todo += '<span class="list"></span> <span class="check">' + "0/4" + '</span> <span class="date">'+ "Jul 20" +'</span>';
+					todo += '<span class="list"></span> <span class="check">' + "0/4" + '</span> <span class="date">'+ res[i].p_date + "남음" +'</span>';
 					todo += '</div>';
 					todo += '</div></a>';		
 				}
@@ -270,7 +272,7 @@
 					doing += '<input type="hidden" class="select_pno" value="' + res[i].p_no + '">';
 					doing += '<h4>' + res[i].p_title + '</h4>';
 					doing += '<div class="btn_box">';
-					doing += '<span class="list"></span> <span class="check">' + "0/4" + '</span> <span class="date">'+ "Jul 20" +'</span>';
+					doing += '<span class="list"></span> <span class="check">' + "0/4" + '</span> <span class="date">'+ res[i].p_date + "남음" +'</span>';
 					doing += '</div>';
 					doing += '</div></a>';		
 				}
@@ -282,7 +284,7 @@
 					done += '<input type="hidden" class="select_pno" value="' + res[i].p_no + '">';
 					done += '<h4>' + res[i].p_title + '</h4>';
 					done += '<div class="btn_box">';
-					done += '<span class="list"></span> <span class="check">' + "0/4" + '</span> <span class="date">'+ "Jul 20" +'</span>';
+					done += '<span class="list"></span> <span class="check">' + "0/4" + '</span> <span class="date">'+ res[i].p_date + "남음" +'</span>';
 					done += '</div>';
 					done += '</div></a>';		
 				}
@@ -294,7 +296,7 @@
 					close += '<input type="hidden" class="select_pno" value="' + res[i].p_no + '">';
 					close += '<h4>' + res[i].p_title + '</h4>';
 					close += '<div class="btn_box">';
-					close += '<span class="list"></span> <span class="check">' + "0/4" + '</span> <span class="date">'+ "Jul 20" +'</span>';
+					close += '<span class="list"></span> <span class="check">' + "0/4" + '</span> <span class="date">'+ res[i].p_date + "남음" +'</span>';
 					close += '</div>';
 					close += '</div></a>';		
 				}

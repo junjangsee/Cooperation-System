@@ -18,6 +18,7 @@ public class PostVO {
 	@JsonFormat(pattern="yy-MM-dd")
 	private Date p_dday;
 	
-//	private String date;
+	// 디데이
+	private int p_date;
 
 }
