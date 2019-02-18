@@ -65,9 +65,9 @@
 						data-dismiss="modal">Cancel</button>
 					</div>
 					<div style="display: none;" class="updateLabel">
-					<button class="btn btn-warning" type="button"
+					<button class="btn btn-warning" type="button" id="updateLabel"
 						data-dismiss="modal">수정</button>
-					<button class="btn btn-danger" type="button"
+					<button class="btn btn-danger" type="button" id="deleteLabel"
 						data-dismiss="modal">삭제</button>
 					</div>
 					

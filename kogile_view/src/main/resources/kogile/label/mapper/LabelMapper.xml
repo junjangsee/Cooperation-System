@@ -19,4 +19,16 @@
   		where label_no = #{label_no}
   	</select>
   	
+  	<delete id="deleteLabel">
+  		delete from label
+  		where label_no = #{label_no}
+  	</delete>
+  	
+  	<update id="updateLabel" parameterType="kogile.label.domain.LabelVO">
+  		update label set
+  		label_text = #{label_text}, color_no = #{color_no}
+  		where label_no = #{label_no}
+  	</update>
+  	
+  	
   </mapper>

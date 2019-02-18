@@ -1,5 +1,5 @@
 (function ($){
-	$(function(){
+	
 		$('.fa-folder').closest('.nav-item').addClass('MYactive');
 		
 		project_info();
@@ -27,7 +27,6 @@
 //		})
 
 		
-	});
 //	end window.onload
 	
 //	프로젝트 정보 불러오기

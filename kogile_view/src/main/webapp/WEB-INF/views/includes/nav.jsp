@@ -13,9 +13,85 @@
 <!-- <script src="/resources/js/main.js"></script> -->
 
 <!-- 김근열 js소스  -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+	<!-- <script src="/resources/js/common.js"></script>	 -->
+	<!-- <script type="text/javascript">
+console.log("========");
+console.log("js test");
+function yesNo(){
+	var a = confirm("초대하시겠습니까?");
+	if(a==true){
+		alert("초대됐습니다.");
+		}
+	else{
+		alert("초대가 취소됐습니다.");	
+		return false;
+	}
+}
+>>>>>>> refs/heads/cyr
 
+<<<<<<< HEAD
+=======
+var searchListService = (function() {
+
+	function searchList(param, callback, error) {
+
+		var search = param.search;
+		
+		$.getJSON("/invite/searchList/" + search + ".json", 
+	
+		function(data) {
+			if (callback) {
+				callback(data);
+			}
+		}).fail(function(xhr, status, err) {
+			if (error) {
+				error();
+			}
+		});
+	}
+	return {
+		searchList : searchList 
+	};
+})();
+$(function(){
+$("#btn-search").on('click', function(e) {
+	  e.preventDefault();
+	 
+	var searchValue = $('input[name=search]').val();
+	var searchUL = $(".chat");
+	
+	  console.log(searchValue);
+	
+	searchListService.searchList({search:searchValue}, function(list){
+			
+			var value = "";
+			
+			if(list == null || list.length == 0){
+				searchUL.html("");
+				
+				return;
+			}
+				for(var i = 0; i<list.length; i++){
+				
+					value += "<p><input class='btn btn-default' type='submit' value='" +  list[i].no + " " + list[i].name + " " + list[i].mail 
+					  + "'data-toggle='button' onclick='return yesNo()'/>";
+		
+				}
+				
+				$('[data-toggle="popover"]').popover({
+					html : true,
+					placement : 'bottom'
+				});
+				
+				$('#btn-search').attr("data-content", value);
+			
+		});
+});
+});
+
+
+</script> -->
 
 </head>
 <body>

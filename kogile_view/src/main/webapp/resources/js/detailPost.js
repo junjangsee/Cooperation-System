@@ -69,7 +69,7 @@
 		}).then(function(res){
 			listLabel();
 		}).catch(function(e){
-			console.log(e);
+			alert("이미 존재하는 라벨입니다.");
 		})
 	})
 	
@@ -203,6 +203,51 @@
 //			}
 			
 			// ----------------------------------------- End Post Date
-	
+			
+//			--------- label 삭제
+			$('#deleteLabel').on('click', function(){
+				var label_no = $("input[name=label_no]").val();
+				console.log(label_no);
+				deleteLabel(label_no);
+			})
+			
+			function deleteLabel(label_no){
+				
+				$.ajax({
+					dataType : "html",
+					type : "GET",
+					url : `/kogile/label/delete/${label_no}`
+				}).then(function(res){
+					console.log(res);
+					listLabel();
+				}).catch(function(e){
+					console.log(e);
+				})
+			}
+//			label 삭제 -------------
+			
+//			----------label 수정
+			$('#updateLabel').on('click', function(){
+				updateLabel();
+			})
+			
+			function updateLabel(){
+				var label = $("form[name=label_info]").serializeObject();
+				console.log(label);
+				
+				$.ajax({
+					data : JSON.stringify(label),
+					dataType : "text",
+					type : "POST",
+					url : '/kogile/label/update',
+					contentType : "application/json; charset=UTF-8"
+				}).then(function(res){
+					console.log(res);
+					listLabel();
+				}).catch(function(e){
+					console.log(e);
+				})
+			}
+//			label 수정-----------
 	
 })(jQuery)
