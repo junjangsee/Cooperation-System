@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import kogile.invite.domain.InviteVO;
 import kogile.invite.domain.SearchListVO;
 import kogile.invite.domain.SearchVO;
 import kogile.invite.service.InviteService;
@@ -58,7 +59,7 @@ public class InviteController {
 	
 	@GetMapping(value="/searchList/{search}", 
 			produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
-	public ResponseEntity<List<SearchListVO>> saerchList(@PathVariable("search") String search){
+	public ResponseEntity<List<SearchListVO>> searchList(@PathVariable("search") String search){
 		
 		SearchVO search2 = new SearchVO();
 		search2.setSearch(search);
@@ -68,6 +69,14 @@ public class InviteController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 
+	@GetMapping(value="/inviteList/{invite}",
+			produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
+	public ResponseEntity<List<InviteVO>> invite(@PathVariable("invite") int invite){
+		
+		List<InviteVO> list = service.invite(invite);
+		
+		return new ResponseEntity<>(list, HttpStatus.OK);
+	}
 	
 	
 }

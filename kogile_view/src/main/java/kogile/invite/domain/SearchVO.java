@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class SearchVO {
 
-	private String search; //ï¿½Ë»ï¿½
+	private String search; //°Ë»ö µ¥ÀÌÅÍ ¹ŞÀ» º¯¼ö
 	
 }
 

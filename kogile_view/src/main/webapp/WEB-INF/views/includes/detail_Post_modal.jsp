@@ -29,7 +29,7 @@
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
 					
-						<span aria-hidden="true">×</span>
+						<span aria-hidden="true" class="exit_modal">×</span>
 					</button>
 				</div>
 				<div id="modalBody" class="modal-body">

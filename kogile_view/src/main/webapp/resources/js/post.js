@@ -127,24 +127,24 @@
 	
 	// Post 제목 수정 
 	// p_title : 현재 제목 updateTitle : 수정 제목
-	$('#p_title').on('click', function(e){
-		showUpdateInput();
-		$('#updateTitle').val($('#p_title').text())
-		isUpdate = true;
-	})
-	
-	
-	$('#updateTitle').on('focusout', function(e) {	
-		update_p_title($(this).val())
-		isUpdate = false;
-	})
-	
-	$('#updateTitle').on('keyup', function(e) {
-		if (e.keyCode === 13) {
-			update_p_title($(this).val())
-			isUpdate = false;
-		}
-	})
+//	$('#p_title').on('click', function(e){
+//		showUpdateInput();
+//		$('#updateTitle').val($('#p_title').text())
+//		isUpdate = true;
+//	})
+//	
+//	
+//	$('#updateTitle').on('focusout', function(e) {	
+//		update_p_title($(this).val())
+//		isUpdate = false;
+//	})
+//	
+//	$('#updateTitle').on('keyup', function(e) {
+//		if (e.keyCode === 13) {
+//			update_p_title($(this).val())
+//			isUpdate = false;
+//		}
+//	})
 	
 	
 	// 포스트 제목 수정
@@ -570,6 +570,10 @@
 		});
 	}
 	
+//	modal 닫을때 데이터 반영
+	$('.exit_modal').on('click', function(){
+		list_post();
+	})
 	
 	
 })(jQuery);
