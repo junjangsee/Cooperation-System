@@ -1,5 +1,6 @@
 package kogile.view.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kogile.user.domain.UserVO;
 import lombok.extern.log4j.Log4j;
 
 @Controller
@@ -42,5 +44,17 @@ public class ViewController {
 		
 	}
 	
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest request) {
+		String path = "";
+		UserVO user = (UserVO) request.getAttribute("user");
+		if(user.isInterMem()){
+			path = "/login/internal/logout";
+		}else{
+			path = "/login/external/logoutKogileWithKakao";
+		}
+		
+		return "redirect"+ path;
+	}
 
 }

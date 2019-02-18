@@ -93,10 +93,10 @@ $("#btn-search").on('click', function(e) {
 
 </script> -->
 
+
 </head>
 <body>
 	<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-
 
 		<a class="navbar-brand mr-1" href="/kogile/startPage">Kogile</a>
 
@@ -154,11 +154,9 @@ $("#btn-search").on('click', function(e) {
 			</a>
 				<div class="dropdown-menu dropdown-menu-right"
 					aria-labelledby="userDropdown">
-					<a class="dropdown-item" href="#">Settings</a> <a
-						class="dropdown-item" href="#">Activity Log</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#" data-toggle="modal"
-						data-target="#logoutModal">Logout</a>
+					<a class="dropdown-item" href="/kogile/register">Register</a>
+					<a class="dropdown-item" href="/kogile/login">Login</a>
+					<a class="dropdown-item" href="/kogile/logout">LogOut</a>
 				</div></li>
 		</ul>
 

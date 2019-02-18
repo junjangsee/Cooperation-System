@@ -1,3 +1,4 @@
+<%@page import="kogile.user.domain.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -8,6 +9,8 @@
 	}
 	/* session.setAttribute("total_m_no", request.getParameter("total_m_no")); */
 	session.setAttribute("total_m_no", 2);
+	
+	UserVO user = (UserVO)session.getAttribute("user");
 %>
 <!DOCTYPE html>
 <html>
@@ -134,4 +137,5 @@
 	<%@ include file="../includes/footconfig.jsp"%>
 	<script src="/resources/js/startPage.js"></script>
 </body>
+
 </html>

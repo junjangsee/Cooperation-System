@@ -43,10 +43,9 @@
 							for="inputPassword">Password</label>
 					</div>
 				</div>
-				<a class="btn btn-primary btn-block" href="index.html">Submit</a> <br>
-				<a class="btn btn-primary btn-block"  href="index.html">카카오톡으로 가입하기</a> 
-				<a class="btn btn-primary btn-block"  href="index.html">Submit</a> 
-				<a class="btn btn-primary btn-block" href="index.html">Submit</a>
+				<a class="btn btn-primary btn-block" id="registerIntermem" href="/kogile/register">Submit</a> <br>
+				<a class="btn btn-primary btn-block"
+					href="/login/external/registerKogileWithKakao">카카오톡으로 가입하기</a>
 			</form>
 			<div class="text-center">
 				<a class="d-block small mt-3" href="/kogile/login">Login</a> <a
@@ -76,6 +75,20 @@
 	<%-- <%@ include file="../includes/content_footer.jsp"%> --%>
 
 	<%@ include file="../includes/footconfig.jsp"%>
+	<script src="/resources/js/user.js"></script>
+	<script>
+	$(function(){
+		$('#registerIntermem').on('click', function(){
+			var email = $('#inputEmail').val();
+			var password = $('#inputPassword').val();
+			var name = $('#inputName').val();
+			userService.register({name: name, email: email, password: password}, function(){
+				alert("가입되었습니다.");
+			});
+			return false;
+		})
+	})
+	</script>
 
 </body>
 </html>

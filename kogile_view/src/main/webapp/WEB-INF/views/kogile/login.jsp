@@ -43,10 +43,9 @@
 						</label>
 					</div>
 				</div>
-				<a class="btn btn-primary btn-block" href="https://kauth.kakao.com/oauth/authorize?
-				client_id=e16764ac8ecc77d571c58088d37b119b&
-				redirect_uri=http://localhost:8082/login/external/kakaoOauth&
-				response_type=code">Login</a>
+				<a class="btn btn-primary btn-block" href="#" id="loginIntermem">Login</a><br>
+				<a class="btn btn-primary btn-block"
+					href="/login/external/loginKogileWithKakao">카카오톡으로 로그인</a>
 			</form>
 			<div class="text-center">
 				<a class="d-block small mt-3" href="register.html">Register an
@@ -76,6 +75,24 @@
 	<%-- <%@ include file="../includes/content_footer.jsp"%> --%>
 
 	<%@ include file="../includes/footconfig.jsp"%>
+	<script src="/resources/js/user.js"></script>
+	<script>
+		$(function() {
+			$('#loginIntermem').on('click', function() {
+				var email = $('#inputEmail').val();
+				var password = $('#inputPassword').val();
+				userService.login({
+					email : email,
+					password : password
+				}, function() {
+					location.href = "/kogile/startPage";
+				}, function(er) {
+					alert("이메일과 비밀번호를 를 확인해주세요.");
+				});
+				return false;
+			})
+		})
+	</script>
 
 </body>
 </html>

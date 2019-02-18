@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kogile.user.mapper.ExternalUserMapper">
+	<insert id="exterMemRegister">
+		insert into external_m_info
+		values(exter_m_no_seq.nextval, #{name}, #{email},
+		#{interlinked_info_type}, #{interlinked_info}, #{access_token})
+	</insert>
+	<update id="updateAccessToken">
+		update EXTERNAL_M_INFO
+		set ACCESS_TOKEN = #{access_token}
+		where interlinked_info_type =#{interlinked_info_type} AND
+		interlinked_info = #{interlinked_info}
+	</update>
+	<!-- Total_M_NO 가져오기. -->
+	<select id="getTotalMNoFromExterMem" parameterType="Map"
+		resultType="int">
+		select total_m_no from TOTAL_MEMBER
+		where EXTER_M_NO =
+		(select exter_m_no from EXTERNAL_M_INFO
+		where INTERLINKED_INFO_TYPE =
+		#{interlinked_info_type} AND
+		INTERLINKED_INFO = #{interlinked_info})
+	</select>
+
+	<select id="getExterMemInfo" parameterType="Map"
+		resultType="kogile.user.domain.UserVO">
+		select exter_mem_name as name, exter_m_email as email,
+		access_token, interlinked_info_type,
+		interlinked_info from EXTERNAL_M_INFO
+		where INTERLINKED_INFO_TYPE =
+		#{interlinked_info_type} AND
+		INTERLINKED_INFO = #{interlinked_info}
+	</select>
+
+	<!-- 외부회원 가입여부 조회하기 -->
+	<select id="isKogileMember" parameterType="Map" resultType="String">
+		select
+		nvl2((select exter_m_no
+		from EXTERNAL_M_INFO where
+		INTERLINKED_INFO_TYPE =
+		#{interlinked_info_type} AND
+		INTERLINKED_INFO =
+		#{interlinked_info}),'T','F')res
+		from dual
+	</select>
+	
+</mapper>

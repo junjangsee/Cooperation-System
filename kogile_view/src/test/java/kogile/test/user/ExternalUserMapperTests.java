@@ -12,7 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import kogile.user.domain.UserVO;
+import kogile.user.mapper.ExternalUserMapper;
 import kogile.user.mapper.UserMapper;
+import kogile.user.service.KakaoUserService;
 import kogile.user.service.Sha256Hash;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -22,18 +25,50 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 
 /*
- * Mapperï¿½×½ï¿½Æ®. Mapperï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®ï¿½ï¿½ Serviceï¿½×½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+ * MapperÅ×½ºÆ®. Mapper¸¦ Á¶ÇÕÇÑ Å×½ºÆ®´Â ServiceÅ×½ºÆ®¿¡¼­ ÁøÇàÇÑ´Ù.
  */
-public class UserMapperTests {
+public class ExternalUserMapperTests {
 
 	@Setter(onMethod_ = { @Autowired })
-	private UserMapper mapper;
+	private ExternalUserMapper mapper;
 
 	/*
-	 * ï¿½Î±ï¿½ï¿½ï¿½ Mapper ï¿½×½ï¿½Æ® -ID/PW ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ -ï¿½ï¿½Ä¡ï¿½Ï´ï¿½ IDï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ -pwï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	 * ·Î±×ÀÎ Mapper Å×½ºÆ® -ID/PW ÀÏÄ¡½Ã ·Î±×ÀÎ ¼º°ø -ÀÏÄ¡ÇÏ´Â ID°¡ ¾øÀ½ -pw°¡ ¸ÂÁö ¾ÊÀ½
 	 */
-
-	// 1) ID/PWï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	@Ignore
+	@Test
+	public void test1() {
+		Map<String, Object> test = new HashMap<>();
+		test.put("interlinked_info", 1007060752);
+		test.put("interlinked_info_type", "KAKAO");
+		
+		UserVO user =  mapper.getExterMemInfo(test);
+		System.out.println(user);
+	}
+	@Ignore
+	@Test
+	public void testTest() {
+		Map<String, Object> test = new HashMap<>();
+		test.put("interlinked_info", 1007060752);
+		test.put("interlinked_info_type", "KAKAO");
+		
+		mapper.getTotalMNoFromExterMem(test);
+	}
+	
+	@Test
+	public void isKogileMemtest() {
+		Map<String, Object> test = new HashMap<>();
+		test.put("interlinked_info", 1007060752);
+		test.put("interlinked_info_type", "KAKAO");
+		
+		String res = mapper.isKogileMember(test);
+		if(res.equals("T")){
+			System.out.println("°¡ÀÔÀÌ µÇ¾îÀÖ´Âµ¥¿ä?");
+		}else{
+			System.out.println("°¡ÀÔÀÌ ¾ÈµÇ¾î ÀÖ¾î¿ä.");
+		}
+	}
+	// 1) ID/PWÀÏÄ¡½Ã ·Î±×ÀÎ ¼º°ø
 	@Ignore
 	@Test
 	public void loginSuccesstest() {
@@ -46,20 +81,20 @@ public class UserMapperTests {
 		Map<String, String> userInfo = mapper.interMemLogin(loginInfo);
 
 		if (userInfo == null) {
-			log.info("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+			log.info("·Î±×ÀÎ ½ÇÆÐ");
 			fail();
 		} else {
-			log.info("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+			log.info("·Î±×ÀÎ ¼º°ø");
 			log.info(userInfo);
 		}
 	}
 
-	// 1) ID/PWï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	// 1) ID/PWºÒÀÏÄ¡½Ã ·Î±×ÀÎ ½ÇÆÐ
 	@Ignore
 	@Test
 	public void loginFailtest() {
 
-		// È¸ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		// È¸¿ø¸ñ·Ï°ú ÀÏÄ¡ÇÏÁö ¾Ê´Â µ¥ÀÌÅÍ
 		Map<String, String> loginInfo = new HashMap<>();
 		loginInfo.put("email", "sohyun");
 		loginInfo.put("password", "sohyun");
@@ -67,10 +102,10 @@ public class UserMapperTests {
 		Map<String, String> userInfo = mapper.interMemLogin(loginInfo);
 
 		if (userInfo != null) {
-			log.info("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+			log.info("·Î±×ÀÎ ¼º°ø");
 			fail();
 		} else {
-			log.info("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+			log.info("·Î±×ÀÎ ½ÇÆÐ");
 		}
 	}
 
@@ -80,21 +115,21 @@ public class UserMapperTests {
 		String email = "NotFound@test.com";
 		String res = mapper.isMemberEmail(email);
 		if (res.equals("F")) {
-			log.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê´ï¿½ emailï¿½Ô´Ï´ï¿½.");
+			log.info("Á¸ÀçÇÏÁö¾Ê´Â emailÀÔ´Ï´Ù.");
 		} else {
 			fail();
 		}
 
 	}
 
-	// 2)ï¿½ï¿½Ä¡ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½Ìµï¿½ È®ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½)
+	// 2)ÀÏÄ¡ÇÏ´Â ¾ÆÀÌµð°¡ ÀÖÀ½(¾ÆÀÌµð¸¸ È®ÀÎµÈ »óÅÂ)
 	@Ignore
 	@Test
 	public void idExistTest() {
 		String email = "test@test.com";
 		String res = mapper.isMemberEmail(email);
 		if (res.equals("T")) {
-			log.info("ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ emailï¿½Ô´Ï´ï¿½.");
+			log.info("Á¸ÀçÇÏ´Â emailÀÔ´Ï´Ù.");
 		} else {
 			fail();
 		}
@@ -102,12 +137,10 @@ public class UserMapperTests {
 	}
 
 	/*
-	 * È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Mapper ï¿½×½ï¿½Æ®
+	 * È¸¿ø°¡ÀÔ Mapper Å×½ºÆ®
 	 */
-	// 1)DBï¿½ï¿½ IDï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½.
+	// 1)DB¿¡ ID¶û ºñ¹Ð¹øÈ£ ³ÖÀ½.
 	@Ignore
-	// 1)DBï¿½ï¿½ IDï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½.
-
 	@Test
 	public void registerTest() {
 
@@ -123,13 +156,13 @@ public class UserMapperTests {
 		}
 	}
 
-	// Hash ï¿½Ô¼ï¿½ ï¿½×½ï¿½Æ® - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½.
+	// Hash ÇÔ¼ö Å×½ºÆ® - °°ÀºÆò¹®À» ÇØ½ÌÇßÀ»¶§, °°Àº ÇØ½¬°ªÀÌ ³ª¿À´ÂÁö È®ÀÎ.
 	@Ignore
 	@Test
 	public void Sha256HashTest() {
 		String plainPw = "HwangSohee BaBo!";
-		String answer = "42d15a54b9fcf17bca7d794ae77b800868e9b91e8436df1b6c00001cf9e03e30"; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-																							// ï¿½Ø½ï¿½ï¿½ï¿½
+		String answer = "42d15a54b9fcf17bca7d794ae77b800868e9b91e8436df1b6c00001cf9e03e30"; // À§¿¡²¨
+																							// ÇØ½¬°ª
 
 		String hashedPw = Sha256Hash.sha256(plainPw);
 
@@ -139,30 +172,30 @@ public class UserMapperTests {
 		}
 	}
 	
-	//ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ Serviceï¿½×½ï¿½Æ®ï¿½ï¿½ ï¿½Ø´ï¿½!
+	//¿¹¿ÜÃ³¸®´Â ServiceÅ×½ºÆ®¿¡ ÇØ´ç!
 	
-	//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ð½ï¿½ï¿½ï¿½ï¿½å¸¦ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+	//¸ðµÎ ¸¸Á·ÇÏ´Â ÆÐ½º¿öµå¸¦ ÀÔ·ÂÇßÀ»¶§ 
 	@Ignore
 	@Test
 	public void passwordValidationAllPassTest() {
 		String pw = "soheemon1!";
 	}
 
-	// 8-20ï¿½ï¿½ ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½Ð½ï¿½ï¿½ï¿½ï¿½å¸¦ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	// 8-20ÀÚ ¿¡ ÇØ´çÇÏÁö ¾Ê´Â ÆÐ½º¿öµå¸¦ ÀÔ·ÂÇßÀ»¶§
 	@Ignore
 	@Test
 	public void passwordValidationNTest() {
 		String pw1 = "test1234";
 	}
 	
-	// 3) EMAILï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	// 4) PASSWORDï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	// 8-20ï¿½ï¿½ ï¿½Ì³ï¿½
-	// ï¿½ï¿½ï¿½ï¿½ ï¿½Èµï¿½.
-	// ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½
-	// Æ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½.
-	// 5) NAMEï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	// 2ï¿½ï¿½ï¿½Ì»ï¿½ 20ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	// Æ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Èµï¿½.
+	// 3) EMAILÀÌ ÀûÇÕÇÏÁö ¾ÊÀ½
+	// 4) PASSWORD°¡ ÀûÇÕÇÏÁö ¾ÊÀ½
+	// 8-20ÀÚ ÀÌ³»
+	// °ø¹é ¾ÈµÊ.
+	// ¼ýÀÚÀÖ´Ï
+	// Æ¯¼ö¹®ÀÚ ÀÖ´Ï.
+	// 5) NAMEÀÌ ÀûÇÕÇÏÁö ¾ÊÀ½
+	// 2ÀÚÀÌ»ó 20ÀÚ ÀÌÇÏ
+	// Æ¯¼ö¹®ÀÚ ¾ÈµÊ.
 
 }

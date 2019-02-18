@@ -1,6 +1,16 @@
+<%@page import="com.google.gson.GsonBuilder"%>
+<%@page import="com.google.gson.Gson"%>
+<%@page import="kogile.user.domain.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+
+	UserVO user = (UserVO) session.getAttribute("user");
+
+	Gson gson = new GsonBuilder().create();
+	String userDataJson = gson.toJson(user);
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -12,7 +22,7 @@
 	src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
 
-<title>Insert title here</title>
+<title>Kogile</title>
 <style type="text/css">
 @CHARSET "EUC-KR";
 
@@ -247,11 +257,12 @@ var chatService = (function() {
 		this.writer = writer;
 		}
 
+	var userData = <%=userDataJson%>
 	//향후 파라미터로 건네받습니다.
 	var MyChatInfo = {
 		"pjt_no" : 1,
-		"name" : "황소현",
-		"total_m_no" : 2,
+		"name" : userData.name,
+		"total_m_no" : userData.total_m_no,
 		"chat_no" : 1
 		};	
 	
@@ -291,7 +302,6 @@ var chatService = (function() {
 			if (e.which == 13) {
 				var text = $(this).val();
 				if (text !== "") {
-					//var member_info = "<%=(String) session.getAttribute("memberInfo")%>";
 
 							var chat = new ChatVO(text,
 									window.MyChatInfo.pjt_no,
@@ -325,10 +335,11 @@ var chatService = (function() {
 					+ '<p><small>' + ChatVo.regdate + '</small></p>' + '</div>'
 					+ '</div>' + '</li>';
 		} else {
-			control = '<li style="width:100%;">' + '<div class="msj-rta macro">'
+			control = '<li style="width:100%;">'
+					+ '<div class="msj-rta macro">'
 					+ '<div class="text text-r">' + '<p><b>' + ChatVo.writer
-					+ '</b></p>' + '<p>' + ChatVo.chatContents + '</p>' +
-					'<p><small>' + ChatVo.regdate + '</small></p>' + '</div>'
+					+ '</b></p>' + '<p>' + ChatVo.chatContents + '</p>'
+					+ '<p><small>' + ChatVo.regdate + '</small></p>' + '</div>'
 					+ '</div>' + '</li>';
 		}
 
