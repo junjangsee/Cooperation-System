@@ -13,9 +13,9 @@
 <!-- <script src="/resources/js/main.js"></script> -->
 
 <!-- 김근열 js소스  -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 	<!-- <script src="/resources/js/common.js"></script>	 -->
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 console.log("========");
 console.log("js test");
 function yesNo(){
@@ -88,7 +88,7 @@ $("#btn-search").on('click', function(e) {
 });
 
 
-</script>	
+</script> -->
 
 </head>
 <body>

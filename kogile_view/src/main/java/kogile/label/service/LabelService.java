@@ -8,5 +8,6 @@ public interface LabelService {
 	public List<LabelVO> listLabel(int pjt_no);
 	public void insertLabel(LabelVO label);
 	public LabelVO detailLabel(int label_no);
-
+	public int deleteLabel(int label_no);
+	public int updateLabel(LabelVO label);
 }
