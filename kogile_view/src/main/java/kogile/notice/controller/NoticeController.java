@@ -2,6 +2,8 @@ package kogile.notice.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,12 +25,16 @@ public class NoticeController {
 	
 	private NoticeService service;
 	
-	@GetMapping(value = "/noticeList/{notice}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE,
-			MediaType.APPLICATION_XML_VALUE })
-	public ResponseEntity<List<NoticeVO>> invite(@PathVariable("notice") int notice) {
-
-		List<NoticeVO> list = service.notice(notice);
-
+	private HttpSession session;
+	
+	@GetMapping(value = "/noticeList/{notice}")
+	public ResponseEntity<List<NoticeVO>> invite() {
+		int total_m_no = (int)session.getAttribute("total_m_no");
+		System.out.println("total_m_no : " + total_m_no);
+		
+		List<NoticeVO> list = service.notice(total_m_no);
+		System.out.println("list : " + list);
+		
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 
