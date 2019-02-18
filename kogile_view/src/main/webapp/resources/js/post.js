@@ -604,7 +604,6 @@
 	
 	 $( "#autoComplete" ).autocomplete({
 		select: function(e, res){
-			 alert('test');
 			 console.log(res.item.info_no);
 			 $('#tag_info_no').val(res.item.info_no);
 		 },
