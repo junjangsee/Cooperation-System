@@ -77,7 +77,7 @@
 					aria-labelledby="userDropdown">
 					<a class="dropdown-item" href="/kogile/register">Register</a>
 					<a class="dropdown-item" href="/kogile/login">Login</a>
-					<a class="dropdown-item" href="#">LogOut</a>
+					<a class="dropdown-item" href="/kogile/logout">LogOut</a>
 				</div></li>
 		</ul>
 

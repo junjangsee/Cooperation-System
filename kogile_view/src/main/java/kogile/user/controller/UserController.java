@@ -1,6 +1,5 @@
 package kogile.user.controller;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kogile.user.domain.UserVO;
-import kogile.user.service.Sha256Hash;
 import kogile.user.service.UserServiceInpl;
 import lombok.Setter;
 

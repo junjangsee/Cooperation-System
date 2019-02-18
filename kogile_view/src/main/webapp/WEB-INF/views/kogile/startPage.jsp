@@ -9,9 +9,10 @@
 	}
 	/* session.setAttribute("total_m_no", request.getParameter("total_m_no")); */
 	session.setAttribute("total_m_no", 2);
+	
 	UserVO user = (UserVO)session.getAttribute("user");
-	System.out.println(user);
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,6 +29,7 @@
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
 <link href="/resources/css/startPage.css" rel="stylesheet">
 <title>startPage</title>
+
 </head>
 <body id="page-top">
 	<!-- hidden param -->
