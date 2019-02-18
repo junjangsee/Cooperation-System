@@ -1,5 +1,6 @@
 package kogile.reply.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -96,12 +97,23 @@ public class ReplyController {
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	//태그대상보기
-		@GetMapping(value="/tag/{pjt_no}",
+		@GetMapping(value="/tag/{term}",
 				produces= {MediaType.APPLICATION_JSON_UTF8_VALUE,MediaType.APPLICATION_XML_VALUE})
-		public ResponseEntity<List<TagVO>> showTagMember(@PathVariable("pjt_no") int pjt_no){
+		public ResponseEntity<List<TagVO>> showTagMember(@PathVariable("term") String term){
+			System.out.println(term);
 			log.info("showList@@@@@@@@@@@@@@@@@@@@@@@");
+			int pjt_no = (int)session.getAttribute("pjt_no");
+			List<TagVO> fullList = service.tagList(pjt_no);
 			
-			return new ResponseEntity<>(service.tagList(pjt_no),HttpStatus.OK);
+			List<TagVO> resList = new ArrayList<TagVO>();
+			for(TagVO tag : fullList) {
+				
+				if(tag.getName().indexOf(term) != -1) {
+					resList.add(tag);
+					System.out.println(tag.getName());
+				}
+			}
+			return new ResponseEntity<>(resList,HttpStatus.OK);
 		}
 	
 }

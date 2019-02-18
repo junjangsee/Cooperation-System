@@ -35,5 +35,8 @@
   <script src="/resources/js/demo/datatables-demo.js"></script>
   <script src="/resources/js/demo/moment.js"></script>
   
+  <!-- Jquary UI -->
+    
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </body>
 </html>
