@@ -82,7 +82,9 @@
 			var email = $('#inputEmail').val();
 			var password = $('#inputPassword').val();
 			var name = $('#inputName').val();
-			
+			userService.register({name: name, email: email, password: password}, function(){
+				alert("가입되었습니다.");
+			});
 			return false;
 		})
 	})

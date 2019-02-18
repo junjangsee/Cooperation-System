@@ -3,31 +3,57 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kogile.user.mapper.UserMapper">
-	<select id="interMemLogin" resultType="HashMap">
+<!-- 
+	<select id="interMemLogin"
+		resultType="Map">
 		select email, member_name
-		as name
+		as name, member_no as intermemNo
+		from inter_m_info
+		where email = 'soheemon@gmail.com' AND
+		password = 'fdeec263bba4e9d98fac56c461faf13f7663ac4fdc582d86ac51680a7ac3d7db'
+	</select>
+	 -->
+
+	<select id="interMemLogin" parameterType="Map"
+		resultType="kogile.user.domain.UserVO">
+		select email, member_name
+		as name, member_no as intermemNo
 		from inter_m_info
 		where email = #{email} AND
 		password =
 		#{password}
 	</select>
 
+
 	<select id="isMemberEmail" resultType="String">
 		select
-		NVL2((select member_no from INTER_M_INFO
+		NVL2((select
+		member_no from INTER_M_INFO
 		where email = #{email}),
 		'T',
 		'F'
-		) as res FROM DUAL
+		) as res
+		FROM DUAL
 	</select>
 
 	<insert id="register">
 		insert into inter_m_info
 		values(
-			mem_no_seq.nextval,
-			#{password},
-			#{name},
-			#{email}
+		mem_no_seq.nextval,
+		#{password},
+		#{name},
+		#{email}
 		)
 	</insert>
+
+	<!-- Total_M_NO 가져오기. -->
+	<select id="getTotalMNoFromInterMem" resultType="int">
+		select
+		total_m_no from TOTAL_MEMBER
+		where member_no =
+		(select member_no from
+		INTER_M_INFO
+		where member_no = #{member_no}
+		)
+	</select>
 </mapper>

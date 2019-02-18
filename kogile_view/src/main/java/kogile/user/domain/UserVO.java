@@ -21,6 +21,7 @@ import lombok.ToString;
 @ToString
 public class UserVO {
 	private int total_m_no;
+	private int intermemNo;
 	private boolean isInterMem; // 외부멤버인지 아닌지
 	private String email;
 	private String name;
