@@ -27,9 +27,18 @@
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
 <link href="/resources/css/main.css" rel="stylesheet">
-<script type="text/javascript">
-	
-</script>
+
+<!-- datepicker -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<style>
+#updateTitle {
+	display: none;
+}
+</style>
+<!-- datepicker -->
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+
 <title>Kogile</title>
 </head>
 <body id="page-top">
@@ -188,8 +197,10 @@
 
 
 	<%@ include file="../includes/footconfig.jsp"%>
+	
 	<script src="/resources/js/main.js"></script>
 	<script src="/resources/js/post.js"></script>
+	<script src="/resources/js/tag.js"></script>
 	<!-- <script src="/resources/js/reply.js"></script> -->
 	<!-- <script src="/resources/js/description.js"></script> -->
 	

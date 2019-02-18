@@ -37,9 +37,18 @@
 				"r_contents":$("#insert_reply").val(),
 				"p_no": id
 		};
-		replyAdd(reply);
-//		replyList(id);
+		var info_no={"info_no":$('#tag_info_no').val()}
+		
+		if($('#tag_info_no').val()==null || $('#tag_info_no').val()==""){
+			replyAdd(reply);
+		}else{
+			replyAdd(reply);
+			tagAdd(info_no);
+		}
+		
 		$('#insert_reply').val("");
+		$('#tag_info_no').val("");
+		$('#autoComplete').val("");
 	});
 	
 	// remove reply
@@ -226,6 +235,7 @@
 			$('#detail_post_modal').find('.modal-title').text(res.p_title)
 		}).then(function(){
 			replyList(id);
+			//tagMember();
 			showDescription();
 			writer_info();
 
@@ -416,6 +426,7 @@
 		
 		$.getJSON("/kogile/reply/"+id)
 		.then(function(res){
+			
 			console.log(res);
 			var txt='';
 			
@@ -496,6 +507,7 @@
 	function reply_list(){
 		var id = $('#detail_post_modal').attr('data-id');
 		replyList(id);
+		//tagMember();
 	}
 //	설명 보기
 	function showDescription() {
@@ -574,6 +586,60 @@
 	$('.exit_modal').on('click', function(){
 		list_post();
 	})
+//	태그하기
+	function tagAdd(info_no) {
+		var info_no = {"info_no":$('#tag_info_no').val()}
+		$.ajax({
+			type : 'post',
+			url : '/kogile/tag/new',
+			data : JSON.stringify(info_no),
+			contentType : "application/json; charset=utf-8"
+			}).then(function(res){
+				console.log(res);
+				console.log('성공이라능');
+			}).catch(function(e){
+				console.log(e);
+			})
+	}
 	
+	 $( "#autoComplete" ).autocomplete({
+		select: function(e, res){
+			 alert('test');
+			 console.log(res.item.info_no);
+			 $('#tag_info_no').val(res.item.info_no);
+		 },
+	      source: function(request, response){
+	    	  var term = request.term;
+	    	  console.log(term);
+	    	  $.getJSON("/kogile/tag/" + term + ".json")
+	  		.then(function(res){
+	  			console.log('태그맴버'+res);
+	  			var txt='';
+	  			for(var i =0;i<res.length;i++){
+	  				txt += res[i].name;
+	  			}
+	  			console.log('정답을알려줘'+txt);
+	  			console.log('소히누나바보');
+	  			response($.map(res, function(item) {
+	  				console.log(item);
+					return {
+						label : item.name,
+						value : item.name,
+						info_no : item.info_no
+					}
+				}));
+	  			
+	  		}).catch(function(err){
+	  			console.log(err);
+	  		})
+	      }
+	    });
+
+	  
+	  $('#detail_post_modal').on("shown.bs.modal", function(){
+		   $( "#autoComplete" ).autocomplete("option", "appendTo", "#detail_post_modal")
+	  })
+	
+
 	
 })(jQuery);

@@ -19,8 +19,7 @@
 	
 	<!-- 작성자때문에 멤버이름 가져오기 -->
 	<select id="replyList" parameterType="int" resultType="kogile.reply.domain.ReplyVO">
-	select /*+ INDEX_desc(r XPK댓글) INDEX_desc(p pk_prj_info) INDEX_desc(i XPK초대)
-	INDEX_desc(t pk_total_mem) INDEX_desc(e XPK외부회원정보)*/
+	select /*+ INDEX_desc(r XPK댓글) INDEX_asc(p pk_prj_info) INDEX_asc(i XPK초대) INDEX_asc(e XPK외부회원정보)*/
 	r.r_no, r.r_contents, r.r_date, r.p_no, r.info_no, e.exter_mem_name as name
     From reply r
     join prj_info p
@@ -31,12 +30,11 @@
     on i.total_m_no = t.total_m_no
     join external_m_info e
     on t.exter_m_no = e.exter_m_no
-    WHERE r.p_no =#{p_no}
+    where r.p_no=#{p_no}
 	</select>
 	
 	<select id="replyList2" parameterType="int" resultType="kogile.reply.domain.ReplyVO">
-	select /*+ INDEX_desc(r XPK댓글) INDEX_desc(p pk_prj_info) INDEX_desc(i XPK초대)
-	INDEX_desc(t pk_total_mem) INDEX_desc(e XPK외부회원정보)*/
+	select /*+ INDEX_desc(r XPK댓글) INDEX_asc(p pk_prj_info) INDEX_asc(i XPK초대) INDEX_asc(im XPK내부회원정보)*/
 	r.r_no, r.r_contents, r.r_date, r.p_no, r.info_no, im.member_name as name
     From reply r
     join prj_info p
@@ -68,7 +66,7 @@
 	
 	<!-- 태그 될 맴버 가져오기 -->
 	<select id="tagMember" parameterType="int" resultType="kogile.reply.domain.TagVO">
-	select DISTINCT p.info_no,tm.total_m_no ,e.exter_mem_name as name
+	select DISTINCT p.info_no,e.exter_mem_name as name
     from prj_info p
     join invite i
     on p.invite_no = i.invite_no
@@ -80,7 +78,7 @@
 	</select>
 	
 	<select id="tagMember2" parameterType="int" resultType="kogile.reply.domain.TagVO">
-	select DISTINCT p.info_no,tm.total_m_no ,im.member_name as name
+	select DISTINCT p.info_no ,im.member_name as name
     from prj_info p
     join invite i
     on p.invite_no = i.invite_no

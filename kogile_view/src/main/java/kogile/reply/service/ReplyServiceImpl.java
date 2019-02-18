@@ -65,5 +65,11 @@ public class ReplyServiceImpl implements ReplyService {
 		return list;
 	}
 
+	@Override
+	public int replyNum() {
+		
+		return mapper.replyNum();
+	}
+
 
 }
