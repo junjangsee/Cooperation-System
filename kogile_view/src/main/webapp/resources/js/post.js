@@ -317,6 +317,7 @@
 		
 		$.getJSON("/kogile/reply/"+id)
 		.then(function(res){
+//			tagMember();
 			console.log(res);
 			var txt='';
 			
@@ -471,6 +472,67 @@
 		});
 	}
 	
+//	태그하기
+	function tagAdd(info_no) {
+		$.ajax({
+			type : 'post',
+			url : '/kogile/tag/new',
+			data : JSON.stringify(reply),
+			contentType : "application/json; charset=utf-8"
+			}).then(function(res){
+				console.log(res);
+				
+			}).catch(function(e){
+				console.log(e);
+			})
+	}
+	//태그할수있는 맴버
+	function tagMember() {
+		var pjt_no =1;
+		$.getJSON("/kogile/tag/"+pjt_no+ ".json")
+		.then(function(res){
+			console.log(res);
+			var txt='';
+			for(var i =0;i<res.length;i++){
+				txt = res.name;
+			}
+			 $( "#autoComplete" ).autocomplete({
+			      source: txt
+			    });
+			
+		}).catch(function(err){
+			console.log(err);
+		});
+		
+	}
 	
+	 var availableTags = [
+	      "ActionScript",
+	      "AppleScript",
+	      "Asp",
+	      "BASIC",
+	      "C",
+	      "C++",
+	      "Clojure",
+	      "COBOL",
+	      "ColdFusion",
+	      "Erlang",
+	      "Fortran",
+	      "Groovy",
+	      "Haskell",
+	      "Java",
+	      "JavaScript",
+	      "Lisp",
+	      "Perl",
+	      "PHP",
+	      "Python",
+	      "Ruby",
+	      "Scala",
+	      "Scheme"
+	    ];
+	    
+	    $( "#tags" ).autocomplete({
+	      source: availableTags
+	    });
 	
 })(jQuery);

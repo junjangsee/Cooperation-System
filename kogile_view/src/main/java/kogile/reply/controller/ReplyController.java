@@ -86,6 +86,8 @@ public class ReplyController {
 			produces= {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> createTag(@RequestBody TagVO vo){
 		log.info("@@@@@TagVO@@@@@"+vo);
+		int r_no= service.replyNum();
+		vo.setR_no(r_no);
 		int insertCount = service.registerTag(vo);
 		log.info("글 들어간 갯수 = "+insertCount);
 		

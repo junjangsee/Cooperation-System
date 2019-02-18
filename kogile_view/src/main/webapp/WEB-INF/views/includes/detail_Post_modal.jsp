@@ -11,6 +11,12 @@
 	display: none;
 }
 </style>
+<!-- 자동완성 -->
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<%-- <%@include file="../includes/ex.jsp" %> --%>
 </head>
 
 <body>
@@ -69,7 +75,8 @@
 				<h4><b>댓글달기</b></h4>
 				<span class="name">user</span>
 				<textarea id="insert_reply" style="margin-bottom: 3px;" class="add_input" placeholder="Write a comment..."></textarea>
-				<input type="text" class="add_tag" placeholder="@태그">
+				<!-- <input type="text" class="add_tag" placeholder="@태그" id = autoComplete> -->
+				<input id="tags">
 				<a id="reply_save" href="#n" class="btn btn-sm btn-secondary" style="float : right;">등록</a>
 				<a id="reply_modify" href="#n" class="btn btn-sm btn-secondary" style="float : right;">수정</a>
 				</div>

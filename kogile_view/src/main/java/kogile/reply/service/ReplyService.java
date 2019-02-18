@@ -22,4 +22,6 @@ public interface ReplyService {
 	public int registerTag (TagVO vo);
 	
 	public List<TagVO> tagList(int pjt_no);
+	
+	public int replyNum();
 }
