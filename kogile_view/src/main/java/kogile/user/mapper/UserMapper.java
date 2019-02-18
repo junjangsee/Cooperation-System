@@ -1,6 +1,5 @@
 package kogile.user.mapper;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public interface UserMapper {

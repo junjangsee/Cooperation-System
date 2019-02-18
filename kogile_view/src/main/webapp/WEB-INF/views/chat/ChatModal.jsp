@@ -12,7 +12,7 @@
 	src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
 
-<title>Insert title here</title>
+<title>Kogile</title>
 <style type="text/css">
 @CHARSET "EUC-KR";
 
@@ -250,8 +250,8 @@ var chatService = (function() {
 	//향후 파라미터로 건네받습니다.
 	var MyChatInfo = {
 		"pjt_no" : 1,
-		"name" : "황소현",
-		"total_m_no" : 2,
+		"name" : "황뽀삐",
+		"total_m_no" : 1,
 		"chat_no" : 1
 		};	
 	

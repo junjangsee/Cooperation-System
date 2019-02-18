@@ -83,6 +83,17 @@ public class RestTemplateService {
 		return response;
 	}
 
+	public void logOut(String accessToken) {
+		String url = "https://kapi.kakao.com/v1/user/logout";
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("Authorization", "Bearer " + accessToken);
+
+		HttpEntity<String> request = new HttpEntity<>(headers);
+		restTemplate.postForObject(url, request, String.class);
+		
+	}
+
 	// È¸¿øÅ»Åð
 	// POST /v1/user/unlink HTTP/1.1
 	// Host: kapi.kakao.com

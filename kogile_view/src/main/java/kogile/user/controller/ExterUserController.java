@@ -7,16 +7,13 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.internal.LinkedTreeMap;
 
@@ -52,7 +49,8 @@ public class ExterUserController {
 		default:
 			break;
 		}
-
+		
+		session.removeAttribute("command");
 		return "redirect:" + redirectPath;
 	}
 
@@ -148,13 +146,14 @@ public class ExterUserController {
 			return "redirect:/login/external/loginKogileWithKakao/" + accessToken;
 		}
 	}
-
+	
+	@GetMapping("/logoutKogileWithKakao")
 	public String logoutKogileWithKakao(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Enumeration<String> attributeNames = session.getAttributeNames();
 
 		boolean isLogined = false;
-		long kakaoId;
+		long kakaoId=0;
 
 		while (attributeNames.hasMoreElements()) {
 			if (attributeNames.nextElement().equals("user")) {
@@ -174,12 +173,12 @@ public class ExterUserController {
 		String accessToken = service.getAccessToken(interlinked_info);
 		restService.logOut(accessToken); // kakao에서 로그아웃
 
-		HttpSession session = request.getSession();
+		session = request.getSession();
 		session.invalidate();// kogile에서 로그아웃.
 
 		return "redirect:/kogile/startPage";
 	}
-	//
+	
 	// public String withdrawalKogileWithKakao(HttpServletRequest request) {
 	// restService.withdrawal(); // 카카오에서 탈퇴
 	// kakaoService.kakaoMemWithdrawal(kakaoId); //kogile에서 DB 정보 지우기.
