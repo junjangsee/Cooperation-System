@@ -2,6 +2,8 @@ package kogile.invite.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +32,7 @@ import lombok.extern.log4j.Log4j;
 public class InviteController {
 	
 	private InviteService service;
+	private HttpSession session;
 	
 /*	@GetMapping("/searchList")
 	public void searchList(Model model, @RequestParam(value="search", required=false, defaultValue="0")String search2){
@@ -69,11 +72,12 @@ public class InviteController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 
-	@GetMapping(value="/inviteList/{invite}",
-			produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
-	public ResponseEntity<List<InviteVO>> invite(@PathVariable("invite") int invite){
+	@GetMapping(value="/inviteList/{invite}")	//inivite가 js에서 param.invite로 넘길 값
+	public ResponseEntity<List<InviteVO>> invite(){
+		int pjt_no = (int)session.getAttribute("pjt_no");
+		System.out.println("pjt_no : " + pjt_no);
 		
-		List<InviteVO> list = service.invite(invite);
+		List<InviteVO> list = service.invite(pjt_no);
 		
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}

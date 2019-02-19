@@ -33,6 +33,7 @@
 <title>Kogile</title>
 </head>
 <body id="page-top">
+	<input id="rw2" type="hidden" value="${pjt_no}" name="pjt_no">
 	<!-- modal -->
 	<%@ include file="../includes/format_modal.jsp"%>
 	<%@ include file="../includes/detail_Post_modal.jsp"%>
@@ -55,6 +56,7 @@
 				<div class="card mb-3">
 					<div class="card-header">
 						<i class="fas fa-table"> pjt_name</i>
+						<span id="pjname"></span>
 					</div>
 					
 					<div class="card-body" id="body_main">
