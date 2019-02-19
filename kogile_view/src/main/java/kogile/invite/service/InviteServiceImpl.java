@@ -30,4 +30,10 @@ public class InviteServiceImpl implements InviteService {
 		return mapper.invite(pjt_no);
 	}
 
+	@Override
+	public int insertInvite(InviteVO invite) {
+		log.info("insertList.............");
+		return mapper.insertInvite(invite);
+	}
+
 }

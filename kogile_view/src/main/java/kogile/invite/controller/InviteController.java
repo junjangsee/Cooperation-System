@@ -82,5 +82,20 @@ public class InviteController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
+	@PostMapping(value="/new", 
+			consumes="application/json",
+			produces={MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> insertInvite(@RequestBody InviteVO invite){
+
+		invite.setPjt_no((int)session.getAttribute("pjt_no"));
+		invite.setTotal_m_no((int)session.getAttribute("total_m_no"));
+		
+		int insertCount=service.insertInvite(invite);
+		System.out.println("insertCount : " + insertCount);
+		
+		return insertCount==1? new ResponseEntity<>("success", HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
 	
 }

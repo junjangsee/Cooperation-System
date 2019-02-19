@@ -55,5 +55,10 @@
 	
 	</select>
 	
+	<insert id="insertInvite" parameterType="kogile.invite.domain.InviteVO">
+		insert into invite
+		values(invite_seq.nextval, 'normal', #{pjt_no}, #{total_m_no})
+	</insert>
+	
 </mapper>
 
