@@ -30,14 +30,12 @@
 
 <!-- datepicker -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<style>
-#updateTitle {
-	display: none;
-}
-</style>
+
 <!-- datepicker -->
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+
+<link href="/resources/css/post.css" rel="stylesheet">
 
 <title>Kogile</title>
 </head>
@@ -66,6 +64,7 @@
 					<div class="card-header">
 						<i class="fas fa-table"> pjt_name</i>
 						<span id="pjname"></span>
+
 					</div>
 					
 					<div class="card-body" id="body_main">

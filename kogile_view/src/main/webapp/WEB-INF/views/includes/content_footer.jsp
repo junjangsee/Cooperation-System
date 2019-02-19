@@ -11,7 +11,9 @@
 	<footer>
 		<div class="container my-auto">
 			<div class="copyright text-center my-auto">
-				<span>Copyright © Your Website 2019</span>
+				<span>Copyright © Kogile 2019</span><br>
+				<span>Made By 최용락, 최수춘, 황소희, 김근열, 정철희, 김준형</span><br>
+				<span>현재 날짜 : </span> <span id="nowTime"></span>
 			</div>
 		</div>
 	</footer>

@@ -55,6 +55,7 @@
 			console.log(err);
 		});
 	}
+	
 //	해당프로젝트 카드 넘버 조회 및 data-status값에 대입
 	function list_project(){
 		$.ajax({
@@ -72,7 +73,6 @@
 			console.log(err);
 		});
 	}
-
 	
 
 //	function master_info(total_m_no){

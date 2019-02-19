@@ -25,7 +25,7 @@ public class PostController2 {
 	
 	@GetMapping("/detailPost/{p_no}")
 	public String main_post(@PathVariable int p_no, Model model) {
-		System.out.println(p_no);
+
 		PostVO post = service.detailPost(p_no);
 		
 		model.addAttribute("post", post);

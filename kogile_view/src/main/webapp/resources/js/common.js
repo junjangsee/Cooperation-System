@@ -2,6 +2,8 @@
 	//검색 관련 js
 	console.log("========");
 	console.log("common js");
+	
+	nowDate();
 
 	  
 	function yesNo(){
@@ -214,6 +216,22 @@
 			window.open("/Chatting", "", "width=356, height=450");
 			return false;
 		})
+		
+		// 현재 시간 구하기
+	function nowDate() {
+		
+		var Now = new Date();
+
+		var NowTime = Now.getFullYear();
+
+		NowTime += '-' + Now.getMonth() + 1 ;
+
+		NowTime += '-' + Now.getDate();
+
+		time = $('#nowTime').html(NowTime);
+		
+		return time;
+	}
 
 	
 })(jQuery);

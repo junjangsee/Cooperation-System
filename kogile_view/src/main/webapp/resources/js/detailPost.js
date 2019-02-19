@@ -15,11 +15,11 @@
 	$('#MY_btn_label').popover({
 		html : true,
 		container : 'body',
-//		placement : 'bottom',
+// placement : 'bottom',
 		
 	});
 	
-//	해당프로젝트 라벨조회
+// 해당프로젝트 라벨조회
 	function listLabel(){
 		var txt = ``;
 		
@@ -30,6 +30,7 @@
 		}).then(function(res){
 			txt += `<div class="label_list"><ul style="padding-left : 10px;">`;
 			for(var i = 0; i < res.length; i++){
+
 				if(res[i].color_no ==1){
 					txt += `<li><a data-toggle="modal" data-target="#label_modal" href="#" class="card_edit" id="${res[i].label_no}"></a><span class="red btnLabel">${res[i].label_text}</span></li>`;					
 				}
@@ -94,7 +95,7 @@
 			return obj; 
 	}
 	
-//	UPDATE OR DELETE FORM
+// UPDATE OR DELETE FORM
 	function btnInsertLabel(){
 		$('.modal-title').html("라벨 생성");
 		$('.updateLabel').hide();
@@ -150,10 +151,24 @@
 						
 						var endDay = flatpickr.formatDate(date[0], "Y-m-d");
 						update_Date(endDay, id);
-						dalcDday(date);
 					}
 					
 			});
+			
+			$('#due_date').on('focusout', function(){
+				var id = $('#p_no').val();
+				update_Date($(this).val(), id);
+			});
+			
+			$('#due_date').on('keyup', function(e){
+				var id = $('#p_no').val();
+				if(e.keyCode === 13){
+					update_Date($(this).val(), id);
+				} else {
+					// Nothing
+				}
+			})
+			
 			
 			function update_Date(endDay, id) {
 				
@@ -166,42 +181,45 @@
 					}),
 					contentType : "application/json; charset=UTF-8"
 				}).then(function(res){
-					alert('저장되었습니다.');
 					$('#due_date').val(endDay);
 				}).catch(function(err){
 					console.error(err);
-					alert('날짜를 다시 선택해주세요');
 				})
 			}
-
 			
-			// 디데이 작업 중
-//			function calcDday(date) {
-//				var date = $('#due_date').val();
-//				console.log(date);
-//				
-//				$("#MY_btn_due").flatpickr({
-//					
-//					onChange: function(countDays) { 
-//						
-//						  var startDay = flatpickr.formatDate(new Date(),"m/d/Y");
-//						  var endDay = flatpickr.formatDate("", "m/d/Y");
-//
-//						  var newStartDate = new Date(startDay).getTime();
-//						  var newEndDate = new Date(endDay).getTime();
-//							
-//						  var newStartDate = eval( newStartDate / 1000 + 3600 ); // for GMT+1 I had to add 3600 (seconds) [1 hour]
-//						  var newEndDate = eval( newEndDate / 1000 + 3600 ); // for GMT+1 I had to add 3600 (seconds) [1 hour]
-//							
-//						  var countDays = eval( newEndDate - newStartDate );
-//						  var countDays = eval( countDays / 86400 + 1 );
-//							
-//						  console.log( '마감일 : ' + countDays + '일 남았습니다.');
-//
-//						  return countDays;
-//						}
-//				});
-//			}
+			// 삭제하기 클릭 시 마감일 삭제하기
+			$('#delete_date').on('click', function(){
+				
+				var id = $('#p_no').val();
+				var date = $('#due_date').val();
+				
+				if ($('#due_date').val() == '') {
+					alert('삭제할 마감일이 없습니다.');
+				} else {
+					delete_Date(date, id);
+					alert('삭제되었습니다.');
+				}
+				
+			})
+			
+			function delete_Date(date, id) {
+				
+				$.ajax({
+					type : "POST",
+					url : "/kogile/post/updatePostDate",
+					data : 
+						JSON.stringify({
+						p_dday: "",
+						p_no : parseInt(id, 10)
+					}), 
+					dataType : "JSON",
+					contentType : "application/json; charset=UTF-8"
+				}).then(function(res){
+					$('#due_date').val('');
+				}).catch(function(err){
+					console.error(err);
+				})
+			}
 			
 			// ----------------------------------------- End Post Date
 			
@@ -335,5 +353,80 @@
 				})
 			}
 //			선택라벨 삭제<------------------
+
+			// ----------------------------------------- Start update Title
+			
+			
+			$('#title').on('focusout', function(){
+				var id = $('#p_no').val();
+				console.log(id);
+				update_title($(this).val(), id);
+			})
+			
+			$('#title').on('keyup', function(e){
+				var id = $('#p_no').val();
+				console.log(id);
+				if (e.keyCode === 13) {
+					update_title($(this).val(), id)
+				}
+			})
+	
+			
+			function update_title(title, id) {
+					$.ajax({
+						type : "PATCH",
+						url : "/kogile/post/updatePostTitle",
+						data : JSON.stringify({
+							p_title : title,
+							p_no : parseInt(id, 10)
+						}),
+						contentType : "application/json; charset=UTF-8"
+					}).then(function(res){
+						$('#title').text(title);
+						$('#title_header').text(title);
+					}).catch(function(err){
+						console.error(err);
+					})
+			}
+			
+			
+			// ----------------------------------------- End update Title
+			
+			
+			// ----------------------------------------- Start update
+			// Desctiption
+			
+			$('#detail_description').on('focusout', function(){
+				var id = $('#p_no').val();
+				update_description($(this).val(), id);
+			})
+			
+			$('#detail_description').on('keyup', function(e){
+				var id = $('#p_no').val();
+				if (e.keyCode === 13) {
+					update_description($(this).val(), id);
+				}
+			})
+			
+			function update_description(description, id) {
+				var p_no = $('#p_no').val();
+				
+				$.ajax({
+					type : "PATCH",
+					url : `/kogile/post/description/${p_no}`,
+					data : JSON.stringify({
+						p_description : description,
+						p_no : parseInt(id, 10)
+					}),
+					contentType : "application/json; charset=UTF-8"
+				}).then(function(res){
+					$('#detail_description').text(description);
+				}).catch(function(err){
+					console.error(err)
+				})
+			}
+			
+			// ----------------------------------------- End update Desctiption
+	
 			
 })(jQuery)

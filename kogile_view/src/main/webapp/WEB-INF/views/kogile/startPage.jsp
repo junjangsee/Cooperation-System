@@ -49,7 +49,7 @@
 				<div class="card mb-3">
 					<div class="card-header">
 						<!-- <i class="fas fa-table"></i> Data Table Example -->
-						<i class="fas fa-fw fa-folder"></i> Project List
+						<b>Project List</b>
 					</div>
 					<!-- star card body -->
 					<div class="card-body">

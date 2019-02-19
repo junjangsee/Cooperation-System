@@ -24,4 +24,5 @@
 	<context:component-scan base-package="kogile.*.controller" />	
 
 	
+	
 </beans:beans>
