@@ -51,12 +51,12 @@
 		searchListService.searchList({search:searchValue}, function(list){
 			console.log(list);
 			
-			
 			var value = "";
 			
 			for(var i = 0; i<list.length; i++){
-				value += "<p><input class='btn btn-default' type='button' value='" +  list[i].no + " " + list[i].name + " " + list[i].mail 
-				+ "' id='searchList' data-userNo='/></p>";
+				value += `<p ><input class="btn btn-default" type="button" value="${list[i].no} ${list[i].name} ${list[i].mail}" 
+				 id="searchList" data-content="${list[i].no}"/></p>`;
+				//"<input type='hidden' data-userNo='" + list[i].no + "/>"
 				console.log(value);
 				
 			}
@@ -158,6 +158,28 @@
 
 		var inviteService = (function() {
 	
+			//초대 리스트 추가 관려 js ***
+			function add(invite, callback, error){
+				console.log("add invite.......");
+				
+				$.ajax({
+					type : 'post',
+					url : '/invite/new',
+					data : JSON.stringify(invite),
+					contentType : "application/json; charset=uft-8",
+					success : function(result, status, xhr){
+						if(callback){
+							callback(result);
+						}
+					},
+					error : function(xhr, status, er) {
+						if (error) {
+							error(er);
+							
+						}
+					}
+					})
+			}
 			//초대 목록 관련 js
 			function invite(param, callback, error) {
 
@@ -176,10 +198,24 @@
 				});
 			}
 			return {
+				add : add,
 				invite : invite
 			};
 		})();
-			
+		
+		console.log("===========");
+		console.log("ADD TEST");
+		//초대 리스트 추가 일부 ***
+		//var pjtValue = ?;
+		//var totValue = ?;
+		
+		inviteService.add(
+				{pjt_no:2, total_m_no:4}
+				,
+				function(result){
+					alert("RESULT: " + result);
+				}
+		);
 			
 		$(document).ready(function(){
 			//var noticeValue = ;
