@@ -40,5 +40,11 @@
   		where p_no = #{p_no}
   	</select>
   	
+  	<delete id="cancelLabel" parameterType="kogile.label.domain.LabelVO">
+  	delete from label_info
+  	where p_no = #{p_no}
+  	and label_no = #{label_no}
+  	
+  	</delete>
   	
   </mapper>

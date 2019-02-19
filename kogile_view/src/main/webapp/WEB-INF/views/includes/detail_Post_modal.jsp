@@ -38,16 +38,23 @@
 					<div class="MYhide_menu"></div>
 					<!-- end myhide_menu -->
 
-					<div class="right_list">
+					<div class="right_list" style="width: 220px; height: 250px; margin-left: 45px;">
 						<div class="addcard_holder holder">
-							<h3 class="title_c">ADD TO CARD</h3>
-							<div class="btn_list">
+							<h2 class="title_c"><b>마감일</b></h2>
+							
+							<h2 class="title_c"><b>라벨</b></h2>
+							<ul class="label_list" style="padding-left: 2px;">
+							</ul>							
+							<br>
+							<br>
+							<h2 class="title_c"><b>첨부파일</b></h2>
+							<!-- <div class="btn_list" >
 								<a href="#" class="mem_btn">Members</a> <a href="#"
 									class="label_btn">Labels</a> <a href="#" class="check_btn">Checklist</a>
 								<a href="#" class="due_btn">Due Date</a> <a href="#"
 									class="atta_btn">Attachment</a>
 
-							</div>
+							</div> -->
 						</div>
 					</div>
 					<!-- right_list end -->
@@ -77,7 +84,7 @@
 						<span class="name">user</span>
 						<textarea id="insert_reply" style="margin-bottom: 3px;"
 							class="add_input" placeholder="Write a comment..."></textarea>
-						<input type="text" class="add_tag" placeholder="@태그" id = autoComplete>
+						<input type="text" class="add_tag" placeholder="@태그" id = autoComplete >
 						<input type="hidden" id="tag_info_no" value=""/>
 						<a id="reply_save" href="#n" class="btn btn-sm btn-secondary"
 							style="float: right;">등록</a> <a id="reply_modify" href="#n"

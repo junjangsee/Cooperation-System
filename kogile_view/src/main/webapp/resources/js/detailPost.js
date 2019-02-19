@@ -266,7 +266,7 @@
 				$.ajax({
 					data : JSON.stringify(data),
 					type : "POST",
-					dataType : "JSON",
+					dataType : "text",
 					url : "/kogile/label/selectLabel",
 					contentType : "application/json; charset=UTF-8"
 				}).then(function(res){
@@ -280,46 +280,60 @@
 //			------------------선택한 라벨 조회
 			function list_LabelInfo(){
 				var p_no = $("input[name=p_no]").val();
+				
 				$.ajax({
 					type : "GET",
 					dataType : "JSON",
 					url : `/kogile/label/listLabelInfo/${p_no}`
 				}).then(function(res){
-//					console.log(res);
+					console.log(res);
+					var txt = ``;
+					
+					$('#label_info_list').html("");
 					$.each(res, function(i, item){
-						LabelInfo(item.label_no);	
+						if(item.color_no == 1){
+							txt += `<li><span class="red cancelLabel">${item.label_text}</span><input type="hidden" value="${item.label_no}"/></li>`;
+						}else if(item.color_no == 2) {
+							txt += `<li><span class="orange cancelLabel">${item.label_text}</span><input type="hidden" value="${item.label_no}"/></li>`;
+						}else if(item.color_no == 3) {
+							txt += `<li><span class="yellow cancelLabel">${item.label_text}</span><input type="hidden" value="${item.label_no}"/></li>`;
+						}else if(item.color_no == 4) {
+							txt += `<li><span class="green cancelLabel">${item.label_text}</span><input type="hidden" value="${item.label_no}"/></li>`;
+						}
 					})
+//					console.log(txt);
+					$('#label_info_list').html(txt);
 				}).catch(function(e){
 					console.log(e);
 				});
 			}
 			
-			function LabelInfo(label_no){
-				$.ajax({
-					type : "GET",
-					dataType : "JSON",
-					url : `/kogile/label/detail/${label_no}`
-				}).then(function(res){
-//					console.log(res);
-					var txt = ``;
-					if(res.color_no == 1){
-						txt += `<li><span class="red cancelLabel">${res.label_text}</span></li>`;
-					}else if(res.color_no == 2) {
-						txt += `<li><span class="orange cancelLabel">${res.label_text}</span></li>`;
-					}else if(res.color_no == 3) {
-						txt += `<li><span class="yellow cancelLabel">${res.label_text}</span></li>`;
-					}else if(res.color_no == 4) {
-						txt += `<li><span class="green cancelLabel">${res.label_text}</span></li>`;
-					}
-					$('#label_info_list').append(txt);
-					
-					
-				}).catch(function(e){
-					console.log(e);
-				});
-			}
 //			선택한 라벨 조회------------------
-
-	
+			
+//			------------------>선택라벨 삭제
+			$(document).on('click', '.cancelLabel', function(){
+				var label_no = $(this).next().val();
+				var p_no = $('input[name=p_no]').val();
+				const data = {
+						label_no : label_no,
+						p_no : p_no
+				}
+				
+				cancelLabel(data);
+			})
+			
+			function cancelLabel(data){
+				$.ajax({
+					data : JSON.stringify(data),
+					type : "POST",
+					contentType : "application/json; charset=UTF-8",
+					dataType : "html",
+					url : "/kogile/label/cancelLabel"
+				}).then(function(res){
+					console.log(res);
+					list_LabelInfo();
+				})
+			}
+//			선택라벨 삭제<------------------
 			
 })(jQuery)

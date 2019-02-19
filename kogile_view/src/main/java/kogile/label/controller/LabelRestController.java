@@ -1,5 +1,6 @@
 package kogile.label.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -63,13 +64,24 @@ public class LabelRestController {
 	
 	@GetMapping("listLabelInfo/{p_no}")
 	public List<LabelVO> listLabelInfo(@PathVariable int p_no){
-		List<LabelVO> list = service.listLabelInfo(p_no);
+		List<LabelVO> list_LabelInfo = service.listLabelInfo(p_no);
+		List<LabelVO> list = new ArrayList<>();
+		for(int i = 0; i < list_LabelInfo.size(); i ++) {
+			int label_no = list_LabelInfo.get(i).getLabel_no();
+			list.add(service.detailLabel(label_no));
+		}
+//		List<LabelVO> list = 
 		return list;
-	}
+	}	
 	
 	@PostMapping("selectLabel")
 	public ResponseEntity<String> selectLabel(@RequestBody LabelVO label){
-		return service.selectLabel(label) == 1 ? new ResponseEntity<>("sucess", HttpStatus.OK)
+		return service.selectLabel(label) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
+				: new ResponseEntity<>("fail", HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	@PostMapping("cancelLabel")
+	public ResponseEntity<String> clanelLabel(@RequestBody LabelVO label_info){
+		return service.cancelLabel(label_info) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>("fail", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }

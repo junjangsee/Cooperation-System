@@ -122,10 +122,10 @@
 	//
 
 //	 Post 제목 상세보기
-	$('.item_content').on('click', function(e){
-		var id = $(e.target).closest('a').data('no');
-		post_title(id);
-	});
+//	$('.item_content').on('click', function(e){
+//		var id = $(e.target).closest('a').data('no');
+//		post_title(id);
+//	});
 
 	
 	// Post 삭제
@@ -238,7 +238,7 @@
 			//tagMember();
 			showDescription();
 			writer_info();
-
+			list_LabelInfo();
 		});
 	}
 	
@@ -638,6 +638,41 @@
 	  $('#detail_post_modal').on("shown.bs.modal", function(){
 		   $( "#autoComplete" ).autocomplete("option", "appendTo", "#detail_post_modal")
 	  })
+	  
+//		------------------선택한 라벨 조회
+		function list_LabelInfo(){
+		  	var p_no = $('#detail_post_modal').attr('data-id');
+			
+			$.ajax({
+				type : "GET",
+				dataType : "JSON",
+				url : `/kogile/label/listLabelInfo/${p_no}`
+			}).then(function(res){
+				console.log(res);
+				var txt = ``;
+				
+				$('.label_list').html("");
+				$.each(res, function(i, item){
+					if(item.color_no == 1){
+						txt += `<li><span class="red cancelLabel">${item.label_text}</span><input type="hidden" value="${item.label_no}"/></li>`;
+					}else if(item.color_no == 2) {
+						txt += `<li><span class="orange cancelLabel">${item.label_text}</span><input type="hidden" value="${item.label_no}"/></li>`;
+					}else if(item.color_no == 3) {
+						txt += `<li><span class="yellow cancelLabel">${item.label_text}</span><input type="hidden" value="${item.label_no}"/></li>`;
+					}else if(item.color_no == 4) {
+						txt += `<li><span class="green cancelLabel">${item.label_text}</span><input type="hidden" value="${item.label_no}"/></li>`;
+					}
+				})
+				console.log(txt);
+				$('.label_list').html(txt);
+			}).catch(function(e){
+				console.log(e);
+			});
+		}
+	  
+	 
+		
+//		선택한 라벨 조회------------------
 	
 
 	

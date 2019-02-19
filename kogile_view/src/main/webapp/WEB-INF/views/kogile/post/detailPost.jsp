@@ -119,8 +119,8 @@
 
 
 						</form>
-						<a class="btn btn-primary" href="#">수정</a> <a
-							class="btn btn-secondary" href="/kogile/main?pjt_no=${pjt_no}">나가기</a>
+						<!-- <a class="btn btn-primary" href="#">수정</a> --> 
+						<a class="btn btn-primary" href="/kogile/main?pjt_no=${pjt_no}">완료</a>
 					</div>
 					<!-- end card-body -->
 					<div class="card-footer small text-muted">Updated yesterday

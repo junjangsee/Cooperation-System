@@ -51,6 +51,12 @@ public class LabelServiceImpl implements LabelService {
 	public int selectLabel(LabelVO label) {
 		return mapper.selectLabel(label);
 	}
+
+	@Override
+	public int cancelLabel(LabelVO label_info) {
+		
+		return mapper.cancelLabel(label_info);
+	}
 	
 
 }

@@ -131,7 +131,7 @@
 
 .right_list{float: right;margin-left: 100px;}
 .right_list .holder{margin-bottom: 10px;}
-.title_c{color: #999;font-size: 15px;}
+.title_c{font-size: 18px;}
 .btn_list{margin-top: 10px;}
 .btn_list a{display: block;font-weight: 600;font-size:14px;color: #666;border-radius: 5px;display: block;box-shadow: 2px 2px 5px rgba(0,0,0,0.1);padding: 10px 5px 10px 30px;box-sizing: border-box;margin-bottom: 10px;width: 170px;}
 .addcard_holder .btn_list a:active{background: #17394d;}
@@ -160,9 +160,17 @@
 }
 /* 댓글css */
 .modal-body ul li{height: auto;min-height:100px;margin-bottom: 15px;border-bottom: solid 1px #f1f1f1;padding: 10px 0;}
-.modal-body ul li .input_box .fullname{display: inline-block;color: #333;font-weight: 600; margin-left: 10px;}
+.modal-body ul li .input_box .fullname{display: inline-block;color: #333;font-weight: 600; margin-left: 10px; margin-bottom: 3px;}
 .modal-body ul li .input_box .date{color: #888;font-size: 12px;vertical-align: bottom;display: inline-block;padding-left: 5px;}
 .modal-body ul li .input_box .cts{display: block;background: #fff;box-shadow: 2px 2px 5px rgba(0,0,0,0.1);padding:10px;border-radius: 5px;margin: 5px 0 10px 0; background-color: #f1f1f1;}
 .modal-body ul li .input_box .cts .id{font-weight: 600;color: #333;}
 
-
+/* label css (main-detailpostmodal 사용) */
+.label_list li{overflow: hidden;margin-bottom: 2px; display : inline;}
+.label_list li span{display: inline-block; box-sizing: border-box;color: #fff;font-size: 14px;font-weight: 600;min-width : 40px;float: left;border-radius: 3px;cursor: pointer;margin: 3px;}
+.label_list li span.green{background: #61bd4f;}
+.label_list li span.yellow{background: #f2d600;}
+.label_list li span.orange{background: #ff9f1a;}
+.label_list li span.red{background: #eb5a46;}
+.label_list li span.blue{background: #0079bf;}
+.label_list li span.sky{background: #00c2e0;}
