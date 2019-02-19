@@ -43,6 +43,4 @@
 	<!-- 트랜잭션 등록 -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 
-
-
 </beans>

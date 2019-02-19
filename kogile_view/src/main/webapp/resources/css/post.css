@@ -3,3 +3,27 @@
 #updateTitle {
 	display: none;
 }
+
+.tag {
+	position:absolute;
+	top:0;
+    right:0;
+    background:#7dbbff;
+    color:#fff;
+    padding:0 8px;
+    font-size:12px;
+    border-radius:4px;
+}
+
+.hide {
+	display: none;
+}
+
+.date {
+	color: #7b7b7b;
+}
+
+.check {
+	color: #7b7b7b;
+}
+

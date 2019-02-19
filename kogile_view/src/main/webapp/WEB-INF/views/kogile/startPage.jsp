@@ -48,7 +48,7 @@
 				<div class="card mb-3">
 					<div class="card-header">
 						<!-- <i class="fas fa-table"></i> Data Table Example -->
-						<i class="fas fa-fw fa-folder"></i> Project List
+						<b>Project List</b>
 					</div>
 					<!-- star card body -->
 					<div class="card-body">
@@ -133,5 +133,6 @@
 
 	<%@ include file="../includes/footconfig.jsp"%>
 	<script src="/resources/js/startPage.js"></script>
+	<script src="/resources/js/main.js"></script>
 </body>
 </html>

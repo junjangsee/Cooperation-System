@@ -18,6 +18,7 @@
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
 <link href="/resources/css/main_post.css" rel="stylesheet">
+<link href="/resources/css/post.css" rel="stylesheet">
 
 <!-- Date CSS -->
 <link rel="stylesheet"
@@ -52,7 +53,7 @@
 				<!-- DataTables Example -->
 				<div class="card mb-3">
 					<div class="card-header">
-						<i class="fas fa-table"></i> ${post.p_title}
+						<i class="fas fa-table"></i> <span id="title_header">${post.p_title}</span>
 					</div>
 
 					<div class="card-body">
@@ -79,7 +80,7 @@
 								<h4>
 									<b>포스트 명</b>
 								</h4>
-								<input class="form-control" value="${post.p_title}"><br>
+								<input id="title" class="form-control" value="${post.p_title}" placeholder="제목을 입력하세요"><br>
 							</div>
 
 							<c:set var="d_day">
@@ -87,14 +88,14 @@
 							</c:set>
 
 							<h4>
-								<b>마감일</b>
+								<b>마감일</b> <span id="delete_date" style="font-size: x-small;" >삭제하기</span>
 							</h4>
-							<input id="due_date" class="form-control" style="width: 30%"
-								value="${post.p_dday}"><br>
+							<input id="due_date" class="form-control" style="width: 30%" 
+								value="${post.p_dday}" placeholder="ex)2019-02-26"><br>
 
 							<div>
 							<h4><b>설명</b></h4>
-							<textarea name="description" style="width: 65%;" class="add_input">${post.p_description}</textarea><br>
+							<textarea id="detail_description" name="description" style="width: 65%;" class="add_input" placeholder="설명을 입력하세요">${post.p_description}</textarea><br>
 
 							</div>
 
@@ -112,7 +113,6 @@
 								<b>체크리스트</b>
 							</h4>
 							<br> <br>
-
 
 						</form>
 						<a class="btn btn-primary" href="#">수정</a> <a
@@ -142,6 +142,7 @@
 	<script src="/resources/js/detailPost.js"></script>
 	<script src="/resources/js/post.js"></script>
 	<script src="/resources/js/checklist.js"></script>
+	<script src="/resources/js/main.js"></script>
 
 
 </body>

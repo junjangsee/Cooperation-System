@@ -113,7 +113,7 @@ public class PostController {
 	// 포스트 날짜 수정
 	@PostMapping(value = "/updatePostDate")
 	public int updateDate(@RequestBody PostVO post) {
-		
+		System.out.println(post);
 		return service.updatePostDate(post);
 	}
 

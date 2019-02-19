@@ -1,7 +1,6 @@
 package kogile.post.domain;
 
 import java.sql.Date;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
@@ -17,8 +16,5 @@ public class PostVO {
 	
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date p_dday;
-	
-	// 디데이
-	private int p_date;
 
 }

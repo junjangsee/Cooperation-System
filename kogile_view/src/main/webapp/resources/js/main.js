@@ -4,6 +4,7 @@
 		
 		project_info();
 		list_project();
+		nowDate();
 		
 ////		설정버튼 클릭 시, 페이지로드로 바꾸면서 주석으로 변경
 //		$('#btn_body_configure').on('click', function(e){
@@ -56,6 +57,7 @@
 			console.log(err);
 		});
 	}
+	
 //	해당프로젝트 카드 넘버 조회 및 data-status값에 대입
 	function list_project(){
 		$.ajax({
@@ -73,8 +75,23 @@
 			console.log(err);
 		});
 	}
-
 	
+	
+	// 현재 시간 구하기
+	function nowDate() {
+		
+		var Now = new Date();
+
+		var NowTime = Now.getFullYear();
+
+		NowTime += '-' + Now.getMonth() + 1 ;
+
+		NowTime += '-' + Now.getDate();
+
+		time = $('#nowTime').html(NowTime);
+		
+		return time;
+	}
 
 //	function master_info(total_m_no){
 //		const data = {

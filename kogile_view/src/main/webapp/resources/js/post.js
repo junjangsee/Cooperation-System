@@ -350,47 +350,19 @@
 			for(var i =0; i < res.length; i ++){
 //				todo post list 작성
 				if(res[i].c_position == 1){
-					todo += '<a href="#n" class="detailPostView post ui-state-default" data-status="' + res[i].c_no 
-							+ '" data-toggle="modal" data-target="#detail_post_modal" data-no="'+ res[i].p_no +'">';
-					todo += '<div class="post_item">';
-					todo += '<h4>' + res[i].p_title + '</h4>';
-					todo += '<div class="btn_box">';
-					todo += '<span class="list"></span> <span class="check">' + "0/4" + '</span> <span class="date">'+ res[i].p_dday +'</span>';
-					todo += '</div>';
-					todo += '</div></a>';		
+					todo += renderComponent(res[i])
 				}
 //				doing
 				if(res[i].c_position == 2){
-					doing += '<a href="#n" class="detailPostView post ui-state-default" data-status="' + res[i].c_no 
-							+ '" data-toggle="modal" data-target="#detail_post_modal" data-no="'+ res[i].p_no +'">';
-					doing += '<div class="post_item">';
-					doing += '<h4>' + res[i].p_title + '</h4>';
-					doing += '<div class="btn_box">';
-					doing += '<span class="list"></span> <span class="check">' + "0/4" + '</span> <span class="date">'+ res[i].p_dday +'</span>';
-					doing += '</div>';
-					doing += '</div></a>';		
+					doing += renderComponent(res[i])
 				}
 //				done
 				if(res[i].c_position == 3){
-					done += '<a href="#n" class="detailPostView post ui-state-default" data-status="' + res[i].c_no 
-							+ '" data-toggle="modal" data-target="#detail_post_modal" data-no="'+ res[i].p_no +'">';
-					done += '<div class="post_item">';
-					done += '<h4>' + res[i].p_title + '</h4>';
-					done += '<div class="btn_box">';
-					done += '<span class="list"></span> <span class="check">' + "0/4" + '</span> <span class="date">'+ res[i].p_dday +'</span>';
-					done += '</div>';
-					done += '</div></a>';		
+					done += renderComponent(res[i])		
 				}
 //				close
 				if(res[i].c_position == 4){
-					close += '<a href="#n" class="detailPostView post ui-state-default" data-status="' + res[i].c_no 
-							+ '" data-toggle="modal" data-target="#detail_post_modal" data-no="'+ res[i].p_no +'">';
-					close += '<div class="post_item">';
-					close += '<h4>' + res[i].p_title + '</h4>';
-					close += '<div class="btn_box">';
-					close += '<span class="list"></span> <span class="check">' + "0/4" + '</span> <span class="date">'+ res[i].p_dday +'</span>';
-					close += '</div>';
-					close += '</div></a>';		
+					close += renderComponent(res[i])	
 				}
 			}
 			
@@ -398,19 +370,48 @@
 			$('#doing').html(doing);
 			$('#done').html(done);
 			$('#close').html(close);
-			
-////			철희한테 필요합니다.. 이것은 pno를 찾아줘요
-//			$(document).on("click", ".detailPostView.post.ui-state-default", function(){
-//				var a = $(this).find(".select_pno").val();
-//				$('#detail_post_modal').find('input[name=p_no]').val(a);
-//				console.log(a);
-//			});
-			
+						
 		}).catch(function(err){
 			console.log(err);
 		});
 	}
 	
+	// 리스트 뿌려주기 (템플릿 리터럴을 통해서)
+	function renderComponent(list) {
+		
+		return `
+		<a href="#n" class="detailPostView post ui-state-default" data-status="${list.c_no}" data-toggle="modal"
+		 data-target="#detail_post_modal" data-no="${list.p_no}">
+			<div class="post_item">
+				<h4>${list.p_title}</h4>
+				<div class="btn_box"> 
+					<span class="list"></span> 
+					<span class="check"> 0/4 </span> 
+					<span class="date">${list.p_dday ? list.p_dday : '마감일이 없습니다.'}</span>
+				</div>
+				<span id="listDday" class="tag ${list.p_dday ? 'show' : 'hide'}">
+					${getDday(list.p_dday)}
+				</span>
+			</div>
+		</a>
+		`
+	}
+	
+	// --------------------------------------------------------- start Dday 계산
+	
+	// 디데이 계산
+	function getDday(date) {		
+		var dday = Math.floor((new Date(date).getTime() - new Date()) / (1000 * 60 * 60 * 24));
+		
+		if (dday === -1) {
+			return 'D-day'
+		};
+		
+		return dday > 0 ? `D-${dday}` : `D+${dday + 1}`
+	}
+	
+	// --------------------------------------------------------- End Dday 계산
+
 	//list reply
 	function replyList(id) {
 		
@@ -443,7 +444,6 @@
 	//reply insert
 	function replyAdd(reply) {
 		
-		
 		$.ajax({
 			type : 'post',
 			url : '/kogile/reply/new',
@@ -452,7 +452,6 @@
 			}).then(function(res){
 				console.log(res);
 				reply_list();
-				
 				
 			}).catch(function(e){
 				console.log(e);
@@ -476,6 +475,7 @@
 			}
 		});
 	}
+	
 //	댓글수정
 	function replyUpdate(reply) {
 		reply.r_no= $('div .input_box').find('input[name=r_no]').val();
@@ -492,11 +492,13 @@
 			console.log(e)
 		});
 	}
+	
 //	replylist 파라미터 없이 쓰기위해서 만
 	function reply_list(){
 		var id = $('#detail_post_modal').attr('data-id');
 		replyList(id);
 	}
+	
 //	설명 보기
 	function showDescription() {
 		var id = $('#detail_post_modal').attr('data-id');
@@ -523,6 +525,7 @@
 		});
 		
 	}
+	
 //	설명수정
 	function updateDescription(description) {
 		description.p_no = $('#detail_post_modal').attr('data-id');

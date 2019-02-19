@@ -27,6 +27,7 @@
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
 <link href="/resources/css/main.css" rel="stylesheet">
+<link href="/resources/css/post.css" rel="stylesheet">
 <script type="text/javascript">
 	
 </script>
@@ -54,7 +55,7 @@
 				<!-- DataTables Example -->
 				<div class="card mb-3">
 					<div class="card-header">
-						<i class="fas fa-table"> pjt_name</i>
+						<i class="fas fa-table">pjt_name</i>
 					</div>
 					
 					<div class="card-body" id="body_main">

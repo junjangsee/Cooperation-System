@@ -39,7 +39,7 @@
 	<!-- post date 입력, 삭제, 수정문 -->
 	<update id="updatePostDate">
 		UPDATE post SET
-		p_dday = #{p_dday} WHERE p_no =
+		p_dday = #{p_dday,jdbcType=NULL} WHERE p_no =
 		#{p_no}
 	</update>
 
