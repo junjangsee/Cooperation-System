@@ -60,4 +60,16 @@ public class LabelRestController {
 		return service.updateLabel(label) == 1 ? new ResponseEntity<>("성공", HttpStatus.OK)
 				: new ResponseEntity<>("실패", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	
+	@GetMapping("listLabelInfo/{p_no}")
+	public List<LabelVO> listLabelInfo(@PathVariable int p_no){
+		List<LabelVO> list = service.listLabelInfo(p_no);
+		return list;
+	}
+	
+	@PostMapping("selectLabel")
+	public ResponseEntity<String> selectLabel(@RequestBody LabelVO label){
+		return service.selectLabel(label) == 1 ? new ResponseEntity<>("sucess", HttpStatus.OK)
+				: new ResponseEntity<>("fail", HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }

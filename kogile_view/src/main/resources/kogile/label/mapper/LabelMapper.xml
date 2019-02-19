@@ -30,5 +30,15 @@
   		where label_no = #{label_no}
   	</update>
   	
+  	<insert id="selectLabel" parameterType="kogile.label.domain.LabelVO">
+  		insert into label_info
+  		values (label_info_no_seq.nextval, #{label_no}, #{p_no})
+  	</insert>
+  	
+  	<select id="listLabelInfo" resultType="kogile.label.domain.LabelVO">
+  		select /*+ index_asc(label_info, LABEL_INFO_NO_PK) */ * from label_info
+  		where p_no = #{p_no}
+  	</select>
+  	
   	
   </mapper>

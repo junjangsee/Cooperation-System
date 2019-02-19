@@ -1,3 +1,4 @@
+<%@page import="kogile.user.domain.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -96,6 +97,12 @@ $("#btn-search").on('click', function(e) {
 
 </head>
 <body>
+<%
+	UserVO user = (UserVO)session.getAttribute("user");
+%>
+
+<c:set var="userName"><%=user.getName() %></c:set>
+
 	<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
 		<a class="navbar-brand mr-1" href="/kogile/startPage">Kogile</a>
@@ -154,6 +161,9 @@ $("#btn-search").on('click', function(e) {
 			</a>
 				<div class="dropdown-menu dropdown-menu-right"
 					aria-labelledby="userDropdown">
+					
+					<div class="dropdown-item">반갑습니다.  ${userName}님.</div>
+					<div class="dropdown-divider">님 </div>
 					<a class="dropdown-item" href="/kogile/register">Register</a>
 					<a class="dropdown-item" href="/kogile/login">Login</a>
 					<a class="dropdown-item" href="/kogile/logout">LogOut</a>

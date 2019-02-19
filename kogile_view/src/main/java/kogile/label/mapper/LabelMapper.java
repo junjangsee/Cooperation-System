@@ -11,4 +11,7 @@ public interface LabelMapper {
 	public int deleteLabel(int label_no);
 	public int updateLabel(LabelVO label);
 	
+	//label info 사용
+	public List<LabelVO> listLabelInfo(int p_no);
+	public int selectLabel(LabelVO label);
 }

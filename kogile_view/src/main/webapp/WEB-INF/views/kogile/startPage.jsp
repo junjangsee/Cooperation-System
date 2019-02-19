@@ -9,8 +9,6 @@
 	}
 	/* session.setAttribute("total_m_no", request.getParameter("total_m_no")); */
 	session.setAttribute("total_m_no", 2);
-	
-	UserVO user = (UserVO)session.getAttribute("user");
 %>
 <!DOCTYPE html>
 <html>

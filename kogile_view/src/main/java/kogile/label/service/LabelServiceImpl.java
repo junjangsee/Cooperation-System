@@ -40,6 +40,17 @@ public class LabelServiceImpl implements LabelService {
 	public int updateLabel(LabelVO label) {
 		return mapper.updateLabel(label);
 	}
+
+	@Override
+	public List<LabelVO> listLabelInfo(int p_no) {
+		List<LabelVO> list = mapper.listLabelInfo(p_no);
+		return list;
+	}
+
+	@Override
+	public int selectLabel(LabelVO label) {
+		return mapper.selectLabel(label);
+	}
 	
 
 }

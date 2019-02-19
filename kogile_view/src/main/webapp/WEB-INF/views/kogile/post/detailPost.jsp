@@ -106,7 +106,11 @@
 							<h4>
 								<b>라벨</b>
 							</h4>
-							<br> <br>
+							<ul id="label_info_list" class="label_list2">
+							</ul>
+							<br>
+							<br>
+							
 
 							<h4>
 								<b>체크리스트</b>

@@ -8,4 +8,7 @@ public class LabelVO {
 	private String label_text;
 	private int color_no;
 	private int pjt_no;
+	
+	//label info 테이블 사용 시
+	private int p_no;
 }

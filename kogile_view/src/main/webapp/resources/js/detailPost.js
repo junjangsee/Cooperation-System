@@ -1,6 +1,7 @@
 (function($){
 
 	listLabel();
+	list_LabelInfo();
 	// $('#MY_btn_label').on('click', function(){
 	// return false;
 	// })
@@ -30,16 +31,16 @@
 			txt += `<div class="label_list"><ul>`;
 			for(var i = 0; i < res.length; i++){
 				if(res[i].color_no ==1){
-					txt += `<li><a data-toggle="modal" data-target="#label_modal" href="#" class="card_edit" id="${res[i].label_no}"></a><span class="red">${res[i].label_text}</span></li>`;					
+					txt += `<li><a data-toggle="modal" data-target="#label_modal" href="#" class="card_edit" id="${res[i].label_no}"></a><span class="red btnLabel">${res[i].label_text}</span></li>`;					
 				}
 				if(res[i].color_no ==2){
-					txt += `<li><a data-toggle="modal" data-target="#label_modal" href="#" class="card_edit" id="${res[i].label_no}"></a><span class="orange">${res[i].label_text}</span></li>`;					
+					txt += `<li><a data-toggle="modal" data-target="#label_modal" href="#" class="card_edit" id="${res[i].label_no}"></a><span class="orange btnLabel">${res[i].label_text}</span></li>`;					
 				}
 				if(res[i].color_no ==3){
-					txt += `<li><a data-toggle="modal" data-target="#label_modal" href="#" class="card_edit" id="${res[i].label_no}"></a><span class="yellow">${res[i].label_text}</span></li>`;					
+					txt += `<li><a data-toggle="modal" data-target="#label_modal" href="#" class="card_edit" id="${res[i].label_no}"></a><span class="yellow btnLabel">${res[i].label_text}</span></li>`;					
 				}
 				if(res[i].color_no ==4){
-					txt += `<li><a data-toggle="modal" data-target="#label_modal" href="#" class="card_edit" id="${res[i].label_no}"></a><span class="green">${res[i].label_text}</span></li>`;					
+					txt += `<li><a data-toggle="modal" data-target="#label_modal" href="#" class="card_edit" id="${res[i].label_no}"></a><span class="green btnLabel">${res[i].label_text}</span></li>`;					
 				}
 			}
 			txt += `</ul></div>`;
@@ -69,7 +70,7 @@
 		}).then(function(res){
 			listLabel();
 		}).catch(function(e){
-			alert("이미 존재하는 라벨입니다.");
+			alert("라벨 생성 오류 발생");
 		})
 	})
 	
@@ -249,5 +250,76 @@
 				})
 			}
 //			label 수정-----------
+			
+//			-------------lable 선택
+			$(document).on('click', '.btnLabel' ,function(){
+				var label_no = $(this).prev().attr("id");
+				var p_no = $("input[name=p_no]").val();
+				const data = {
+						label_no : label_no,
+						p_no : p_no
+				}
+				selectLabel(data);
+			})
+			
+			function selectLabel(data){
+				$.ajax({
+					data : JSON.stringify(data),
+					type : "POST",
+					dataType : "JSON",
+					url : "/kogile/label/selectLabel",
+					contentType : "application/json; charset=UTF-8"
+				}).then(function(res){
+					console.log(res);
+					list_LabelInfo();
+				})
+				
+			}
+//			label 선택----------------
+			
+//			------------------선택한 라벨 조회
+			function list_LabelInfo(){
+				var p_no = $("input[name=p_no]").val();
+				$.ajax({
+					type : "GET",
+					dataType : "JSON",
+					url : `/kogile/label/listLabelInfo/${p_no}`
+				}).then(function(res){
+//					console.log(res);
+					$.each(res, function(i, item){
+						LabelInfo(item.label_no);	
+					})
+				}).catch(function(e){
+					console.log(e);
+				});
+			}
+			
+			function LabelInfo(label_no){
+				$.ajax({
+					type : "GET",
+					dataType : "JSON",
+					url : `/kogile/label/detail/${label_no}`
+				}).then(function(res){
+//					console.log(res);
+					var txt = ``;
+					if(res.color_no == 1){
+						txt += `<li><span class="red cancelLabel">${res.label_text}</span></li>`;
+					}else if(res.color_no == 2) {
+						txt += `<li><span class="orange cancelLabel">${res.label_text}</span></li>`;
+					}else if(res.color_no == 3) {
+						txt += `<li><span class="yellow cancelLabel">${res.label_text}</span></li>`;
+					}else if(res.color_no == 4) {
+						txt += `<li><span class="green cancelLabel">${res.label_text}</span></li>`;
+					}
+					$('#label_info_list').append(txt);
+					
+					
+				}).catch(function(e){
+					console.log(e);
+				});
+			}
+//			선택한 라벨 조회------------------
+
 	
+			
 })(jQuery)
