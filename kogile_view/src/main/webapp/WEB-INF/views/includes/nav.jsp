@@ -95,6 +95,7 @@ $("#btn-search").on('click', function(e) {
 </script> -->
 
 
+
 </head>
 <body>
 <%
@@ -128,19 +129,20 @@ $("#btn-search").on('click', function(e) {
 		<!-- Navbar -->
 		
 		<ul class="navbar-nav ml-auto ml-md-0">
-			<li class="nav-item dropdown no-arrow mx-1"><a
-				class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
+			<li class="nav-item dropdown no-arrow mx-1">
+			<a	class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> <i class="fas fa-bell fa-fw"></i> <!-- 알림 -->
+				aria-expanded="false" > 
+				<i class="fas fa-bell fa-fw"></i> <!-- 알림 -->
 					<!-- <span class="badge badge-danger">9+</span> -->
 			</a>
-				<div class="dropdown-menu dropdown-menu-right"
-					aria-labelledby="alertsDropdown">
-					<p class="dropdown-item notice_list" href="#">action</p>
+				 <div class="dropdown-menu dropdown-menu-right"
+					aria-labelledby="alertsDropdown" id="notice3">
+					<!-- <p class="dropdown-item notice_list" href="#">action</p>
 					<a class="dropdown-item" href="#">Another action</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">Something else here</a>
-				</div></li>
+					<a class="dropdown-item" href="#">Something else here</a> -->
+				</div> </li>
 			<li class="nav-item dropdown no-arrow mx-1"><a
 				class="nav-link dropdown-toggle" href="#" id="messagesDropdown"
 				role="button" data-toggle="dropdown" aria-haspopup="true"

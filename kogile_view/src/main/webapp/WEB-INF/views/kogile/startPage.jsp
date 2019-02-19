@@ -8,7 +8,7 @@
 		session.removeAttribute("total_m_no");
 	}
 	/* session.setAttribute("total_m_no", request.getParameter("total_m_no")); */
-	session.setAttribute("total_m_no", 2);
+	session.setAttribute("total_m_no", 1);
 %>
 <!DOCTYPE html>
 <html>

@@ -13,4 +13,6 @@ public interface InviteMapper {
 	public List<SearchListVO> searchList(SearchVO search);
 	
 	public List<InviteVO> invite(int pjt_no);
+	
+	public int insertInvite(InviteVO invite);
 }

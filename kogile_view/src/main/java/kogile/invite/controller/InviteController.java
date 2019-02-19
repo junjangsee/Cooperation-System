@@ -2,6 +2,8 @@ package kogile.invite.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +32,7 @@ import lombok.extern.log4j.Log4j;
 public class InviteController {
 	
 	private InviteService service;
+	private HttpSession session;
 	
 /*	@GetMapping("/searchList")
 	public void searchList(Model model, @RequestParam(value="search", required=false, defaultValue="0")String search2){
@@ -43,15 +46,15 @@ public class InviteController {
 		
 	}*/
 	
-	//searchList ÇÏ³ªÀÇ °´Ã¼ json
-/*	@GetMapping(value = "/searchList2", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE}) //*** ***:json ÀÛ¾÷ Áß
+	//searchList ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ json
+/*	@GetMapping(value = "/searchList2", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE}) //*** ***:json ï¿½Û¾ï¿½ ï¿½ï¿½
 	public SearchListVO searchList2(){
 		
-		return new SearchListVO(2, "½ºÅ¸", "·Îµå");
+		return new SearchListVO(2, "ï¿½ï¿½Å¸", "ï¿½Îµï¿½");
 	}
 	
-	//searchList ¸®½ºÆ® °´Ã¼ json
-	@GetMapping(value = "/searchList3") //*** ***:json ÀÛ¾÷ Áß
+	//searchList ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½Ã¼ json
+	@GetMapping(value = "/searchList3") //*** ***:json ï¿½Û¾ï¿½ ï¿½ï¿½
 	public List<SearchListVO> searchList3(){
 		
 		return IntStream.range(1, 10).mapToObj(i -> new SearchListVO(i, i + "First", i + " Last")).collect(Collectors.toList());
@@ -69,13 +72,29 @@ public class InviteController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 
-	@GetMapping(value="/inviteList/{invite}",
-			produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
-	public ResponseEntity<List<InviteVO>> invite(@PathVariable("invite") int invite){
+	@GetMapping(value="/inviteList")	//iniviteï¿½ï¿½ jsï¿½ï¿½ï¿½ï¿½ param.inviteï¿½ï¿½ ï¿½Ñ±ï¿½ ï¿½ï¿½
+	public ResponseEntity<List<InviteVO>> invite(){
+		int pjt_no = (int)session.getAttribute("pjt_no");
+		System.out.println("pjt_no : " + pjt_no);
 		
-		List<InviteVO> list = service.invite(invite);
+		List<InviteVO> list = service.invite(pjt_no);
 		
 		return new ResponseEntity<>(list, HttpStatus.OK);
+	}
+	
+	@PostMapping(value="/new", 
+			consumes="application/json",
+			produces={MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> insertInvite(@RequestBody InviteVO invite){
+		
+		invite.setPjt_no((int)session.getAttribute("pjt_no"));
+//		invite.setTotal_m_no((int)session.getAttribute("total_m_no"));
+		
+		int insertCount=service.insertInvite(invite);
+		System.out.println("insertCount : " + insertCount);
+		
+		return insertCount==1? new ResponseEntity<>("success", HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	
