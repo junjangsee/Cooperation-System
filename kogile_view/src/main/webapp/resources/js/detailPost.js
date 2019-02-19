@@ -28,7 +28,7 @@
 			dataType : "JSON",
 			url : "/kogile/label/list"
 		}).then(function(res){
-			txt += `<div class="label_list"><ul>`;
+			txt += `<div class="label_list"><ul style="padding-left : 10px;">`;
 			for(var i = 0; i < res.length; i++){
 				if(res[i].color_no ==1){
 					txt += `<li><a data-toggle="modal" data-target="#label_modal" href="#" class="card_edit" id="${res[i].label_no}"></a><span class="red btnLabel">${res[i].label_text}</span></li>`;					
