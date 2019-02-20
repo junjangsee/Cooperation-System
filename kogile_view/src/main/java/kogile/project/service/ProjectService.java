@@ -15,5 +15,7 @@ public interface ProjectService {
 	public void modify(ProjectVO project);
 	public UserVO master_info(int total_m_no);
 	public void delete(int pjt_no);
+	
+	public void insertProjectLabel(int pjt_no);
 
 }

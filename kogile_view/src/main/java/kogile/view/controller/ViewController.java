@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -13,7 +14,7 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @RequestMapping("/kogile/*")
-@SessionAttributes("pjt_no")
+@SessionAttributes({"pjt_no", "user", "total_m_no"})
 @Log4j
 public class ViewController {
 	
@@ -28,14 +29,14 @@ public class ViewController {
 	};
 	
 	@RequestMapping("/startPage")
-	public void start() {
-		
+	public void start(@ModelAttribute("user") UserVO user, Model model) {
+		System.out.println(user.getTotal_m_no());
+		model.addAttribute("total_m_no", user.getTotal_m_no());
 	}
 	
 	
 	@GetMapping("/main")
 	public String main(int pjt_no, Model model) {
-		System.out.println(pjt_no);
 		if(pjt_no != 0) {
 			model.addAttribute("pjt_no", pjt_no);
 		}else {

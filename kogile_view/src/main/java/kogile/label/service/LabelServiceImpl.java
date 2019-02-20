@@ -3,6 +3,7 @@ package kogile.label.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kogile.label.domain.LabelVO;
 import kogile.label.mapper.LabelMapper;
@@ -57,6 +58,7 @@ public class LabelServiceImpl implements LabelService {
 		
 		return mapper.cancelLabel(label_info);
 	}
+	
 	
 
 }

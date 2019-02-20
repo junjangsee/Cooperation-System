@@ -3,13 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%
-	if(session.getAttribute("total_m_no") != null){
-		session.removeAttribute("total_m_no");
-	}
-	/* session.setAttribute("total_m_no", request.getParameter("total_m_no")); */
-	session.setAttribute("total_m_no", 2);
-%>
+
 <!DOCTYPE html>
 <html>
 <head>

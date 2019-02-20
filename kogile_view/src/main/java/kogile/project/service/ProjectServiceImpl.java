@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import kogile.invite.domain.InviteVO;
+import kogile.label.domain.LabelVO;
+import kogile.label.mapper.LabelMapper;
 import kogile.project.domain.DragVO;
 import kogile.project.domain.Prj_infoVO;
 import kogile.project.domain.ProjectVO;
@@ -19,6 +21,7 @@ import lombok.AllArgsConstructor;
 public class ProjectServiceImpl implements ProjectService {
 	
 	private ProjectMapper mapper;
+	private LabelMapper	labelMapper;
 
 	@Override
 	public List<ProjectVO> list(int total_m_no) {
@@ -40,6 +43,9 @@ public class ProjectServiceImpl implements ProjectService {
 		Prj_infoVO prj_info = new Prj_infoVO();
 		prj_info.setInvite_no(invite.getInvite_no());
 		mapper.insert_prjinfo(prj_info);
+		
+		insertProjectLabel(project.getPjt_no());
+		
 	}
 
 	@Override
@@ -70,9 +76,20 @@ public class ProjectServiceImpl implements ProjectService {
 	public void delete(int pjt_no) {
 		mapper.delete(pjt_no);
 	}
-
 	
-	
+	@Transactional(rollbackFor= {Exception.class})
+	@Override
+	public void insertProjectLabel(int pjt_no) {
+		LabelVO label1 = new LabelVO("빨강", 1, pjt_no);
+		LabelVO label2 = new LabelVO("주황", 2, pjt_no);
+		LabelVO label3 = new LabelVO("노랑", 3, pjt_no);
+		LabelVO label4 = new LabelVO("초록", 4, pjt_no);
+		
+		labelMapper.insertLabel(label1);
+		labelMapper.insertLabel(label2);
+		labelMapper.insertLabel(label3);
+		labelMapper.insertLabel(label4);		
+	}
 	
 
 }
