@@ -465,14 +465,18 @@
 	// --------------------------------------------------------- start Dday 계산
 	
 	// 디데이 계산
-	function getDday(date) {		
-		var dday = Math.floor((new Date(date).getTime() - new Date()) / (1000 * 60 * 60 * 24));
+	function getDday(date) {
+		var now = new Date();
+		var today = moment(now).format("YYYY-MM-DD");
 		
-		if (dday === -1) {
+		var dday = Math.floor((new Date(date).getTime() - new Date(today).getTime()) / (1000 * 60 * 60 * 24));
+		console.log(dday);
+		
+		if (dday === 0) {
 			return 'D-day'
 		};
 		
-		return dday > 0 ? `D-${dday}` : `D+${(dday + 1) * -1}`
+		return dday > 0 ? `D-${dday}` : `D+${(dday * -1)}`;
 	}
 	
 	// --------------------------------------------------------- End Dday 계산

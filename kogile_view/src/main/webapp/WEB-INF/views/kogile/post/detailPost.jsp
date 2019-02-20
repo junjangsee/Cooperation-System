@@ -28,7 +28,7 @@
 
 <!-- Date PlugIn -->
 
-<title>Login</title>
+<title>포스트 상세보기</title>
 </head>
 <body id="page-top">
 	<!-- include zone -->
@@ -53,7 +53,7 @@
 				<!-- DataTables Example -->
 				<div class="card mb-3">
 					<div class="card-header">
-						<i class="fas fa-table"></i> <span id="title_header">${post.p_title}</span>
+						<i class="fas fa-table"></i> <span id="title_header">포스트 상세정보</span>
 					</div>
 
 					<div class="card-body">

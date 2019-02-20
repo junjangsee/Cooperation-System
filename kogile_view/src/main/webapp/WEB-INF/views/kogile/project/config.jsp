@@ -17,7 +17,7 @@
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
 <link href="/resources/css/main.css" rel="stylesheet">
-<title>Login</title>
+<title>프로젝트 상세보기</title>
 </head>
 <body id="page-top">
 
@@ -35,7 +35,7 @@
 				<!-- DataTables Example -->
 				<div class="card mb-3">
 					<div class="card-header">
-						<i class="fas fa-table"></i> Data Table Example
+						<i class="fas fa-table"></i> 프로젝트 정보
 					</div>
 
 					<div class="card-body">

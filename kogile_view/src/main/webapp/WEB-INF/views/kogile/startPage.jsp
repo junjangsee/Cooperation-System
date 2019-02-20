@@ -3,13 +3,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%
-	if(session.getAttribute("total_m_no") != null){
-		session.removeAttribute("total_m_no");
-	}
-	/* session.setAttribute("total_m_no", request.getParameter("total_m_no")); */
-	session.setAttribute("total_m_no", 1);
-%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,13 +23,14 @@
 <title>startPage</title>
 </head>
 <body id="page-top">
-	<!-- hidden param -->
-	<input id="rw" type="hidden" value="${total_m_no}" name="total_m_no">
-	
 	<!-- include -->
 	<%@ include file="../includes/nav.jsp"%>
 	<%@ include file="../includes/insert_Project_modal.jsp" %>
 	<!-- include end -->
+	
+	<!-- hidden param -->
+	<c:set var="userNo"><%= user.getTotal_m_no() %></c:set>
+	<input id="rw" type="hidden" value="${userNo}" name="total_m_no">
 	
 	<div id="wrapper">
 

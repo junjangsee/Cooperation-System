@@ -58,5 +58,6 @@ public class LabelServiceImpl implements LabelService {
 		return mapper.cancelLabel(label_info);
 	}
 	
+	
 
 }
