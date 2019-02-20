@@ -12,7 +12,7 @@ var userService = (function() {
 	var url = {
 		"login" : "/login/internal/login",
 		"register" : "/login/internal/register",
-		"logout" : "/login/internal/logout"
+		"logout" : "/kogile/logOut"
 	};
 
 	//login. Map으로 login정보를 전달합니다.
@@ -54,11 +54,10 @@ var userService = (function() {
 	}
 	
 	//logout
-	function sendchat(sessionData, callback, error) {
+	function logout(callback, error) {
 		$.ajax({
-			type : 'post',
-			url : url.sendchat,
-			data : JSON.stringify(chat),
+			type : 'get',
+			url : url.logout,
 			contentType : "application/json; charset=utf-8",
 			success : function(result, status, xhr){
 				if(callback){
@@ -74,6 +73,6 @@ var userService = (function() {
 	return {
 		"login" : login,
 		"register" : register,
-		"sendchat" : sendchat
+		"logout" : logout
 	};
 })();
