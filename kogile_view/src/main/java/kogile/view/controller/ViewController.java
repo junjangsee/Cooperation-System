@@ -37,9 +37,9 @@ public class ViewController {
 	
 	
 	@GetMapping("/main")
-	public String main(int pjt_no, Model model) {
-		if(pjt_no != 0) {
-			model.addAttribute("pjt_no", pjt_no);
+	public String main(String pjt_no, Model model) {
+		if(pjt_no != null) {
+			model.addAttribute("pjt_no", Integer.parseInt(pjt_no));
 		}else {
 			return "redirect: /kogile/startPage";
 		}
