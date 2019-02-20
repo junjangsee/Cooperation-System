@@ -402,7 +402,7 @@
 			
 			$('#detail_description').on('focusout', function(){
 				var id = $('#p_no').val();
-				update_description($(this).val(), id);
+				update_description($(this).val().replace(/(?:\r\n|\r|\n)/g, '<br/>'), id);
 			})
 			
 			$('#detail_description').on('keyup', function(e){

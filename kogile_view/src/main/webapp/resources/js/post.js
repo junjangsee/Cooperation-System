@@ -595,6 +595,7 @@
 				txt +='<p>';
 				txt +=res.p_description;
 				txt +='</p>';
+				
 				var txt2='';
 				txt2 +='<p>';
 				txt2 +='포스트설명...';
