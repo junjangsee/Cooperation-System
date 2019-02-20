@@ -30,6 +30,8 @@
 
 <!-- datepicker -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<!-- summernote  -->
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.css" rel="stylesheet">
 <style>
 #updateTitle {
 	display: none;
@@ -199,7 +201,7 @@
 	
 	<script src="/resources/js/main.js"></script>
 	<script src="/resources/js/post.js"></script>
-	
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.js"></script>
 	<!-- <script src="/resources/js/reply.js"></script> -->
 	<!-- <script src="/resources/js/description.js"></script> -->
 	

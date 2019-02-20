@@ -23,7 +23,9 @@
 //		delete_post(id);
 //	});
 //	
-
+	
+	//$('#description_modify').summernote();
+	
 	$('#modifyPost').on('click', function(){
 		var id = $('#detail_post_modal').attr('data-id');
 		$(this).attr("href", `post/detailPost/${id}`);
@@ -35,7 +37,7 @@
 		var id = $('#detail_post_modal').attr('data-id');
 		var taged_name = $('#tag_name').val();
 		var reply= {
-				"r_contents":$("#insert_reply").val(),
+				"r_contents":$("#insert_reply").val().replace(/(?:\r\n|\r|\n)/g, '<br/>'),
 				"p_no": id,
 				"taged_name" : taged_name
 		};
@@ -66,8 +68,9 @@
 		console.log(r_no);
 		var txt = $(this).parents('div .input_box').find('.cts span').html();
 		console.log(txt);
+		txt=txt.replace(/<br>/g, '\n')
 		var reply= {
-				"r_contents":$("#insert_reply").val()
+				"r_contents":$("#insert_reply").val().replace(/(?:\r\n|\r|\n)/g, '<br/>')
 		};
 		
 		$('#insert_reply').val(txt);
@@ -79,7 +82,7 @@
 	$('#reply_modify').on('click', function(){
 		
 		var reply= {
-				"r_contents" : $("#insert_reply").val(),
+				"r_contents" : $("#insert_reply").val().replace(/(?:\r\n|\r|\n)/g, '<br/>'),
 				"r_no" : $('div .input_box').find('input[name=r_no]').val()
 		};
 		replyUpdate(reply);
@@ -93,6 +96,7 @@
 //	설명내용 클릭시, 텍스트
 	$('#clickDes').on("click",function(){
 		var txt = $(this).find('p').html();
+		txt = txt.replace(/<br>/g, '\n');
 		$('#description').find('p').hide();
 		$('#description_modify').show();
 		$('#description_modify').val(txt);
@@ -101,7 +105,7 @@
 	
 	//설명수정
 	$('#description_modify').on("focusout", function(){
-		var description={"p_description":$('#description_modify').val()}
+		var description={"p_description":$('#description_modify').val().replace(/(?:\r\n|\r|\n)/g, '<br/>')}
 		updateDescription(description);
 	})
 
