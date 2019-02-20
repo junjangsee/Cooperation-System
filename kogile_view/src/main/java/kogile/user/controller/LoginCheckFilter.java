@@ -21,14 +21,11 @@ public class LoginCheckFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		System.out.println("filter....");
 		HttpSession session = ((HttpServletRequest)request).getSession();
         Enumeration keys = (Enumeration) session.getAttributeNames();
 
@@ -51,7 +48,6 @@ public class LoginCheckFilter implements Filter {
 
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
 
 	}
 
