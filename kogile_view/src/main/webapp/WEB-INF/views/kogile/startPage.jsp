@@ -28,13 +28,14 @@
 <title>startPage</title>
 </head>
 <body id="page-top">
-	<!-- hidden param -->
-	<input id="rw" type="hidden" value="${total_m_no}" name="total_m_no">
-	
 	<!-- include -->
 	<%@ include file="../includes/nav.jsp"%>
 	<%@ include file="../includes/insert_Project_modal.jsp" %>
 	<!-- include end -->
+	
+	<!-- hidden param -->
+	<c:set var="userNo"><%= user.getTotal_m_no() %></c:set>
+	<input id="rw" type="hidden" value="${userNo}" name="total_m_no">
 	
 	<div id="wrapper">
 

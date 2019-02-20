@@ -1,24 +1,22 @@
 package kogile.view.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import kogile.user.domain.UserVO;
 import lombok.extern.log4j.Log4j;
 
 @Controller
 @RequestMapping("/kogile/*")
+@SessionAttributes("pjt_no")
 @Log4j
 public class ViewController {
 	
-	private HttpSession session;
 	
 	@GetMapping("/login")
 	public void login() {
@@ -34,9 +32,16 @@ public class ViewController {
 		
 	}
 	
+	
 	@GetMapping("/main")
-	public void main() {
-
+	public String main(int pjt_no, Model model) {
+		System.out.println(pjt_no);
+		if(pjt_no != 0) {
+			model.addAttribute("pjt_no", pjt_no);
+		}else {
+			return "redirect: /kogile/startPage";
+		}
+		return "/kogile/main";
 	}
 	
 	@GetMapping("/main_configure")
