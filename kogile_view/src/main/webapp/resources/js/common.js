@@ -53,16 +53,23 @@
 		searchListService.searchList({search:searchValue}, function(list){
 			console.log(list);
 			
-			
-			var value = "";
+			var value = [];
 			
 			for(var i = 0; i<list.length; i++){
-				value += "<p><input class='btn btn-default' type='button' value='" +  list[i].no + " " + list[i].name + " " + list[i].mail 
-				+ "' id='searchList' data-userNo='/></p>";
-				console.log(value);
+				/*value += `<p><input class="btn btn-default" type="button" value="${list[i].no}" id="searchNo" data-content="${list[i].no}"/>`;
+				value += `<input class="btn btn-default" type="button" value="${list[i].name}" id="searchName" data-content="${list[i].no}"/>`;
+				value += `<input class="btn btn-default" type="button" value="${list[i].mail}" id="searchMail" data-content="${list[i].no}"/></p>`;*/
+
+				value[i] = `<p ><input class="btn btn-default" type="button" value="${list[i].no} ${list[i].name} ${list[i].mail}" 
+				 name="searchList" id="searchList" data-content="${list[i].no }" /></p>`;
+				//"<input type='hidden' data-userNo='" + list[i].no + "/>"
+				
+				
+				console.log("value[" + i +"]값 : " + value[i]);
 				
 			}
 			value2 = "검색결과 창을 닫으시려면 돋보기아이콘을 한번 더 클릭해주세요.";
+			//value3 = `<input id="rw3" type="hidden" value="${pjt_no}" name="pjt_no2">`;
 			//value2 글자 크기 조절하기	
 			value = value + value2;
 			
@@ -71,9 +78,9 @@
 		
 	});
 	
-	$(document).on("click", '#searchList', function(){
+	/*$(document).on("click", '#searchList', function(){
 		yesNo();
-	});
+	});*/
 	
 	$('#btn-search').popover({
 		html : true,
@@ -160,6 +167,28 @@
 
 		var inviteService = (function() {
 	
+			//초대 리스트 추가 관려 js ***
+			function add(invite, callback, error){
+				console.log("add invite.......");
+				
+				$.ajax({
+					type : 'post',
+					url : '/invite/new',
+					data : JSON.stringify(invite),
+					contentType : "application/json; charset=uft-8",
+					success : function(result, status, xhr){
+						if(callback){
+							callback(result);
+						}
+					},
+					error : function(xhr, status, er) {
+						if (error) {
+							error(er);
+							
+						}
+					}
+					})
+			}
 			//초대 목록 관련 js
 			function invite(param, callback, error) {
 
@@ -178,11 +207,32 @@
 				});
 			}
 			return {
+				add : add,
 				invite : invite
 			};
 		})();
+		
+	
+	$(document).on("click", "#searchList", function(){
+		console.log("===========");
+		console.log("ADD TEST");
+		//초대 리스트 추가 일부 ***
+		
+		var pjtValue = $('#rw2').attr('value');
+		var totValue = $(this).attr('data-content');
+		//var totValue = 2;
+		console.log("pjtValue : " + pjtValue);
+		console.log("totValue : " + totValue);
+		
+		inviteService.add(
+				{pjt_no:pjtValue, total_m_no:totValue}
+				,
+				function(result){
+					alert("초대되었습니다.");
+				});
 			
-			
+		});
+		
 		$(document).ready(function(){
 			//var noticeValue = ;
 			

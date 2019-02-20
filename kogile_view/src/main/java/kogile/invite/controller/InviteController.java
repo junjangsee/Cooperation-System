@@ -87,11 +87,11 @@ public class InviteController {
 			produces={MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> insertInvite(@RequestBody InviteVO invite){
 		
-		invite.setPjt_no((int)session.getAttribute("pjt_no"));
-//		invite.setTotal_m_no((int)session.getAttribute("total_m_no"));
+		log.info("InviteVO: " + invite);
 		
-		int insertCount=service.insertInvite(invite);
-		System.out.println("insertCount : " + insertCount);
+		int insertCount = service.insertInvite(invite);
+		
+		log.info("Invite INSERT COUNT: " + insertCount);
 		
 		return insertCount==1? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

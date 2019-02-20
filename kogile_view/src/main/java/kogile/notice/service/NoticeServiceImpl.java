@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import kogile.invite.domain.InviteVO;
+import kogile.invite.mapper.InviteMapper;
+import kogile.invite.service.InviteServiceImpl;
 import kogile.notice.domain.NoticeVO;
 import kogile.notice.mapper.NoticeMapper;
 import lombok.AllArgsConstructor;
@@ -18,7 +21,7 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	@Override
 	public List<NoticeVO> notice(int total_m_no) {
-		log.info("notice..........");
+		log.info("noticeList...............");
 		return mapper.notice(total_m_no);
 	}
 
