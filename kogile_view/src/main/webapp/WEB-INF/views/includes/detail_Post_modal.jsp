@@ -41,7 +41,7 @@
 					<div class="right_list" style="width: 220px; height: 250px; margin-left: 45px;">
 						<div class="addcard_holder holder">
 							<h2 class="title_c"><b>마감일</b></h2>
-							<br>
+							<div id="end_date"></div><br>
 							<h2 class="title_c"><b>라벨</b></h2>
 							<ul class="label_list" style="padding-left: 2px;">
 							</ul>							
@@ -138,5 +138,4 @@
 
 
 </body>
-
 </html>

@@ -14,7 +14,7 @@ public class PostVO {
 	private int c_no;
 	private String p_description;
 	
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date p_dday;
 
 }

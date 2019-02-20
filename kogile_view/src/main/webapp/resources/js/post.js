@@ -221,6 +221,7 @@
 	$('.item_content').on('click', function(e){
 		var id = $(e.target).closest('a').data('no');
 		post_title(id);
+		post_date(id);
 	});
 	
 	// 포스트 제목 상세보기
@@ -240,6 +241,23 @@
 			writer_info();
 			list_LabelInfo();
 		});
+	}
+	
+	
+	// 마감일 상세보기
+	function post_date(id) {
+		
+		$.ajax({
+			type : "GET",
+			dataType : "JSON",
+			url : `/kogile/post/detail/${id}`
+		}).then(function(res){
+			console.log("here");
+			console.log(res);
+			$('#end_date').text(res.p_dday);
+		}).catch(function(err){
+			console.error(err);
+		})
 	}
 	
 	// ------------------------------------------------ End Post 제목 상세보기
@@ -330,6 +348,43 @@
 	
 	// ------------------------------------------------------------- end post 제목 수정
 	
+	
+	$('input[name=end_date]').on('focusout', function(){
+		var id = $('#detail_post_modal').attr('data-id');
+		update_Modal_Date($(this).val(), id);
+	});
+	
+	$('#end_date').on('keyup', function(e){
+		var id = $('#detail_post_modal').attr('data-id');
+		alert(id);
+		if(e.keyCode === 13){
+//			update_Modal_Date($(this).val(), id);
+		} else {
+			// Nothing
+		}
+	})
+	
+	function update_Modal_Date(endDay, id) {
+		console.log(JSON.stringify({
+			p_dday: endDay,
+			p_no : parseInt(id, 10)
+		}));
+		
+		$.ajax({
+			type : "POST",
+			url : "/kogile/post/updatePostDate",
+			data : JSON.stringify({
+				p_dday: endDay,
+				p_no : parseInt(id, 10)
+			}),
+			contentType : "application/json; charset=UTF-8"
+		}).then(function(res){
+			$('#end_date').text(endDay);
+		}).catch(function(err){
+			console.error(err);
+		})
+	}
+	
 
 	function post_description() {
 		
@@ -417,7 +472,7 @@
 			return 'D-day'
 		};
 		
-		return dday > 0 ? `D-${dday}` : `D+${dday + 1}`
+		return dday > 0 ? `D-${dday}` : `D+${(dday + 1) * -1}`
 	}
 	
 	// --------------------------------------------------------- End Dday 계산

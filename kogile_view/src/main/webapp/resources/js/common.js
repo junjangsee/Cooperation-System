@@ -218,13 +218,13 @@
 		})
 		
 		// 현재 시간 구하기
-	function nowDate() {
+		function nowDate() {
 		
 		var Now = new Date();
 
 		var NowTime = Now.getFullYear();
 
-		NowTime += '-' + Now.getMonth() + 1 ;
+		NowTime += '-' + (Now.getMonth() + 1);
 
 		NowTime += '-' + Now.getDate();
 
@@ -232,7 +232,6 @@
 		
 		return time;
 	}
-
 	
 })(jQuery);
 
