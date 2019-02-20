@@ -1,5 +1,6 @@
 package kogile.user.controller;
 
+import java.io.IOException;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,12 +34,14 @@ public class UserController {
 	public void interMemLogin(@RequestBody Map<String, String> userInfo, HttpServletRequest request, HttpServletResponse response){
 		System.out.println("login...");
 		service.interMemLogin(userInfo, request, response);
+		
 	}
 	
-	@PostMapping("/logOut")
-	public void interMemLogout(HttpServletRequest request) {
+	@GetMapping("/logout")
+	public void interMemLogout(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		System.out.println("logout...");
 		HttpSession session = request.getSession();
 		session.invalidate();
+		response.sendRedirect("/kogile/login");
 	}
 }

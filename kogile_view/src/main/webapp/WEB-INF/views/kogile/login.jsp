@@ -18,8 +18,8 @@
 </head>
 <body class="bg-dark">
 	<div class="card card-login mx-auto mt-5">
-		<div class="card-header">Login</div>
 		<div class="card-body">
+		<legend>Log in to Kogile</legend><br>
 			<form>
 				<div class="form-group">
 					<div class="form-label-group">
@@ -36,21 +36,13 @@
 							for="inputPassword">Password</label>
 					</div>
 				</div>
-				<div class="form-group">
-					<div class="checkbox">
-						<label> <input type="checkbox" value="remember-me">
-							Remember Password
-						</label>
-					</div>
-				</div>
 				<a class="btn btn-primary btn-block" href="#" id="loginIntermem">Login</a><br>
-				<a class="btn btn-primary btn-block"
-					href="/login/external/loginKogileWithKakao">카카오톡으로 로그인</a>
+				<a class="btn btn-warning btn-block"
+					href="/login/external/loginKogileWithKakao">Login With Kakao</a>
 			</form>
 			<div class="text-center">
 				<a class="d-block small mt-3" href="register.html">Register an
-					Account</a> <a class="d-block small" href="forgot-password.html">Forgot
-					Password?</a>
+					Account</a>
 			</div>
 		</div>
 	</div>

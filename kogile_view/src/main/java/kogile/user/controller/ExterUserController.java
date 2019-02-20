@@ -176,7 +176,7 @@ public class ExterUserController {
 		session = request.getSession();
 		session.invalidate();// kogile에서 로그아웃.
 
-		return "redirect:/kogile/startPage";
+		return "redirect:/kogile/login";
 	}
 	
 	// public String withdrawalKogileWithKakao(HttpServletRequest request) {

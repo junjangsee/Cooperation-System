@@ -8,15 +8,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
 <!-- <script src="/resources/vendor/jquery/jquery.min.js"></script> -->
 <!-- <script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script> -->
 <!-- <script src="/resources/js/main.js"></script> -->
 
 <!-- 김근열 js소스  -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-	<!-- <script src="/resources/js/common.js"></script>	 -->
-	<!-- <script type="text/javascript">
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<!-- <script src="/resources/js/common.js"></script>	 -->
+<!-- <script type="text/javascript">
 console.log("========");
 console.log("js test");
 function yesNo(){
@@ -93,16 +94,14 @@ $("#btn-search").on('click', function(e) {
 
 
 </script> -->
-
-
-
 </head>
 <body>
-<%
-	UserVO user = (UserVO)session.getAttribute("user");
-%>
 
-<c:set var="userName"><%=user.getName() %></c:set>
+	<%
+		UserVO user = (UserVO) session.getAttribute("user");
+	%>
+
+	<c:set var="userName"><%=user.getName()%></c:set>
 
 	<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
@@ -112,13 +111,16 @@ $("#btn-search").on('click', function(e) {
 			id="sidebarToggle" href="#">
 			<i class="fas fa-bars"></i>
 		</button>
-		
+
 		<!-- Navbar Search -->
-		<form method='get'  id="search_form" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+		<form method='get' id="search_form"
+			class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
 			<div class="input-group">
-				<input type="text" class="form-control" name="search" placeholder="Search for..." value=""/>
+				<input type="text" class="form-control" name="search"
+					placeholder="Search for..." value="" />
 				<div class="input-group-append">
-					<button type="button" class="btn btn-primary" id="btn-search"data-toggle="popover"  >
+					<button type="button" class="btn btn-primary" id="btn-search"
+						data-toggle="popover">
 						<i class="fas fa-search"></i>
 					</button>
 				</div>
@@ -127,22 +129,21 @@ $("#btn-search").on('click', function(e) {
 		<!-- 채팅창 띄우기. -->
 		<!-- <script src="/resources/js/chat.js"></script> -->
 		<!-- Navbar -->
-		
+
 		<ul class="navbar-nav ml-auto ml-md-0">
-			<li class="nav-item dropdown no-arrow mx-1">
-			<a	class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
+			<li class="nav-item dropdown no-arrow mx-1"><a
+				class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false" > 
-				<i class="fas fa-bell fa-fw"></i> <!-- 알림 -->
+				aria-expanded="false"> <i class="fas fa-bell fa-fw"></i> <!-- 알림 -->
 					<!-- <span class="badge badge-danger">9+</span> -->
 			</a>
-				 <div class="dropdown-menu dropdown-menu-right"
+				<div class="dropdown-menu dropdown-menu-right"
 					aria-labelledby="alertsDropdown" id="notice3">
 					<!-- <p class="dropdown-item notice_list" href="#">action</p>
 					<a class="dropdown-item" href="#">Another action</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="#">Something else here</a> -->
-				</div> </li>
+				</div></li>
 			<li class="nav-item dropdown no-arrow mx-1"><a
 				class="nav-link dropdown-toggle" href="#" id="messagesDropdown"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -163,16 +164,21 @@ $("#btn-search").on('click', function(e) {
 			</a>
 				<div class="dropdown-menu dropdown-menu-right"
 					aria-labelledby="userDropdown">
-					
-					<div class="dropdown-item">반갑습니다.  ${userName}님.</div>
-					<div class="dropdown-divider">님 </div>
+
+					<div class="dropdown-item">반갑습니다. ${userName}님.</div>
+					<div class="dropdown-divider">님</div>
 					<a class="dropdown-item" href="/kogile/register">Register</a>
-					<a class="dropdown-item" href="/kogile/login">Login</a>
-					<a class="dropdown-item" href="/kogile/logout">LogOut</a>
+					<c:choose>
+						<c:when test="${empty user}">
+							<a class="dropdown-item" href="/kogile/login">Login</a>
+						</c:when>
+						<c:otherwise>
+							<a class="dropdown-item" href="/kogile/logout">Logout</a>
+						</c:otherwise>
+					</c:choose>
 				</div></li>
 		</ul>
 
 	</nav>
-
 </body>
 </html>
