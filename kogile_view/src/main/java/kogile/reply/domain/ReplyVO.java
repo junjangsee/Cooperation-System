@@ -13,5 +13,6 @@ public class ReplyVO {
 	private int info_no;
 	
 	private String name;
+	private String taged_name;
 	
 }

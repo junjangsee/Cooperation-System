@@ -5,7 +5,7 @@
 <mapper namespace="kogile.reply.mapper.ReplyMapper">
 
 	<insert id="insertReply" parameterType="kogile.reply.domain.ReplyVO">
-		insert into reply values(reply_seq.nextval,#{r_contents},sysdate,#{p_no},#{info_no})
+		insert into reply values(reply_seq.nextval,#{r_contents},sysdate,#{p_no},#{info_no},#{taged_name})
 	</insert>
 	
 	<delete id="deleteReply">
@@ -20,7 +20,7 @@
 	<!-- 작성자때문에 멤버이름 가져오기 -->
 	<select id="replyList" parameterType="int" resultType="kogile.reply.domain.ReplyVO">
 	select /*+ INDEX_desc(r XPK댓글) INDEX_asc(p pk_prj_info) INDEX_asc(i XPK초대) INDEX_asc(e XPK외부회원정보)*/
-	r.r_no, r.r_contents, r.r_date, r.p_no, r.info_no, e.exter_mem_name as name
+	r.r_no, r.r_contents, r.r_date, r.p_no, r.info_no, e.exter_mem_name as name, r.taged_name
     From reply r
     join prj_info p
     on r.info_no = p.info_no
@@ -35,7 +35,7 @@
 	
 	<select id="replyList2" parameterType="int" resultType="kogile.reply.domain.ReplyVO">
 	select /*+ INDEX_desc(r XPK댓글) INDEX_asc(p pk_prj_info) INDEX_asc(i XPK초대) INDEX_asc(im XPK내부회원정보)*/
-	r.r_no, r.r_contents, r.r_date, r.p_no, r.info_no, im.member_name as name
+	r.r_no, r.r_contents, r.r_date, r.p_no, r.info_no, im.member_name as name, r.taged_name
     From reply r
     join prj_info p
     on r.info_no = p.info_no

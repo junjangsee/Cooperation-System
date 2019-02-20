@@ -80,6 +80,7 @@
 						<input type="text" class="add_tag" placeholder="ex)회원1" id = autoComplete value="">
 						<input type="hidden" id="tag_info_no" value=""/>
 						<input type="hidden" id="tag_total_m_no" value=""/>
+						<input type="hidden" id="tag_name" value=""/>
 						<a id="reply_save" href="#n" class="btn btn-sm btn-secondary"
 							style="float: right;">등록</a> <a id="reply_modify" href="#n"
 							class="btn btn-sm btn-secondary" style="float: right;">수정</a>
