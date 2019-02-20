@@ -11,8 +11,4 @@
 	 	</where>
 	</select>
 	
-	<insert id="insertNotice" parameterType="kogile.notice.domain.NoticeVO">
-		insert into notice(notice_no, invite_no, ntc_cont, ntc_date, total_m_no) values(notice_seq.nextval, #{invite_no}, '초대됐음!', sysdate, #{total_m_no})
-	</insert>
-	
 </mapper>

@@ -3,11 +3,14 @@ package kogile.invite.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import kogile.invite.domain.InviteVO;
 import kogile.invite.domain.SearchListVO;
 import kogile.invite.domain.SearchVO;
 import kogile.invite.mapper.InviteMapper;
+import kogile.notice.domain.NoticeVO;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
@@ -30,11 +33,21 @@ public class InviteServiceImpl implements InviteService {
 		return mapper.invite(pjt_no);
 	}
 	
+	@Transactional(propagation = Propagation.REQUIRED,
+			rollbackFor  = {Exception.class})
 	@Override
-	public int insertInvite(InviteVO invite) {
-		log.info("insertList.............");
+	public void insertInvite(InviteVO invite) {
+
+		mapper.insertInvite(invite);
 		
-		return mapper.insertInvite(invite);
+		NoticeVO notice = new NoticeVO();
+		
+		notice.setInvite_no(invite.getInvite_no());
+		System.out.println("notice.inv °ª : " + notice.getInvite_no());
+		notice.setTotal_m_no(invite.getTotal_m_no());
+		System.out.println("notice.tot °ª : " + notice.getTotal_m_no());
+		
+		mapper.insertNotice(notice);
 	}
 	
 	
