@@ -76,13 +76,31 @@ public class ReplyMapperTest {
 //		vo.setInfo_no(1);
 //		mapper.insertTag(vo);
 //	}
-	@Test
-	public void testTagMemberList() {
-		int pjt_no=1;
-		List<TagVO>list= mapper.tagMember(pjt_no);
-		List<TagVO>list2=mapper.tagMember2(pjt_no);
-		list.addAll(list2);
-		list.forEach(mem ->log.info(mem));
-	}
-	
+//	@Test
+//	public void testTagMemberList() {
+//		int pjt_no=1;
+//		List<TagVO>list= mapper.tagMember(pjt_no);
+//		List<TagVO>list2=mapper.tagMember2(pjt_no);
+//		list.addAll(list2);
+//		list.forEach(mem ->log.info(mem));
+//	}
+//	@Test
+//	public void testTagNoticeInsert() {
+//		TagVO vo= new TagVO();
+//		vo.setTag_no(1);
+//		vo.setTotal_m_no(1);
+//		mapper.insertTagNotice(vo);
+//	}
+//	@Test
+//	public void testTagNoticeMember() {
+//		TagVO vo =new TagVO();
+//		int info_no=1;
+//		mapper.tag_total_m_no(info_no);
+//		
+//	}
+//	@Test
+//	public void testTagNum() {
+//		int tagNum = mapper.tagNum();
+//		log.info(tagNum);
+//	}
 }

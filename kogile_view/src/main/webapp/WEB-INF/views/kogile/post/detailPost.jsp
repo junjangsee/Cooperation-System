@@ -92,7 +92,7 @@
 							</h4>
 							<input id="due_date" class="form-control" style="width: 30%" 
 								value="${post.p_dday}" placeholder="ex)2019-02-26"><br>
-
+							
 							<div>
 							<h4><b>설명</b></h4>
 							<textarea id="detail_description" name="description" style="width: 65%;" class="add_input" placeholder="설명을 입력하세요">${post.p_description}</textarea><br>

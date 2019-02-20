@@ -23,7 +23,9 @@
 //		delete_post(id);
 //	});
 //	
-
+	
+	//$('#description_modify').summernote();
+	
 	$('#modifyPost').on('click', function(){
 		var id = $('#detail_post_modal').attr('data-id');
 		$(this).attr("href", `post/detailPost/${id}`);
@@ -33,23 +35,21 @@
 	//insert reply
 	$('#reply_save').on('click', function(){
 		var id = $('#detail_post_modal').attr('data-id');
+		var taged_name = $('#tag_name').val();
 		var reply= {
-				"r_contents":$("#insert_reply").val(),
-				"p_no": id
+				"r_contents":$("#insert_reply").val().replace(/(?:\r\n|\r|\n)/g, '<br/>'),
+				"p_no": id,
+				"taged_name" : taged_name
 		};
-		var info_no={"info_no":$('#tag_info_no').val()}
-		
-		if($('#tag_info_no').val()==null || $('#tag_info_no').val()==""){
-			replyAdd(reply);
+		if($('#autoComplete').val()!=""&&$('#tag_name').val()==""){
+			alert('태그할 사람을 확인해 주세요')
 		}else{
 			replyAdd(reply);
-			tagAdd(info_no);
+			$('#insert_reply').val("");
 		}
 		
-		$('#insert_reply').val("");
-		$('#tag_info_no').val("");
-		$('#autoComplete').val("");
 	});
+	
 	
 	// remove reply
 	$(document).on("click", ".fas.fa-trash-alt", function(){
@@ -66,10 +66,11 @@
 		console.log("수정눌림");
 		var r_no = $(this).attr("data-rno");
 		console.log(r_no);
-		var txt = $(this).parents('div .input_box').find('.cts').html();
+		var txt = $(this).parents('div .input_box').find('.cts span').html();
 		console.log(txt);
+		txt=txt.replace(/<br>/g, '\n')
 		var reply= {
-				"r_contents":$("#insert_reply").val()
+				"r_contents":$("#insert_reply").val().replace(/(?:\r\n|\r|\n)/g, '<br/>')
 		};
 		
 		$('#insert_reply').val(txt);
@@ -81,7 +82,7 @@
 	$('#reply_modify').on('click', function(){
 		
 		var reply= {
-				"r_contents" : $("#insert_reply").val(),
+				"r_contents" : $("#insert_reply").val().replace(/(?:\r\n|\r|\n)/g, '<br/>'),
 				"r_no" : $('div .input_box').find('input[name=r_no]').val()
 		};
 		replyUpdate(reply);
@@ -93,17 +94,18 @@
 	});
 	
 //	설명내용 클릭시, 텍스트
-	$('#description').on("click",function(){
+	$('#clickDes').on("click",function(){
 		var txt = $(this).find('p').html();
+		txt = txt.replace(/<br>/g, '\n');
 		$('#description').find('p').hide();
 		$('#description_modify').show();
 		$('#description_modify').val(txt);
-		$('#description_modify_btn').show();
+		//$('#description_modify_btn').show();
 	});
 	
 	//설명수정
-	$('#description_modify_btn').on("click", function(){
-		var description={"p_description":$('#description_modify').val()}
+	$('#description_modify').on("focusout", function(){
+		var description={"p_description":$('#description_modify').val().replace(/(?:\r\n|\r|\n)/g, '<br/>')}
 		updateDescription(description);
 	})
 
@@ -491,6 +493,9 @@
 			var txt='';
 			
 			for(var i =0;i<res.length;i++){
+				if(res[i].taged_name==null){
+					res[i].taged_name=" ";
+				}
 				txt +='<li>';
 				txt +='<span class="name">'+res[i].name.substring(res[i].name.length-2) +'</span>';
 				txt +='<div class="input_box">'
@@ -498,9 +503,10 @@
 				txt +='<span class="date">'+ moment(res[i].r_date).format("YYYY-MM-DD")+'</span>'
 				txt +='<a class="fas fa-edit" data-rno="'+res[i].r_no + '"href="#"/><a class="fas fa-trash-alt" data-rno="'+res[i].r_no + '" href="#"/>'
 				txt +='<input type="hidden" name="r_no" value="'+res[i].r_no+'"/>'
-				txt +='<span class="cts">'+res[i].r_contents+'</span>'
+				txt +='<span class="cts"><b>'+res[i].taged_name+'</b>'+'  '+ '<span>'+res[i].r_contents+'</span></span>'
 				txt += '</div>';
 				txt += '</li>';
+				
 			}
 			$('#reply_list').html(txt);
 
@@ -514,6 +520,7 @@
 	//reply insert
 	function replyAdd(reply) {
 		
+		var info_no={"info_no":$('#tag_info_no').val()}
 		$.ajax({
 			type : 'post',
 			url : '/kogile/reply/new',
@@ -521,8 +528,16 @@
 			contentType : "application/json; charset=utf-8"
 			}).then(function(res){
 				console.log(res);
+				console.log('댓글등록성공');
+				if($('#autoComplete').val()==""||$('#autoComplete').val()==""||$('#tag_info_no').val()==""||$('#tag_total_m_no').val()=="" ){
+					
+				}else{
+					tagAdd(info_no);
+					$('#autoComplete').val("");
+				}
 				reply_list();
 				
+
 			}).catch(function(e){
 				console.log(e);
 			})
@@ -535,7 +550,7 @@
 			type : 'delete',
 			url : '/kogile/reply/' + r_no,
 			success : function(res) {
-				console.log("성공 : ");
+				console.log("댓글제거성공 ");
 				reply_list();
 			},
 			error : function(xhr, status, er) {
@@ -556,7 +571,7 @@
 			data : JSON.stringify(reply),
 			contentType : "application/json; charset=utf-8",
 		}).then(function(res){
-			console.log("성공");
+			console.log("댓글수정성공");
 			reply_list();
 		}).catch(function(e){
 			console.log(e)
@@ -607,11 +622,11 @@
 			data : JSON.stringify(description),
 			contentType : "application/json; charset=utf-8",
 		}).then(function(res) {
-				console.log("성공");
+				console.log("설명수정성공");
 				showDescription();
 				//버튼과 수정창을 숨겨준다
 				$('#description_modify').hide();
-				$('#description_modify_btn').hide();
+				//$('#description_modify_btn').hide();
 		}).catch(function(e){
 			console.log(e);
 		});
@@ -650,7 +665,7 @@
 	})
 //	태그하기
 	function tagAdd(info_no) {
-		var info_no = {"info_no":$('#tag_info_no').val()}
+		var total_m_no = {"total_m_no":$('#tag_total_m_no').val()}
 		$.ajax({
 			type : 'post',
 			url : '/kogile/tag/new',
@@ -658,16 +673,20 @@
 			contentType : "application/json; charset=utf-8"
 			}).then(function(res){
 				console.log(res);
-				console.log('성공이라능');
+				console.log('태그성공이라능');
+				tagNoticeAdd(total_m_no);
 			}).catch(function(e){
 				console.log(e);
 			})
 	}
-	
+	//태그 자동완성
 	 $( "#autoComplete" ).autocomplete({
 		select: function(e, res){
 			 console.log(res.item.info_no);
 			 $('#tag_info_no').val(res.item.info_no);
+			 $('#tag_total_m_no').val(res.item.total_m_no);
+			 $('#tag_name').val('@'+res.item.value);
+			
 		 },
 	      source: function(request, response){
 	    	  var term = request.term;
@@ -680,13 +699,13 @@
 	  				txt += res[i].name;
 	  			}
 	  			console.log('정답을알려줘'+txt);
-	  			console.log('소히누나바보');
 	  			response($.map(res, function(item) {
 	  				console.log(item);
 					return {
 						label : item.name,
 						value : item.name,
-						info_no : item.info_no
+						info_no : item.info_no,
+						total_m_no : item.total_m_no
 					}
 				}));
 	  			
@@ -736,6 +755,22 @@
 		
 //		선택한 라벨 조회------------------
 	
+	  //태그 된 사람 알림보내기
+	  function tagNoticeAdd(total_m_no) {
+		  
+		$.ajax({
+			type : 'post',
+			url : '/kogile/tag/notice',
+			data : JSON.stringify(total_m_no),
+			contentType : "application/json; charset=utf-8"
+			}).then(function(res){
+				console.log(res);
+				console.log('알림보내기성공이라능');
+				$('#tag_name').val("");
+			}).catch(function(e){
+				console.log(e);
+			})
+	}
 
 	
 })(jQuery);

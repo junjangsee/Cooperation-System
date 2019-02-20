@@ -38,7 +38,7 @@
 					<div class="MYhide_menu"></div>
 					<!-- end myhide_menu -->
 
-					<div class="right_list" style="width: 220px; height: 250px; margin-left: 45px;">
+					<div class="right_list" style="width: 220px; height: 100%; margin-left: 45px;">
 						<div class="addcard_holder holder">
 							<h2 class="title_c"><b>마감일</b></h2>
 							<div id="end_date"></div><br>
@@ -66,7 +66,7 @@
 						<h4>
 							<b>설명</b>
 						</h4>
-						<div>
+						<div id="clickDes">
 							<!-- P 태그들어간다. -->
 						</div>
 						<textarea id="description_modify" class="add_input"
@@ -84,10 +84,13 @@
 						<span class="name">user</span>
 						<textarea id="insert_reply" style="margin-bottom: 3px;"
 							class="add_input" placeholder="Write a comment..."></textarea>
-						<input type="text" class="add_tag" placeholder="@태그" id = autoComplete >
+
+						<input type="text" class="add_tag" placeholder="ex)회원1" id = autoComplete value="">
 						<input type="hidden" id="tag_info_no" value=""/>
+						<input type="hidden" id="tag_total_m_no" value=""/>
+						<input type="hidden" id="tag_name" value=""/>
 						<a id="reply_save" href="#n" class="btn btn-sm btn-secondary"
-							style="float: right;">등록</a> <a id="reply_modify" href="#n"
+							style="float: right; position: absolute; right: 280px;">등록</a> <a id="reply_modify" href="#n"
 							class="btn btn-sm btn-secondary" style="float: right;">수정</a>
 					</div>
 					<!-- end reply_comment -->

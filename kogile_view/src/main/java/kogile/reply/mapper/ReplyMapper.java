@@ -27,4 +27,9 @@ public interface ReplyMapper {
 	public List<TagVO> tagMember(int pjt_no);
 	
 	public List<TagVO> tagMember2(int pjt_no);
+	
+	public int insertTagNotice(TagVO vo);
+	
+	public int tagNum();
+	
 }
