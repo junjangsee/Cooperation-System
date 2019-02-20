@@ -7,4 +7,5 @@ import kogile.notice.domain.NoticeVO;
 public interface NoticeService {
 
 	public List<NoticeVO> notice(int total_m_no);
+	
 }

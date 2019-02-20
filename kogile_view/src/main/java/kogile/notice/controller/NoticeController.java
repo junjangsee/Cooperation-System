@@ -9,9 +9,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import kogile.invite.domain.InviteVO;
 import kogile.notice.domain.NoticeVO;
 import kogile.notice.service.NoticeService;
 import lombok.AllArgsConstructor;
@@ -37,5 +40,6 @@ public class NoticeController {
 		
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
+
 
 }

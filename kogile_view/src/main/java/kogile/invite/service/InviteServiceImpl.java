@@ -35,5 +35,7 @@ public class InviteServiceImpl implements InviteService {
 		log.info("insertList.............");
 		return mapper.insertInvite(invite);
 	}
+	
+	
 
 }

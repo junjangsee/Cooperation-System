@@ -92,11 +92,6 @@ public class InviteController {
 		int insertCount = service.insertInvite(invite);
 		
 		log.info("Invite INSERT COUNT: " + insertCount);
-		/*invite.setPjt_no((int)session.getAttribute("pjt_no"));
-		invite.setTotal_m_no((int)session.getAttribute("total_m_no"));
-		
-		int insertCount=service.insertInvite(invite);
-		System.out.println("insertCount : " + insertCount);*/
 		
 		return insertCount==1? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
