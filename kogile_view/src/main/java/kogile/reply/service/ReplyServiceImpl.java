@@ -71,5 +71,18 @@ public class ReplyServiceImpl implements ReplyService {
 		return mapper.replyNum();
 	}
 
+	@Override
+	public int insertTagNotice(TagVO vo) {
+		
+		return mapper.insertTagNotice(vo);
+	}
+
+	@Override
+	public int tagNum() {
+		
+		return mapper.tagNum();
+	}
+
+
 
 }

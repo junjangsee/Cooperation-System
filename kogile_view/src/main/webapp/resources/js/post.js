@@ -37,19 +37,10 @@
 				"r_contents":$("#insert_reply").val(),
 				"p_no": id
 		};
-		var info_no={"info_no":$('#tag_info_no').val()}
-		
-		if($('#tag_info_no').val()==null || $('#tag_info_no').val()==""){
-			replyAdd(reply);
-		}else{
-			replyAdd(reply);
-			tagAdd(info_no);
-		}
-		
+		replyAdd(reply);
 		$('#insert_reply').val("");
-		$('#tag_info_no').val("");
-		$('#autoComplete').val("");
 	});
+	
 	
 	// remove reply
 	$(document).on("click", ".fas.fa-trash-alt", function(){
@@ -93,16 +84,16 @@
 	});
 	
 //	설명내용 클릭시, 텍스트
-	$('#description').on("click",function(){
+	$('#clickDes').on("click",function(){
 		var txt = $(this).find('p').html();
 		$('#description').find('p').hide();
 		$('#description_modify').show();
 		$('#description_modify').val(txt);
-		$('#description_modify_btn').show();
+		//$('#description_modify_btn').show();
 	});
 	
 	//설명수정
-	$('#description_modify_btn').on("click", function(){
+	$('#description_modify').on("focusout", function(){
 		var description={"p_description":$('#description_modify').val()}
 		updateDescription(description);
 	})
@@ -438,7 +429,7 @@
 				txt +='<span class="date">'+ moment(res[i].r_date).format("YYYY-MM-DD")+'</span>'
 				txt +='<a class="fas fa-edit" data-rno="'+res[i].r_no + '"href="#"/><a class="fas fa-trash-alt" data-rno="'+res[i].r_no + '" href="#"/>'
 				txt +='<input type="hidden" name="r_no" value="'+res[i].r_no+'"/>'
-				txt +='<span class="cts">'+res[i].r_contents+'</span>'
+				txt +='<span class="cts">' + res[i].r_contents+'</span>'
 				txt += '</div>';
 				txt += '</li>';
 			}
@@ -453,8 +444,7 @@
 	
 	//reply insert
 	function replyAdd(reply) {
-		
-		
+		var info_no={"info_no":$('#tag_info_no').val()}
 		$.ajax({
 			type : 'post',
 			url : '/kogile/reply/new',
@@ -462,7 +452,15 @@
 			contentType : "application/json; charset=utf-8"
 			}).then(function(res){
 				console.log(res);
+				console.log('댓글등록성공');
+				if($('#autoComplete').val()==null||$('#autoComplete').val()=="" ){
+						
+				}else{
+					tagAdd(info_no);
+					$('#autoComplete').val("");
+				}
 				reply_list();
+				
 				
 				
 			}).catch(function(e){
@@ -477,7 +475,7 @@
 			type : 'delete',
 			url : '/kogile/reply/' + r_no,
 			success : function(res) {
-				console.log("성공 : ");
+				console.log("댓글제거성공 ");
 				reply_list();
 			},
 			error : function(xhr, status, er) {
@@ -497,7 +495,7 @@
 			data : JSON.stringify(reply),
 			contentType : "application/json; charset=utf-8",
 		}).then(function(res){
-			console.log("성공");
+			console.log("댓글수정성공");
 			reply_list();
 		}).catch(function(e){
 			console.log(e)
@@ -545,11 +543,11 @@
 			data : JSON.stringify(description),
 			contentType : "application/json; charset=utf-8",
 		}).then(function(res) {
-				console.log("성공");
+				console.log("설명수정성공");
 				showDescription();
 				//버튼과 수정창을 숨겨준다
 				$('#description_modify').hide();
-				$('#description_modify_btn').hide();
+				//$('#description_modify_btn').hide();
 		}).catch(function(e){
 			console.log(e);
 		});
@@ -588,7 +586,7 @@
 	})
 //	태그하기
 	function tagAdd(info_no) {
-		var info_no = {"info_no":$('#tag_info_no').val()}
+		var total_m_no = {"total_m_no":$('#tag_total_m_no').val()}
 		$.ajax({
 			type : 'post',
 			url : '/kogile/tag/new',
@@ -596,16 +594,19 @@
 			contentType : "application/json; charset=utf-8"
 			}).then(function(res){
 				console.log(res);
-				console.log('성공이라능');
+				console.log('태그성공이라능');
+				tagNoticeAdd(total_m_no);
 			}).catch(function(e){
 				console.log(e);
 			})
 	}
-	
+	//태그 자동완성
 	 $( "#autoComplete" ).autocomplete({
 		select: function(e, res){
 			 console.log(res.item.info_no);
 			 $('#tag_info_no').val(res.item.info_no);
+			 $('#tag_total_m_no').val(res.item.total_m_no);
+			
 		 },
 	      source: function(request, response){
 	    	  var term = request.term;
@@ -618,13 +619,13 @@
 	  				txt += res[i].name;
 	  			}
 	  			console.log('정답을알려줘'+txt);
-	  			console.log('소히누나바보');
 	  			response($.map(res, function(item) {
 	  				console.log(item);
 					return {
 						label : item.name,
 						value : item.name,
-						info_no : item.info_no
+						info_no : item.info_no,
+						total_m_no : item.total_m_no
 					}
 				}));
 	  			
@@ -638,7 +639,21 @@
 	  $('#detail_post_modal').on("shown.bs.modal", function(){
 		   $( "#autoComplete" ).autocomplete("option", "appendTo", "#detail_post_modal")
 	  })
-	
+	  //태그 된 사람 알림보내기
+	  function tagNoticeAdd(total_m_no) {
+
+		$.ajax({
+			type : 'post',
+			url : '/kogile/tag/notice',
+			data : JSON.stringify(total_m_no),
+			contentType : "application/json; charset=utf-8"
+			}).then(function(res){
+				console.log(res);
+				console.log('알림보내기성공이라능');
+			}).catch(function(e){
+				console.log(e);
+			})
+	}
 
 	
 })(jQuery);

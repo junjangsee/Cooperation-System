@@ -66,7 +66,7 @@
 	
 	<!-- 태그 될 맴버 가져오기 -->
 	<select id="tagMember" parameterType="int" resultType="kogile.reply.domain.TagVO">
-	select DISTINCT p.info_no,e.exter_mem_name as name
+	select DISTINCT p.info_no,e.exter_mem_name as name,tm.total_m_no
     from prj_info p
     join invite i
     on p.invite_no = i.invite_no
@@ -78,7 +78,7 @@
 	</select>
 	
 	<select id="tagMember2" parameterType="int" resultType="kogile.reply.domain.TagVO">
-	select DISTINCT p.info_no ,im.member_name as name
+	select DISTINCT p.info_no ,im.member_name as name,tm.total_m_no
     from prj_info p
     join invite i
     on p.invite_no = i.invite_no
@@ -92,14 +92,14 @@
 	
 	<!-- 태그된 사람에게 알림 보내기 -->
 	<insert id="insertTagNotice" parameterType="kogile.reply.domain.TagVO">
-		insert  into notice values(NOTICE_SEQ.nextval,null,#{tag_no},'태그존나알림',sysdate,#{total_m_no})
+		insert  into notice values(NOTICE_SEQ.nextval,null,#{tag_no},'태그됐음!',sysdate,#{total_m_no})
 	</insert>
 	<!-- 태그된 사람에게 알림 보내기 위해서 태그 넘버가져오기 -->
 	<select id="tagNum" resultType="int">
 		select tag_no from tag where ROWNUM=1 order by tag_no desc
 	</select>
 	<!-- 태그된 사람에게 알림 보내기 위해 태그된 사람넘버 가져오기 -->
-	<select id="tag_total_m_no" resultType="int" parameterType="kogile.reply.domain.TagVO">
+	<select id="tag_total_m_no" resultType="int" parameterType="int">
 		select DISTINCT tm.total_m_no
     from prj_info p
     join invite i

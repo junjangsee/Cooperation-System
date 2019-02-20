@@ -68,7 +68,6 @@
 					
 					<div class="card-body" id="body_main">
 						<div class="cts_board grid">
-
 							<div class="item">
 								<div class="heading">
 									<h3 class="board_title">todo</h3>
@@ -200,7 +199,7 @@
 	
 	<script src="/resources/js/main.js"></script>
 	<script src="/resources/js/post.js"></script>
-	<script src="/resources/js/tag.js"></script>
+	
 	<!-- <script src="/resources/js/reply.js"></script> -->
 	<!-- <script src="/resources/js/description.js"></script> -->
 	
