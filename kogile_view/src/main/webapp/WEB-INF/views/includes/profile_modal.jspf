@@ -27,7 +27,6 @@
 				</div>
 				<div class="modal-body">
 				
-				<div style="float: left; width : 50%">
 						<h4>
 							<b>이름</b>
 						</h4>
@@ -39,11 +38,12 @@
 						</h4>
 						<input type="text" class="form-control" value="<%=user.getEmail() %>" readonly="readonly">
 					
-					</div>
 					
 					<div id="profile_picture">
 						<p><span class="MYpicture"><%= user.getName().substring(user.getName().length()-2) %></span></p>
-						<a href="#">수정</a>
+						<input type="file" name="uploadProfile" multipart><br>
+						<a href="#" id="btn_profilePic">수정</a>
+						
 					</div>	
 				
 				</div>

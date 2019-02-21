@@ -72,6 +72,15 @@
 		<url-pattern>/kogile/startPage</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
-
-
+	
+	<multipart-config>
+	<!-- //각자 수정필요 업로드 위치 -->
+		<location>/Users/bbongrack/Downloads/upload</location>
+		<max-file-size>20971520</max-file-size>
+		<max-request-size>20971520</max-request-size>
+		<file-size-threshold>20971520</file-size-threshold>
+	</multipart-config>
+	
+	
+	
 </web-app>

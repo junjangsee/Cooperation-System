@@ -1,5 +1,7 @@
 package kogile.project.controller;
 
+import java.io.File;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -7,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import kogile.project.domain.ProjectVO;
 import kogile.project.domain.UserVO;
@@ -46,4 +49,6 @@ public class ProjectController2 {
 		UserVO master = service.master_info(total_m_no);
 		model.addAttribute("master", master);
 	}
+	
+	
 }

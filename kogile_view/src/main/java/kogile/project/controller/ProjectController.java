@@ -1,9 +1,17 @@
 package kogile.project.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import kogile.project.domain.CardVO;
 import kogile.project.domain.DragVO;
@@ -71,4 +80,59 @@ public class ProjectController {
 		return master;
 	}
 	
+	@PostMapping("/profilePic")
+	public ResponseEntity<String> profilePic(MultipartFile[] uploadProfile) {
+		String uploadFolder = "/Users/bbongrack/Downloads/upload";
+		//make folder
+		File uploadPath = new File(uploadFolder, getFolder());
+		
+		if(uploadPath.exists() == false) {
+			uploadPath.mkdirs();
+		}
+		
+		for(MultipartFile multipartFile : uploadProfile) {
+			
+			String uploadFilename = multipartFile.getOriginalFilename();
+//		 IE 는 경로를 가진다. ~~\\파일명 이런식으로
+			uploadFilename = uploadFilename.substring(uploadFilename.lastIndexOf("\\") + 1);
+			
+			UUID uuid = UUID.randomUUID();
+			uploadFilename = uuid.toString() + "_" + uploadFilename;
+			
+			File saveFile = new File(uploadPath, uploadFilename);
+			
+			try {
+				multipartFile.transferTo(saveFile);
+				
+			} catch (Exception e) {
+				System.out.println(e);
+			}//end try
+			
+//			if(checkImageType(saveFile)) {
+//				FileOutputStream thumbnail = new FileOutputStream(new File())
+//			}
+			
+		} //end for
+		return new ResponseEntity<>("success", HttpStatus.OK);
+	}
+	
+	private boolean checkImageType(File file) {
+		try {
+			String contentType = Files.probeContentType(file.toPath());
+			
+			return contentType.startsWith("image");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return false;
+	}
+	
+	private String getFolder() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		String str = sdf.format(date);
+		
+		return str.replace("-", File.separator);
+		
+	}
 }

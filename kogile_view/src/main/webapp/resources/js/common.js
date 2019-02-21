@@ -281,7 +281,48 @@
 		time = $('#nowTime').html(NowTime);
 		
 		return time;
-	}
+		}
+		//image upload thumbnail
+		$('#btn_profilePic').on('click', function(e){
+			var formData = new FormData();
+			var inputFile = $("input[name=uploadProfile]");
+			var files = inputFile[0].files;
+			
+			console.log(files);
+			
+			if(!checkExtension(files[0].name, files[0].size)){
+				return false;
+			}
+			
+			formData.append("uploadProfile", files[0]);
+						
+			console.log(formData);
+			
+			$.ajax({
+				processData : false,
+				contentType : false,
+				data : formData,
+				type : 'POST',
+				url : '/kogile/project/profilePic'
+			}).then(function(res){
+				alert("프로필 사진이 저장되었습니다.");
+			})
+		})
+		
+		function checkExtension(filename, filesize){
+			var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+			var maxSize = 20971520;
+			
+			if(filesize >= maxSize){
+				alert("파일 사이즈 초과");
+				return false;
+			}
+			if(regex.test(filename)){
+				alert("해당 종류의 파일은 업로드 할 수 없습니다.");
+				return false;
+			}
+			return true;
+		}
 	
 })(jQuery);
 
