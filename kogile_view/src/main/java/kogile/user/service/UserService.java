@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import kogile.user.domain.UserVO;
 
 public interface UserService {
+	public String isMemberEmail(String email);
 	public void interMemRegister(Map<String, String> userInfo);
 	public void interMemLogin(Map<String, String> userInfo, HttpServletRequest request,HttpServletResponse response);
-	public void interMemLogout(HttpServletRequest request);
 }

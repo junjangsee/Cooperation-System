@@ -1,6 +1,5 @@
 package kogile.user.service;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,11 +13,9 @@ import kogile.user.domain.UserVO;
 import kogile.user.mapper.UserMapper;
 import lombok.Data;
 import lombok.Setter;
-import lombok.extern.log4j.Log4j;
 
 @Service
 @Data
-@Log4j
 public class UserServiceInpl implements UserService {
 
 	@Setter(onMethod_ = { @Autowired })
@@ -66,10 +63,12 @@ public class UserServiceInpl implements UserService {
 		}
 	}
 
+	/*
+	 * 이미 가입된 이메일이면 T 없으면 F
+	 */
 	@Override
-	public void interMemLogout(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-
+	public String isMemberEmail(String email) {
+		return mapper.isMemberEmail(email).toString();
 	}
 
 }

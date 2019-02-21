@@ -19,7 +19,8 @@
 <body class="bg-dark">
 	<div class="card card-login mx-auto mt-5">
 		<div class="card-body">
-		<legend>Create a Kogile Account</legend><br>
+			<legend>Create a Kogile Account</legend>
+			<br>
 			<form>
 				<div class="form-group">
 					<div class="form-label-group">
@@ -43,9 +44,11 @@
 							for="inputPassword">Password</label>
 					</div>
 				</div>
-				<a class="btn btn-primary btn-block" id="registerIntermem" href="/kogile/register">Create New Account</a> <br>
-				<a class="btn btn-warning btn-block"
-					href="/login/external/registerKogileWithKakao">Sign up With Kakao</a>
+				<a class="btn btn-primary btn-block" id="registerIntermem"
+					href="/kogile/register">Create New Account</a> <br> <a
+					class="btn btn-warning btn-block"
+					href="/login/external/registerKogileWithKakao">Sign up With
+					Kakao</a>
 			</form>
 			<div class="text-center">
 				<a class="d-block small mt-3" href="/kogile/login" dir="rtl">Login</a>
@@ -74,23 +77,51 @@
 
 	<%@ include file="../includes/footconfig.jsp"%>
 	<script src="/resources/js/user.js"></script>
+	<script src="/resources/js/boundsChecking.js"></script>
 	<script>
-	$(function(){
-		$('#registerIntermem').on('click', function(){
-			
-			var email = $('#inputEmail').val();
-			var password = $('#inputPassword').val();
-			var name = $('#inputName').val();
-			
-			userService.register({name: name, email: email, password: password}, function(){
-				alert("가입되었습니다.");
-				userService.login({email: email, password: password}, function() {
-					location.href = "/kogile/startPage";
-				});
+		$(function() {
+			var validCk = new Array();
+			$(document).on('blur', 'input', function() {
+				var type = this.getAttribute('id');
+				var text = this.value;
+				switch (type) {
+				case 'inputEmail':
+					validCk[0] = boundsChecking.email(text);
+					break;
+				case 'inputName':
+					validCk[1] = boundsChecking.name(text);
+					break;
+				case 'inputPassword':
+					validCk[2] = boundsChecking.password(text);
+					break;
+				}
 			});
-			return false;
+
+			$('#registerIntermem').on('click', function() {
+				if (validCk[0] == validCk[1] == validCk[2] == true) {
+					var email = $('#inputEmail').val();
+					var password = $('#inputPassword').val();
+					var name = $('#inputName').val();
+
+					userService.register({
+						name : name,
+						email : email,
+						password : password
+					}, function() {
+						alert("가입되었습니다.");
+						userService.login({
+							email : email,
+							password : password
+						}, function() {
+							location.href = "/kogile/startPage";
+						});
+					});
+				} else {
+					alert('올바른 정보를 입력해주세요.');
+				}
+				return false;
+			})
 		})
-	})
 	</script>
 
 </body>
