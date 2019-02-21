@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="/resources/css/post.css" rel="stylesheet">
+<!-- <link href="/resources/css/post.css" rel="stylesheet"> -->
 <title>Insert title here</title>
 
 <%-- <%@include file="../includes/ex.jsp" %> --%>
@@ -38,7 +38,7 @@
 					<div class="MYhide_menu"></div>
 					<!-- end myhide_menu -->
 
-					<div class="right_list" style="width: 220px; height: 100%; margin-left: 45px;">
+					<div class="right_list" style="width: 30%; height: 100%; margin-left: 45px;">
 						<div class="addcard_holder holder">
 							<h2 class="title_c"><b>마감일</b></h2>
 							<div id="end_date"></div><br>
@@ -58,7 +58,7 @@
 						</div>
 					</div>
 					<!-- right_list end -->
-
+					<div style="width : 70%;">
 					<input type="hidden" value="" id="MYpno">
 
 					<!-- 설명 -->
@@ -81,7 +81,7 @@
 						<h4>
 							<b>댓글달기</b>
 						</h4>
-						<span class="name">user</span>
+						<span class="name" style="margin-right: 3px;">user</span>
 						<textarea id="insert_reply" style="margin-bottom: 3px;"
 							class="add_input" placeholder="Write a comment..."></textarea>
 
@@ -90,8 +90,8 @@
 						<input type="hidden" id="tag_total_m_no" value=""/>
 						<input type="hidden" id="tag_name" value=""/>
 						<a id="reply_save" href="#n" class="btn btn-sm btn-secondary"
-							style="float: right; position: absolute; right: 280px;">등록</a> <a id="reply_modify" href="#n"
-							class="btn btn-sm btn-secondary" style="float: right;">수정</a>
+							style="float: left; position: relative; left: 70%;">등록</a> <a id="reply_modify" href="#n"
+							class="btn btn-sm btn-secondary" style="float: left;left: 70%;position: relative;">수정</a>
 					</div>
 					<!-- end reply_comment -->
 
@@ -123,7 +123,8 @@
 					</div> -->
 					</div>
 					<!-- 체크리스트 종료 -->
-
+					</div>
+					<!-- leftmenu end -->
 				</div>
 				<!-- end modal-body -->
 

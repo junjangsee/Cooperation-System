@@ -12,12 +12,9 @@ public interface ChecklistMapper {
 
 	
 	public int insert(ChecklistVO cvo);
-	public ChecklistVO read(int checklist_no);
 	public int delete(int checklist_no);
 	public int update(ChecklistVO cvo);
 	
-	public List<ChecklistVO> getListWithPaging(
-			@Param("cri") Criteria cri,
-			@Param("p_no") int p_no);
+	public List<ChecklistVO> read(int p_no);
 			
 }

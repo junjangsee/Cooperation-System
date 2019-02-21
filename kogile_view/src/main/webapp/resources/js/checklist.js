@@ -47,31 +47,6 @@
 //);
 //
 (function($){
-	$(function(){
-		$('#insertCheck').on('click', function(){
-			insertCheck();
-		})
-	});
 	
-	function insertCheck(){
-		const data= {
-				p_no : $('#p_no').val(),
-				check_title : $("input[name=check_title]").val()
-		};
-		
-		console.log(data);
-		
-		$.ajax({
-			contentType : "application/json; charset=utf-8", 
-			data : JSON.stringify(data),
-			type : 'POST',
-			dataType : 'JSON',
-			url : "/kogile/checklist/new"
-		}).then(function(res){
-			console.log("성공");
-		}).catch(function(e){
-			console.log(e);
-		});
-	}
 	
 })(jQuery)

@@ -431,6 +431,123 @@
 			}
 			
 			// ----------------------------------------- End update Desctiption
-	
 			
+//			--------------------------checklist 
+			
+			list_checklist();
+			
+			function list_checklist(){
+				var p_no = $('#p_no').val();
+				
+				$.ajax({
+					type : "GET",
+					url : `/kogile/checklist/readChecklist/${p_no}`,
+					dataType : "JSON"
+				}).then(function(res){
+					console.log(res);
+					txt = ``;
+					for(var i = 0; i < res.length; i ++){
+						txt += `<div data-chno="${res[i].checklist_no}"><h5 class="check_title" style="display:inline;">* ${res[i].check_title}</h5><a href="#" id="delete_check" style="margin-left:10px; font-size : 15px;">삭제</a>`;
+						txt += `<input type="text" class="form-control check_title_form" style="display : none; margin-bottom : 3px; height : 30px;"
+						value="${res[i].check_title}">
+						<div class="progress">
+					<div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+					</div><div class="checklist_list"></div>
+					 <a class="btn btn-primary btn-sm btn_addList" style="margin-top : 6px;color : #fff;">+</a></div><br>`;
+					}
+					$('#list_Checklist').html(txt);
+				})
+			}
+			
+			$(document).on('click', '#delete_check', function(){
+				var checklist_no = $(this).closest('div').data('chno');
+				delete_check(checklist_no);
+				return false;
+			})
+			
+			function delete_check(checklist_no){
+				$.ajax({
+					type : "GET",
+					dataType : "text",
+					url : `/kogile/checklist/delete_check/${checklist_no}`
+				}).then(function(res){
+					console.log(res);
+					list_checklist();
+				})
+			}
+			
+			$('#insertCheck').on('click', function(){
+				insertCheck();
+			})
+			
+			function insertCheck(){
+				const data= {
+						p_no : $('#p_no').val(),
+						check_title : $("input[name=check_title]").val()
+				};
+				
+				console.log(data);
+				
+				$.ajax({
+					contentType : "application/json; charset=utf-8", 
+					data : JSON.stringify(data),
+					type : 'POST',
+					dataType : 'JSON',
+					url : "/kogile/checklist/new"
+				}).then(function(res){
+					console.log("성공");
+					list_checklist();
+				}).catch(function(e){
+					console.log(e);
+				});
+			}
+			
+			$(document).on('click', '.check_title', function(){
+				$(this).hide();
+				$(this).next().hide();
+				$(this).siblings('.check_title_form').show();
+				$(this).siblings('.check_title_form').focus();
+				var checklist_no = $(this).parent().data('chno');
+				console.log(checklist_no);
+			})
+			
+			$(document).on('focusout', '.check_title_form', function(){
+				var check_title = $(this).val();
+				var checklist_no = $(this).closest('div').data('chno');
+				var check = {
+						check_title : check_title,
+						checklist_no : checklist_no
+				};
+				updateCheck(check);
+			})
+			
+			function updateCheck(check){
+				$.ajax({
+					data : JSON.stringify(check),
+					type : "POST",
+					dataType : "text",
+					contentType : "application/json; charset=UTF-8",
+					url : "/kogile/checklist/update"
+				}).then(function(res){
+					console.log(res);
+					list_checklist();
+				})
+			}
+			
+//			checklist----------------------------
+			
+//			---------------------------checklist_list
+			
+			$(document).on('click', '.btn_addList', function(){
+				var txt = `<input type="text" class="form-control list_form" placeholder="리스트 내용" style="margin-top : 6px;">`;
+				$(this).before(txt);
+				$(this).prev().focus();
+			})
+			
+			$(document).on('focusout', '.list_form', function(){
+//				$(this).hide();
+				list_checklist();
+			})
+			
+//			checkList_list-----------------------------
 })(jQuery)

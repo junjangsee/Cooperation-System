@@ -30,14 +30,14 @@ public class ChecklistServiceImpl implements ChecklistService {
 		return mapper.insert(cvo);
 	}
 	
-	@Override
-	public ChecklistVO get(int checklist_no) {
-		// TODO Auto-generated method stub
-		
-		log.info("get..." + checklist_no);
-		
-		return mapper.read(checklist_no);
-	}
+//	@Override
+//	public ChecklistVO get(int checklist_no) {
+//		// TODO Auto-generated method stub
+//		
+//		log.info("get..." + checklist_no);
+//		
+//		return mapper.read(checklist_no);
+//	}
 
 	@Override
 	public int modify(ChecklistVO cvo) {
@@ -56,11 +56,11 @@ public class ChecklistServiceImpl implements ChecklistService {
 	}
 
 	@Override
-	public List<ChecklistVO> getList(Criteria cri, int p_no) {
+	public List<ChecklistVO> getList(int p_no) {
 		
 		log.info("get Checklist List " + p_no );
 		
-		return mapper.getListWithPaging(cri, p_no);
+		return mapper.read(p_no);
 	}
 
 

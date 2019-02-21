@@ -41,35 +41,25 @@ public class ChecklistController {
 	}
 	
 	// 특정 post 내용 조회 
-	@GetMapping(value = "/pages/{p_no}/{page}",
-			produces = {
-					MediaType.APPLICATION_XML_VALUE,
-					MediaType.APPLICATION_JSON_UTF8_VALUE
-			})
-	public ResponseEntity<List<ChecklistVO>> getList(
-			@PathVariable("page") int page,
-			@PathVariable("p_no") int p_no
-			){
+	@GetMapping(value = "/readChecklist/{p_no}")
+	public ResponseEntity<List<ChecklistVO>> getList(@PathVariable("p_no") int p_no){
 		log.info("getList....");
 		
-		Criteria cri = new Criteria(page, 3);
-		
-		log.info("cri 출력:" + cri);
-		return new ResponseEntity<>(service.getList(cri, p_no),HttpStatus.OK);
+		return new ResponseEntity<>(service.getList(p_no),HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "/{checklist_no}",
-			produces = {
-					MediaType.APPLICATION_XML_VALUE,
-					MediaType.APPLICATION_JSON_UTF8_VALUE
-	})
-	public ResponseEntity<ChecklistVO> get(@PathVariable("checklist_no") int checklist_no){
-		log.info("get: " + checklist_no);
-		return new ResponseEntity<>(service.get(checklist_no), HttpStatus.OK);
-	}
+//	@GetMapping(value = "/{checklist_no}",
+//			produces = {
+//					MediaType.APPLICATION_XML_VALUE,
+//					MediaType.APPLICATION_JSON_UTF8_VALUE
+//	})
+//	public ResponseEntity<ChecklistVO> get(@PathVariable("checklist_no") int checklist_no){
+//		log.info("get: " + checklist_no);
+//		return new ResponseEntity<>(service.get(checklist_no), HttpStatus.OK);
+//	}
 	
 	
-	@DeleteMapping(value = "/{checklist_no}", produces = {MediaType.TEXT_PLAIN_VALUE})
+	@GetMapping(value = "delete_check/{checklist_no}", produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> remove(@PathVariable("checklist_no") int checklist_no){
 		
 		log.info("remove" + checklist_no);
@@ -79,22 +69,12 @@ public class ChecklistController {
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	
-	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH}, 
-				value = "/{checklist_no}",
-				consumes = "application/json",
-				produces = {MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> modify(
-							@RequestBody ChecklistVO cvo,
-							@PathVariable("checklist_no") int checklist_no){
-		
-					cvo.setChecklist_no(checklist_no);
-					log.info("checklist_no" + checklist_no);
-					log.info("modify" + cvo);
+	@PostMapping(value="/update", produces = {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> modify(@RequestBody ChecklistVO cvo){
 					
-					return service.modify(cvo) == 1
-							? new ResponseEntity<>("success", HttpStatus.OK)
-							: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return service.modify(cvo) == 1
+					? new ResponseEntity<>("success", HttpStatus.OK)
+					: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	

@@ -12,7 +12,9 @@
 	
 	
 	<select id="read" resultType="kogile.checklist.domain.ChecklistVO">
-		select * from checklist where checklist_no = #{checklist_no}
+		select * from checklist 
+		where p_no = #{p_no}
+		order by checklist_no
 	</select>
 	
 	

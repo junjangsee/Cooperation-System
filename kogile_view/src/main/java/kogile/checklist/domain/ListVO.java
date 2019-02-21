@@ -9,5 +9,7 @@ public class ListVO {
 	private String list_info;
 	private Long checked;
 	private Long checklist_no;
-
+	
+	//checklist 완료율
+	private int completePercent;
 }

@@ -33,19 +33,19 @@ public class ChecklistServiceTests {
 	}*/
 	
 	
-	@Test
-	public void testUpdate() {
-		
-		ChecklistVO cvo = service.get(3);
-		
-		if(cvo == null){
-			return;
-		}
-		
-		cvo.setCheck_title("내용수정");
-		log.info("Modify result:" + service.modify(cvo));
-		
-	}
+//	@Test
+//	public void testUpdate() {
+//		
+//		ChecklistVO cvo = service.get(3);
+//		
+//		if(cvo == null){
+//			return;
+//		}
+//		
+//		cvo.setCheck_title("내용수정");
+//		log.info("Modify result:" + service.modify(cvo));
+//		
+//	}
 	
 	
 /*	@Test

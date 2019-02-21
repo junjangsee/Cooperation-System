@@ -117,9 +117,8 @@
 							<br>
 							
 
-							<h4>
-								<b>체크리스트</b>
-							</h4>
+							<h4><b>체크리스트</b></h4>
+							<div id="list_Checklist" style="width :70%;"></div>
 							<br> <br>
 
 						</form>
@@ -149,7 +148,7 @@
 	<%@ include file="../../includes/footconfig.jsp"%>
 	<script src="/resources/js/detailPost.js"></script>
 	<script src="/resources/js/post.js"></script>
-	<script src="/resources/js/checklist.js"></script>
+	<!-- <script src="/resources/js/checklist.js"></script> -->
 
 
 </body>
