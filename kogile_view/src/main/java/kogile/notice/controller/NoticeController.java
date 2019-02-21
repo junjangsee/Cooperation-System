@@ -40,6 +40,7 @@ public class NoticeController {
 		
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
+	
 
 
 }

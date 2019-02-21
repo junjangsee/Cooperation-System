@@ -114,9 +114,47 @@
 				notice : notice
 			};
 		})();
+		
+		/*var myNotice = {
+				"notice_no" : notice_no,
+				//"invite_no" : invite_no,
+				//"tag_no" : tag_no,
+				"total_m_no" : $('#rw').attr('value')
+		};*/
+
+		//알림 setInterval
+		
+		printNotice();
+		
+		setInterval(function(){
+			printNotice();
+
+		}, 5000);
+
+		function printNotice(){
+			var before = $('#noticeLength').html();
+			console.log('befrore : ' + before);
+			var noticeValue = $('#rw').attr('value');
 			
+			noticeService.notice(noticeValue, function(list){
+					
+				a = list.length;
+				console.log("a : " + a);
+				
+				if(a != before){
+					$('#noticeLength').html(a);				
+				}
+				
+			});
+
+		}
+		
 			//알림 리스트 이벤트
 		$("a[id=alertsDropdown]").on('click', function(e){
+
+			/*$('.fas.fa-bell.fa-fw.blinking').css('-webkit-animation', 'none');
+			$('.fas.fa-bell.fa-fw.blinking').css('-moz-animation', 'none');
+			$('.fas.fa-bell.fa-fw.blinking').css('animation', 'none');*/
 			
 			var noticeValue = $('#rw').attr('value');
 			var noticeUL = $("#notice3");
@@ -133,6 +171,7 @@
 				
 				for(var i = 0; i<list.length; i++){
 					value += "<p class='dropdown-item notice_list'>"+ list[i].ntc_cont + " " + list[i].day + "</p>";
+					
 					//value += "<p>" + list[i].ntc_cont + " " + list[i].day + "</p>";
 					
 				}
@@ -172,7 +211,7 @@
 			
 			//초대 목록 JSON처리 
 			function invite(param, callback, error) {
-
+				
 				var invite = param.pjt_no;
 				
 				$.getJSON("/invite/inviteList/", 

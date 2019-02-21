@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 <link href="/resources/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
+<link href="/resources/css/common.css" rel="stylesheet">
 <!-- <script src="/resources/vendor/jquery/jquery.min.js"></script> -->
 <!-- <script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script> -->
 <!-- <script src="/resources/js/main.js"></script> -->
@@ -135,7 +136,7 @@ $("#btn-search").on('click', function(e) {
 				class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false"> <i class="fas fa-bell fa-fw"></i> <!-- 알림 -->
-					<!-- <span class="badge badge-danger">9+</span> -->
+					<span class="badge badge-danger" id="noticeLength"></span>
 			</a>
 				<div class="dropdown-menu dropdown-menu-right"
 					aria-labelledby="alertsDropdown" id="notice3">

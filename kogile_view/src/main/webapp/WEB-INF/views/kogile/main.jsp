@@ -35,6 +35,7 @@
 </head>
 <body id="page-top">
 	<input id="rw2" type="hidden" value="${pjt_no}" name="pjt_no">
+	<input id="rw" type="hidden" value="${userNo}" name="total_m_no">
 	<!-- modal -->
 	<%@ include file="../includes/format_modal.jsp"%>
 	<%@ include file="../includes/detail_Post_modal.jsp"%>
