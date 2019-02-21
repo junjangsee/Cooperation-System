@@ -43,6 +43,7 @@
 
 	<!-- nav -->
 	<%@ include file="../includes/nav.jsp"%>
+	
 
 	<div id="wrapper">
 

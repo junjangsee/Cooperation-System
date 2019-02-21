@@ -102,7 +102,8 @@ $("#btn-search").on('click', function(e) {
 		UserVO user = (UserVO)session.getAttribute("user");
 	%>
 	
-	<%@ include file="profile_modal.jsp" %>
+	<%@ include file="profile_modal.jspf" %>
+	
 
 	<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 

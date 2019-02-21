@@ -1,3 +1,4 @@
+<%@page import="kogile.user.domain.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,7 +12,9 @@
 	<!-- <button type="button" class="btn btn-primary btn-lg"
 		data-toggle="modal" data-target="#myModal">Launch demo modal
 	</button> -->
-
+	
+	<!-- user에 오류 발생된다고 표시 될 수 있으나, include에 의해서 user 객체를 못가져와서 발생하는 오류
+	실제오류는 아닙니다. -->
 
 	<div class="modal fade" id="profile_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
