@@ -29,6 +29,7 @@ public class PostController2 {
 		PostVO post = service.detailPost(p_no);
 		
 		model.addAttribute("post", post);
+		
 		return "kogile/post/detailPost";
 	}
 }

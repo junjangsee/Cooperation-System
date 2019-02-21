@@ -61,7 +61,7 @@
       
       
       <li class="nav-item">
-        <a class="nav-link" href="/kogile/board?pjt_no=${pjt_no}" id="btn_body_notice">
+        <a class="nav-link" href="/kogile/board/list?pjt_no=${pjt_no}" id="btn_body_board">
           <i class="fas fa-fw fa-table"></i>
           <span>공지사항</span></a>
       </li>

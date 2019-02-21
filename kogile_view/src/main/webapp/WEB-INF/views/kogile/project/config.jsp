@@ -40,7 +40,7 @@
 
 					<div class="card-body">
 						<form action="" name="project_info" method="post">
-							<input type="hidden" name="pjt_no" value="${project.pjt_no }">
+							<input type="hidden" name="pjt_no" value="${project.pjt_no}">
 
 							<div id="pjt_title">
 								<h4>
@@ -63,7 +63,7 @@
 								<h4>
 									<b>생성일</b>
 								</h4>
-								<p><fmt:formatDate value="${project.pjt_date }" pattern="yyyy-MM-dd"/></p>
+								<p><fmt:formatDate value="${project.pjt_date}" pattern="yyyy-MM-dd"/></p>
 
 							</div>
 	
