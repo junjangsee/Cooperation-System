@@ -28,11 +28,11 @@ public class PostMapperTests {
 //		
 //		PostVO post = new PostVO();
 //		
-//		post.setP_title("포스트5-1");
+//		post.setP_title("포스트5-21");
 //		post.setP_position(1);
 //		post.setC_no(1);
-//		post.setP_description("포스트5-1에 대한 내용");
-//		post.setP_dday("19/03/01");
+//		post.setP_description("포스트5-11에 대한 내용");
+////		post.setP_dday("19/03/01");
 //		
 //		mapper.insertPost(post);
 //		

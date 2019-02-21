@@ -20,7 +20,7 @@
 
 	    <ul class="sidebar navbar-nav toggled">
       <li class="nav-item">
-        <a class="nav-link" href="/kogile/main?pjt_no=${pjt_no }">
+        <a class="nav-link" href="/kogile/main?pjt_no=${pjt_no}">
           <i class="fas fa-fw fa-folder"></i>
           <span>Board</span>
         </a>
@@ -61,13 +61,13 @@
       
       
       <li class="nav-item">
-        <a class="nav-link" href="#" id="">
+        <a class="nav-link" href="/kogile/board?pjt_no=${pjt_no}" id="btn_body_notice">
           <i class="fas fa-fw fa-table"></i>
           <span>공지사항</span></a>
       </li>
       
     	<li class="nav-item">
-	        <a class="nav-link" href="/kogile/project/config?pjt_no=${pjt_no }" id="btn_body_configure">
+	        <a class="nav-link" href="/kogile/project/config?pjt_no=${pjt_no}" id="btn_body_configure">
 	          <i class="fas fa-fw fa-tachometer-alt"></i>
 	          <span>정보/설정</span>
 	        </a>
