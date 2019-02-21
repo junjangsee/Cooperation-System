@@ -130,6 +130,11 @@
 
 	<%@ include file="../includes/footconfig.jsp"%>
 	<script src="/resources/js/startPage.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		$("#messagesDropdown").parent().hide();
+	})
+	</script>
 </body>
 
 </html>
