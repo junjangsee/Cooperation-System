@@ -15,5 +15,6 @@ public class ChatVO {
 			total_m_no;
 	
 	private String writer, 
-					chatContents;
+					chatContents,
+					regdate;
 }
