@@ -247,3 +247,7 @@
     animation: none;
   }
 }
+
+#checklist{
+	display: none;
+}

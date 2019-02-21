@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 <link href="/resources/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
+<link href="/resources/css/profile.css" rel="stylesheet">
 <!-- <script src="/resources/vendor/jquery/jquery.min.js"></script> -->
 <!-- <script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script> -->
 <!-- <script src="/resources/js/main.js"></script> -->
@@ -98,10 +99,10 @@ $("#btn-search").on('click', function(e) {
 <body>
 
 	<%
-		UserVO user = (UserVO) session.getAttribute("user");
+		UserVO user = (UserVO)session.getAttribute("user");
 	%>
-
-	<c:set var="userName"><%=user.getName()%></c:set>
+	
+	<%@ include file="profile_modal.jsp" %>
 
 	<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
@@ -165,9 +166,12 @@ $("#btn-search").on('click', function(e) {
 				<div class="dropdown-menu dropdown-menu-right"
 					aria-labelledby="userDropdown">
 
-					<div class="dropdown-item">반갑습니다. ${userName}님.</div>
-					<div class="dropdown-divider">님</div>
-					<a class="dropdown-item" href="/kogile/register">Register</a>
+					<div class="dropdown-item">반갑습니다. <%=user.getName() %> 님.</div>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#"
+					data-toggle="modal" data-target="#profile_modal">Profile</a>
+					
+					<!-- <a class="dropdown-item" href="/kogile/register">Register</a> -->
 					<c:choose>
 						<c:when test="${empty user}">
 							<a class="dropdown-item" href="/kogile/login">Login</a>

@@ -64,5 +64,10 @@ public class ViewController {
 		
 		return "redirect:"+ path;
 	}
+	
+	@GetMapping("/profile")
+	public void profile() {
+		
+	}
 
 }

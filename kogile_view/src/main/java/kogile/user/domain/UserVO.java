@@ -14,19 +14,21 @@ import lombok.ToString;
  */
 
 /*
- * ³»ºÎ¸â¹öÀÎ °æ¿ì¿¡ total_m_no, isInterMem, email, nameÀ» °¡Áý´Ï´Ù.
- * ¿ÜºÎ¸â¹ö´Â emailÀ» Á¦¿ÜÇÑ ³ª¸ÓÁö °ªµéÀ» °¡Áý´Ï´Ù.
+ * ï¿½ï¿½ï¿½Î¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ total_m_no, isInterMem, email, nameï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
+ * ï¿½ÜºÎ¸ï¿½ï¿½ï¿½ï¿½ emailï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
  */
 @Data
 @ToString
 public class UserVO {
 	private int total_m_no;
 	private int intermemNo;
-	private boolean isInterMem; // ¿ÜºÎ¸â¹öÀÎÁö ¾Æ´ÑÁö
+	private boolean isInterMem; // ï¿½ÜºÎ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ï¿½ï¿½
 	private String email;
 	private String name;
-	private long interlinked_info; //Ä«Ä«¿À ÀÚÃ¼ È¸¿ø¹øÈ£
-	private String interlinked_info_type; //Ä«Ä«¿ÀÀÎÁö..
+	private long interlinked_info; //Ä«Ä«ï¿½ï¿½ ï¿½ï¿½Ã¼ È¸ï¿½ï¿½ï¿½ï¿½È£
+	private String interlinked_info_type; //Ä«Ä«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..
 	private String access_token;
+	
+	private String fname;
 					
 }
