@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import kogile.checklist.domain.ChecklistVO;
 import kogile.checklist.domain.Criteria;
+import kogile.checklist.domain.ListVO;
 import kogile.checklist.service.ChecklistService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -77,5 +78,15 @@ public class ChecklistController {
 					: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
+	@PostMapping(value="/insertList", produces = {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> insertList(@RequestBody ListVO list){
+		return service.insertList(list) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
+				: new ResponseEntity<>("fail", HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@GetMapping("/listList/{checklist_no}")
+	public List<ListVO> listList(@PathVariable int checklist_no){
+		return service.listList(checklist_no);
+	}
 	
 }

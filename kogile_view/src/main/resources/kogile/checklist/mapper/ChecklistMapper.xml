@@ -28,13 +28,15 @@
 	    where checklist_no = #{checklist_no}
 	</update>
 	
-	<!-- 데이터 출력 select문 -->
-	<select id="getListWithPaging" resultType="kogile.checklist.domain.ChecklistVO">
-	select * from checklist 
-	where p_no = #{p_no} 
-	order by checklist_no asc
+	
+	<insert id="insertList" parameterType="kogile.checklist.domain.ListVO">
+		insert into list
+		values(list_seq.nextval, #{list_info}, 0, #{checklist_no})
+	</insert>
+	
+	<select id="listList" resultType="kogile.checklist.domain.ListVO">
+		select * from list
+		where checklist_no = #{checklist_no}
 	</select>
-	
-	
 	
 </mapper>

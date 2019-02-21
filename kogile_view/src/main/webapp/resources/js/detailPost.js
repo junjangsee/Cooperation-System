@@ -447,15 +447,22 @@
 					console.log(res);
 					txt = ``;
 					for(var i = 0; i < res.length; i ++){
-						txt += `<div data-chno="${res[i].checklist_no}"><h5 class="check_title" style="display:inline;">* ${res[i].check_title}</h5><a href="#" id="delete_check" style="margin-left:10px; font-size : 15px;">삭제</a>`;
+						txt += `<div class="check" data-chno="${res[i].checklist_no}"><h5 class="check_title" style="display:inline;">* ${res[i].check_title}</h5><a href="#" id="delete_check" style="margin-left:10px; font-size : 15px;">삭제</a>`;
 						txt += `<input type="text" class="form-control check_title_form" style="display : none; margin-bottom : 3px; height : 30px;"
 						value="${res[i].check_title}">
 						<div class="progress">
 					<div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-					</div><div class="checklist_list"></div>
+					</div><ul id="check_${res[i].checklist_no}" style="list-style :none;padding-left : 5px;"></ul>
 					 <a class="btn btn-primary btn-sm btn_addList" style="margin-top : 6px;color : #fff;">+</a></div><br>`;
 					}
 					$('#list_Checklist').html(txt);
+					
+					return res;
+				}).then(function(res){
+					console.log(res);
+					for(var i = 0; i < res.length; i ++){
+						listList(res[i].checklist_no);						
+					}
 				})
 			}
 			
@@ -545,9 +552,51 @@
 			})
 			
 			$(document).on('focusout', '.list_form', function(){
-//				$(this).hide();
-				list_checklist();
+				var checklist_no = $(this).closest('div').data('chno');
+				var list_info = $(this).val();
+				
+				var data = {
+						checklist_no : checklist_no,
+						list_info : list_info
+				}
+				insertList(data);
+				
 			})
+			
+			function insertList(data){
+				$.ajax({
+					data : JSON.stringify(data),
+					type : "POST",
+					contentType : "application/json; charset=UTF-8",
+					dataType : "text",
+					url : "/kogile/checklist/insertList"
+				}).then(function(res){
+					console.log(res);
+					list_checklist();
+				})
+			}
+			
+			function listList(checklist_no){
+				$.ajax({
+					type : "GET",
+					dataType : "JSON",
+					url : `/kogile/checklist/listList/${checklist_no}`
+				}).then(function(res){
+					console.log(res);
+					$.each(res, function(i, item){
+						console.log(item);
+						var txt =``;
+						if(item.checked == 0){
+							txt += `<li data-lno="${item.list_no}"><input type="checkbox" name="list_info" value="${item.checked}">${item.list_info}</input></li>`;
+						}else{
+							txt += `<li data-lno="${item.list_no}"><input type="checkbox" name="list_info" value="${item.checked}" checked>${item.list_info}</input></li>`;
+						}
+						console.log($('#check_'+item.checklist_no));
+						$('#check_'+item.checklist_no).append(txt);
+					});
+						
+				})
+			}
 			
 //			checkList_list-----------------------------
 })(jQuery)

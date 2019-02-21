@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kogile.checklist.domain.ChecklistVO;
 import kogile.checklist.domain.Criteria;
+import kogile.checklist.domain.ListVO;
 import kogile.checklist.mapper.ChecklistMapper;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
@@ -61,6 +62,17 @@ public class ChecklistServiceImpl implements ChecklistService {
 		log.info("get Checklist List " + p_no );
 		
 		return mapper.read(p_no);
+	}
+
+	@Override
+	public int insertList(ListVO list) {
+		return mapper.insertList(list);
+	}
+
+	@Override
+	public List<ListVO> listList(int checklist_no) {
+		
+		return mapper.listList(checklist_no);
 	}
 
 
