@@ -5,7 +5,6 @@
 	
 	nowDate();
 
-	  
 	function yesNo(){
 		var a = confirm("초대하시겠습니까?");
 		if(a==true){
@@ -16,7 +15,7 @@
 			return false;
 		}
 	}
-	
+	//검색리스트 json
 	var searchListService = (function() {
 
 		function searchList(param, callback, error) {
@@ -46,7 +45,7 @@
 	$("input[name=search]").on('focusin', function(){
 		isSearch =true;
 	})
-	
+	//검색 리스트 이벤트
 	$("input[name=search]").on('focusout', function(e){
 		var searchValue = $('input[name=search]').val();
 		
@@ -70,23 +69,18 @@
 		})
 		
 	});
-	
-	/*$(document).on("click", '#searchList', function(){
-		yesNo();
-	});*/
-	
+	//팝오버 정의
 	$('#btn-search').popover({
 		html : true,
 		placement : 'bottom'
 	})
-	
+	//팝오버 이벤트
 	$("#btn-search").on('click', function(e) {
 		var searchValue = $('input[name=search]').val();
 		
 		if(searchValue == "" || searchValue==null){
 			alert("검색값을 입력해주세요.");
-			$(this).popover('hide');
-//			$(this).removeEventListenter('input[name=search]'); //이벤트 제거하여 popover이벤트 막기. 															//but 첫페이지로 이동하는 버그 발생..
+			$(this).popover('hide');															//but 첫페이지로 이동하는 버그 발생..
 			return;
 		} else{
 			$(this).popover();
@@ -94,10 +88,7 @@
 							
 	});
 	
-
-	//알림관련 js
-	
-		//알림관련 js
+		//알림 리스트 JSON
 		console.log("========");
 		console.log("notice test");
 
@@ -124,9 +115,8 @@
 			};
 		})();
 			
-			
+			//알림 리스트 이벤트
 		$("a[id=alertsDropdown]").on('click', function(e){
-			//var noticeValue = ;
 			
 			var noticeValue = $('#rw').attr('value');
 			var noticeUL = $("#notice3");
@@ -152,15 +142,12 @@
 		
 		});
 		
-		//초대관련 js
-	
-		//초대관련 js
 		console.log("=============");
 		console.log("invite test");
-
+		//초대 서비스 함수
 		var inviteService = (function() {
 	
-			//초대 리스트 추가 관려 js ***
+			//초대 리스트 추가 JSON
 			function add(invite, callback, error){
 				console.log("add invite.......");
 				
@@ -182,7 +169,8 @@
 					}
 					})
 			}
-			//초대 목록 관련 js
+			
+			//초대 목록 JSON처리 
 			function invite(param, callback, error) {
 
 				var invite = param.pjt_no;
@@ -205,11 +193,11 @@
 			};
 		})();
 		
-	
+		//초대 리스트 추가 이벤트
 	$(document).on("click", "#searchList", function(){
 		console.log("===========");
 		console.log("ADD TEST");
-		//초대 리스트 추가 일부 ***
+		
 		
 		var pjtValue = $('#rw2').attr('value');
 		var totValue = $(this).attr('data-content');
@@ -223,9 +211,13 @@
 				function(result){
 					alert("초대되었습니다.");
 				});
+//			리다이렉트처리
+			var pjt_no = $('#rw2').attr('value');
+			window.location.href = 'http://localhost:8082/kogile/main?pjt_no='+pjt_no;
 			
-		});
+	});
 		
+//	초대목록 처리
 		$(document).ready(function(){
 			//var noticeValue = ;
 			
