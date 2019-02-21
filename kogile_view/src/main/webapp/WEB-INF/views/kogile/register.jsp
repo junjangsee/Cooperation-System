@@ -48,7 +48,7 @@
 					href="/login/external/registerKogileWithKakao">Sign up With Kakao</a>
 			</form>
 			<div class="text-center">
-				<a class="d-block small mt-3" href="/kogile/login">Login</a>
+				<a class="d-block small mt-3" href="/kogile/login" dir="rtl">Login</a>
 			</div>
 		</div>
 	</div>
@@ -77,11 +77,16 @@
 	<script>
 	$(function(){
 		$('#registerIntermem').on('click', function(){
+			
 			var email = $('#inputEmail').val();
 			var password = $('#inputPassword').val();
 			var name = $('#inputName').val();
+			
 			userService.register({name: name, email: email, password: password}, function(){
 				alert("가입되었습니다.");
+				userService.login({email: email, password: password}, function() {
+					location.href = "/kogile/startPage";
+				});
 			});
 			return false;
 		})
