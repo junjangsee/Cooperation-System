@@ -142,6 +142,7 @@
 				console.log("a : " + a);
 				
 				if(a != before){
+					console.log("change");
 					$('#noticeLength').html(a);				
 				}
 				
@@ -150,7 +151,7 @@
 		}
 		
 			//알림 리스트 이벤트
-		$("a[id=alertsDropdown]").on('click', function(e){
+		$("#alertsDropdown").on('click', function(e){
 
 			/*$('.fas.fa-bell.fa-fw.blinking').css('-webkit-animation', 'none');
 			$('.fas.fa-bell.fa-fw.blinking').css('-moz-animation', 'none');
@@ -159,8 +160,9 @@
 			var noticeValue = $('#rw').attr('value');
 			var noticeUL = $("#notice3");
 			
+			
 			noticeService.notice({total_m_no:noticeValue}, function(list){
-				
+				console.log(list);
 				var value = '';
 				
 				if(list==null || list.length==0){
