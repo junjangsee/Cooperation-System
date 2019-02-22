@@ -20,6 +20,8 @@
 <title>프로젝트 상세보기</title>
 </head>
 <body id="page-top">
+	<input id="rw2" type="hidden" value="${pjt_no}" name="pjt_no">
+	<input id="rw" type="hidden" value="${total_m_no}" name="total_m_no">
 
 	<%@ include file="../../includes/nav.jsp"%>
 
@@ -84,6 +86,7 @@
 							data-toggled="modal" data-target="#delete_project">수정</a> 
 						<a id="delete_pjt" href="#" class="btn btn-danger"
 							data-toggled="modal" data-target="#delete_project">프로젝트 삭제</a>
+							<input class="btn btn-default" id="delete" type="button" value="나가기" style="position: absolute; right: 10px;">
 				</div>
 				<!-- end card body -->
 				<div class="card-footer small text-muted">Updated yesterday at

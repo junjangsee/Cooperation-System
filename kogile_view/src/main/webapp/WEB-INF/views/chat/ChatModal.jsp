@@ -300,7 +300,7 @@ var chatService = (function() {
 	}
 	
 	$(function() {
-
+	
 		$(".mytext").on("keydown", function(e) {
 			if (e.which == 13) {
 				var text = $(this).val();

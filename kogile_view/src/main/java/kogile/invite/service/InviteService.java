@@ -12,5 +12,7 @@ public interface InviteService {
 	
 	public List<InviteVO> invite(int pjt_no);
 	
-	public int insertInvite(InviteVO invite);
+	public void insertInvite(InviteVO invite);
+	
+	public int deleteInvite(InviteVO invite);
 }

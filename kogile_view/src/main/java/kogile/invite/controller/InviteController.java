@@ -89,12 +89,15 @@ public class InviteController {
 		
 		log.info("InviteVO: " + invite);
 		
-		int insertCount = service.insertInvite(invite);
+		service.insertInvite(invite);
 		
-		log.info("Invite INSERT COUNT: " + insertCount);
+		return  new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@PostMapping("/delete")
+	public int deleteInvite(@RequestBody InviteVO invite) {
 		
-		return insertCount==1? new ResponseEntity<>("success", HttpStatus.OK)
-				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		return  service.deleteInvite(invite);
 	}
 	
 	
