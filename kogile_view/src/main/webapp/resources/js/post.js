@@ -242,6 +242,7 @@
 			showDescription();
 			writer_info();
 			list_LabelInfo();
+			list_checklist();
 		});
 	}
 	
@@ -772,6 +773,100 @@
 				console.log(e);
 			})
 	}
+	  
+	  //checklist
+	  function list_checklist(){
+			var p_no = $('#detail_post_modal').attr('data-id');
+			
+			$.ajax({
+				type : "GET",
+				url : `/kogile/checklist/readChecklist/${p_no}`,
+				dataType : "JSON"
+			}).then(function(res){
+				console.log(res);
+				txt = ``;
+				for(var i = 0; i < res.length; i ++){
+					txt += `<div class="check" data-chno="${res[i].checklist_no}"><h5 class="check_title" style="display:inline;">* ${res[i].check_title}</h5>`;
+					txt += `<input type="text" class="form-control check_title_form" style="display : none; margin-bottom : 3px; height : 30px;"
+					value="${res[i].check_title}">
+					<div class="progress">
+				<div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+				</div><ul id="check_${res[i].checklist_no}" style="list-style :none;padding-left : 5px;"></ul>
+				 </div><br>`;
+				}
+				$('#list_Checklist').html(txt);
+				
+				return res;
+			}).then(function(res){
+				console.log(res);
+				for(var i = 0; i < res.length; i ++){
+					listList(res[i].checklist_no);						
+				}
+				return res;
+			}).then(function(res){
+				$.each(res, function(i, item){
+					percent(item.checklist_no);
+				})
+			})
+		}
 
+	  function listList(checklist_no){
+			$.ajax({
+				type : "GET",
+				dataType : "JSON",
+				url : `/kogile/checklist/listList/${checklist_no}`
+			}).then(function(res){
+				console.log(res);
+				$.each(res, function(i, item){
+					console.log(item);
+					var txt =``;
+					if(item.checked == 0){
+						txt += `<li data-lno="${item.list_no}"><input class="list_check" type="checkbox" value="1"><a class="MYlist_info">${item.list_info}</a>
+						<input type="text" class="form-control list_info_form" value="${item.list_info}" style="display : none; margin-top : 5px;" ></li>`;
+					}else{
+						txt += `<li data-lno="${item.list_no}"><input class="list_check" type="checkbox" value="0" checked><a class="MYlist_info">${item.list_info}</a>
+							<input type="text" class="form-control list_info_form" value="${item.list_info}" style="display : none; margin-top : 5px;" ></li>`;
+					}
+					$('#check_'+item.checklist_no).append(txt);
+				});
+					
+			})
+		}
+	  
+	  $(document).on('change', '.list_check', function(){
+			var data = {
+					checked : $(this).val(),
+					list_no : $(this).closest('li').data('lno')
+			};
+			
+			updateCheck(data);
+			
+		})
+		
+		function updateCheck(data){
+			$.ajax({
+				data : JSON.stringify(data),
+				type : "POST",
+				dataType : "text",
+				contentType : "application/json; charset=UTF-8",
+				url : "/kogile/checklist/updateCheck"
+			}).then(function(res){
+				console.log(res);
+				list_checklist();
+			})
+		}
+		
+		
+		function percent(chno){
+			$.ajax({
+				type : "GET",
+				dataType : "JSON",
+				url : `/kogile/checklist/percent/${chno}`
+			}).then(function(res){
+				console.log(res.checklist_no);
+				$('#check_'+res.checklist_no).siblings('.progress').find('.progress-bar').css('width', res.completePercent+"%");
+				
+			})
+		}
 	
 })(jQuery);

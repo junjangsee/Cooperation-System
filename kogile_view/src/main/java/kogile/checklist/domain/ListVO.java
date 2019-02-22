@@ -10,6 +10,5 @@ public class ListVO {
 	private Long checked;
 	private Long checklist_no;
 	
-	//checklist 완료율
-	private int completePercent;
+	
 }

@@ -147,7 +147,7 @@
 	<%@ include file="../../includes/footconfig.jsp"%>
 	<script src="/resources/js/detailPost.js"></script>
 	<script src="/resources/js/post.js"></script>
-	<!-- <script src="/resources/js/checklist.js"></script> -->
+	<script src="/resources/js/checklist.js"></script>
 
 
 </body>

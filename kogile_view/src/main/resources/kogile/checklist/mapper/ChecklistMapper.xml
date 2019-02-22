@@ -11,7 +11,7 @@
 	</insert>
 	
 	
-	<select id="read" resultType="kogile.checklist.domain.ChecklistVO">
+	<select id="read" resultType="kogile.checklist.domain.ChecklistVO">		
 		select * from checklist 
 		where p_no = #{p_no}
 		order by checklist_no
@@ -37,6 +37,7 @@
 	<select id="listList" resultType="kogile.checklist.domain.ListVO">
 		select * from list
 		where checklist_no = #{checklist_no}
+		order by list_no
 	</select>
 	
 	<delete id="deleteList">
@@ -55,5 +56,10 @@
 		checked = #{checked}
 		where list_no = #{list_no}
 	</update>
+	
+	<select id="percent" resultType="int">
+		select (sum(checked)/count(checked))*100 from list
+		where checklist_no = #{checklist_no}
+	</select>
 	
 </mapper>

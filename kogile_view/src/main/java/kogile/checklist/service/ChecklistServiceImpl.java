@@ -93,6 +93,11 @@ public class ChecklistServiceImpl implements ChecklistService {
 		return mapper.updateCheck(list);
 	}
 
+	@Override
+	public int percent(int checklist_no) {
+		return mapper.percent(checklist_no);
+	}
+
 
 	
 	

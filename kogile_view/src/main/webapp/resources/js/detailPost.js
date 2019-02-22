@@ -463,6 +463,11 @@
 					for(var i = 0; i < res.length; i ++){
 						listList(res[i].checklist_no);						
 					}
+					return res;
+				}).then(function(res){
+					$.each(res, function(i, item){
+						percent(item.checklist_no);
+					})
 				})
 			}
 			
@@ -659,9 +664,41 @@
 			//--------------------->check 처리
 			
 			$(document).on('change', '.list_check', function(){
-				console.log($(this).val());
+				var data = {
+						checked : $(this).val(),
+						list_no : $(this).closest('li').data('lno')
+				};
+				
+				updateCheck(data);
 				
 			})
 			
+			function updateCheck(data){
+				$.ajax({
+					data : JSON.stringify(data),
+					type : "POST",
+					dataType : "text",
+					contentType : "application/json; charset=UTF-8",
+					url : "/kogile/checklist/updateCheck"
+				}).then(function(res){
+					console.log(res);
+					list_checklist();
+				})
+			}
+			
+			
+			function percent(chno){
+				$.ajax({
+					type : "GET",
+					dataType : "JSON",
+					url : `/kogile/checklist/percent/${chno}`
+				}).then(function(res){
+					console.log(res.checklist_no);
+					$('#check_'+res.checklist_no).siblings('.progress').find('.progress-bar').css('width', res.completePercent+"%");
+					
+//					$('#check_'+res.chekclist_no).closest('.progress-bar').css('width', res.completePercent);
+				})
+			}
+						
 			//check 처리<---------------------
 })(jQuery)

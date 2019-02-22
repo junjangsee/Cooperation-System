@@ -107,4 +107,15 @@ public class ChecklistController {
 				: new ResponseEntity<>("fail", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
+	@GetMapping("/percent/{checklist_no}")
+	public ChecklistVO percent(@PathVariable int checklist_no) {
+		
+		int percent = service.percent(checklist_no);
+		ChecklistVO check = new ChecklistVO();
+		check.setChecklist_no(checklist_no);
+		check.setCompletePercent(percent);
+		
+		return check;
+	}
+	
 }

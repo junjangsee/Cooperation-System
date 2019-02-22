@@ -24,4 +24,5 @@ public interface ChecklistMapper {
 	public int updateList(ListVO list);
 	
 	public int updateCheck(ListVO list);
+	public int percent(int checklist_no);
 }

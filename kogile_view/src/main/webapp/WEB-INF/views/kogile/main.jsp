@@ -195,6 +195,7 @@
 	
 	<script src="/resources/js/main.js"></script>
 	<script src="/resources/js/post.js"></script>
+	<script src="/resources/js/checklist.js"></script>
 
 	<!-- <script src="/resources/js/reply.js"></script> -->
 	<!-- <script src="/resources/js/description.js"></script> -->

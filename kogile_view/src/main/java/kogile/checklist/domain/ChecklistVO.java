@@ -9,4 +9,6 @@ public class ChecklistVO {
 	private String check_title;
 	private int p_no;
 	
+	//checklist 완료율
+	private int completePercent;
 }

@@ -159,7 +159,7 @@
   color: #fff;
 }
 /* 댓글css */
-.modal-body ul li{height: auto;min-height:100px;margin-bottom: 15px;border-bottom: solid 1px #f1f1f1;padding: 10px 0;}
+#reply_list li{height: auto;min-height:100px;margin-bottom: 15px;border-bottom: solid 1px #f1f1f1;padding: 10px 0;}
 .modal-body ul li .input_box .fullname{display: inline-block;color: #333;font-weight: 600; margin-left: 10px; margin-bottom: 3px;}
 .modal-body ul li .input_box .date{color: #888;font-size: 12px;vertical-align: bottom;display: inline-block;padding-left: 5px;}
 .modal-body ul li .input_box .cts{display: block;background: #fff;box-shadow: 2px 2px 5px rgba(0,0,0,0.1);padding:10px;border-radius: 5px;margin: 5px 0 10px 0; background-color: #f1f1f1;}

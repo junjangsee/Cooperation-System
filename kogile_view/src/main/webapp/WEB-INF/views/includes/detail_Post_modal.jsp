@@ -114,10 +114,11 @@
 					<!-- 댓글목록 종료 -->
 					
 					<!-- 체크리스트 시작 -->
-					<div id="checklist">
-					<h4>
-						<b>체크리스트</b>
-					</h4>
+					<div>
+					<h4><b>체크리스트</b></h4>
+					<div id="list_Checklist">
+					</div>
+					
 					<!-- <div class="progress" style="width : 70%;">
 					<div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
 					</div> -->
