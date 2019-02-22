@@ -20,4 +20,8 @@ public interface ChecklistService {
 
 	public int insertList(ListVO list);
 	public List<ListVO> listList(int checklist_no);
+	public int deleteList(int list_no);
+	public int updateList(ListVO list);
+	
+	public int updateCheck(ListVO list);
 }

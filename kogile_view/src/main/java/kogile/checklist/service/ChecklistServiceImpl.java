@@ -75,6 +75,24 @@ public class ChecklistServiceImpl implements ChecklistService {
 		return mapper.listList(checklist_no);
 	}
 
+	@Override
+	public int deleteList(int list_no) {
+		
+		return mapper.deleteList(list_no);
+	}
+
+	@Override
+	public int updateList(ListVO list) {
+		
+		return mapper.updateList(list);
+	}
+
+	@Override
+	public int updateCheck(ListVO list) {
+		
+		return mapper.updateCheck(list);
+	}
+
 
 	
 	

@@ -89,4 +89,22 @@ public class ChecklistController {
 		return service.listList(checklist_no);
 	}
 	
+	@GetMapping(value="/deleteList/{list_no}", produces= {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> deleteList(@PathVariable int list_no){
+		return service.deleteList(list_no) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
+				: new ResponseEntity<>("fail", HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@PostMapping(value="/updateList", produces= {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> updateList(@RequestBody ListVO list){
+		return service.updateList(list) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
+				: new ResponseEntity<>("fail", HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@PostMapping(value="/updateCheck", produces= {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> updateCheck(@RequestBody ListVO list){
+		return service.updateCheck(list) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
+				: new ResponseEntity<>("fail", HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
 }

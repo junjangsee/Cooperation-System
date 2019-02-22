@@ -39,4 +39,21 @@
 		where checklist_no = #{checklist_no}
 	</select>
 	
+	<delete id="deleteList">
+		delete from list
+		where list_no = #{list_no}
+	</delete>
+	
+	<update id="updateList" parameterType="kogile.checklist.domain.ListVO">
+		update list set
+		list_info = #{list_info}
+		where list_no = #{list_no}
+	</update>
+	
+	<update id="updateCheck" parameterType="kogile.checklist.domain.ListVO">
+		update list set
+		checked = #{checked}
+		where list_no = #{list_no}
+	</update>
+	
 </mapper>

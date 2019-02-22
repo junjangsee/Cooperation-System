@@ -587,16 +587,81 @@
 						console.log(item);
 						var txt =``;
 						if(item.checked == 0){
-							txt += `<li data-lno="${item.list_no}"><input type="checkbox" name="list_info" value="${item.checked}">${item.list_info}</input></li>`;
+							txt += `<li data-lno="${item.list_no}"><input class="list_check" type="checkbox" value="1"><a class="MYlist_info">${item.list_info}</a><a href="#" class="delete_list" style="font-size : 10px; margin-left:5px;">삭제</a>
+							<input type="text" class="form-control list_info_form" value="${item.list_info}" style="display : none; margin-top : 5px;" ></li>`;
 						}else{
-							txt += `<li data-lno="${item.list_no}"><input type="checkbox" name="list_info" value="${item.checked}" checked>${item.list_info}</input></li>`;
+							txt += `<li data-lno="${item.list_no}"><input class="list_check" type="checkbox" value="0" checked><a class="MYlist_info">${item.list_info}</a><a href="#" class="delete_list" style="font-size : 10px; margin-left:5px;">삭제</a>
+								<input type="text" class="form-control list_info_form" value="${item.list_info}" style="display : none; margin-top : 5px;" ></li>`;
 						}
-						console.log($('#check_'+item.checklist_no));
 						$('#check_'+item.checklist_no).append(txt);
 					});
 						
 				})
 			}
+			$(document).on('click', '.delete_list', function(e){
+				e.preventDefault();
+				var list_no = $(this).closest('li').data('lno');
+				console.log(list_no);
+				deleteList(list_no);
+			})
+			
+			
+			function deleteList(list_no){
+				$.ajax({
+					type : "GET",
+					dataType : "text",
+					url : `/kogile/checklist/deleteList/${list_no}`
+				}).then(function(res){
+					console.log(res);
+					list_checklist();
+				})
+			}
+			
+			$(document).on('click', '.MYlist_info', function(){
+				$(this).prev().hide();
+				$(this).hide();
+				$(this).next().hide();
+				$(this).siblings('.list_info_form').show();
+				$(this).siblings('.list_info_form').focus();
+				
+			})
+			
+			$(document).on('focusout', '.list_info_form', function(){
+				var list_no = $(this).closest('li').data('lno');
+				var list_info = $(this).val();
+				
+				var data = {
+						list_no : list_no,
+						list_info : list_info
+				}
+				updateList(data);
+				
+				console.log(data);
+			})
+			
+			function updateList(data){
+				$.ajax({
+					data : JSON.stringify(data),
+					contentType : "application/json; charset=UTF-8",
+					type : "POST",
+					dataType : "text",
+					url : "/kogile/checklist/updateList"
+				}).then(function(res){
+					console.log(res);
+					list_checklist();
+				}).catch(function(e){
+					console.log(e);
+				})
+			}
 			
 //			checkList_list-----------------------------
+			
+			//--------------------->check 처리
+			
+			$(document).on('change', '.list_check', function(){
+				console.log($(this).val());
+				
+			})
+			
+			//check 처리<---------------------
 })(jQuery)
