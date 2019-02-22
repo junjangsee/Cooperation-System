@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import kogile.board.domain.BoardVO;
-import kogile.board.domain.Criteria;
 
 public interface BoardMapper {
 

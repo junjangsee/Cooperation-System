@@ -39,7 +39,7 @@
 				<!-- DataTables Example -->
 				<div class="card mb-3">
 					<div class="card-header">
-						<i class="fas fa-table"></i> 게시글 수정
+						<i class="fas fa-table"></i> 게시글
 					</div><br>
 					<div>
 					<form action="updateBoard" method="POST">

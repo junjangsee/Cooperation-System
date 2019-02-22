@@ -13,13 +13,12 @@ public class BoardVO {
 	private String b_title;
 	private String b_content;
 	private int info_no;
+	private String writer;
 	private String fname;
 	
 	private Date regdate;
-	
 	private Date update_date; 
 	
 	private int pjt_no;
 	
-	private String writer;
 }

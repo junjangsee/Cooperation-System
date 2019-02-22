@@ -9,14 +9,14 @@
 		INSERT INTO board(b_no, b_title, b_content, writer,
 		regdate, update_date, pjt_no) VALUES(board_seq.nextval,
 		#{b_title}, #{b_content},
-		#{writer},  sysdate, sysdate,
+		#{writer}, sysdate, sysdate,
 		#{pjt_no})
 	</insert>
 
 	<!-- 게시글 전체 출력 -->
 	<select id="listBoard" resultType="kogile.board.domain.BoardVO">
 		SELECT /*+ INDEX_DESC(board BOARD_BNO_PK)*/ 
-		b_no, b_title, b_content, fname, regdate, update_date
+		b_no, b_title, b_content, fname, regdate, update_date, writer
 		FROM board WHERE pjt_no = #{pjt_no}
 	</select>
 

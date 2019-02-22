@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import kogile.board.domain.BoardVO;
-import kogile.board.domain.Criteria;
 import kogile.board.mapper.BoardMapper;
 import kogile.invite.domain.InviteVO;
 import kogile.reply.mapper.ReplyMapper;
