@@ -12,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import kogile.board.domain.BoardVO;
+import kogile.board.domain.Criteria;
 import kogile.board.mapper.BoardMapper;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -83,5 +84,33 @@ public class BoardMapperTests {
 //		mapper.deleteBoard(board);
 //	}
 	
+//	@Test
+//	public void testPaging() {
+//		
+//		Criteria cri = new Criteria();
+//		
+//		List<BoardVO> list = mapper.listBoardWithPaging(cri);
+//		
+//		list.forEach(board -> log.info(list));
+//	}
+	
+//	@Test
+//	public void testPaging() {
+//		
+//		Criteria cri = new Criteria();
+//		
+//		// 10개씩 3페이지
+//		cri.setPageNum(3);
+//		cri.setAmount(10);
+//		
+//		List<BoardVO> list = mapper.listBoardWithPaging(cri);
+//		
+//		list.forEach(board -> log.info(board.getB_no()));
+//	}
+	
+	@Test
+	public void testList() {
+		
+	}
 
 }

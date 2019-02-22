@@ -2,21 +2,26 @@ package kogile.board.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import kogile.board.domain.BoardVO;
+import kogile.board.domain.Criteria;
 import kogile.board.mapper.BoardMapper;
+import kogile.invite.domain.InviteVO;
+import kogile.reply.mapper.ReplyMapper;
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
+@SessionAttributes("total_m_no")
 public class BoardServiceImpl implements BoardService {
 	
 	private BoardMapper mapper;
 
 	@Override
 	public int insertBoard(BoardVO board) {
-		
 		return mapper.insertBoard(board);
 	}
 
@@ -27,9 +32,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardVO detailBoard(BoardVO board) {
+	public BoardVO detailBoard(int b_no) {
 		
-		return mapper.detailBoard(board);
+		return mapper.detailBoard(b_no);
 	}
 
 	@Override
@@ -39,9 +44,16 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int deleteBoard(BoardVO board) {
+	public int deleteBoard(int b_no) {
 
-		return mapper.deleteBoard(board);
+		return mapper.deleteBoard(b_no);
 	}
+
+
+//	@Override
+//	public List<BoardVO> listBoardWithPaging(Criteria cri) {
+//
+//		return mapper.listBoardWithPaging(cri);
+//	}
 
 }

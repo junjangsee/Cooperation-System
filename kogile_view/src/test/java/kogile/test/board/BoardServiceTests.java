@@ -12,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import kogile.board.domain.BoardVO;
+import kogile.board.domain.Criteria;
 import kogile.board.service.BoardService;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -81,6 +82,12 @@ public class BoardServiceTests {
 //		board.setB_no(5);
 //		
 //		service.deleteBoard(board);
+//	}
+	
+//	@Test
+//	public void ListTest() {
+//		
+//		service.listBoardWithPaging(new Criteria(1, 10)).forEach(board -> log.info(board));
 //	}
 
 }

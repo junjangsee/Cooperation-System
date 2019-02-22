@@ -15,11 +15,11 @@ public class BoardVO {
 	private int info_no;
 	private String fname;
 	
-	@JsonFormat(pattern="yy-MM-dd", timezone="Asia/Seoul")
 	private Date regdate;
 	
-	@JsonFormat(pattern="yy-MM-dd", timezone="Asia/Seoul")
 	private Date update_date; 
 	
 	private int pjt_no;
+	
+	private String writer;
 }
