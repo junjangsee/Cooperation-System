@@ -55,15 +55,15 @@
 			var value = '';
 			
 			for(var i = 0; i<list.length; i++){
-		
-				value += `<input class="btn btn-default" type="button" value="${list[i].no} ${list[i].name} ${list[i].mail}" 
-				 name="searchList" id="searchList" data-content="${list[i].no}"/><p>`;
+				
+				value += `<input class="btn btn-default" type="button" value="${list[i].name} ${list[i].mail}" 
+				 name="searchList" id="searchList" data-content="${list[i].no}"/></p>`;
 				
 				
 			}
-			value2 = "검색결과 창을 닫으시려면 돋보기아이콘을 한번 더 클릭해주세요.";
+			value3 = `<div>검색결과 창을 닫으시려면 돋보기아이콘을 한번 더 클릭해주세요.<div>`;
 			
-			value = value + value2;
+			value = value + value3;
 			
 			$('#btn-search').attr("data-content", value);	
 		})
@@ -208,6 +208,28 @@
 					}
 					})
 			}
+			//초대 삭제 json
+			function sub(invite, callback, error){
+				console.log("add invite.......");
+				
+				$.ajax({
+					type : 'post',
+					url : '/invite/delete',
+					data : JSON.stringify(invite),
+					contentType : "application/json; charset=uft-8",
+					success : function(result, status, xhr){
+						if(callback){
+							callback(result);
+						}
+					},
+					error : function(xhr, status, er) {
+						if (error) {
+							error(er);
+							
+						}
+					}
+					})
+			}
 			
 			//초대 목록 JSON처리 
 			function invite(param, callback, error) {
@@ -228,6 +250,7 @@
 			}
 			return {
 				add : add,
+				sub, sub,
 				invite : invite
 			};
 		})();
@@ -237,25 +260,85 @@
 		console.log("===========");
 		console.log("ADD TEST");
 		
+		var a = confirm("초대하시겠습니까?");
+		
+		if(a==true){
 		
 		var pjtValue = $('#rw2').attr('value');
 		var totValue = $(this).attr('data-content');
+		
+		
+		$('.invList').each(function(index, item){
+			invTot = $(this).attr('data-content');
+			
+			
+			console.log("invTot : " + invTot);
+			console.log("index : " + index);
+			console.log("item : " + item );
+			
+			for(i=0; i<=index; i++){
+				if(totValue == invTot){
+					alert("이미 초대된 상대입니다.")
+					return false;
+				}
+			}
+			
+			
+		});
+		
 		//var totValue = 2;
 		console.log("pjtValue : " + pjtValue);
-		console.log("totValue : " + totValue);
-		
+		//console.log("totValue : " + totValue);
+
+		//console.log("invTot : " + invTot);
+
 		inviteService.add(
 				{pjt_no:pjtValue, total_m_no:totValue}
 				,
 				function(result){
-					alert("초대되었습니다.");
+					
 				});
+		if(pjtValue == null){
+			alert("해당 페이지에선 초대 할  수 없습니다.");
+			return false;
+		}
+		
 //			리다이렉트처리
 			var pjt_no = $('#rw2').attr('value');
 			window.location.href = 'http://localhost:8082/kogile/main?pjt_no='+pjt_no;
-			
-	});
 		
+		}
+		else{
+			alert("초대가 취소됐습니다.");	
+			return false;
+		}
+		
+	});
+	
+	$(document).on("click", "#delete", function(){
+		
+		var a = confirm("프로젝트를 나가시겠습니까?");
+		
+		if(a==true){
+		var pjtValue = $('#rw2').attr('value');
+		var totValue = $('#rw').attr('value');
+		
+		console.log("pjtValue : " + pjtValue);
+		console.log("totValue : " + totValue);
+		
+		inviteService.sub({pjt_no:pjtValue, total_m_no:totValue});
+		
+		window.location.href = 'http://localhost:8082/kogile/startPage';
+		
+		alert("프로젝트를 나갔습니다.");
+		
+		}else{
+			alert("나가기를 취소했습니다.");
+			return false;
+		}
+		
+		});
+	
 //	초대목록 처리
 		$(document).ready(function(){
 			//var noticeValue = ;
@@ -274,8 +357,8 @@
 				}
 				
 				for(var i = 0; i<list.length; i++){
-					value += list[i].name + " ";
-			
+					value += `<span class= 'invList' data-content=${list[i].total_m_no}>${list[i].name}  </span>`;
+					
 				}
 				
 				inviteUL.html(value);

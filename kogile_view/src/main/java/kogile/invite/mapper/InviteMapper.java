@@ -18,4 +18,6 @@ public interface InviteMapper {
 	public int insertInvite(InviteVO invite);
 	
 	public int insertNotice(NoticeVO notice);
+	
+	public int deleteInvite(InviteVO invite);
 }

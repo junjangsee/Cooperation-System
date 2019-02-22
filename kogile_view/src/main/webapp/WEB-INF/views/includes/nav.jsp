@@ -102,10 +102,13 @@ $("#btn-search").on('click', function(e) {
 		UserVO user = (UserVO) session.getAttribute("user");
 	%>
 
+	
 	<c:set var="userName"><%=user.getName()%></c:set>
 
 	<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
+
+		
 		<a class="navbar-brand mr-1" href="/kogile/startPage">Kogile</a>
 
 		<button class="btn btn-link btn-sm text-white order-1 order-sm-0"
@@ -181,5 +184,6 @@ $("#btn-search").on('click', function(e) {
 		</ul>
 
 	</nav>
+
 </body>
 </html>

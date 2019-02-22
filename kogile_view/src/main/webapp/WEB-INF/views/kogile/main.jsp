@@ -35,7 +35,7 @@
 </head>
 <body id="page-top">
 	<input id="rw2" type="hidden" value="${pjt_no}" name="pjt_no">
-	<input id="rw" type="hidden" value="${userNo}" name="total_m_no">
+	<input id="rw" type="hidden" value="${total_m_no}" name="total_m_no">
 	<!-- modal -->
 	<%@ include file="../includes/format_modal.jsp"%>
 	<%@ include file="../includes/detail_Post_modal.jsp"%>
@@ -59,9 +59,9 @@
 					<div class="card-header">
 						<i class="fas fa-table"> pjt_name</i>
 						<span id="pjname"></span>
-
+						
 					</div>
-					
+					<input class="btn btn-default" id="delete" type="button" value="나가기" style="position: absolute; right: 0;">
 					<div class="card-body" id="body_main">
 						<div class="cts_board grid">
 							<div class="item">

@@ -50,6 +50,9 @@ public class InviteServiceImpl implements InviteService {
 		mapper.insertNotice(notice);
 	}
 	
-	
-
+	@Override
+	public int deleteInvite(InviteVO invite) {
+		
+	 return	mapper.deleteInvite(invite);
+	}
 }

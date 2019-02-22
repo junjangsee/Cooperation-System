@@ -94,5 +94,11 @@ public class InviteController {
 		return  new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
+	@PostMapping("/delete")
+	public int deleteInvite(@RequestBody InviteVO invite) {
+		
+		return  service.deleteInvite(invite);
+	}
+	
 	
 }
