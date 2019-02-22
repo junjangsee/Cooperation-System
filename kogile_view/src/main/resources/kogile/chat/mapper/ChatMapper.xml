@@ -9,7 +9,7 @@
 	<![CDATA[
 	select
 	/* INDEX_DESC(tbl_chat pk_chat) */
-	*
+	chat_no, pjt_no, total_m_no, writer, chatcontents, to_char(regdate, 'hh24:mi') as regdate
 	from
 	tbl_chat
 	where pjt_no = #{pjt_no} AND

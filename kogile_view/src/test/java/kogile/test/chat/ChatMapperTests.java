@@ -60,7 +60,7 @@ public class ChatMapperTests {
 
 	@Test
 	public void insertChatTest() {
-		int res = mapper.chatRegister(new ChatVO(1, 2,1 ,"sohyun", "HwangSoheeBabo"));
+		int res = mapper.chatRegister(new ChatVO(1, 2,1 ,"sohyun", "HwangSoheeBabo", "2019-01-01"));
 		if(res < 0) {
 			fail();
 		}

@@ -37,7 +37,7 @@ public class ChatServiceTests {
 
 	@Test
 	public void chatSendServiceTest() {
-		ChatVO chat = new ChatVO(2,1,1,"Ȳ����", "�ư̳�¥������׷�222222");
+		ChatVO chat = new ChatVO(2,1,1,"Ȳ����", "�ư̳�¥������׷�222222", "2019-01-01");
 		if(!service.chatSendService(chat)){
 			System.out.println("update Fail!");
 			fail();

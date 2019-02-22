@@ -6,10 +6,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 
-	UserVO user = (UserVO) session.getAttribute("user");
-
 	Gson gson = new GsonBuilder().create();
+
+	UserVO user = (UserVO) session.getAttribute("user");
 	String userDataJson = gson.toJson(user);
+	int pjt_no = (int) session.getAttribute("pjt_no");
+
 %>
 <html>
 <head>
@@ -33,7 +35,7 @@
 }
 
 .text {
-	width: 75%;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 }
@@ -258,9 +260,10 @@ var chatService = (function() {
 		}
 
 	var userData = <%=userDataJson%>
+	var pjt_no = <%=pjt_no%>
 	//향후 파라미터로 건네받습니다.
 	var MyChatInfo = {
-		"pjt_no" : 1,
+		"pjt_no" : pjt_no,
 		"name" : userData.name,
 		"total_m_no" : userData.total_m_no,
 		"chat_no" : 1

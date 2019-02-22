@@ -19,7 +19,8 @@
 <body class="bg-dark">
 	<div class="card card-login mx-auto mt-5">
 		<div class="card-body">
-		<legend>Log in to Kogile</legend><br>
+			<legend>Log in to Kogile</legend>
+			<br>
 			<form>
 				<div class="form-group">
 					<div class="form-label-group">
@@ -68,8 +69,20 @@
 
 	<%@ include file="../includes/footconfig.jsp"%>
 	<script src="/resources/js/user.js"></script>
+	<script src="/resources/js/boundsChecking.js"></script>
 	<script>
 		$(function() {
+			
+			$(document).on('blur', 'input', function(){
+				var type = this.getAttribute('id');
+				
+				switch(type){
+					case 'inputEmail':
+						console.log('email');
+					break;
+				}
+			});
+			
 			$('#loginIntermem').on('click', function() {
 				var email = $('#inputEmail').val();
 				var password = $('#inputPassword').val();

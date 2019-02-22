@@ -8,8 +8,6 @@ var chatService = (function() {
 		"recievechat" : "/chat/recievechat",
 		"sendchat" : "/chat/sendchat"
 	};
-	
-	//pjt_no 어떻게 가져옴? 일단 임의로 넣어야함.
 
 	function initChatCtn(pjt_no, callback, error) {
 		$.ajax({

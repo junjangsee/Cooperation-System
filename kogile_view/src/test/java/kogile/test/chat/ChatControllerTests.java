@@ -48,7 +48,7 @@ public class ChatControllerTests {
 	@Ignore
 	@Test
 	public void sendChatTest() throws Exception {
-		ChatVO chat = new ChatVO(1, 1, 1,"soheemon", "helloworld!");
+		ChatVO chat = new ChatVO(1, 1, 1,"soheemon", "helloworld!", "2019-01-01");
 		String jsonStr = new Gson().toJson(chat);
 		
 		log.info(jsonStr);
