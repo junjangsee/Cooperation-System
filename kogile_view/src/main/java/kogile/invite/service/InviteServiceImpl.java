@@ -26,6 +26,12 @@ public class InviteServiceImpl implements InviteService {
 		log.info("getList...............");
 		return mapper.searchList(search);
 	}
+	
+	@Override
+	public List<SearchListVO> searchPjt(SearchVO search) {
+		log.info("getList...............");
+		return mapper.searchPjt(search);
+	}
 
 	@Override
 	public List<InviteVO> invite(int pjt_no){

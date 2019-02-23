@@ -9,7 +9,5 @@ public class SearchListVO {
 	private String name; //유저 이름
 	private String mail; //이메일
 	
-	private int pjt_no;
-	private String pjt_title;
-	
+
 }

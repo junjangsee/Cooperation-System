@@ -71,6 +71,19 @@ public class InviteController {
 		
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
+	
+	@GetMapping(value="/searchPjt/{search}/{total_m_no}", 
+			produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
+	public ResponseEntity<List<SearchListVO>> searchPjt(@PathVariable("search") String search, @PathVariable int total_m_no){
+		
+		SearchVO search2 = new SearchVO();
+		search2.setSearch(search);
+		search2.setTotal_m_no(total_m_no);
+		
+		List<SearchListVO> list = service.searchPjt(search2);
+		
+		return new ResponseEntity<>(list, HttpStatus.OK);
+	}
 
 	@GetMapping(value="/inviteList")	//inivite�� js���� param.invite�� �ѱ� ��
 	public ResponseEntity<List<InviteVO>> invite(){

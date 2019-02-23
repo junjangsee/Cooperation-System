@@ -17,7 +17,7 @@
 	}
 	//검색리스트 json
 	var searchListService = (function() {
-
+		
 		function searchList(param, callback, error) {
 
 			var search = param.search;
@@ -34,11 +34,33 @@
 				}
 			});
 		}
+		
+		//searchPjt
+		function searchPjt(param, callback, error) {
+			
+			var search = param.search;
+			var total_m_no = param.total_m_no;
+			
+			$.getJSON("/invite/searchPjt/" + search + "/" + total_m_no + ".json" , 
+		
+			function(data) {
+				if (callback) {
+					callback(data);
+				}
+			}).fail(function(xhr, status, err) {
+				if (error) {
+					error();
+				}
+			});
+		}
 		return {
-			searchList : searchList 
+			searchList : searchList,
+			searchPjt : searchPjt
 		};
-	})();
+		
 
+	})();
+	
 	
 	var isSearch = false;
 	
@@ -47,7 +69,10 @@
 	})
 	//검색 리스트 이벤트
 	$("input[name=search]").on('focusout', function(e){
+		
 		var searchValue = $('input[name=search]').val();
+		var totValue = $('#rw').attr('value');
+		
 		
 		searchListService.searchList({search:searchValue}, function(list){
 			console.log(list);
@@ -59,15 +84,35 @@
 				value += `<input class="btn btn-default" type="button" value="${list[i].name} ${list[i].mail}" 
 				 name="searchList" id="searchList" data-content="${list[i].no}"/></p>`;
 				
-				
 			}
-			value3 = `<div>검색결과 창을 닫으시려면 돋보기아이콘을 한번 더 클릭해주세요.<div>`;
+			//value3 = `<div>검색결과 창을 닫으시려면 돋보기아이콘을 한번 더 클릭해주세요.<div>`;
 			
-			value = value + value3;
+			value = value;
 			
 			$('#btn-search').attr("data-content", value);	
 		})
 		
+		/*searchListService.searchPjt({search:searchValue, total_m_no:totValue}, function(list){
+		
+			console.log("pjtList : " + list);
+			
+			var value = '';
+			value += '<hr>'
+			
+			for(var i = 0; i<list.length; i++){
+				
+				value += `<input class="btn btn-default" type="button" value="${list[i].pjt_title}" 
+				 name="searchPjt" id="searchPjt" data-content="${list[i].pjt_no}"/></p>`;
+				
+				
+			}
+			value3 = `<hr><div>검색결과 창을 닫으시려면 돋보기아이콘을 한번 더 클릭해주세요.<div>`;
+			
+			value = value + value3;
+			
+			$('#btn-search').attr("data-content", value);	
+		
+		});*/
 	});
 	//팝오버 정의
 	$('#btn-search').popover({
@@ -128,16 +173,16 @@
 		
 		setInterval(function(){
 			printNotice();
-
+			
 		}, 5000);
-
+		
 		function printNotice(){
 			var before = $('#noticeLength').html();
 			console.log('befrore : ' + before);
 			var noticeValue = $('#rw').attr('value');
 			
 			noticeService.notice(noticeValue, function(list){
-					
+				
 				a = list.length;
 				console.log("a : " + a);
 				
@@ -156,6 +201,7 @@
 			/*$('.fas.fa-bell.fa-fw.blinking').css('-webkit-animation', 'none');
 			$('.fas.fa-bell.fa-fw.blinking').css('-moz-animation', 'none');
 			$('.fas.fa-bell.fa-fw.blinking').css('animation', 'none');*/
+			
 			
 			var noticeValue = $('#rw').attr('value');
 			var noticeUL = $("#notice3");

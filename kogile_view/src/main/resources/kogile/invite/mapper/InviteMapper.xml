@@ -27,6 +27,15 @@
 		
 	</select>
 	
+	<select id="searchPjt" parameterType="kogile.invite.domain.SearchVO" resultType="kogile.invite.domain.SearchPjtVO">
+		select distinct p.PJT_NO as pjt_no, p.pjt_title as pjt_title, p.PJT_CONTENTS as pjt_contents
+		from project p
+		join invite i
+		on p.total_m_no = i.TOTAL_M_NO
+		<where>
+		i.total_m_no = #{total_m_no} and (p.pjt_title like '%' || #{search} || '%' or p.PJT_CONTENTS like '%' || #{search} || '%')
+		</where>
+	</select>
 			
 	<!-- 초대쿼리문 -->	
 	<select id="invite" resultType="kogile.invite.domain.InviteVO">

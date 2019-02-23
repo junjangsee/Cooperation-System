@@ -6,9 +6,8 @@
 	<select id="notice"   resultType="kogile.notice.domain.NoticeVO">
 	 	select ntc_cont, to_char(ntc_date, 'YYYY-MM-DD HH:MI:SS') as day 
 	 	from notice
-	 	<where>
-	 		total_m_no = #{total_m_no}
-	 	</where>
+	 	where total_m_no = #{total_m_no} 
+	 	order by day desc
 	</select>
 	
 </mapper>
