@@ -5,16 +5,7 @@
 	
 	nowDate();
 
-	function yesNo(){
-		var a = confirm("초대하시겠습니까?");
-		if(a==true){
-			alert("초대됐습니다.");
-		}
-		else{
-			alert("초대가 취소됐습니다.");	
-			return false;
-		}
-	}
+	
 	//검색리스트 json
 	var searchListService = (function() {
 		
@@ -72,12 +63,9 @@
 		
 		var searchValue = $('input[name=search]').val();
 		var totValue = $('#rw').attr('value');
-		
-		
+		var value = '';
+		var value2 ='';
 		searchListService.searchList({search:searchValue}, function(list){
-			console.log(list);
-			
-			var value = '';
 			
 			for(var i = 0; i<list.length; i++){
 				
@@ -87,32 +75,34 @@
 			}
 			//value3 = `<div>검색결과 창을 닫으시려면 돋보기아이콘을 한번 더 클릭해주세요.<div>`;
 			
-			value = value;
+				
 			
-			$('#btn-search').attr("data-content", value);	
+			
 		})
 		
-		/*searchListService.searchPjt({search:searchValue, total_m_no:totValue}, function(list){
+		searchListService.searchPjt({search:searchValue, total_m_no:totValue}, function(list){
 		
 			console.log("pjtList : " + list);
 			
-			var value = '';
-			value += '<hr>'
+			value += '<hr>';
 			
 			for(var i = 0; i<list.length; i++){
 				
-				value += `<input class="btn btn-default" type="button" value="${list[i].pjt_title}" 
+				value += `<input class="btn btn-default" type="button" value="${list[i].pjt_title} (${list[i].pjt_contents})" 
 				 name="searchPjt" id="searchPjt" data-content="${list[i].pjt_no}"/></p>`;
 				
 				
 			}
-			value3 = `<hr><div>검색결과 창을 닫으시려면 돋보기아이콘을 한번 더 클릭해주세요.<div>`;
+			value3 = `<hr><input class="btn btn-default" type="button" id="search3" value="창을 닫으시려면 돋보기아이콘을 클릭하십시오."/>`;
+					
 			
 			value = value + value3;
-			
-			$('#btn-search').attr("data-content", value);	
+				
+			console.log('value값 : ' + value);
+			$('#btn-search').attr("data-content", value);
+		});
 		
-		});*/
+		//$('#btn-search').attr("data-content", value);	
 	});
 	//팝오버 정의
 	$('#btn-search').popover({
@@ -255,7 +245,8 @@
 				}
 				
 				for(var i = 0; i<list.length; i++){
-					value += "<p id='noticeList' class='dropdown-item notice_list'>"+ list[i].ntc_cont + " " + list[i].day + "</p>";
+					value += "<div id='noticeList' class='dropdown-item notice_list'>"+ list[i].ntc_cont + 
+					" " + "<span style='text-align:right' id'noticeList2' >" + list[i].day + "</span></div></p>";
 					value += `<input type="hidden" value="${list[i].flag}" class="ntcUpdate" id="ntcUpdate"/>`;
 					//value += "<p>" + list[i].ntc_cont + " " + list[i].day + "</p>";
 					
@@ -406,6 +397,31 @@
 		}
 		
 	});
+	
+	$(document).on("click", "#searchPjt", function(){
+		
+		var a = confirm("해당 프로젝트로 이동하시겠습니까?");
+		
+		if(a==true){
+		
+		var pjtValue = $(this).attr('data-content');
+		
+		//var totValue = 2;
+		console.log("pjtValue : " + pjtValue);
+		//console.log("totValue : " + totValue);
+
+		//console.log("invTot : " + invTot);
+
+			window.location.href = 'http://localhost:8082/kogile/main?pjt_no='+pjtValue;
+		
+		}
+		else{	
+			return false;
+		}
+		
+	});
+	
+
 	
 	$(document).on("click", "#delete", function(){
 		

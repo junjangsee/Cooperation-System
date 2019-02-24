@@ -43,13 +43,36 @@
 	
 }
 
+#searchPjt{
+	background-color: white;
+	border-width: 1;
+	border-style: solid;
+	border-color: #AD8EDB;
+	cursor: pointer;
+	border-radius: 0.5em;
+	-moz-border-radius: 0.5em;
+	-webkit-border-radius: 0.5em;
+}
+
+#search3{
+	font-size: 10px;
+}
+#noticeList{
+	float : left;
+}
+
 #noticeList:after {
+		
         content: "";
         display: block;
         width: 150px;
         border-bottom: 1px solid #bcbcbc;
         margin: 5px auto;
         
+}
+
+#noticeList2 {
+	font-size: small;
 }
 
 .invList{
@@ -64,3 +87,4 @@
 	text-align: center;
 	font-size: 11px;
 }
+
