@@ -4,10 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kogile.notice.mapper.NoticeMapper">
 	<select id="notice"   resultType="kogile.notice.domain.NoticeVO">
-	 	select ntc_cont, to_char(ntc_date, 'YYYY-MM-DD HH:MI:SS') as day 
+	 	select ntc_cont, to_char(ntc_date, 'YYYY-MM-DD HH:MI:SS') as day, flag 
 	 	from notice
 	 	where total_m_no = #{total_m_no} 
 	 	order by day desc
 	</select>
+	
+	<update id="ntcUpdate" parameterType="kogile.notice.domain.NoticeVO">
+		update notice set flag=#{flag} 
+			where TOTAL_M_NO=#{total_m_no}
+	</update>
 	
 </mapper>

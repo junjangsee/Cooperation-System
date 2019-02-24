@@ -22,7 +22,15 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public List<NoticeVO> notice(int total_m_no) {
 		log.info("noticeList...............");
+		
 		return mapper.notice(total_m_no);
+	}
+	
+	@Override
+	public int ntcUpdate(NoticeVO notice) {
+		log.info("noticeList...............");
+		
+		return mapper.ntcUpdate(notice);
 	}
 
 }

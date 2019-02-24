@@ -19,7 +19,7 @@
 	var searchListService = (function() {
 		
 		function searchList(param, callback, error) {
-
+			
 			var search = param.search;
 			
 			$.getJSON("/invite/searchList/" + search + ".json", 
@@ -81,7 +81,7 @@
 			
 			for(var i = 0; i<list.length; i++){
 				
-				value += `<input class="btn btn-default" type="button" value="${list[i].name} ${list[i].mail}" 
+				value += `<input class="btn btn-default" type="button" value="${list[i].name} (${list[i].mail})" 
 				 name="searchList" id="searchList" data-content="${list[i].no}"/></p>`;
 				
 			}
@@ -151,25 +151,40 @@
 					}
 				}).fail(function(xhr, status, err) {
 					if (error) {
-						error();
+						error(err);
 					}
 				});
 			}
+			
+			function ntcUpdate(notice, callback, error){
+				
+				$.ajax({
+					type : 'post',
+					url : '/notice/ntcUpdate',
+					data : JSON.stringify(notice),
+					contentType : "application/json; charset=uft-8",
+					success : function(result, status, xhr){
+						if(callback){
+							callback(result);
+						}
+					},
+					error : function(xhr, status, er) {
+						if (error) {
+							error(er);
+							
+						}
+					}
+					})
+			}
 			return {
-				notice : notice
+				notice : notice,
+				ntcUpdate : ntcUpdate
 			};
 		})();
 		
-		/*var myNotice = {
-				"notice_no" : notice_no,
-				//"invite_no" : invite_no,
-				//"tag_no" : tag_no,
-				"total_m_no" : $('#rw').attr('value')
-		};*/
 
 		//알림 setInterval
 		
-		printNotice();
 		
 		setInterval(function(){
 			printNotice();
@@ -177,27 +192,41 @@
 		}, 5000);
 		
 		function printNotice(){
-			var before = $('#noticeLength').html();
-			console.log('befrore : ' + before);
+			//var before = $('#noticeLength').html();
+			var a=0;
+			
 			var noticeValue = $('#rw').attr('value');
+			console.log('noticeValue :' + noticeValue);
 			
 			noticeService.notice(noticeValue, function(list){
+				console.log('list값 : ' + list[0].flag);
 				
-				a = list.length;
-				console.log("a : " + a);
+				for(var i=0; i<list.length; i++){
+				if(list[i].flag===1){
+					a++;
+					
+				}
+				}
+				console.log('a값 : ' + a);
 				
-				if(a != before){
-					console.log("change");
-					$('#noticeLength').html(a);				
+				//document.createElement('#noticeLength')
+				$('#noticeLength').html(a);
+				
+				if(a==0){
+					//$('#noticeLength').remove();
+					$('#noticeLength').html(0);
+					//$('span').empty('#noticeLength');
 				}
 				
 			});
-
-		}
+				
+			};
+			
+		
 		
 			//알림 리스트 이벤트
 		$("#alertsDropdown").on('click', function(e){
-
+			
 			/*$('.fas.fa-bell.fa-fw.blinking').css('-webkit-animation', 'none');
 			$('.fas.fa-bell.fa-fw.blinking').css('-moz-animation', 'none');
 			$('.fas.fa-bell.fa-fw.blinking').css('animation', 'none');*/
@@ -205,6 +234,14 @@
 			
 			var noticeValue = $('#rw').attr('value');
 			var noticeUL = $("#notice3");
+			
+			
+				noticeService.ntcUpdate(
+						{total_m_no:noticeValue, flag:0}
+						,
+						function(result){
+							
+						});
 			
 			
 			noticeService.notice({total_m_no:noticeValue}, function(list){
@@ -218,16 +255,23 @@
 				}
 				
 				for(var i = 0; i<list.length; i++){
-					value += "<p class='dropdown-item notice_list'>"+ list[i].ntc_cont + " " + list[i].day + "</p>";
-					
+					value += "<p id='noticeList' class='dropdown-item notice_list'>"+ list[i].ntc_cont + " " + list[i].day + "</p>";
+					value += `<input type="hidden" value="${list[i].flag}" class="ntcUpdate" id="ntcUpdate"/>`;
 					//value += "<p>" + list[i].ntc_cont + " " + list[i].day + "</p>";
 					
 				}
 				
 				noticeUL.html(value);
 			})
-		
+			
+			
 		});
+		
+		$(document).on('click', '#alertsDropdown', function(){
+		
+			var noticeValue = $('#rw').attr('value');
+		
+				});
 		
 		console.log("=============");
 		console.log("invite test");
@@ -405,7 +449,7 @@
 				}
 				
 				for(var i = 0; i<list.length; i++){
-					value += `<span class= 'invList' data-content=${list[i].total_m_no}>${list[i].name}  </span>`;
+					value += '<span class= "invList" data-content="'+list[i].total_m_no+'">'+' ' + list[i].name.substring(list[i].name.length-2)+ '</span>';
 					
 				}
 				

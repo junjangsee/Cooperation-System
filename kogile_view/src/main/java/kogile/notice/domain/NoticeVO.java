@@ -11,4 +11,5 @@ public class NoticeVO {
 	private String ntc_cont;
 	private String day;
 	private int total_m_no;
+	private int flag;
 }

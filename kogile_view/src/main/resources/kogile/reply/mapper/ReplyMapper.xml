@@ -92,7 +92,7 @@
 	
 	<!-- 태그된 사람에게 알림 보내기 -->
 	<insert id="insertTagNotice" parameterType="kogile.reply.domain.TagVO">
-		insert  into notice values(NOTICE_SEQ.nextval,null,#{tag_no},'태그됐음!',sysdate,#{total_m_no})
+		insert  into notice values(NOTICE_SEQ.nextval,null,#{tag_no},'게시물에 태그됐습니다.',sysdate,#{total_m_no}, 1)
 	</insert>
 	<!-- 태그된 사람에게 알림 보내기 위해서 태그 넘버가져오기 -->
 	<select id="tagNum" resultType="int">

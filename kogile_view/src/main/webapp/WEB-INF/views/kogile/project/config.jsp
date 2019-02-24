@@ -86,7 +86,7 @@
 							data-toggled="modal" data-target="#delete_project">수정</a> 
 						<a id="delete_pjt" href="#" class="btn btn-danger"
 							data-toggled="modal" data-target="#delete_project">프로젝트 삭제</a>
-							<input class="btn btn-default" id="delete" type="button" value="나가기" style="position: absolute; right: 10px;">
+							<input class="btn btn-default" class="exitPjt"id="exitPjt" type="button" value="퇴장" style="position: absolute; right: 10px;">
 				</div>
 				<!-- end card body -->
 				<div class="card-footer small text-muted">Updated yesterday at

@@ -31,6 +31,7 @@
 
 <link href="/resources/css/post.css" rel="stylesheet">
 
+<link href="/resources/css/common.css" rel="stylesheet">
 <title>Kogile</title>
 </head>
 <body id="page-top">
