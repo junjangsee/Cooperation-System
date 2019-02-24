@@ -152,7 +152,7 @@
 						var endDay = flatpickr.formatDate(date[0], "Y-m-d");
 						update_Date(endDay, id);
 					}
-					
+			
 			});
 			
 			$('#due_date').on('focusout', function(){

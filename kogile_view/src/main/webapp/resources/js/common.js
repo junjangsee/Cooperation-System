@@ -98,6 +98,7 @@
 
 				var notice = param.total_m_no;
 				
+				
 				$.getJSON("/notice/noticeList/" + notice + ".json", 
 			
 				function(data) {

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kogile.board.mapper.BoardMapper">
+
+	<!-- 게시글 삽입 -->
+	<insert id="insertBoard">
+		INSERT INTO board(b_no, b_title, b_content, writer,
+		regdate, update_date, pjt_no) VALUES(board_seq.nextval,
+		#{b_title}, #{b_content},
+		#{writer}, sysdate, sysdate,
+		#{pjt_no})
+	</insert>
+
+	<!-- 게시글 전체 출력 -->
+	<select id="listBoard" resultType="kogile.board.domain.BoardVO">
+		SELECT /*+ INDEX_DESC(board BOARD_BNO_PK)*/ 
+		b_no, b_title, b_content, fname, regdate, update_date, writer
+		FROM board WHERE pjt_no = #{pjt_no}
+	</select>
+
+	<!-- 게시글 상세 보기 -->
+	<select id="detailBoard" resultType="kogile.board.domain.BoardVO">
+		SELECT * FROM board WHERE
+		b_no = #{b_no}
+	</select>
+
+	<!-- 게시글 수정 -->
+	<update id="updateBoard">
+		UPDATE board SET b_title = #{b_title}, b_content =
+		#{b_content}, update_date = sysdate WHERE b_no = #{b_no}
+	</update>
+
+	<delete id="deleteBoard">
+		DELETE board WHERE b_no = #{b_no}
+	</delete>
+
+</mapper>

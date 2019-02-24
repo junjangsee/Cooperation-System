@@ -194,7 +194,6 @@
 		})
 	}
 
-
 	// 포스트 삽입
 	function insert_post() {
 		const data = $("form[name=insertPost_form]").serialize();
