@@ -432,7 +432,7 @@
 					swal("프로젝트 알림", "해당 페이지에선 초대 할  수 없습니다.");
 				}
 				
-				리다이렉트처리
+//				리다이렉트처리
 				var pjt_no = $('#rw2').attr('value');
 				window.location.href = 'http://localhost:8082/kogile/main?pjt_no='+pjt_no;
 				

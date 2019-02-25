@@ -65,13 +65,14 @@
 							<div class="addcard_holder holder">
 								<h3 class="title_c">ADD TO CARD</h3>
 								<div class="btn_list">
-									<a href="#" class="mem_btn">Members</a> <a id="MY_btn_label"
+									<!-- <a href="#" class="mem_btn">Members</a> --> 
+									<a id="MY_btn_label"
 										href="#" class="label_btn" role="button" data-toggle="popover"
 										data-trigger="focus" title="Label" data-content="">Labels</a>
 									<a id="MY_btn_check" href="#" class="check_btn"
 										data-toggle="modal" data-target="#detail_checklist_modal">Checklist</a>
-									<a href="#" class="due_btn" id="MY_btn_due">Due Date</a> <a
-										href="#" class="atta_btn">Attachment</a>
+									<a href="#" class="due_btn" id="MY_btn_due">Due Date</a> 
+									<!-- <a href="#" class="atta_btn">Attachment</a> -->
 								</div>
 							</div>
 						</div>
