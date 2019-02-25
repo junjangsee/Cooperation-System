@@ -138,7 +138,7 @@ $("#btn-search").on('click', function(e) {
 				class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false"> <i class="fas fa-bell fa-fw"></i> <!-- 알림 -->
-					<span class="badge badge-danger" id="noticeLength"></span>
+					<span class="badge badge-danger" id="noticeLength" ></span>
 			</a>
 				<div class="dropdown-menu dropdown-menu-right"
 					aria-labelledby="alertsDropdown" id="notice3">

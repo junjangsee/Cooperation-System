@@ -11,10 +11,22 @@
 		});
 
 		$('#delete_pjt').on('click',function(e) {
-			console.log("test");
 			e.preventDefault();
-			$("form[name=project_info]").attr("action", "/kogile/project/delete");
-			$("form[name=project_info]").submit();
+			$.ajax({
+				type : "GET",
+				dataType : "text",
+				url : "/kogile/project/delete",
+			}).then(function(res){
+				console.log(res);
+				window.location.href="http://localhost:8082/kogile/startPage";
+			}).catch(function(e){
+				if(e.status == 400){
+					swal("프로젝트 알림", e.responseText);
+				}
+			})
+			
+//			$("form[name=project_info]").attr("action", "/kogile/project/delete");
+//			$("form[name=project_info]").submit();
 		});
 		
 		

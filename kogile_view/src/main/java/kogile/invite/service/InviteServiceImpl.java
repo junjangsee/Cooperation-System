@@ -26,6 +26,12 @@ public class InviteServiceImpl implements InviteService {
 		log.info("getList...............");
 		return mapper.searchList(search);
 	}
+	
+	@Override
+	public List<SearchListVO> searchPjt(SearchVO search) {
+		log.info("getList...............");
+		return mapper.searchPjt(search);
+	}
 
 	@Override
 	public List<InviteVO> invite(int pjt_no){
@@ -43,9 +49,10 @@ public class InviteServiceImpl implements InviteService {
 		NoticeVO notice = new NoticeVO();
 		
 		notice.setInvite_no(invite.getInvite_no());
-		System.out.println("notice.inv °ª : " + notice.getInvite_no());
+		System.out.println("notice.inv ï¿½ï¿½ : " + notice.getInvite_no());
 		notice.setTotal_m_no(invite.getTotal_m_no());
-		System.out.println("notice.tot °ª : " + notice.getTotal_m_no());
+		System.out.println("notice.tot ï¿½ï¿½ : " + notice.getTotal_m_no());
+		mapper.insertPrjInfo(invite.getInvite_no());
 		
 		mapper.insertNotice(notice);
 	}

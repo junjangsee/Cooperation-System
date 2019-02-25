@@ -29,7 +29,7 @@
 	<!-- include end -->
 	
 	<!-- hidden param -->
-	<input id="rw" type="hidden" value="><%= user.getTotal_m_no() %>" name="total_m_no">
+	<input id="rw" type="hidden" value="<%= user.getTotal_m_no() %>" name="total_m_no">
 	
 	<div id="wrapper">
 

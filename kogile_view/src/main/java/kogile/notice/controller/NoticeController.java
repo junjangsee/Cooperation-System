@@ -12,11 +12,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import kogile.invite.domain.InviteVO;
+import kogile.label.domain.LabelVO;
 import kogile.notice.domain.NoticeVO;
 import kogile.notice.service.NoticeService;
+import kogile.post.domain.PostVO;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
@@ -41,6 +44,10 @@ public class NoticeController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
-
+	@PostMapping("/ntcUpdate")
+	public ResponseEntity<String> ntcUpdate(@RequestBody NoticeVO notice) {
+		return service.ntcUpdate(notice) == 1 ? new ResponseEntity<>("�꽦怨�", HttpStatus.OK)
+				: new ResponseEntity<>("�떎�뙣", HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 
 }

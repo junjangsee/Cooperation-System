@@ -20,9 +20,9 @@
     })
     .on("dragend", function(el, e) {
       // drag event 가 끝났을때 update 여부를 판단한다.
-
+    
       var $currentElement = $(el);
-
+      console.log($currentElement.attr('data-status'));
       console.log("currentElement", $currentElement);
 
       // element 의 status 를 바탕으로 todo, doing 등 카테고리 체크를 한다.
@@ -34,7 +34,7 @@
       console.log("containerStatus", containerStatus);
       
       //드래그 대상 p_no검출
-      var p_no = $($currentElement[0]).attr('data-no');
+      var p_no = $currentElement.attr('data-no');
 
       // elementStatus 와 containerStatus 가 같지 않다는 것은 카테고리 이동이 있었다는 것이므로 update 를 한다.
       if (elementStatus !== containerStatus) {

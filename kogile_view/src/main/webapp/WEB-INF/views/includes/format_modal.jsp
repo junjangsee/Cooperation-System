@@ -14,7 +14,7 @@
 
 
 	<div class="modal fade" id="notice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog" role="document">  <!-- 큰 모달창 적용 시, class에 'modal-lg' 추가 -->
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">모달 제목</h5>

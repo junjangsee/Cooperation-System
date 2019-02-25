@@ -8,4 +8,6 @@ public interface NoticeMapper {
 
 	public List<NoticeVO> notice(int total_m_no);
 	
+	public int ntcUpdate(NoticeVO notice);
+	
 }

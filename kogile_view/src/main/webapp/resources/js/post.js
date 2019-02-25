@@ -9,7 +9,7 @@
 //		$("form[name=insertPost_form]").find('input[name=c_no]').val(c_no);
 //		insert_post();
 //		$("input[name=p_title]").val("");
-//		alert("생성되었습니다.");
+//		swal("생성되었습니다.");
 //	});
 //	// Post 제목 상세보기
 //	$('.item_content').on('click', function(e){
@@ -42,7 +42,7 @@
 				"taged_name" : taged_name
 		};
 		if($('#autoComplete').val()!=""&&$('#tag_name').val()==""){
-			alert('태그할 사람을 확인해 주세요')
+			swal('태그할 사람을 확인해 주세요')
 		}else{
 			replyAdd(reply);
 			$('#insert_reply').val("");
@@ -118,7 +118,7 @@
 		$("form[name=insertPost_form]").find('input[name=c_no]').val(c_no);
 		insert_post();
 		$("input[name=p_title]").val("");
-		alert("생성되었습니다.");
+		swal("생성되었습니다.");
 	});
 //	end window.onload
 	//
@@ -169,7 +169,7 @@
 				}),
 				contentType : "application/json; charset=UTF-8"
 			}).then(function(res){
-				alert('저장되었습니다.');
+				swal('저장되었습니다.');
 				$('#p_title').text(title);
 				showTitle();
 			}).catch(function(err){
@@ -189,7 +189,7 @@
 			},
 			dataType : "JSON"
 		}).then(function(res){
-			alert("삭제되었습니다.");
+			swal("삭제되었습니다.");
 			list_post();
 		})
 	}
@@ -281,7 +281,7 @@
 			},
 			dataType : "JSON"
 		}).then(function(res){
-			alert("삭제되었습니다.");
+			swal("삭제되었습니다.");
 			list_post();
 		})
 	}
@@ -338,7 +338,7 @@
 				}),
 				contentType : "application/json; charset=UTF-8"
 			}).then(function(res){
-				alert('저장되었습니다.');
+				swal('저장되었습니다.');
 				$('#p_title').text(title);
 				showTitle();
 			}).catch(function(err){
@@ -358,7 +358,7 @@
 	
 	$('#end_date').on('keyup', function(e){
 		var id = $('#detail_post_modal').attr('data-id');
-		alert(id);
+		swal(id);
 		if(e.keyCode === 13){
 //			update_Modal_Date($(this).val(), id);
 		} else {
