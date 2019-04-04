@@ -1,4 +1,4 @@
-# kogile
+# kogile(업무협업툴)
 첨부파일 : kogile파이널.pdf
 
 ## 구현내용
